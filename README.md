@@ -1,8 +1,6 @@
 # CarZone
-Web SPA for the course Angular - November 2020 @SoftUni
 
 ## :point_right: Project Introduction :point_left:
-
 **CarZone** is my defense project for **Angular** course at [SoftUni](https://softuni.bg/trainings/3047/angular-november-2020/internal).
 
 ## :pencil: Project Description
