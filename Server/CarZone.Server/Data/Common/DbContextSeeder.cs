@@ -31,6 +31,7 @@ namespace CarZone.Server.Data.Common
                               new ExteriorSeeder(),
                               new ProtectionSeeder(),
                               new SafetySeeder(),
+                              new BrandSeeder(),
                           };
 
             foreach (var seeder in seeders)

@@ -10,7 +10,7 @@ namespace CarZone.Server.Data.Common.Seeding
     {
         public async Task SeedAsync(CarZoneDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.Comforts.Any())
+            if (dbContext.Exteriors.Any())
             {
                 return;
             }
