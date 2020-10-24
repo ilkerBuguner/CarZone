@@ -4,6 +4,19 @@ namespace CarZone.Server.Data.Common
 {
     public static class Constants
     {
+        public static class Seeding
+        {
+            public const string FullName = "First User";
+
+            public const string UserName = "FirstUser";
+
+            public const string Email = "user@user.com";
+
+            public const string Password = "123456";
+
+        }
+
+
         public static class User
         {
             public const int UserNameMinLength = 3;

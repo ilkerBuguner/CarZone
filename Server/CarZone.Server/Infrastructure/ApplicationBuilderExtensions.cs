@@ -1,4 +1,5 @@
 ﻿using CarZone.Server.Data;
+using CarZone.Server.Data.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ namespace CarZone.Server.Infrastructure
             var dbContext = services.ServiceProvider.GetService<CarZoneDbContext>();
 
             dbContext.Database.Migrate();
+            new DbContextSeeder().SeedAsync(dbContext, services.ServiceProvider).GetAwaiter().GetResult();
         }
     }
 }
