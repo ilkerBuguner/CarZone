@@ -51,6 +51,8 @@ namespace CarZone.Server.Data.Models
 
         public EuroStandard EuroStandard { get; set; }
 
+        public DoorsCount DoorsCount { get; set; }
+
         [Required]
         public BodyType BodyType { get; set; }
 

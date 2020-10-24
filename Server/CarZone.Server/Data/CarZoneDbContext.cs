@@ -53,7 +53,7 @@ namespace CarZone.Server.Data
 
         public DbSet<Safety> Safeties { get; set; }
 
-        public DbSet<CarSafety> carSafeties { get; set; }
+        public DbSet<CarSafety> CarSafeties { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
