@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using CarZone.Server.Data.Common;
 
 using static CarZone.Server.Data.Common.Constants.User;
+using CarZone.Server.Data.Enumerations;
 
 namespace CarZone.Server.Data.Models
 {
@@ -35,6 +36,8 @@ namespace CarZone.Server.Data.Models
 
         [MaxLength(LocationMaxLength)]
         public string Location { get; set; }
+
+        public Gender Gender { get; set; }
 
         public string ProfilePictureUrl { get; set; }
 

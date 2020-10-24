@@ -1,8 +1,8 @@
 ﻿using CarZone.Server.Data.Common;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using static CarZone.Server.Data.Common.Constants.Comfort;
 
 namespace CarZone.Server.Data.Models.Comfort
 {
@@ -15,6 +15,8 @@ namespace CarZone.Server.Data.Models.Comfort
             this.CarComforts = new HashSet<CarComfort>();
         }
 
+        [Required]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
         public ICollection<CarComfort> CarComforts { get; set; }

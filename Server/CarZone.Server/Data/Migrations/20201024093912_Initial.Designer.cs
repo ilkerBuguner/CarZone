@@ -4,14 +4,16 @@ using CarZone.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarZone.Server.Data.Migrations
 {
     [DbContext(typeof(CarZoneDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201024093912_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -369,6 +371,9 @@ namespace CarZone.Server.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("BrandId1")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -388,6 +393,8 @@ namespace CarZone.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
+
+                    b.HasIndex("BrandId1");
 
                     b.HasIndex("IsDeleted");
 
@@ -904,11 +911,15 @@ namespace CarZone.Server.Data.Migrations
 
             modelBuilder.Entity("CarZone.Server.Data.Models.Model", b =>
                 {
-                    b.HasOne("CarZone.Server.Data.Models.Brand", "Brand")
-                        .WithMany("Models")
+                    b.HasOne("CarZone.Server.Data.Models.Advertisement", "Brand")
+                        .WithMany()
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("CarZone.Server.Data.Models.Brand", null)
+                        .WithMany("Models")
+                        .HasForeignKey("BrandId1");
 
                     b.Navigation("Brand");
                 });

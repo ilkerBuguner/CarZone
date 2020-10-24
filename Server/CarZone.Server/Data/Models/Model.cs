@@ -22,12 +22,11 @@ namespace CarZone.Server.Data.Models
         [MinLength(NameMaxLength)]
         public string Name { get; set; }
 
-        [ForeignKey(nameof(Models.Brand))]
         [Required]
+        [ForeignKey(nameof(Models.Brand))]
         public string BrandId { get; set; }
 
-        public virtual Advertisement Brand { get; set; }
-
+        public virtual Brand Brand { get; set; }
 
         public ICollection<Car> Cars { get; set; }
     }

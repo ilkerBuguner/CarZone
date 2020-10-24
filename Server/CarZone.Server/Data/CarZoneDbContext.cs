@@ -7,6 +7,11 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using CarZone.Server.Data.Models.Comfort;
+using CarZone.Server.Data.Models.Exterior;
+using CarZone.Server.Data.Models.Protection;
+using CarZone.Server.Data.Models.Safety;
+using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
 
 namespace CarZone.Server.Data
 {
@@ -21,6 +26,34 @@ namespace CarZone.Server.Data
             : base(options)
         {
         }
+
+        public DbSet<Advertisement> Advertisements { get; set; }
+
+        public DbSet<Brand> Brands { get; set; }
+
+        public DbSet<Model> Models { get; set; }
+
+        public DbSet<Car> Cars { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Reply> Replies { get; set; }
+
+        public DbSet<Comfort> Comforts { get; set; }
+
+        public DbSet<CarComfort> CarComforts { get; set; }
+
+        public DbSet<Exterior> Exteriors { get; set; }
+
+        public DbSet<CarExterior> CarExteriors { get; set; }
+
+        public DbSet<Protection> Protections { get; set; }
+
+        public DbSet<CarProtection> CarProtections { get; set; }
+
+        public DbSet<Safety> Safeties { get; set; }
+
+        public DbSet<CarSafety> carSafeties { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

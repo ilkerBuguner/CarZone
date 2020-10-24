@@ -1,6 +1,8 @@
 ﻿using CarZone.Server.Data.Common;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using static CarZone.Server.Data.Common.Constants.Safety;
 
 namespace CarZone.Server.Data.Models.Safety
 {
@@ -13,6 +15,8 @@ namespace CarZone.Server.Data.Models.Safety
             this.CarSafeties = new HashSet<CarSafety>();
         }
 
+        [Required]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
         public ICollection<CarSafety> CarSafeties { get; set; }

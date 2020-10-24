@@ -62,5 +62,29 @@ namespace CarZone.Server.Data.Common
             public const int NameMinLength = 2;
             public const int NameMaxLength = 30;
         }
+
+        public static class Comfort
+        {
+            public const int NameMinLength = 2;
+            public const int NameMaxLength = 60;
+        }
+
+        public static class Exterior
+        {
+            public const int NameMinLength = 2;
+            public const int NameMaxLength = 60;
+        }
+
+        public static class Protection
+        {
+            public const int NameMinLength = 2;
+            public const int NameMaxLength = 60;
+        }
+
+        public static class Safety
+        {
+            public const int NameMinLength = 2;
+            public const int NameMaxLength = 60;
+        }
     }
 }
