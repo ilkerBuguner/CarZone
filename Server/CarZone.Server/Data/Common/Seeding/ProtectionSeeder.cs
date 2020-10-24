@@ -11,7 +11,7 @@
     {
         public async Task SeedAsync(CarZoneDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.Exteriors.Any())
+            if (dbContext.Protections.Any())
             {
                 return;
             }
