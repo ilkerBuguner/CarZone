@@ -32,7 +32,7 @@ namespace CarZone.Server
                     .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services
-                .AddIdentity<User, IdentityRole>(options => 
+                .AddIdentity<User, Role>(options => 
                 {
                     options.Password.RequiredLength = 6;
                     options.Password.RequireDigit = false;

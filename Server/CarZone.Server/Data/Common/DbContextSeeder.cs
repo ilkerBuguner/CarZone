@@ -26,6 +26,7 @@ namespace CarZone.Server.Data.Common
             var seeders = new List<ISeeder>
                           {
                               new DataSeeder(),
+                              new RolesSeeder(),
                           };
 
             foreach (var seeder in seeders)

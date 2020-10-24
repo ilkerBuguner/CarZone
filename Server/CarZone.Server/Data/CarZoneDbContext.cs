@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
 
 namespace CarZone.Server.Data
 {
-    public class CarZoneDbContext : IdentityDbContext<User>
+    public class CarZoneDbContext : IdentityDbContext<User, Role, string>
     {
         private static readonly MethodInfo SetIsDeletedQueryFilterMethod =
             typeof(CarZoneDbContext).GetMethod(

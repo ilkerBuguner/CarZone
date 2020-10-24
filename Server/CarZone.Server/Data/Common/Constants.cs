@@ -14,6 +14,8 @@ namespace CarZone.Server.Data.Common
 
             public const string Password = "123456";
 
+            public const string AdministratorRoleName = "Administrator";
+
         }
 
 
