@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
+using CarZone.Server.Data.Common.Seeding;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -27,6 +27,10 @@ namespace CarZone.Server.Data.Common
                           {
                               new DataSeeder(),
                               new RolesSeeder(),
+                              new ComfortSeeder(),
+                              new ExteriorSeeder(),
+                              new ProtectionSeeder(),
+                              new SafetySeeder(),
                           };
 
             foreach (var seeder in seeders)
