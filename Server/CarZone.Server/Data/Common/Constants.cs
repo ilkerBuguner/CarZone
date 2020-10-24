@@ -1,23 +1,19 @@
-﻿using System;
-
-namespace CarZone.Server.Data.Common
+﻿namespace CarZone.Server.Data.Common
 {
     public static class Constants
     {
         public static class Seeding
         {
-            public const string FullName = "First User";
+            public const string FullName = "Ilko123";
 
-            public const string UserName = "FirstUser";
+            public const string UserName = "Ilko123";
 
-            public const string Email = "user@user.com";
+            public const string Email = "ilko@abv.bg";
 
             public const string Password = "123456";
 
             public const string AdministratorRoleName = "Administrator";
-
         }
-
 
         public static class User
         {

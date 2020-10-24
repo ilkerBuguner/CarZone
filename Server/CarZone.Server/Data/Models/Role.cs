@@ -1,9 +1,10 @@
-﻿using CarZone.Server.Data.Common;
-using Microsoft.AspNetCore.Identity;
-using System;
-
-namespace CarZone.Server.Data.Models
+﻿namespace CarZone.Server.Data.Models
 {
+    using System;
+
+    using CarZone.Server.Data.Common;
+    using Microsoft.AspNetCore.Identity;
+
     public class Role : IdentityRole, IAuditInfo, IDeletableEntity
     {
         public Role()

@@ -1,9 +1,9 @@
-﻿using CarZone.Server.Data.Models.Exterior;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace CarZone.Server.Data.Configurations
+﻿namespace CarZone.Server.Data.Configurations
 {
+    using CarZone.Server.Data.Models.Exterior;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class CarExteriorConfiguration : IEntityTypeConfiguration<CarExterior>
     {
         public void Configure(EntityTypeBuilder<CarExterior> entity)

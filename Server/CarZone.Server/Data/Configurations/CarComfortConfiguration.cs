@@ -1,10 +1,9 @@
-﻿using CarZone.Server.Data.Models.Comfort;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-
-namespace CarZone.Server.Data.Configurations
+﻿namespace CarZone.Server.Data.Configurations
 {
+    using CarZone.Server.Data.Models.Comfort;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class CarComfortConfiguration : IEntityTypeConfiguration<CarComfort>
     {
         public void Configure(EntityTypeBuilder<CarComfort> entity)

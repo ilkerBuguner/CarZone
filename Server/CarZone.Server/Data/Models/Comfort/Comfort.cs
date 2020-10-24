@@ -1,11 +1,13 @@
-﻿using CarZone.Server.Data.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using static CarZone.Server.Data.Common.Constants.Comfort;
-
-namespace CarZone.Server.Data.Models.Comfort
+﻿namespace CarZone.Server.Data.Models.Comfort
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using CarZone.Server.Data.Common;
+
+    using static CarZone.Server.Data.Common.Constants.Comfort;
+
     public class Comfort : BaseDeletableModel<string>
     {
         public Comfort()

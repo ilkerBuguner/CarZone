@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace CarZone.Server.Models.Identity
+﻿namespace CarZone.Server.Models.Identity
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class LoginRequestModel
     {
         [Required]

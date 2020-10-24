@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using CarZone.Server.Data.Common;
-
-using static CarZone.Server.Data.Common.Constants.Brand;
-
-namespace CarZone.Server.Data.Models
+﻿namespace CarZone.Server.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using CarZone.Server.Data.Common;
+
+    using static CarZone.Server.Data.Common.Constants.Brand;
+
     public class Brand : BaseDeletableModel<string>
     {
         public Brand()

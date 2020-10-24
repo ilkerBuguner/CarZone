@@ -1,11 +1,12 @@
-﻿using CarZone.Server.Data.Models.Protection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CarZone.Server.Data.Common.Seeding
+﻿namespace CarZone.Server.Data.Common.Seeding
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using CarZone.Server.Data.Models.Protection;
+
     public class ProtectionSeeder : ISeeder
     {
         public async Task SeedAsync(CarZoneDbContext dbContext, IServiceProvider serviceProvider)

@@ -1,11 +1,11 @@
-﻿using CarZone.Server.Data;
-using CarZone.Server.Data.Common;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace CarZone.Server.Infrastructure
+﻿namespace CarZone.Server.Infrastructure
 {
+    using CarZone.Server.Data;
+    using CarZone.Server.Data.Common;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
+
     public static class ApplicationBuilderExtensions
     {
         public static void ApplyMigrations(this IApplicationBuilder app)

@@ -1,13 +1,13 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-using CarZone.Server.Data.Common;
-
-using static CarZone.Server.Data.Common.Constants.Reply;
-
-namespace CarZone.Server.Data.Models
+﻿namespace CarZone.Server.Data.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    using CarZone.Server.Data.Common;
+
+    using static CarZone.Server.Data.Common.Constants.Reply;
+
     public class Reply : BaseDeletableModel<string>
     {
         public Reply()

@@ -1,19 +1,19 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-using CarZone.Server.Data.Enumerations;
-using CarZone.Server.Data.Common;
-using System.Collections.Generic;
-using CarZone.Server.Data.Models.Exterior;
-using CarZone.Server.Data.Models.Safety;
-using CarZone.Server.Data.Models.Protection;
-using CarZone.Server.Data.Models.Comfort;
-
-using static CarZone.Server.Data.Common.Constants.Car;
-
-namespace CarZone.Server.Data.Models
+﻿namespace CarZone.Server.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    using CarZone.Server.Data.Common;
+    using CarZone.Server.Data.Enumerations;
+    using CarZone.Server.Data.Models.Comfort;
+    using CarZone.Server.Data.Models.Exterior;
+    using CarZone.Server.Data.Models.Protection;
+    using CarZone.Server.Data.Models.Safety;
+
+    using static CarZone.Server.Data.Common.Constants.Car;
+
     public class Car : BaseDeletableModel<string>
     {
         public Car()
@@ -64,7 +64,6 @@ namespace CarZone.Server.Data.Models
 
         public ICollection<CarComfort> Comforts { get; set; }
 
-
         [ForeignKey(nameof(Models.Brand))]
         [Required]
         public string BrandId { get; set; }
@@ -76,7 +75,6 @@ namespace CarZone.Server.Data.Models
         public string ModelId { get; set; }
 
         public virtual Model Model { get; set; }
-
 
         [ForeignKey(nameof(Models.User))]
         [Required]

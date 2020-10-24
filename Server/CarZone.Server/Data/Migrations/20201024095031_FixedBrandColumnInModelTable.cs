@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace CarZone.Server.Data.Migrations
+﻿namespace CarZone.Server.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class FixedBrandColumnInModelTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

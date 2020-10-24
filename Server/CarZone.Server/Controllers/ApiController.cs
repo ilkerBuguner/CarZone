@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace CarZone.Server.Controllers
+﻿namespace CarZone.Server.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
     [Route("[controller]")]

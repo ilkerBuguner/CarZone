@@ -1,12 +1,13 @@
-﻿using CarZone.Server.Data.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-using static CarZone.Server.Data.Common.Constants.Exterior;
-
-namespace CarZone.Server.Data.Models.Exterior
+﻿namespace CarZone.Server.Data.Models.Exterior
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using CarZone.Server.Data.Common;
+
+    using static CarZone.Server.Data.Common.Constants.Exterior;
+
     public class Exterior : BaseDeletableModel<string>
     {
         public Exterior()

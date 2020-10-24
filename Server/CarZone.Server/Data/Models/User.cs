@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-using CarZone.Server.Data.Common;
-
-using static CarZone.Server.Data.Common.Constants.User;
-using CarZone.Server.Data.Enumerations;
-
-namespace CarZone.Server.Data.Models
+﻿namespace CarZone.Server.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using CarZone.Server.Data.Common;
+    using CarZone.Server.Data.Enumerations;
+    using Microsoft.AspNetCore.Identity;
+
+    using static CarZone.Server.Data.Common.Constants.User;
+
     public class User : IdentityUser, IAuditInfo, IDeletableEntity
     {
         public User()

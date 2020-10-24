@@ -1,20 +1,21 @@
-﻿using CarZone.Server.Data.Models;
-using CarZone.Server.Data.Common;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-using CarZone.Server.Data.Models.Comfort;
-using CarZone.Server.Data.Models.Exterior;
-using CarZone.Server.Data.Models.Protection;
-using CarZone.Server.Data.Models.Safety;
-using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
-
-namespace CarZone.Server.Data
+﻿namespace CarZone.Server.Data
 {
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using CarZone.Server.Data.Common;
+    using CarZone.Server.Data.Models;
+    using CarZone.Server.Data.Models.Comfort;
+    using CarZone.Server.Data.Models.Exterior;
+    using CarZone.Server.Data.Models.Protection;
+    using CarZone.Server.Data.Models.Safety;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
+    using Microsoft.EntityFrameworkCore;
+
     public class CarZoneDbContext : IdentityDbContext<User, Role, string>
     {
         private static readonly MethodInfo SetIsDeletedQueryFilterMethod =

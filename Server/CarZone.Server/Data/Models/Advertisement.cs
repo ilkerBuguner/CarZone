@@ -1,13 +1,13 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-using CarZone.Server.Data.Common;
-
-using static CarZone.Server.Data.Common.Constants.Advertisement;
-
-namespace CarZone.Server.Data.Models
+﻿namespace CarZone.Server.Data.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    using CarZone.Server.Data.Common;
+
+    using static CarZone.Server.Data.Common.Constants.Advertisement;
+
     public class Advertisement : BaseDeletableModel<string>
     {
         public Advertisement()

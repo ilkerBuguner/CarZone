@@ -1,11 +1,12 @@
-﻿using CarZone.Server.Data.Models.Comfort;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CarZone.Server.Data.Common.Seeding
+﻿namespace CarZone.Server.Data.Common.Seeding
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using CarZone.Server.Data.Models.Comfort;
+
     public class ComfortSeeder : ISeeder
     {
         public async Task SeedAsync(CarZoneDbContext dbContext, IServiceProvider serviceProvider)
@@ -54,7 +55,6 @@ namespace CarZone.Server.Data.Common.Seeding
             {
                 await dbContext.Comforts.AddAsync(new Comfort { Name = comfortName });
             }
-
         }
     }
 }

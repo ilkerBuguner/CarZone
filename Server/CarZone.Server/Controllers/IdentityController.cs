@@ -1,18 +1,18 @@
-﻿using CarZone.Server.Data.Models;
-using CarZone.Server.Models.Identity;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Net;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarZone.Server.Controllers
+﻿namespace CarZone.Server.Controllers
 {
+    using System;
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Security.Claims;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using CarZone.Server.Data.Models;
+    using CarZone.Server.Models.Identity;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Options;
+    using Microsoft.IdentityModel.Tokens;
+
     public class IdentityController : ApiController
     {
         private readonly UserManager<User> userManager;
@@ -32,9 +32,8 @@ namespace CarZone.Server.Controllers
             var user = new User()
             {
                 Email = model.Email,
-                UserName = model.UserName
+                UserName = model.UserName,
             };
-
 
             var result = await this.userManager.CreateAsync(user, model.Password);
 

@@ -1,9 +1,9 @@
-﻿using CarZone.Server.Data.Models.Safety;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace CarZone.Server.Data.Configurations
+﻿namespace CarZone.Server.Data.Configurations
 {
+    using CarZone.Server.Data.Models.Safety;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class CarSafetyConfiguration : IEntityTypeConfiguration<CarSafety>
     {
         public void Configure(EntityTypeBuilder<CarSafety> entity)

@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace CarZone.Server.Data.Migrations
+﻿namespace CarZone.Server.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddedRoles : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

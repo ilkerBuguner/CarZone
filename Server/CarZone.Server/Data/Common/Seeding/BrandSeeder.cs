@@ -1,11 +1,12 @@
-﻿using CarZone.Server.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CarZone.Server.Data.Common.Seeding
+﻿namespace CarZone.Server.Data.Common.Seeding
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using CarZone.Server.Data.Models;
+
     public class BrandSeeder : ISeeder
     {
         public async Task SeedAsync(CarZoneDbContext dbContext, IServiceProvider serviceProvider)
@@ -17,7 +18,7 @@ namespace CarZone.Server.Data.Common.Seeding
 
             var brands = new List<string>()
             {
-                //A
+                // A
                 "AC",
                 "Abarth",
                 "Acura",
@@ -29,7 +30,8 @@ namespace CarZone.Server.Data.Common.Seeding
                 "Aston Martin",
                 "Audi",
                 "Austin",
-                //B
+
+                // B
                 "BMW",
                 "Bentley",
                 "Berliner",
@@ -38,14 +40,16 @@ namespace CarZone.Server.Data.Common.Seeding
                 "Brilliance",
                 "Bugatti",
                 "Buick",
-                //C
+
+                // C
                 "Cadillac",
                 "Chevrolet",
                 "Chrysler",
                 "Citroen",
                 "Corvette",
                 "Cupra",
-                //D
+
+                // D
                 "DS",
                 "Dacia",
                 "Daewoo",
@@ -55,40 +59,48 @@ namespace CarZone.Server.Data.Common.Seeding
                 "Dkw",
                 "Dodge",
                 "Dr",
-                //E
+
+                // E
                 "Eagle",
-                //F
+
+                // F
                 "FSO",
                 "Ferrari",
                 "Fiat",
                 "Ford",
-                //G
+
+                // G
                 "GOUPIL",
                 "Gaz",
                 "Geo",
                 "Gmc",
                 "Great Wall",
-                //H
+
+                // H
                 "Haval",
                 "Hinkel",
                 "Hillman",
                 "Honda",
                 "Hyummer",
                 "Hyundai",
-                //I
+
+                // I
                 "Ifa",
                 "Infiniti",
                 "Innocenti",
                 "Isuzu",
                 "Iveco",
-                //J
+
+                // J
                 "JAS",
                 "Jaguar",
                 "Jeep",
                 "Jpx",
-                //K
+
+                // K
                 "Kia",
-                //L
+
+                // L
                 "Lada",
                 "Laforza",
                 "Lamborghini",
@@ -99,7 +111,8 @@ namespace CarZone.Server.Data.Common.Seeding
                 "Lifan",
                 "Lincoln",
                 "Lotus",
-                //M
+
+                // M
                 "MG",
                 "Mahindra",
                 "Maserati",
@@ -115,12 +128,15 @@ namespace CarZone.Server.Data.Common.Seeding
                 "Mitsubishi",
                 "Morgan",
                 "Moskvich",
-                //N
+
+                // N
                 "Nissan",
-                //O
+
+                // O
                 "Oldmobile",
                 "Opel",
-                //P
+
+                // P
                 "Perodua",
                 "Peugeot",
                 "Pgo",
@@ -129,11 +145,13 @@ namespace CarZone.Server.Data.Common.Seeding
                 "Pontiac",
                 "Porsche",
                 "Proton",
-                //R
+
+                // R
                 "Renault",
                 "Rolls-Royce",
                 "Rover",
-                //S
+
+                // S
                 "SECMA",
                 "SH auto",
                 "Saab",
@@ -150,7 +168,8 @@ namespace CarZone.Server.Data.Common.Seeding
                 "Ssang yong",
                 "Subaru",
                 "Suzuki",
-                //T
+
+                // T
                 "Talbot",
                 "Tata",
                 "Tavria",
@@ -162,23 +181,29 @@ namespace CarZone.Server.Data.Common.Seeding
                 "Toyota",
                 "Trabant",
                 "Triumph",
-                //U
+
+                // U
                 "Uaz",
-                //V
+
+                // V
                 "VROMOS",
                 "VW",
                 "Volga",
                 "Volvo",
-                //W
+
+                // W
                 "Warszawa",
                 "Wartburg",
                 "Wiesmann",
-                //X
+
+                // X
                 "Xinkai",
                 "Xinshun",
-                //Z
+
+                // Z
                 "Zastava",
                 "Zaz",
+
                 //
                 "Other",
             };

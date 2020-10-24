@@ -1,15 +1,15 @@
-﻿using CarZone.Server.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using static CarZone.Server.Data.Common.Constants.Seeding;
-
-namespace CarZone.Server.Data.Common
+﻿namespace CarZone.Server.Data.Common
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using CarZone.Server.Data.Models;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.DependencyInjection;
+
+    using static CarZone.Server.Data.Common.Constants.Seeding;
+
     internal class RolesSeeder : ISeeder
     {
         public async Task SeedAsync(CarZoneDbContext dbContext, IServiceProvider serviceProvider)

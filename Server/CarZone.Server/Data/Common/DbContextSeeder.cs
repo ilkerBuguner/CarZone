@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using CarZone.Server.Data.Common.Seeding;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
-namespace CarZone.Server.Data.Common
+﻿namespace CarZone.Server.Data.Common
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using CarZone.Server.Data.Common.Seeding;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+
     public class DbContextSeeder : ISeeder
     {
         public async Task SeedAsync(CarZoneDbContext dbContext, IServiceProvider serviceProvider)

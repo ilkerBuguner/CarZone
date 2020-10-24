@@ -1,15 +1,15 @@
-﻿using CarZone.Server.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-
-using static CarZone.Server.Data.Common.Constants.Seeding;
-
-namespace CarZone.Server.Data.Common
+﻿namespace CarZone.Server.Data.Common
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using CarZone.Server.Data.Models;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
+
+    using static CarZone.Server.Data.Common.Constants.Seeding;
+
     public class DataSeeder : ISeeder
     {
         public async Task SeedAsync(CarZoneDbContext dbContext, IServiceProvider serviceProvider)
@@ -24,7 +24,7 @@ namespace CarZone.Server.Data.Common
             }
         }
 
-        //Admin user: Ilko123; pass: 123456; email: ilko@abv.bg;
+        // Admin user: Ilko123; pass: 123456; email: ilko@abv.bg;
         private static async Task<string> CreateUser(
             UserManager<User> userManager,
             string fullName,

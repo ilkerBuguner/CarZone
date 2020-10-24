@@ -1,10 +1,11 @@
-﻿using CarZone.Server.Data.Common;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace CarZone.Server.Data.Models.Exterior
+﻿namespace CarZone.Server.Data.Models.Exterior
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    using CarZone.Server.Data.Common;
+
     public class CarExterior : BaseDeletableModel<string>
     {
         public CarExterior()

@@ -1,13 +1,11 @@
-﻿using CarZone.Server.Data.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CarZone.Server.Data.Models.Comfort
+﻿namespace CarZone.Server.Data.Models.Comfort
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    using CarZone.Server.Data.Common;
+
     public class CarComfort : BaseDeletableModel<string>
     {
         public CarComfort()
