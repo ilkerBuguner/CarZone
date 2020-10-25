@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\ModelsController.cs\**" />
+    <Content Remove="Features\ModelsController.cs\**" />
+    <EmbeddedResource Remove="Features\ModelsController.cs\**" />
+    <None Remove="Features\ModelsController.cs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="stylecop.json" />
   </ItemGroup>
 
@@ -27,6 +34,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
 </Project>

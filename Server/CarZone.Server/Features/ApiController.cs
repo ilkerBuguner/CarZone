@@ -1,4 +1,4 @@
-﻿namespace CarZone.Server.Controllers
+﻿namespace CarZone.Server.Features
 {
     using Microsoft.AspNetCore.Mvc;
 
