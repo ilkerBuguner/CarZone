@@ -25,6 +25,9 @@
 
             public const int LocationMinLength = 5;
             public const int LocationMaxLength = 50;
+
+            public const int PhoneNumberMinLength = 10;
+            public const int PhoneNumberMaxLength = 12;
         }
 
         public static class Advertisement
@@ -34,9 +37,6 @@
 
             public const int DescriptionMinLength = 5;
             public const int DescriptionMaxLength = 500;
-
-            public const int PhoneNumberMinLength = 10;
-            public const int PhoneNumberMaxLength = 12;
         }
 
         public static class Brand

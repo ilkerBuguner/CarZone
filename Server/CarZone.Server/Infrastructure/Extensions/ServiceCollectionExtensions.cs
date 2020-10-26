@@ -1,4 +1,4 @@
-﻿namespace CarZone.Server.Infrastructure
+﻿namespace CarZone.Server.Infrastructure.Extensions
 {
     using System;
     using System.Text;
@@ -7,6 +7,7 @@
     using CarZone.Server.Data.Models;
     using CarZone.Server.Features.BrandModels;
     using CarZone.Server.Features.Identity;
+    using CarZone.Server.Infrastructure.Filters;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -84,7 +85,8 @@
         {
             return services
                 .AddTransient<IIdentityService, IdentityService>()
-                .AddTransient<IModelsService, ModelsService>();
+                .AddTransient<IModelsService, ModelsService>()
+                .AddScoped<IsAdminAuthorizationAttribute>();
         }
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)

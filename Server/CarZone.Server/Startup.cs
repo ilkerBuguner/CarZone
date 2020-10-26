@@ -1,6 +1,6 @@
 namespace CarZone.Server
 {
-    using CarZone.Server.Infrastructure;
+    using CarZone.Server.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;

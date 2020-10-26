@@ -3,9 +3,11 @@
     using System.Threading.Tasks;
 
     using CarZone.Server.Features.BrandModels.Models;
-    using Microsoft.AspNetCore.Authorization;
+    using CarZone.Server.Features.Common;
+    using CarZone.Server.Infrastructure.Filters;
     using Microsoft.AspNetCore.Mvc;
 
+    [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
     public class ModelsController : ApiController
     {
         private readonly IModelsService modelsService;
@@ -15,7 +17,6 @@
             this.modelsService = modelsService;
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<ActionResult> Create(CreateModelRequestModel model)
         {

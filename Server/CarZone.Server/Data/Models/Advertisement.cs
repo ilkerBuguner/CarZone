@@ -17,19 +17,11 @@
 
         [Required]
         [MaxLength(NameMaxLength)]
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         [Required]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
-
-        [Required]
-        [MaxLength(PhoneNumberMaxLength)]
-        public int PhoneNumber { get; set; }
-
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
 
         public int Views { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace CarZone.Server.Infrastructure
+﻿namespace CarZone.Server.Infrastructure.Extensions
 {
     using System.Linq;
     using System.Security.Claims;

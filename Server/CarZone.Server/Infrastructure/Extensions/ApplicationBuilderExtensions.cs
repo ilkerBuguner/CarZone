@@ -1,4 +1,4 @@
-﻿namespace CarZone.Server.Infrastructure
+﻿namespace CarZone.Server.Infrastructure.Extensions
 {
     using CarZone.Server.Data;
     using CarZone.Server.Data.Common;

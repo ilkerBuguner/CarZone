@@ -1,6 +1,6 @@
 ﻿namespace CarZone.Server.Features
 {
-    using Microsoft.AspNetCore.Authorization;
+    using CarZone.Server.Features.Common;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : ApiController
