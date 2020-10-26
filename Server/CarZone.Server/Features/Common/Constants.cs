@@ -10,6 +10,8 @@
             public const string InvalidUserId = "Invalid user id.";
             public const string InvalidLoginAttempt = "Invalid username or password.";
             public const string UnAuthorizedRequest = "You don't have access!";
+
+            public const string InvalidModelId = "Invalid model id";
         }
     }
 }
