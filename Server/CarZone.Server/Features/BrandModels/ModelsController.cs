@@ -21,6 +21,7 @@
         }
 
         [HttpPost]
+        [Route("[controller]")]
         public async Task<ActionResult> Create(CreateModelRequestModel model)
         {
             var brandModelId = await this.modelsService.Create(model.Name, model.BrandId);
@@ -29,7 +30,7 @@
         }
 
         [HttpPut]
-        // [Route(Model.Update)]
+        [Route("[controller]/{modelId}")]
         public async Task<ActionResult> Update(string modelId, [FromBody]UpdateBrandModelRequestModel model)
         {
             var updateRequest = await this.modelsService

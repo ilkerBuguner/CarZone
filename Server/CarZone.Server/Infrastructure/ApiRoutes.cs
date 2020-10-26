@@ -2,7 +2,7 @@
 {
     public class ApiRoutes
     {
-        public const string Root = "api";
+        public const string Root = "[controller]";
 
         public static class Identity
         {

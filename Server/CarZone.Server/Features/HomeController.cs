@@ -3,6 +3,7 @@
     using CarZone.Server.Features.Common;
     using Microsoft.AspNetCore.Mvc;
 
+    [Route("[controller]")]
     public class HomeController : ApiController
     {
         // [Authorize]
