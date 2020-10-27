@@ -12,6 +12,7 @@
             public const string UnAuthorizedRequest = "You don't have access!";
 
             public const string InvalidModelId = "Invalid model id";
+            public const string InvalidBrandId = "Invalid brand id";
         }
     }
 }

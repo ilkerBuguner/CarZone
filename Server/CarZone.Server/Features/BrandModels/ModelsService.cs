@@ -1,11 +1,13 @@
 ﻿namespace CarZone.Server.Features.BrandModels
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using CarZone.Server.Data;
     using CarZone.Server.Data.Models;
+    using CarZone.Server.Features.BrandModels.Models;
     using CarZone.Server.Features.Common.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.VisualBasic.CompilerServices;
@@ -57,6 +59,87 @@
             return new ResultModel<bool>
             {
                 Success = true,
+            };
+        }
+
+        public async Task<ResultModel<bool>> DeleteAsync(string id)
+        {
+            var brandModel = await this.GetByIdAsync(id);
+
+            if (brandModel == null)
+            {
+                return new ResultModel<bool>
+                {
+                    Errors = new string[] { Errors.InvalidModelId }
+                };
+            }
+
+            brandModel.IsDeleted = true;
+            brandModel.DeletedOn = DateTime.UtcNow;
+
+            this.dbContext.Models.Update(brandModel);
+
+            await this.dbContext.SaveChangesAsync();
+
+            return new ResultModel<bool>
+            {
+                Success = true,
+            };
+        }
+
+        public async Task<ResultModel<BrandModelDetailsServiceModel>> GetDetailsAsync(string id)
+        {
+            var brandModel = await this.dbContext
+                .Models
+                .Where(m => m.Id == id)
+                .Select(m => new BrandModelDetailsServiceModel
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                    BrandId = m.BrandId,
+                    BrandName = m.Brand.Name,
+                })
+                .FirstOrDefaultAsync();
+
+            if (brandModel == null)
+            {
+                return new ResultModel<BrandModelDetailsServiceModel>
+                {
+                    Errors = new string[] { Errors.InvalidModelId }
+                };
+            }
+
+            return new ResultModel<BrandModelDetailsServiceModel>
+            {
+                Success = true,
+                Result = brandModel,
+            };
+        }
+
+        public async Task<ResultModel<IEnumerable<BrandModelListingServiceModel>>> GetAllByBrandIdAsync(string brandId)
+        {
+            var brandModels = await this.dbContext
+                .Models
+                .Where(m => m.BrandId == brandId)
+                .Select(m => new BrandModelListingServiceModel()
+                {
+                    Id = m.Id,
+                    Name = m.Name
+                })
+                .ToListAsync();
+
+            if (brandModels == null)
+            {
+                return new ResultModel<IEnumerable<BrandModelListingServiceModel>>
+                {
+                    Errors = new string[] { Errors.InvalidBrandId },
+                };
+            }
+
+            return new ResultModel<IEnumerable<BrandModelListingServiceModel>>
+            {
+                Success = true,
+                Result = brandModels,
             };
         }
 

@@ -15,11 +15,11 @@
 
         public static class Model
         {
-            public const string Base = Root + "/models";
-
-            public const string Create = Base;
-            public const string Update = Base + "/{modelId}";
-            public const string Delete = Base + "/{modelId}";
+            public const string Create = Root;
+            public const string Update = Root + "/{modelId}";
+            public const string Delete = Root + "/{modelId}";
+            public const string GetDetails = Root + "/{modelId}";
+            public const string GetAllByBrandId = Root;
         }
     }
 }
