@@ -1,0 +1,35 @@
+﻿namespace CarZone.Server.Features.Exteriors
+{
+    using CarZone.Server.Features.Common;
+    using CarZone.Server.Features.Common.Models;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Threading.Tasks;
+    using static CarZone.Server.Infrastructure.ApiRoutes;
+
+    public class ExteriorsController : ApiController
+    {
+        private readonly IExteriorsService exteriorsService;
+
+        public ExteriorsController(IExteriorsService exteriorsService)
+        {
+            this.exteriorsService = exteriorsService;
+        }
+
+        [HttpGet]
+        [Route(Exterior.GetAll)]
+        public async Task<ActionResult> GetAll()
+        {
+            var allExteriorsRequest = await this.exteriorsService.GetAllAsync();
+
+            if (!allExteriorsRequest.Success)
+            {
+                return this.BadRequest(new ErrorsResponseModel
+                {
+                    Errors = allExteriorsRequest.Errors,
+                });
+            }
+
+            return this.Ok(allExteriorsRequest.Result);
+        }
+    }
+}

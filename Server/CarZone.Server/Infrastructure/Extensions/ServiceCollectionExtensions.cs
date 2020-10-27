@@ -6,6 +6,8 @@
     using CarZone.Server.Data;
     using CarZone.Server.Data.Models;
     using CarZone.Server.Features.BrandModels;
+    using CarZone.Server.Features.Comforts;
+    using CarZone.Server.Features.Exteriors;
     using CarZone.Server.Features.Identity;
     using CarZone.Server.Infrastructure.Filters;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -86,6 +88,8 @@
             return services
                 .AddTransient<IIdentityService, IdentityService>()
                 .AddTransient<IModelsService, ModelsService>()
+                .AddTransient<IComfortsService, ComfortsService>()
+                .AddTransient<IExteriorsService, ExteriorsService>()
                 .AddScoped<IsAdminAuthorizationAttribute>();
         }
 

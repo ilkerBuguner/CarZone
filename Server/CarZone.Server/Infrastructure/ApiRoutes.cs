@@ -21,5 +21,15 @@
             public const string GetDetails = Root + "/{modelId}";
             public const string GetAllByBrandId = Root;
         }
+
+        public static class Comfort
+        {
+            public const string GetAll = Root;
+        }
+
+        public static class Exterior
+        {
+            public const string GetAll = Root;
+        }
     }
 }
