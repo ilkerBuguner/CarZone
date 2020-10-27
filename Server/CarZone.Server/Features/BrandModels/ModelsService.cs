@@ -98,6 +98,7 @@
                     Name = m.Name,
                     BrandId = m.BrandId,
                     BrandName = m.Brand.Name,
+                    CreatedOn = m.CreatedOn.ToString("mm:HH dd/MM/yyyy"),
                 })
                 .FirstOrDefaultAsync();
 
@@ -120,7 +121,7 @@
         {
             var brandModels = await this.dbContext
                 .Models
-                .Where(m => m.BrandId == brandId)
+                .Where(m => m.BrandId == brandId && m.IsDeleted == false)
                 .Select(m => new BrandModelListingServiceModel()
                 {
                     Id = m.Id,
