@@ -31,5 +31,15 @@
         {
             public const string GetAll = Root;
         }
+
+        public static class Protection
+        {
+            public const string GetAll = Root;
+        }
+
+        public static class Safety
+        {
+            public const string GetAll = Root;
+        }
     }
 }

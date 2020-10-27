@@ -9,6 +9,8 @@
     using CarZone.Server.Features.Comforts;
     using CarZone.Server.Features.Exteriors;
     using CarZone.Server.Features.Identity;
+    using CarZone.Server.Features.Protections;
+    using CarZone.Server.Features.Safeties;
     using CarZone.Server.Infrastructure.Filters;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.EntityFrameworkCore;
@@ -90,6 +92,8 @@
                 .AddTransient<IModelsService, ModelsService>()
                 .AddTransient<IComfortsService, ComfortsService>()
                 .AddTransient<IExteriorsService, ExteriorsService>()
+                .AddTransient<IProtectionsService, ProtectionsService>()
+                .AddTransient<ISafetiesService, SafetiesService>()
                 .AddScoped<IsAdminAuthorizationAttribute>();
         }
 
