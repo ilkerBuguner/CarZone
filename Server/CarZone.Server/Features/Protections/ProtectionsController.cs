@@ -1,9 +1,11 @@
 ﻿namespace CarZone.Server.Features.Protections
 {
+    using System.Threading.Tasks;
+
     using CarZone.Server.Features.Common;
     using CarZone.Server.Features.Common.Models;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
+
     using static CarZone.Server.Infrastructure.ApiRoutes;
 
     public class ProtectionsController : ApiController
