@@ -12,7 +12,6 @@
 
     using static CarZone.Server.Infrastructure.ApiRoutes;
 
-    [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
     public class ModelsController : ApiController
     {
         private readonly IModelsService modelsService;
@@ -22,6 +21,7 @@
             this.modelsService = modelsService;
         }
 
+        [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [HttpPost]
         [Route(Model.Create)]
         public async Task<ActionResult> Create(CreateModelRequestModel model)
@@ -31,6 +31,7 @@
             return Created(nameof(this.Create), brandModelId);
         }
 
+        [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [HttpPut]
         [Route(Model.Update)]
         public async Task<ActionResult> Update(string modelId, [FromBody] UpdateBrandModelRequestModel model)
@@ -49,6 +50,7 @@
             return this.Ok();
         }
 
+        [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [HttpDelete]
         [Route(Model.Delete)]
         public async Task<ActionResult> Delete(string modelId)
@@ -66,6 +68,7 @@
             return this.Ok();
         }
 
+        [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [HttpGet]
         [Route(Model.GetDetails)]
         public async Task<ActionResult> Details(string modelId)
