@@ -41,5 +41,10 @@
         {
             public const string GetAll = Root;
         }
+
+        public static class Brand
+        {
+            public const string GetAll = Root;
+        }
     }
 }

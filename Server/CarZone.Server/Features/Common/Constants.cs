@@ -18,6 +18,7 @@
             public const string NoExteriorsFound = "No exteriors found!";
             public const string NoSafetiesFound = "No safeties found!";
             public const string NoProtectionsFound = "No protections found!";
+            public const string NoBrandsFound = "No brands found!";
 
         }
     }
