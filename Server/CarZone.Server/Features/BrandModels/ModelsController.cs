@@ -2,12 +2,14 @@
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Net;
     using System.Threading.Tasks;
 
     using CarZone.Server.Features.BrandModels.Models;
     using CarZone.Server.Features.Common;
     using CarZone.Server.Features.Common.Models;
     using CarZone.Server.Infrastructure.Filters;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using static CarZone.Server.Infrastructure.ApiRoutes;
@@ -31,6 +33,7 @@
             return Created(nameof(this.Create), brandModelId);
         }
 
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [HttpPut]
         [Route(Model.Update)]
