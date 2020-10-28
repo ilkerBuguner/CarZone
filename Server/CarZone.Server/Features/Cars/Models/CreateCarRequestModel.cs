@@ -12,30 +12,33 @@
         public decimal Price { get; set; }
 
         [Required]
-        public FuelType FuelType { get; set; }
+        public string FuelType { get; set; }
 
         [Required]
         public int HorsePower { get; set; }
 
         [Required]
-        public TransmissionType Transmission { get; set; }
+        public string Transmission { get; set; }
 
         [Required]
         public int Year { get; set; }
 
         public int Mileage { get; set; }
 
-        public Color Color { get; set; }
+        [Required]
+        public string Color { get; set; }
 
         [Required]
-        public ConditionType Condition { get; set; }
-
-        public EuroStandard EuroStandard { get; set; }
-
-        public DoorsCount DoorsCount { get; set; }
+        public string Condition { get; set; }
 
         [Required]
-        public BodyType BodyType { get; set; }
+        public string EuroStandard { get; set; }
+
+        [Required]
+        public string DoorsCount { get; set; }
+
+        [Required]
+        public string BodyType { get; set; }
 
         public ICollection<string> Safeties { get; set; }
 

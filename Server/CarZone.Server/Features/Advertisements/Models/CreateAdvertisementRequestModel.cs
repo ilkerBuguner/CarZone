@@ -19,7 +19,6 @@
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
-        [Required]
         public string AuthorId { get; set; }
 
         public ICollection<string> ImageURLs { get; set; }

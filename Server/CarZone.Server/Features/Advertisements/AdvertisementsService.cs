@@ -25,6 +25,8 @@
 
         public async Task<string> CreateAsync(string userId, CreateAdvertisementRequestModel input)
         {
+            input.Car.OwnerId = userId;
+
             var newCarId = await this.carsService.CreateAsync(input.Car);
 
             var newAdvertisement = new Advertisement
@@ -38,9 +40,9 @@
             await this.dbContext.Advertisements.AddAsync(newAdvertisement);
             await this.dbContext.SaveChangesAsync();
 
-            foreach (var image in input.ImageURLs)
+            foreach (var url in input.ImageURLs)
             {
-                var newImage = await this.imagesService.CreateAsync(image, newAdvertisement.Id);
+                await this.imagesService.CreateAsync(url, newAdvertisement.Id);
             }
 
             await this.carsService.SetCarsAdvertisementAsync(newCarId, newAdvertisement.Id);

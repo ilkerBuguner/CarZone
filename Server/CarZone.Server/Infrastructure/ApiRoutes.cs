@@ -46,5 +46,13 @@
         {
             public const string GetAll = Root;
         }
+
+        public static class Advertisement
+        {
+            public const string Create = Root;
+            public const string Update = Root + "/{advertisementId}";
+            public const string Delete = Root + "/{advertisementId}";
+            public const string GetDetails = Root + "/{advertisementId}";
+        }
     }
 }
