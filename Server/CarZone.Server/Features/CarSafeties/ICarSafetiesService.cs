@@ -4,6 +4,6 @@
 
     public interface ICarSafetiesService
     {
-        Task<string> Create(string carId, string safetyId);
+        Task<string> CreateAsync(string carId, string safetyId);
     }
 }

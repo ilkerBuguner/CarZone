@@ -4,14 +4,16 @@ using CarZone.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarZone.Server.Data.Migrations
 {
     [DbContext(typeof(CarZoneDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201028121350_RemovedUnnecessaryRequiredAttribute")]
+    partial class RemovedUnnecessaryRequiredAttribute
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,6 +44,9 @@ namespace CarZone.Server.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ImageURLs")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -344,40 +349,6 @@ namespace CarZone.Server.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Exteriors");
-                });
-
-            modelBuilder.Entity("CarZone.Server.Data.Models.Image", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AdvertisementId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AdvertisementId");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("CarZone.Server.Data.Models.Model", b =>
@@ -930,17 +901,6 @@ namespace CarZone.Server.Data.Migrations
                     b.Navigation("Exterior");
                 });
 
-            modelBuilder.Entity("CarZone.Server.Data.Models.Image", b =>
-                {
-                    b.HasOne("CarZone.Server.Data.Models.Advertisement", "Advertisement")
-                        .WithMany("Images")
-                        .HasForeignKey("AdvertisementId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Advertisement");
-                });
-
             modelBuilder.Entity("CarZone.Server.Data.Models.Model", b =>
                 {
                     b.HasOne("CarZone.Server.Data.Models.Brand", "Brand")
@@ -1071,8 +1031,6 @@ namespace CarZone.Server.Data.Migrations
             modelBuilder.Entity("CarZone.Server.Data.Models.Advertisement", b =>
                 {
                     b.Navigation("Car");
-
-                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("CarZone.Server.Data.Models.Brand", b =>

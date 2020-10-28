@@ -13,7 +13,7 @@ namespace CarZone.Server.Features.CarProtections
             this.dbContext = dbContext;
         }
 
-        public async Task<string> Create(string carId, string protectionId)
+        public async Task<string> CreateAsync(string carId, string protectionId)
         {
             var carProtection = new CarProtection
             {
@@ -21,7 +21,7 @@ namespace CarZone.Server.Features.CarProtections
                 ProtectionId = protectionId,
             };
 
-            await this.dbContext.AddAsync(carProtection);
+            await this.dbContext.CarProtections.AddAsync(carProtection);
             await this.dbContext.SaveChangesAsync();
 
             return carProtection.Id;

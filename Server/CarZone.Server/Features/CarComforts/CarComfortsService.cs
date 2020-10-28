@@ -1,8 +1,9 @@
 ﻿namespace CarZone.Server.Features.CarComforts
 {
+    using System.Threading.Tasks;
+
     using CarZone.Server.Data;
     using CarZone.Server.Data.Models.Comfort;
-    using System.Threading.Tasks;
 
     public class CarComfortsService : ICarComfortsService
     {
@@ -13,7 +14,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<string> Create(string carId, string comfortId)
+        public async Task<string> CreateAsync(string carId, string comfortId)
         {
             var carComfort = new CarComfort
             {
@@ -21,7 +22,7 @@
                 ComfortId = comfortId,
             };
 
-            await this.dbContext.AddAsync(carComfort);
+            await this.dbContext.CarComforts.AddAsync(carComfort);
 
             await this.dbContext.SaveChangesAsync();
 

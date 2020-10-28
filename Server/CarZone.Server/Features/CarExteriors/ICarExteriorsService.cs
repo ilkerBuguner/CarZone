@@ -4,6 +4,6 @@
 
     public interface ICarExteriorsService
     {
-        Task<string> Create(string carId, string exteriorId);
+        Task<string> CreateAsync(string carId, string exteriorId);
     }
 }

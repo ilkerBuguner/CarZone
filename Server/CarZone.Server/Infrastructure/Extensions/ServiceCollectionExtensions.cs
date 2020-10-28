@@ -5,15 +5,18 @@
 
     using CarZone.Server.Data;
     using CarZone.Server.Data.Models;
+    using CarZone.Server.Features.Advertisements;
     using CarZone.Server.Features.BrandModels;
     using CarZone.Server.Features.Brands;
     using CarZone.Server.Features.CarComforts;
     using CarZone.Server.Features.CarExteriors;
     using CarZone.Server.Features.CarProtections;
+    using CarZone.Server.Features.Cars;
     using CarZone.Server.Features.CarSafeties;
     using CarZone.Server.Features.Comforts;
     using CarZone.Server.Features.Exteriors;
     using CarZone.Server.Features.Identity;
+    using CarZone.Server.Features.Images;
     using CarZone.Server.Features.Protections;
     using CarZone.Server.Features.Safeties;
     using CarZone.Server.Infrastructure.Filters;
@@ -104,6 +107,9 @@
                 .AddTransient<ICarExteriorsService, CarExteriorsService>()
                 .AddTransient<ICarProtectionsService, CarProtectionsService>()
                 .AddTransient<ICarSafetiesService, CarSafetiesService>()
+                .AddTransient<ICarsService, CarsService>()
+                .AddTransient<IImagesService, ImagesService>()
+                .AddTransient<IAdvertisementsService, AdvertisementsService>()
                 .AddScoped<IsAdminAuthorizationAttribute>();
         }
 

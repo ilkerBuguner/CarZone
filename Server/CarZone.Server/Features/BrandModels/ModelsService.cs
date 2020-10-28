@@ -31,7 +31,7 @@
                 BrandId = brandId,
             };
 
-            await this.dbContext.AddAsync(brandModel);
+            await this.dbContext.Models.AddAsync(brandModel);
             await this.dbContext.SaveChangesAsync();
 
             return brandModel.Id;

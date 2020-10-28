@@ -14,7 +14,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<string> Create(string carId, string safetyId)
+        public async Task<string> CreateAsync(string carId, string safetyId)
         {
             var carSafety = new CarSafety
             {
@@ -22,7 +22,7 @@
                 SafetyId = safetyId,
             };
 
-            await this.dbContext.AddAsync(carSafety);
+            await this.dbContext.CarSafeties.AddAsync(carSafety);
             await this.dbContext.SaveChangesAsync();
 
             return carSafety.Id;

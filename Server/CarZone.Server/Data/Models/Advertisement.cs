@@ -1,6 +1,8 @@
 ﻿namespace CarZone.Server.Data.Models
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,6 +15,8 @@
         public Advertisement()
         {
             this.Id = Guid.NewGuid().ToString();
+
+            this.Images = new HashSet<Image>();
         }
 
         [Required]
@@ -36,6 +40,6 @@
 
         public virtual User Author { get; set; }
 
-        public string ImageURLs { get; set; }
+        public ICollection<Image> Images { get; set; }
     }
 }

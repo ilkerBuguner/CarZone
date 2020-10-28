@@ -68,7 +68,7 @@
         [Required]
         public string BrandId { get; set; }
 
-        public virtual Advertisement Brand { get; set; }
+        public virtual Brand Brand { get; set; }
 
         [ForeignKey(nameof(Models.Model))]
         [Required]
@@ -82,7 +82,6 @@
 
         public virtual User Owner { get; set; }
 
-        [Required]
         public string AdvertisementId { get; set; }
 
         public virtual Advertisement Advertisement { get; set; }
