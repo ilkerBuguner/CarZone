@@ -21,7 +21,7 @@
                 ComfortId = comfortId,
             };
 
-            this.dbContext.Add(carComfort);
+            await this.dbContext.AddAsync(carComfort);
 
             await this.dbContext.SaveChangesAsync();
 
