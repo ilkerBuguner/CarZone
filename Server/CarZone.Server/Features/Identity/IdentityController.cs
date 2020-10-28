@@ -6,6 +6,7 @@
     using CarZone.Server.Features.Common;
     using CarZone.Server.Features.Common.Models;
     using CarZone.Server.Features.Identity.Models;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
@@ -36,6 +37,7 @@
         /// <response code="400"> Bad Reaquest.</response>
         /// <response code="401"> Unauthorized request.</response>
         [HttpPost]
+        [AllowAnonymous]
         [Route(nameof(Register))]
         public async Task<ActionResult<AuthResponseModel>> Register([FromBody]RegisterRequestModel model)
         {
@@ -66,6 +68,7 @@
         /// <response code="400"> Bad Reaquest.</response>
         /// <response code="401"> Unauthorized request.</response>
         [HttpPost]
+        [AllowAnonymous]
         [Route(nameof(Login))]
         public async Task<ActionResult<AuthResponseModel>> Login([FromBody]LoginRequestModel model)
         {

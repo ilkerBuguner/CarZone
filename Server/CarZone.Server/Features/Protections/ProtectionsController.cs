@@ -4,6 +4,7 @@
 
     using CarZone.Server.Features.Common;
     using CarZone.Server.Features.Common.Models;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using static CarZone.Server.Infrastructure.ApiRoutes;
@@ -18,6 +19,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route(Protection.GetAll)]
         public async Task<ActionResult> GetAll()
         {

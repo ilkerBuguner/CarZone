@@ -23,8 +23,8 @@
             this.modelsService = modelsService;
         }
 
-        [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [HttpPost]
+        [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [Route(Model.Create)]
         public async Task<ActionResult> Create(CreateModelRequestModel model)
         {
@@ -33,9 +33,8 @@
             return Created(nameof(this.Create), brandModelId);
         }
 
-        [Authorize(AuthenticationSchemes = "Bearer")]
-        [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [HttpPut]
+        [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [Route(Model.Update)]
         public async Task<ActionResult> Update(string modelId, [FromBody] UpdateBrandModelRequestModel model)
         {
@@ -53,8 +52,8 @@
             return this.Ok();
         }
 
-        [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [HttpDelete]
+        [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [Route(Model.Delete)]
         public async Task<ActionResult> Delete(string modelId)
         {
@@ -71,8 +70,8 @@
             return this.Ok();
         }
 
-        [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [HttpGet]
+        [TypeFilter(typeof(IsAdminAuthorizationAttribute))]
         [Route(Model.GetDetails)]
         public async Task<ActionResult> Details(string modelId)
         {
@@ -90,6 +89,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route(Model.GetAllByBrandId)]
         public async Task<ActionResult<IEnumerable<BrandModelListingServiceModel>>> GetAllByBrandId([FromBody]GetAllByBrandIdRequestModel model)
         {

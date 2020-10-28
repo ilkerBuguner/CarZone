@@ -4,7 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
-    // [Authorize(AuthenticationSchemes = "Bearer")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public abstract class ApiController : ControllerBase
     {
     }

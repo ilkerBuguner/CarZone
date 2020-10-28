@@ -7,6 +7,7 @@
     using CarZone.Server.Data.Models;
     using CarZone.Server.Features.BrandModels;
     using CarZone.Server.Features.Brands;
+    using CarZone.Server.Features.CarComforts;
     using CarZone.Server.Features.Comforts;
     using CarZone.Server.Features.Exteriors;
     using CarZone.Server.Features.Identity;
@@ -96,6 +97,7 @@
                 .AddTransient<IProtectionsService, ProtectionsService>()
                 .AddTransient<ISafetiesService, SafetiesService>()
                 .AddTransient<IBrandsService, BrandsService>()
+                .AddTransient<ICarComfortsService, CarComfortsService>()
                 .AddScoped<IsAdminAuthorizationAttribute>();
         }
 
