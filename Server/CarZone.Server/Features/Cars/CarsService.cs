@@ -12,7 +12,10 @@
     using CarZone.Server.Features.CarProtections;
     using CarZone.Server.Features.Cars.Models;
     using CarZone.Server.Features.CarSafeties;
+    using CarZone.Server.Features.Common.Models;
     using Microsoft.EntityFrameworkCore;
+
+    using static CarZone.Server.Features.Common.Constants;
 
     public class CarsService : ICarsService
     {
@@ -82,6 +85,50 @@
             return car.Id;
         }
 
+        public async Task<ResultModel<bool>> DeleteAsync(string id)
+        {
+            var car = await this.GetByIdAsync(id);
+
+            if (car == null)
+            {
+                return new ResultModel<bool>
+                {
+                    Errors = new string[] { Errors.InvalidCarId },
+                };
+            }
+
+            foreach (var carComfort in car.Comforts)
+            {
+                await this.carComfortsService.DeleteAsync(carComfort);
+            }
+
+            foreach (var carExterior in car.Exteriors)
+            {
+                await this.carExteriorsService.DeleteAsync(carExterior);
+            }
+
+            foreach (var carProtection in car.Protections)
+            {
+                await this.carProtectionsService.DeleteAsync(carProtection);
+            }
+
+            foreach (var carSafety in car.Safeties)
+            {
+                await this.carSafetiesService.DeleteAsync(carSafety);
+            }
+
+            car.IsDeleted = true;
+            car.DeletedOn = DateTime.UtcNow;
+
+            this.dbContext.Cars.Update(car);
+            await this.dbContext.SaveChangesAsync();
+
+            return new ResultModel<bool>
+            {
+                Success = true,
+            };
+        }
+
         public async Task SetCarsAdvertisementAsync(string carId, string advertisementId)
         {
             var car = await this.dbContext
@@ -93,6 +140,18 @@
 
             this.dbContext.Cars.Update(car);
             await this.dbContext.SaveChangesAsync();
+        }
+
+        private async Task<Car> GetByIdAsync(string id)
+        {
+            return await this.dbContext
+                .Cars
+                .Include(c => c.Comforts)
+                .Include(c => c.Exteriors)
+                .Include(c => c.Protections)
+                .Include(c => c.Safeties)
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
         }
     }
 }

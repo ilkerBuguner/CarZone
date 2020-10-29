@@ -1,5 +1,6 @@
 ﻿namespace CarZone.Server.Features.CarComforts
 {
+    using System;
     using System.Threading.Tasks;
 
     using CarZone.Server.Data;
@@ -27,6 +28,15 @@
             await this.dbContext.SaveChangesAsync();
 
             return carComfort.Id;
+        }
+
+        public async Task DeleteAsync(CarComfort carComfort)
+        {
+            carComfort.IsDeleted = true;
+            carComfort.DeletedOn = DateTime.UtcNow;
+
+            this.dbContext.CarComforts.Update(carComfort);
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

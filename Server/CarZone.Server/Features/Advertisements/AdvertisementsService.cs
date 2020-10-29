@@ -1,12 +1,19 @@
 ﻿namespace CarZone.Server.Features.Advertisements
 {
+    using System;
+    using System.Linq;
+    using System.Security.Cryptography.Xml;
     using System.Threading.Tasks;
 
     using CarZone.Server.Data;
     using CarZone.Server.Data.Models;
     using CarZone.Server.Features.Advertisements.Models;
     using CarZone.Server.Features.Cars;
+    using CarZone.Server.Features.Common.Models;
     using CarZone.Server.Features.Images;
+    using Microsoft.EntityFrameworkCore;
+
+    using static CarZone.Server.Features.Common.Constants;
 
     public class AdvertisementsService : IAdvertisementsService
     {
@@ -49,6 +56,70 @@
             await this.carsService.SetCarsAdvertisementAsync(newCarId, newAdvertisement.Id);
 
             return newAdvertisement.Id;
+        }
+
+        public async Task<ResultModel<bool>> DeleteAsync(string userId, string advertisementId)
+        {
+            var advertisement = await this.GetByIdAsync(advertisementId);
+
+            if (advertisement == null)
+            {
+                return new ResultModel<bool>
+                {
+                    Errors = new string[] { Errors.InvalidAdvertisementId },
+                };
+            }
+
+            if (userId != advertisement.AuthorId)
+            {
+                return new ResultModel<bool>
+                {
+                    Errors = new string[] { Errors.InvalidAdvertisementCreatorId },
+                };
+            }
+
+            var deleteCarRequest = await this.carsService.DeleteAsync(advertisement.CarId);
+
+            if (!deleteCarRequest.Success)
+            {
+                return new ResultModel<bool>
+                {
+                    Errors = deleteCarRequest.Errors
+                };
+            }
+
+            foreach (var image in advertisement.Images)
+            {
+                var deleteImageRequest = await this.imagesService.DeleteAsync(image.Id);
+
+                if (!deleteImageRequest.Success)
+                {
+                    return new ResultModel<bool>
+                    {
+                        Errors = deleteImageRequest.Errors,
+                    };
+                }
+            }
+
+            advertisement.IsDeleted = true;
+            advertisement.DeletedOn = DateTime.UtcNow;
+
+            this.dbContext.Advertisements.Update(advertisement);
+            await this.dbContext.SaveChangesAsync();
+
+            return new ResultModel<bool>
+            {
+                Success = true,
+            };
+        }
+
+        private async Task<Advertisement> GetByIdAsync(string id)
+        {
+            return await this.dbContext
+                .Advertisements
+                .Include(a => a.Images)
+                .Where(a => a.Id == id)
+                .FirstOrDefaultAsync();
         }
     }
 }

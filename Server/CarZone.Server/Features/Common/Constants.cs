@@ -13,6 +13,11 @@
 
             public const string InvalidModelId = "Invalid model id!";
             public const string InvalidBrandId = "Invalid brand id!";
+            public const string InvalidCarId = "Invalid car id!";
+            public const string InvalidAdvertisementId = "Invalid advertisement Id!";
+            public const string InvalidImageId = "Invalid image id!";
+
+            public const string InvalidAdvertisementCreatorId = "You must be the creator of the advertisement to delete it!";
 
             public const string NoComfortsFound = "No comforts found!";
             public const string NoExteriorsFound = "No exteriors found!";

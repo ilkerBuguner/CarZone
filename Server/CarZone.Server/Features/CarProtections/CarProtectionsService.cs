@@ -1,9 +1,11 @@
-﻿using CarZone.Server.Data;
-using CarZone.Server.Data.Models.Protection;
-using System.Threading.Tasks;
-
-namespace CarZone.Server.Features.CarProtections
+﻿namespace CarZone.Server.Features.CarProtections
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using CarZone.Server.Data;
+    using CarZone.Server.Data.Models.Protection;
+
     public class CarProtectionsService : ICarProtectionsService
     {
         private readonly CarZoneDbContext dbContext;
@@ -25,6 +27,15 @@ namespace CarZone.Server.Features.CarProtections
             await this.dbContext.SaveChangesAsync();
 
             return carProtection.Id;
+        }
+
+        public async Task DeleteAsync(CarProtection carProtection)
+        {
+            carProtection.IsDeleted = true;
+            carProtection.DeletedOn = DateTime.UtcNow;
+
+            this.dbContext.CarProtections.Update(carProtection);
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

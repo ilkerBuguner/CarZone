@@ -1,5 +1,6 @@
 ﻿namespace CarZone.Server.Features.CarExteriors
 {
+    using System;
     using System.Threading.Tasks;
 
     using CarZone.Server.Data;
@@ -26,6 +27,15 @@
             await this.dbContext.SaveChangesAsync();
 
             return carExterior.Id;
+        }
+
+        public async Task DeleteAsync(CarExterior carExterior)
+        {
+            carExterior.IsDeleted = true;
+            carExterior.DeletedOn = DateTime.UtcNow;
+
+            this.dbContext.CarExteriors.Update(carExterior);
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }
