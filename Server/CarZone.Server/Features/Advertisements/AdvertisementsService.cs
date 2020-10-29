@@ -1,6 +1,7 @@
 ﻿namespace CarZone.Server.Features.Advertisements
 {
     using System.Threading.Tasks;
+
     using CarZone.Server.Data;
     using CarZone.Server.Data.Models;
     using CarZone.Server.Features.Advertisements.Models;

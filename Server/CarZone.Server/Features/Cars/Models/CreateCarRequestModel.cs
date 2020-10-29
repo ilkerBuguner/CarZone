@@ -54,7 +54,6 @@
         [Required]
         public string ModelId { get; set; }
 
-        [Required]
         public string OwnerId { get; set; }
 
         public string AdvertisementId { get; set; }

@@ -18,8 +18,10 @@ In progress
 
 - SQL Server
 
+- Swagger
+
 ## :floppy_disk: Database Diagram
-![](https://res.cloudinary.com/doyjshrjs/image/upload/v1603577231/CarZone_Database_Diagram_tqccyt.png)
+![](https://res.cloudinary.com/doyjshrjs/image/upload/v1603976162/Screenshot_9_d08onu.png)
 
 ## License
 
