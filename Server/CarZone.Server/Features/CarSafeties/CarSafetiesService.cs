@@ -1,6 +1,7 @@
 ﻿namespace CarZone.Server.Features.CarSafeties
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -58,12 +59,43 @@
             };
         }
 
+        public async Task<ResultModel<bool>> DeleteAllByCarIdAsync(string carId)
+        {
+            var carSafeties = await this.GetAllByCarIdAsync(carId);
+
+            foreach (var carSafety in carSafeties)
+            {
+                var carSafetyDeleteRequest = await this.DeleteAsync(carSafety.CarId, carSafety.SafetyId);
+
+                if (!carSafetyDeleteRequest.Success)
+                {
+                    return new ResultModel<bool>
+                    {
+                        Errors = carSafetyDeleteRequest.Errors,
+                    };
+                }
+            }
+
+            return new ResultModel<bool>
+            {
+                Success = true,
+            };
+        }
+
         private async Task<CarSafety> GetByIdsAsync(string carId, string safetyId)
         {
             return await this.dbContext
                 .CarSafeties
                 .Where(cs => cs.CarId == carId && cs.SafetyId == safetyId)
                 .FirstOrDefaultAsync();
+        }
+
+        private async Task<ICollection<CarSafety>> GetAllByCarIdAsync(string carId)
+        {
+            return await this.dbContext
+                .CarSafeties
+                .Where(cs => cs.CarId == carId)
+                .ToListAsync();
         }
     }
 }

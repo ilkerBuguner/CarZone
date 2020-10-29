@@ -97,59 +97,48 @@
                 };
             }
 
-            foreach (var carComfort in car.Comforts)
-            {
-                var carComfortDeleteRequest = await this.carComfortsService
-                    .DeleteAsync(carComfort.CarId, carComfort.ComfortId);
+            var carComfortDeleteRequest = await this.carComfortsService
+                .DeleteAllByCarIdAsync(id);
 
-                if (!carComfortDeleteRequest.Success)
+            if (!carComfortDeleteRequest.Success)
+            {
+                return new ResultModel<bool>
                 {
-                    return new ResultModel<bool>
-                    {
-                        Errors = carComfortDeleteRequest.Errors,
-                    };
-                }
+                    Errors = carComfortDeleteRequest.Errors,
+                };
             }
 
-            foreach (var carExterior in car.Exteriors)
-            {
-                var carExteriorDeleteRequest = await this.carExteriorsService
-                    .DeleteAsync(carExterior.CarId, carExterior.ExteriorId);
+            var carExteriorDeleteRequest = await this.carExteriorsService
+                .DeleteAllByCarIdAsync(id);
 
-                if (!carExteriorDeleteRequest.Success)
+            if (!carExteriorDeleteRequest.Success)
+            {
+                return new ResultModel<bool>
                 {
-                    return new ResultModel<bool>
-                    {
-                        Errors = carExteriorDeleteRequest.Errors,
-                    };
-                }
+                    Errors = carExteriorDeleteRequest.Errors,
+                };
             }
 
-            foreach (var carProtection in car.Protections)
-            {
-                var carProtectionDeleteRequest = await this.carProtectionsService
-                    .DeleteAsync(carProtection.CarId, carProtection.ProtectionId);
+            var carProtectionDeleteRequest = await this.carProtectionsService
+                .DeleteAllByCarIdAsync(id);
 
-                if (!carProtectionDeleteRequest.Success)
+            if (!carProtectionDeleteRequest.Success)
+            {
+                return new ResultModel<bool>
                 {
-                    return new ResultModel<bool>
-                    {
-                        Errors = carProtectionDeleteRequest.Errors,
-                    };
-                }
+                    Errors = carProtectionDeleteRequest.Errors,
+                };
             }
 
-            foreach (var carSafety in car.Safeties)
-            {
-                var carSafetyDeleteRequest = await this.carSafetiesService.DeleteAsync(carSafety.CarId, carSafety.SafetyId);
+            var carSafetyDeleteRequest = await this.carSafetiesService
+                .DeleteAllByCarIdAsync(id);
 
-                if (!carSafetyDeleteRequest.Success)
+            if (!carSafetyDeleteRequest.Success)
+            {
+                return new ResultModel<bool>
                 {
-                    return new ResultModel<bool>
-                    {
-                        Errors = carSafetyDeleteRequest.Errors,
-                    };
-                }
+                    Errors = carSafetyDeleteRequest.Errors,
+                };
             }
 
             car.IsDeleted = true;
@@ -182,10 +171,6 @@
             return await this.dbContext
                 .Cars
                 .Where(x => x.Id == id)
-                .Include(c => c.Comforts)
-                .Include(c => c.Exteriors)
-                .Include(c => c.Protections)
-                .Include(c => c.Safeties)
                 .FirstOrDefaultAsync();
         }
     }

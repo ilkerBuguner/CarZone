@@ -1,6 +1,7 @@
 ﻿namespace CarZone.Server.Features.CarExteriors
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -58,12 +59,43 @@
             };
         }
 
+        public async Task<ResultModel<bool>> DeleteAllByCarIdAsync(string carId)
+        {
+            var carExteriors = await this.GetAllByCarIdAsync(carId);
+
+            foreach (var carExterior in carExteriors)
+            {
+                var carExteriorDeleteRequest = await this.DeleteAsync(carExterior.CarId, carExterior.ExteriorId);
+
+                if (!carExteriorDeleteRequest.Success)
+                {
+                    return new ResultModel<bool>
+                    {
+                        Errors = carExteriorDeleteRequest.Errors,
+                    };
+                }
+            }
+
+            return new ResultModel<bool>
+            {
+                Success = true,
+            };
+        }
+
         private async Task<CarExterior> GetByIdsAsync(string carId, string exteriorId)
         {
             return await this.dbContext
                 .CarExteriors
                 .Where(ce => ce.CarId == carId && ce.ExteriorId == exteriorId)
                 .FirstOrDefaultAsync();
+        }
+
+        private async Task<ICollection<CarExterior>> GetAllByCarIdAsync(string carId)
+        {
+            return await this.dbContext
+                .CarExteriors
+                .Where(ce => ce.CarId == carId)
+                .ToListAsync();
         }
     }
 }

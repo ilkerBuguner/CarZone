@@ -10,5 +10,7 @@
         Task<string> CreateAsync(string carId, string exteriorId);
 
         Task<ResultModel<bool>> DeleteAsync(string carId, string exteriorId);
+
+        Task<ResultModel<bool>> DeleteAllByCarIdAsync(string carId);
     }
 }
