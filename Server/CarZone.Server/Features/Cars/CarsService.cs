@@ -99,22 +99,57 @@
 
             foreach (var carComfort in car.Comforts)
             {
-                await this.carComfortsService.DeleteAsync(carComfort);
+                var carComfortDeleteRequest = await this.carComfortsService
+                    .DeleteAsync(carComfort.CarId, carComfort.ComfortId);
+
+                if (!carComfortDeleteRequest.Success)
+                {
+                    return new ResultModel<bool>
+                    {
+                        Errors = carComfortDeleteRequest.Errors,
+                    };
+                }
             }
 
             foreach (var carExterior in car.Exteriors)
             {
-                await this.carExteriorsService.DeleteAsync(carExterior);
+                var carExteriorDeleteRequest = await this.carExteriorsService
+                    .DeleteAsync(carExterior.CarId, carExterior.ExteriorId);
+
+                if (!carExteriorDeleteRequest.Success)
+                {
+                    return new ResultModel<bool>
+                    {
+                        Errors = carExteriorDeleteRequest.Errors,
+                    };
+                }
             }
 
             foreach (var carProtection in car.Protections)
             {
-                await this.carProtectionsService.DeleteAsync(carProtection);
+                var carProtectionDeleteRequest = await this.carProtectionsService
+                    .DeleteAsync(carProtection.CarId, carProtection.ProtectionId);
+
+                if (!carProtectionDeleteRequest.Success)
+                {
+                    return new ResultModel<bool>
+                    {
+                        Errors = carProtectionDeleteRequest.Errors,
+                    };
+                }
             }
 
             foreach (var carSafety in car.Safeties)
             {
-                await this.carSafetiesService.DeleteAsync(carSafety);
+                var carSafetyDeleteRequest = await this.carSafetiesService.DeleteAsync(carSafety.CarId, carSafety.SafetyId);
+
+                if (!carSafetyDeleteRequest.Success)
+                {
+                    return new ResultModel<bool>
+                    {
+                        Errors = carSafetyDeleteRequest.Errors,
+                    };
+                }
             }
 
             car.IsDeleted = true;
@@ -146,11 +181,11 @@
         {
             return await this.dbContext
                 .Cars
+                .Where(x => x.Id == id)
                 .Include(c => c.Comforts)
                 .Include(c => c.Exteriors)
                 .Include(c => c.Protections)
                 .Include(c => c.Safeties)
-                .Where(x => x.Id == id)
                 .FirstOrDefaultAsync();
         }
     }

@@ -2,12 +2,12 @@
 {
     using System.Threading.Tasks;
 
-    using CarZone.Server.Data.Models.Safety;
+    using CarZone.Server.Features.Common.Models;
 
     public interface ICarSafetiesService
     {
         Task<string> CreateAsync(string carId, string safetyId);
 
-        Task DeleteAsync(CarSafety carSafety);
+        Task<ResultModel<bool>> DeleteAsync(string carId, string safetyId);
     }
 }

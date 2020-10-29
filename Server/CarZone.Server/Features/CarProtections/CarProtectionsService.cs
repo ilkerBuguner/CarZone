@@ -1,10 +1,15 @@
 ﻿namespace CarZone.Server.Features.CarProtections
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using CarZone.Server.Data;
     using CarZone.Server.Data.Models.Protection;
+    using CarZone.Server.Features.Common.Models;
+    using Microsoft.EntityFrameworkCore;
+
+    using static CarZone.Server.Features.Common.Constants;
 
     public class CarProtectionsService : ICarProtectionsService
     {
@@ -29,13 +34,36 @@
             return carProtection.Id;
         }
 
-        public async Task DeleteAsync(CarProtection carProtection)
+        public async Task<ResultModel<bool>> DeleteAsync(string carId, string protectionId)
         {
+            var carProtection = await this.GetByIdsAsync(carId, protectionId);
+
+            if (carProtection == null)
+            {
+                return new ResultModel<bool>
+                {
+                    Errors = new string[] { Errors.InvalidIdsForCarProtection },
+                };
+            }
+
             carProtection.IsDeleted = true;
             carProtection.DeletedOn = DateTime.UtcNow;
 
             this.dbContext.CarProtections.Update(carProtection);
             await this.dbContext.SaveChangesAsync();
+
+            return new ResultModel<bool>
+            {
+                Success = true,
+            };
+        }
+
+        public async Task<CarProtection> GetByIdsAsync(string carId, string protectionId)
+        {
+            return await this.dbContext
+                .CarProtections
+                .Where(cp => cp.CarId == carId && cp.ProtectionId == protectionId)
+                .FirstOrDefaultAsync();
         }
     }
 }

@@ -3,11 +3,12 @@
     using System.Threading.Tasks;
 
     using CarZone.Server.Data.Models.Exterior;
+    using CarZone.Server.Features.Common.Models;
 
     public interface ICarExteriorsService
     {
         Task<string> CreateAsync(string carId, string exteriorId);
 
-        Task DeleteAsync(CarExterior carExterior);
+        Task<ResultModel<bool>> DeleteAsync(string carId, string exteriorId);
     }
 }
