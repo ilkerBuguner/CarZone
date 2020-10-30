@@ -16,13 +16,17 @@
             public const string InvalidCarId = "Invalid car id!";
             public const string InvalidAdvertisementId = "Invalid advertisement id!";
             public const string InvalidImageId = "Invalid image id!";
-            public const string InvalidIdsForCarComfort = "Invalid car id or comfort id";
-            public const string InvalidIdsForCarExterior = "Invalid car id or exterior id";
-            public const string InvalidIdsForCarProtection = "Invalid car id or protection id";
-            public const string InvalidIdsForCarSafety = "Invalid car id or safety id";
+            public const string InvalidIdsForCarComfort = "Invalid car id or comfort id!";
+            public const string InvalidIdsForCarExterior = "Invalid car id or exterior id!";
+            public const string InvalidIdsForCarProtection = "Invalid car id or protection id!";
+            public const string InvalidIdsForCarSafety = "Invalid car id or safety id!";
+            public const string InvalidCommentId = "Invalid comment id!";
+            public const string InvalidReplyId = "Invalid reply id!";
 
 
             public const string NoPermissionToDeleteAdvertisement = "You must be an Admin or the creator of the advertisement to delete it!";
+            public const string NoPermissionToEditComment = "You must be an Admin or the creator of the comment to edit it!";
+            public const string NoPermissionToDeleteComment = "You must be an Admin or the creator of the comment to delete it!";
 
             public const string NoComfortsFound = "No comforts found!";
             public const string NoExteriorsFound = "No exteriors found!";

@@ -86,18 +86,7 @@
                     };
                 }
 
-                foreach (var image in advertisement.Images)
-                {
-                    var deleteImageRequest = await this.imagesService.DeleteAsync(image.Id);
-
-                    if (!deleteImageRequest.Success)
-                    {
-                        return new ResultModel<bool>
-                        {
-                            Errors = deleteImageRequest.Errors,
-                        };
-                    }
-                }
+                await this.imagesService.DeleteAllByAdvertisementIdAsync(advertisementId);
 
                 advertisement.IsDeleted = true;
                 advertisement.DeletedOn = DateTime.UtcNow;

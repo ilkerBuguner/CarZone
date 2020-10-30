@@ -17,6 +17,8 @@
             this.Id = Guid.NewGuid().ToString();
 
             this.Images = new HashSet<Image>();
+            this.Comments = new HashSet<Comment>();
+            this.Replies = new HashSet<Reply>();
         }
 
         [Required]
@@ -41,5 +43,9 @@
         public virtual User Author { get; set; }
 
         public ICollection<Image> Images { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
+
+        public ICollection<Reply> Replies { get; set; }
     }
 }

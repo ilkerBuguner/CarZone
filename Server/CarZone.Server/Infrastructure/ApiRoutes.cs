@@ -54,5 +54,21 @@
             public const string Delete = Root + "/{advertisementId}";
             public const string GetDetails = Root + "/{advertisementId}";
         }
+
+        public static class Comment
+        {
+            public const string Create = Root;
+            public const string Update = Root + "/{commentId}";
+            public const string Delete = Root + "/{commentId}";
+            public const string GetAllForAdvertisement = Root + "/{advertisementId}";
+        }
+
+        public static class Reply
+        {
+            public const string Create = Root;
+            public const string Update = Root + "/{replyId}";
+            public const string Delete = Root + "/{replyId}";
+            public const string GetAllForComment = Root + "/{commentId}";
+        }
     }
 }

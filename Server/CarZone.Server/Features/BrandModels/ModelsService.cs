@@ -23,7 +23,7 @@
             this.dbContext = data;
         }
 
-        public async Task<string> Create(string name, string brandId)
+        public async Task<string> CreateAsync(string name, string brandId)
         {
             var brandModel = new Model
             {
@@ -53,6 +53,7 @@
             model.BrandId = brandId;
             model.ModifiedOn = DateTime.UtcNow;
 
+            this.dbContext.Models.Update(model);
             await this.dbContext.SaveChangesAsync();
 
             return new ResultModel<bool>

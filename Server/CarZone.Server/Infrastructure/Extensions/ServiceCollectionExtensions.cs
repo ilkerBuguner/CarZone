@@ -14,6 +14,7 @@
     using CarZone.Server.Features.Cars;
     using CarZone.Server.Features.CarSafeties;
     using CarZone.Server.Features.Comforts;
+    using CarZone.Server.Features.Comments;
     using CarZone.Server.Features.Exteriors;
     using CarZone.Server.Features.Identity;
     using CarZone.Server.Features.Images;
@@ -112,6 +113,7 @@
                 .AddTransient<IImagesService, ImagesService>()
                 .AddTransient<IAdvertisementsService, AdvertisementsService>()
                 .AddTransient<IUsersService, UsersService>()
+                .AddTransient<ICommentsService, CommentsService>()
                 .AddScoped<IsAdminAuthorizationAttribute>();
         }
 

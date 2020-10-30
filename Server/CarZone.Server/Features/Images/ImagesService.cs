@@ -1,6 +1,8 @@
 ﻿namespace CarZone.Server.Features.Images
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -58,12 +60,35 @@
             };
         }
 
+        public async Task DeleteAllByAdvertisementIdAsync(string advertisementId)
+        {
+            var images = await this.GetAllByAdvertisementIdAsync(advertisementId);
+
+            foreach (var image in images)
+            {
+                image.IsDeleted = true;
+                image.DeletedOn = DateTime.UtcNow;
+
+                this.dbContext.Images.Update(image);
+            }
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
         private async Task<Image> GetByIdAsync(string id)
         {
             return await this.dbContext
                 .Images
                 .Where(i => i.Id == id)
                 .FirstOrDefaultAsync();
+        }
+
+        private async Task<ICollection<Image>> GetAllByAdvertisementIdAsync(string advertisementId)
+        {
+            return await this.dbContext
+                .Images
+                .Where(i => i.AdvertisementId == advertisementId)
+                .ToListAsync();
         }
     }
 }

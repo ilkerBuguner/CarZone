@@ -28,7 +28,7 @@
         [Route(Model.Create)]
         public async Task<ActionResult> Create(CreateModelRequestModel model)
         {
-            var brandModelId = await this.modelsService.Create(model.Name, model.BrandId);
+            var brandModelId = await this.modelsService.CreateAsync(model.Name, model.BrandId);
 
             return Created(nameof(this.Create), brandModelId);
         }

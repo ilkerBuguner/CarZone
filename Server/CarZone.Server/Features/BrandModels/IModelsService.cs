@@ -9,7 +9,7 @@
 
     public interface IModelsService
     {
-        Task<string> Create(string name, string brandId);
+        Task<string> CreateAsync(string name, string brandId);
 
         Task<ResultModel<bool>> UpdateAsync(string id, string name, string brandId);
 

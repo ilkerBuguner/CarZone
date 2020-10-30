@@ -1,11 +1,12 @@
 ﻿namespace CarZone.Server.Features.Advertisements
 {
+    using System.Threading.Tasks;
+
     using CarZone.Server.Features.Advertisements.Models;
     using CarZone.Server.Features.Common;
     using CarZone.Server.Features.Common.Models;
     using CarZone.Server.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
     using static CarZone.Server.Infrastructure.ApiRoutes;
 

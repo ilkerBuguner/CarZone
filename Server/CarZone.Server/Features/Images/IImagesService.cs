@@ -9,5 +9,7 @@
         Task<string> CreateAsync(string url, string advertisementId);
 
         Task<ResultModel<bool>> DeleteAsync(string id);
+
+        Task DeleteAllByAdvertisementIdAsync(string advertisementId);
     }
 }
