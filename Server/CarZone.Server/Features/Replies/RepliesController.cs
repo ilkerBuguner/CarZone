@@ -7,6 +7,7 @@
     using CarZone.Server.Features.Common.Models;
     using CarZone.Server.Features.Replies.Models;
     using CarZone.Server.Infrastructure.Extensions;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using static CarZone.Server.Infrastructure.ApiRoutes;
@@ -72,6 +73,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route(Reply.GetAllForComment)]
         public async Task<ActionResult<IEnumerable<ReplyDetailsServiceModel>>> GetAllByCommentId(string commentId)
         {

@@ -52,6 +52,7 @@
             public const string Create = Root;
             public const string Update = Root + "/{advertisementId}";
             public const string Delete = Root + "/{advertisementId}";
+            public const string GetLatest = Root + "/latest";
             public const string GetDetails = Root + "/{advertisementId}";
         }
 

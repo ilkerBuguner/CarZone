@@ -7,6 +7,7 @@
     using CarZone.Server.Features.Common;
     using CarZone.Server.Features.Common.Models;
     using CarZone.Server.Infrastructure.Extensions;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using static CarZone.Server.Infrastructure.ApiRoutes;
@@ -72,6 +73,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route(Comment.GetAllForAdvertisement)]
         public async Task<ActionResult<IEnumerable<CommentDetailsServiceModel>>> GetAllByAdvertisementId(string advertisementId)
         {

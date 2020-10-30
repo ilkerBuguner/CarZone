@@ -1,6 +1,7 @@
 ﻿namespace CarZone.Server.Features.Advertisements
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Security.Cryptography.Xml;
     using System.Threading.Tasks;
@@ -8,10 +9,15 @@
     using CarZone.Server.Data;
     using CarZone.Server.Data.Models;
     using CarZone.Server.Features.Advertisements.Models;
+    using CarZone.Server.Features.BrandModels.Models;
+    using CarZone.Server.Features.Brands.Models;
     using CarZone.Server.Features.Cars;
+    using CarZone.Server.Features.Cars.Models;
     using CarZone.Server.Features.Common.Models;
     using CarZone.Server.Features.Images;
+    using CarZone.Server.Features.Images.Models;
     using CarZone.Server.Features.Users;
+    using CarZone.Server.Features.Users.Models;
     using Microsoft.EntityFrameworkCore;
 
     using static CarZone.Server.Features.Common.Constants;
@@ -106,11 +112,110 @@
             };
         }
 
+        public async Task<ICollection<AdvertisementListingServiceModel>> GetLatestAsync()
+        {
+            return await this.dbContext
+                .Advertisements
+                .Select(a => new AdvertisementListingServiceModel
+                {
+                    Id = a.Id,
+                    Title = a.Title,
+                    Views = a.Views,
+                    CreatedOn = a.CreatedOn,
+                    ImageUrl = a.Images.Select(x => x.Url).FirstOrDefault(),
+                    Author = new UserInfoServiceModel
+                    {
+                        Id = a.Author.Id,
+                        Username = a.Author.UserName,
+                        ProfilePictureUrl = a.Author.ProfilePictureUrl
+                    },
+                    Car = new CarInfoServiceModel
+                    {
+                        Price = a.Car.Price,
+                        Year = a.Car.Year,
+                        HorsePower = a.Car.HorsePower,
+                        BodyType = a.Car.BodyType.ToString(),
+                        FuelType = a.Car.FuelType.ToString(),
+                    }
+                })
+                .OrderByDescending(a => a.CreatedOn)
+                .ToListAsync();
+        }
+
+        public async Task<ResultModel<AdvertisementDetailsServiceModel>> DetailsAsync(string id)
+        {
+            var advertisement = await this.dbContext.
+                Advertisements
+                .Where(a => a.Id == id)
+                .Select(a => new AdvertisementDetailsServiceModel
+                {
+                    Id = a.Id,
+                    Title = a.Title,
+                    Description = a.Description,
+                    Views = a.Views,
+                    Images = a.Images.Select(i => new ImageInfoServiceModel
+                    {
+                        Id = i.Id,
+                        Url = i.Url,
+                    }).ToList(),
+                    Author = new UserInfoServiceModel
+                    {
+                        Id = a.Author.Id,
+                        Username = a.Author.UserName,
+                        ProfilePictureUrl = a.Author.ProfilePictureUrl
+                    },
+                    Car = new CarDetailsServiceModel
+                    {
+                        Id = a.Car.Id,
+                        Price = a.Car.Price,
+                        Year = a.Car.Year,
+                        HorsePower = a.Car.HorsePower,
+                        Mileage = a.Car.Mileage,
+                        Color = a.Car.Color.ToString(),
+                        FuelType = a.Car.FuelType.ToString(),
+                        BodyType = a.Car.BodyType.ToString(),
+                        Condition = a.Car.Condition.ToString(),
+                        DoorsCount = a.Car.DoorsCount.ToString(),
+                        Transmission = a.Car.Transmission.ToString(),
+                        EuroStandard = a.Car.EuroStandard.ToString(),
+                        Model = new BrandModelInfoServiceModel
+                        {
+                            Id = a.Car.Model.Id,
+                            Name = a.Car.Model.Name,
+                        },
+                        Brand = new BrandInfoServiceModel
+                        {
+                            Id = a.Car.Brand.Id,
+                            Name = a.Car.Brand.Name
+                        },
+                        Comforts = a.Car.Comforts.Select(c => c.Comfort.Name).ToList(),
+                        Exteriors = a.Car.Exteriors.Select(e => e.Exterior.Name).ToList(),
+                        Protections = a.Car.Protections.Select(p => p.Protection.Name).ToList(),
+                        Safeties = a.Car.Safeties.Select(s => s.Safety.Name).ToList(),
+                    }
+                })
+                .FirstOrDefaultAsync();
+
+            if (advertisement == null)
+            {
+                return new ResultModel<AdvertisementDetailsServiceModel>
+                {
+                    Errors = new string[] { Errors.InvalidAdvertisementId },
+                };
+            }
+
+            return new ResultModel<AdvertisementDetailsServiceModel>
+            {
+                Success = true,
+                Result = advertisement,
+            };
+        }
+
         private async Task<Advertisement> GetByIdAsync(string id)
         {
             return await this.dbContext
                 .Advertisements
-                .Include(a => a.Images)
+                //.Include(a => a.Images)
                 .Where(a => a.Id == id)
                 .FirstOrDefaultAsync();
         }

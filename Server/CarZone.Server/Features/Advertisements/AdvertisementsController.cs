@@ -6,6 +6,7 @@
     using CarZone.Server.Features.Common;
     using CarZone.Server.Features.Common.Models;
     using CarZone.Server.Infrastructure.Extensions;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using static CarZone.Server.Infrastructure.ApiRoutes;
@@ -47,6 +48,34 @@
             }
 
             return this.Ok();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route(Advertisement.GetLatest)]
+        public async Task<ActionResult> GetLatest()
+        {
+            var latestAdvertisements = await this.advertisementsService.GetLatestAsync();
+
+            return this.Ok(latestAdvertisements);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route(Advertisement.GetDetails)]
+        public async Task<ActionResult> Details(string advertisementId)
+        {
+            var detailsRequest = await this.advertisementsService.DetailsAsync(advertisementId);
+
+            if (!detailsRequest.Success)
+            {
+                return this.BadRequest(new ErrorsResponseModel
+                {
+                    Errors = detailsRequest.Errors,
+                });
+            }
+
+            return this.Ok(detailsRequest.Result);
         }
     }
 }
