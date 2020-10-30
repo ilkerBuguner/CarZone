@@ -59,27 +59,19 @@
             };
         }
 
-        public async Task<ResultModel<bool>> DeleteAllByCarIdAsync(string carId)
+        public async Task DeleteAllByCarIdAsync(string carId)
         {
             var carProtections = await this.GetAllByCarIdAsync(carId);
 
             foreach (var carProtection in carProtections)
             {
-                var carProtectionDeleteRequest = await this.DeleteAsync(carProtection.CarId, carProtection.ProtectionId);
+                carProtection.IsDeleted = true;
+                carProtection.DeletedOn = DateTime.UtcNow;
 
-                if (!carProtectionDeleteRequest.Success)
-                {
-                    return new ResultModel<bool>
-                    {
-                        Errors = carProtectionDeleteRequest.Errors,
-                    };
-                }
+                this.dbContext.CarProtections.Update(carProtection);
             }
 
-            return new ResultModel<bool>
-            {
-                Success = true,
-            };
+            await this.dbContext.SaveChangesAsync();
         }
 
         public async Task<CarProtection> GetByIdsAsync(string carId, string protectionId)

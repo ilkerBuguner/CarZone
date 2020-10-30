@@ -97,49 +97,10 @@
                 };
             }
 
-            var carComfortDeleteRequest = await this.carComfortsService
-                .DeleteAllByCarIdAsync(id);
-
-            if (!carComfortDeleteRequest.Success)
-            {
-                return new ResultModel<bool>
-                {
-                    Errors = carComfortDeleteRequest.Errors,
-                };
-            }
-
-            var carExteriorDeleteRequest = await this.carExteriorsService
-                .DeleteAllByCarIdAsync(id);
-
-            if (!carExteriorDeleteRequest.Success)
-            {
-                return new ResultModel<bool>
-                {
-                    Errors = carExteriorDeleteRequest.Errors,
-                };
-            }
-
-            var carProtectionDeleteRequest = await this.carProtectionsService
-                .DeleteAllByCarIdAsync(id);
-
-            if (!carProtectionDeleteRequest.Success)
-            {
-                return new ResultModel<bool>
-                {
-                    Errors = carProtectionDeleteRequest.Errors,
-                };
-            }
-
-            var carSafetyDeleteRequest = await this.carSafetiesService
-                .DeleteAllByCarIdAsync(id);
-
-            if (!carSafetyDeleteRequest.Success)
-            {
-                return new ResultModel<bool>
-                {
-                    Errors = carSafetyDeleteRequest.Errors,
-                };
-            }
+            await this.carComfortsService.DeleteAllByCarIdAsync(id);
+            await this.carExteriorsService.DeleteAllByCarIdAsync(id);
+            await this.carProtectionsService.DeleteAllByCarIdAsync(id);
+            await this.carSafetiesService.DeleteAllByCarIdAsync(id);
 
             car.IsDeleted = true;
             car.DeletedOn = DateTime.UtcNow;

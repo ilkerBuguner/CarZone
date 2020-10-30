@@ -10,6 +10,6 @@
 
         Task<ResultModel<bool>> DeleteAsync(string carId, string safetyId);
 
-        Task<ResultModel<bool>> DeleteAllByCarIdAsync(string carId);
+        Task DeleteAllByCarIdAsync(string carId);
     }
 }
