@@ -15,7 +15,8 @@
 
         public static class User
         {
-            public const string Profile = Root + "/{userId}";
+            public const string Details = Root + "/{userId}";
+            public const string Update = Root + "/{userId}";
         }
 
         public static class Model

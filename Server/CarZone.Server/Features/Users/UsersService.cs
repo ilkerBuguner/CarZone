@@ -1,9 +1,11 @@
 ﻿namespace CarZone.Server.Features.Users
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
     using CarZone.Server.Data;
+    using CarZone.Server.Data.Enumerations;
     using CarZone.Server.Data.Models;
     using CarZone.Server.Features.Advertisements.Models;
     using CarZone.Server.Features.Common.Models;
@@ -32,6 +34,41 @@
             var user = await this.GetByIdAsync(userId);
 
             return await this.userManager.IsInRoleAsync(user, AdministratorRoleName);
+        }
+
+        public async Task<ResultModel<bool>> UpdateAsync(string currentLoggedInUserId, string targetUserId, UpdateUserRequestModel model)
+        {
+            var user = await this.GetByIdAsync(targetUserId);
+
+            if (user == null)
+            {
+                return new ResultModel<bool>
+                {
+                    Errors = new string[] { Errors.InvalidUserId },
+                };
+            }
+
+            if (user.Id == currentLoggedInUserId || await this.IsAdminAsync(currentLoggedInUserId))
+            {
+                user.UserName = model.Username;
+                user.FullName = model.FullName;
+                user.PhoneNumber = model.PhoneNumber;
+                user.Location = (Location)Enum.Parse(typeof(Location), model.Location);
+                user.Gender = (Gender)Enum.Parse(typeof(Gender), model.Gender);
+
+                this.dbContext.Users.Update(user);
+                await this.dbContext.SaveChangesAsync();
+
+                return new ResultModel<bool>
+                {
+                    Success = true,
+                };
+            }
+
+            return new ResultModel<bool>
+            {
+                Errors = new string[] { Errors.NoPermissionToEditUser },
+            };
         }
 
         public async Task<ResultModel<UserProfileDetailsServiceModel>> DetailsAsync(string id)
