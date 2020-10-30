@@ -36,7 +36,7 @@
 
         public Location? Location { get; set; }
 
-        public Gender Gender { get; set; }
+        public Gender? Gender { get; set; }
 
         public string ProfilePictureUrl { get; set; }
 

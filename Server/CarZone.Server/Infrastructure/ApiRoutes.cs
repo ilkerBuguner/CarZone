@@ -13,6 +13,11 @@
             public const string GetUser = IdentityRoute + "/user";
         }
 
+        public static class User
+        {
+            public const string Profile = Root + "/{userId}";
+        }
+
         public static class Model
         {
             public const string Create = Root;

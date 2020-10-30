@@ -121,7 +121,7 @@
                     Id = a.Id,
                     Title = a.Title,
                     Views = a.Views,
-                    CreatedOn = a.CreatedOn,
+                    CreatedOn = a.CreatedOn.ToString(),
                     Location = a.Author.Location != null ? a.Author.Location.ToString() : null,
                     ImageUrl = a.Images.Select(x => x.Url).FirstOrDefault(),
                     Author = new UserInfoServiceModel
