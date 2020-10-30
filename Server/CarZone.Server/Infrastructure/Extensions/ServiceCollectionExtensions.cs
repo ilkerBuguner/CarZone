@@ -19,6 +19,7 @@
     using CarZone.Server.Features.Images;
     using CarZone.Server.Features.Protections;
     using CarZone.Server.Features.Safeties;
+    using CarZone.Server.Features.Users;
     using CarZone.Server.Infrastructure.Filters;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.EntityFrameworkCore;
@@ -110,6 +111,7 @@
                 .AddTransient<ICarsService, CarsService>()
                 .AddTransient<IImagesService, ImagesService>()
                 .AddTransient<IAdvertisementsService, AdvertisementsService>()
+                .AddTransient<IUsersService, UsersService>()
                 .AddScoped<IsAdminAuthorizationAttribute>();
         }
 

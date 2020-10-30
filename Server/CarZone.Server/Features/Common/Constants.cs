@@ -22,7 +22,7 @@
             public const string InvalidIdsForCarSafety = "Invalid car id or safety id";
 
 
-            public const string InvalidAdvertisementCreatorId = "You must be the creator of the advertisement to delete it!";
+            public const string NoPermissionToDeleteAdvertisement = "You must be an Admin or the creator of the advertisement to delete it!";
 
             public const string NoComfortsFound = "No comforts found!";
             public const string NoExteriorsFound = "No exteriors found!";

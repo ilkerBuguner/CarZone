@@ -11,6 +11,7 @@
     using CarZone.Server.Features.Cars;
     using CarZone.Server.Features.Common.Models;
     using CarZone.Server.Features.Images;
+    using CarZone.Server.Features.Users;
     using Microsoft.EntityFrameworkCore;
 
     using static CarZone.Server.Features.Common.Constants;
@@ -18,15 +19,18 @@
     public class AdvertisementsService : IAdvertisementsService
     {
         private readonly CarZoneDbContext dbContext;
+        private readonly IUsersService usersService;
         private readonly ICarsService carsService;
         private readonly IImagesService imagesService;
 
         public AdvertisementsService(
             CarZoneDbContext dbContext,
+            IUsersService usersService,
             ICarsService carsService,
             IImagesService imagesService)
         {
             this.dbContext = dbContext;
+            this.usersService = usersService;
             this.carsService = carsService;
             this.imagesService = imagesService;
         }
@@ -70,46 +74,46 @@
                 };
             }
 
-            if (userId != advertisement.AuthorId)
+            if (userId == advertisement.AuthorId || await this.usersService.IsAdminAsync(userId))
             {
-                return new ResultModel<bool>
-                {
-                    Errors = new string[] { Errors.InvalidAdvertisementCreatorId },
-                };
-            }
+                var deleteCarRequest = await this.carsService.DeleteAsync(advertisement.CarId);
 
-            var deleteCarRequest = await this.carsService.DeleteAsync(advertisement.CarId);
-
-            if (!deleteCarRequest.Success)
-            {
-                return new ResultModel<bool>
-                {
-                    Errors = deleteCarRequest.Errors
-                };
-            }
-
-            foreach (var image in advertisement.Images)
-            {
-                var deleteImageRequest = await this.imagesService.DeleteAsync(image.Id);
-
-                if (!deleteImageRequest.Success)
+                if (!deleteCarRequest.Success)
                 {
                     return new ResultModel<bool>
                     {
-                        Errors = deleteImageRequest.Errors,
+                        Errors = deleteCarRequest.Errors
                     };
                 }
+
+                foreach (var image in advertisement.Images)
+                {
+                    var deleteImageRequest = await this.imagesService.DeleteAsync(image.Id);
+
+                    if (!deleteImageRequest.Success)
+                    {
+                        return new ResultModel<bool>
+                        {
+                            Errors = deleteImageRequest.Errors,
+                        };
+                    }
+                }
+
+                advertisement.IsDeleted = true;
+                advertisement.DeletedOn = DateTime.UtcNow;
+
+                this.dbContext.Advertisements.Update(advertisement);
+                await this.dbContext.SaveChangesAsync();
+
+                return new ResultModel<bool>
+                {
+                    Success = true,
+                };
             }
-
-            advertisement.IsDeleted = true;
-            advertisement.DeletedOn = DateTime.UtcNow;
-
-            this.dbContext.Advertisements.Update(advertisement);
-            await this.dbContext.SaveChangesAsync();
 
             return new ResultModel<bool>
             {
-                Success = true,
+                Errors = new string[] { Errors.NoPermissionToDeleteAdvertisement },
             };
         }
 
