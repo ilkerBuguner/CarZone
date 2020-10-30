@@ -122,6 +122,7 @@
                     Title = a.Title,
                     Views = a.Views,
                     CreatedOn = a.CreatedOn,
+                    Location = a.Author.Location != null ? a.Author.Location.ToString() : null,
                     ImageUrl = a.Images.Select(x => x.Url).FirstOrDefault(),
                     Author = new UserInfoServiceModel
                     {
@@ -153,6 +154,7 @@
                     Title = a.Title,
                     Description = a.Description,
                     Views = a.Views,
+                    Location = a.Author.Location != null ? a.Author.Location.ToString() : null,
                     Images = a.Images.Select(i => new ImageInfoServiceModel
                     {
                         Id = i.Id,
@@ -215,7 +217,6 @@
         {
             return await this.dbContext
                 .Advertisements
-                //.Include(a => a.Images)
                 .Where(a => a.Id == id)
                 .FirstOrDefaultAsync();
         }

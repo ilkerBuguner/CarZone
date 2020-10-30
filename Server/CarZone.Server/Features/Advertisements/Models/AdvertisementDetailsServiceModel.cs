@@ -1,10 +1,11 @@
-﻿using CarZone.Server.Features.Cars.Models;
-using CarZone.Server.Features.Images.Models;
-using CarZone.Server.Features.Users.Models;
-using System.Collections.Generic;
-
-namespace CarZone.Server.Features.Advertisements.Models
+﻿namespace CarZone.Server.Features.Advertisements.Models
 {
+    using System.Collections.Generic;
+
+    using CarZone.Server.Features.Cars.Models;
+    using CarZone.Server.Features.Images.Models;
+    using CarZone.Server.Features.Users.Models;
+
     public class AdvertisementDetailsServiceModel
     {
         public string Id { get; set; }
@@ -14,6 +15,8 @@ namespace CarZone.Server.Features.Advertisements.Models
         public string Description { get; set; }
 
         public int Views { get; set; }
+
+        public string Location { get; set; }
 
         public CarDetailsServiceModel Car { get; set; }
 

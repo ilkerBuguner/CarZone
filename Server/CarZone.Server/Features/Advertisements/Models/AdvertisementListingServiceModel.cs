@@ -16,6 +16,8 @@
 
         public DateTime CreatedOn { get; set; }
 
+        public string Location { get; set; }
+
         public CarInfoServiceModel Car { get; set; }
 
         public UserInfoServiceModel Author { get; set; }

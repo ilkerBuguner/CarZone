@@ -34,8 +34,7 @@
         [MaxLength(FullNameMaxLength)]
         public string FullName { get; set; }
 
-        [MaxLength(LocationMaxLength)]
-        public string Location { get; set; }
+        public Location? Location { get; set; }
 
         public Gender Gender { get; set; }
 
