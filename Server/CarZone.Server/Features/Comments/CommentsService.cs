@@ -9,7 +9,6 @@
     using CarZone.Server.Data.Models;
     using CarZone.Server.Features.Comments.Models;
     using CarZone.Server.Features.Common.Models;
-    using CarZone.Server.Features.Replies.Models;
     using CarZone.Server.Features.Users;
     using CarZone.Server.Features.Users.Models;
     using Microsoft.EntityFrameworkCore;

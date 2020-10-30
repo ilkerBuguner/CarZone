@@ -1,9 +1,7 @@
 ﻿namespace CarZone.Server.Features.Comments.Models
 {
     using System;
-    using System.Collections.Generic;
 
-    using CarZone.Server.Features.Replies.Models;
     using CarZone.Server.Features.Users.Models;
 
     public class CommentDetailsServiceModel
