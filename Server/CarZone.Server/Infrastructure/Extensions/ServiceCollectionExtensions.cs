@@ -19,6 +19,7 @@
     using CarZone.Server.Features.Identity;
     using CarZone.Server.Features.Images;
     using CarZone.Server.Features.Protections;
+    using CarZone.Server.Features.Replies;
     using CarZone.Server.Features.Safeties;
     using CarZone.Server.Features.Users;
     using CarZone.Server.Infrastructure.Filters;
@@ -114,6 +115,7 @@
                 .AddTransient<IAdvertisementsService, AdvertisementsService>()
                 .AddTransient<IUsersService, UsersService>()
                 .AddTransient<ICommentsService, CommentsService>()
+                .AddTransient<IRepliesService, RepliesService>()
                 .AddScoped<IsAdminAuthorizationAttribute>();
         }
 

@@ -26,7 +26,8 @@
         {
             var userId = this.User.GetId();
 
-            var commentId = await this.commentsService.CreateAsync(model.Content, model.AdvertisementId, userId);
+            var commentId = await this.commentsService
+                .CreateAsync(model.Content, model.AdvertisementId, userId);
 
             return Created(nameof(this.Create), commentId);
         }

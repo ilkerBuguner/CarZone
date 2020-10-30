@@ -27,6 +27,8 @@
             public const string NoPermissionToDeleteAdvertisement = "You must be an Admin or the creator of the advertisement to delete it!";
             public const string NoPermissionToEditComment = "You must be an Admin or the creator of the comment to edit it!";
             public const string NoPermissionToDeleteComment = "You must be an Admin or the creator of the comment to delete it!";
+            public const string NoPermissionToEditReply = "You must be an Admin or the creator of the reply to edit it!";
+            public const string NoPermissionToDeleteReply = "You must be an Admin or the creator of the reply to delete it!";
 
             public const string NoComfortsFound = "No comforts found!";
             public const string NoExteriorsFound = "No exteriors found!";
