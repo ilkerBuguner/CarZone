@@ -216,117 +216,111 @@
 
         public async Task<ICollection<AdvertisementListingServiceModel>> GetBySearchAsync(CarSearchRequestModel model)
         {
-            var cars = await this.dbContext.Cars
-                .Include(c => c.Advertisement)
-                .Include(c => c.Owner)
-                .Include(c => c.Advertisement.Images)
-                .Include(c => c.Brand)
-                .Include(c => c.Model)
-                .ToListAsync();
+            var carsQuery = this.dbContext.Cars.AsQueryable();
 
             if (model.MinPrice != 0 && model.MaxPrice != 0)
             {
-                cars = cars.Where(c => c.Price > model.MinPrice && c.Price < model.MaxPrice).ToList();
+                carsQuery = carsQuery.Where(c => c.Price > model.MinPrice && c.Price < model.MaxPrice);
             }
             else if (model.MinPrice != 0)
             {
-                cars = cars.Where(c => c.Price > model.MinPrice).ToList();
+                carsQuery = carsQuery.Where(c => c.Price > model.MinPrice);
             }
             else if (model.MaxPrice != 0)
             {
-                cars = cars.Where(c => c.Price < model.MaxPrice).ToList();
+                carsQuery = carsQuery.Where(c => c.Price < model.MaxPrice);
             }
 
             if (model.MinYear != 0 && model.MaxYear != 0)
             {
-                cars = cars.Where(c => c.Year > model.MinYear && c.Year < model.MaxYear).ToList();
+                carsQuery = carsQuery.Where(c => c.Year > model.MinYear && c.Year < model.MaxYear);
             }
             else if (model.MinYear != 0)
             {
-                cars = cars.Where(c => c.Year > model.MinYear).ToList();
+                carsQuery = carsQuery.Where(c => c.Year > model.MinYear);
             }
             else if (model.MaxYear != 0)
             {
-                cars = cars.Where(c => c.Year < model.MaxYear).ToList();
+                carsQuery = carsQuery.Where(c => c.Year < model.MaxYear);
             }
 
             // cars = model.MinYear != 0 && model.MaxYear != 0 ? cars = cars.Where(a => a.Year > model.MinYear && a.Year < model.MaxYear).ToList()
             //    : model.MinYear != 0 ? cars.Where(a => a.Year > model.MinYear).ToList()
-            //    : model.MaxYear != 0 ? cars.Where(a => a.Year < model.MaxYear).ToList();
+            //    : model.MaxYear != 0 ? cars.Where(a => a.Year < model.MaxYear).ToList() : cars;
 
             if (model.MinHorsePower != 0 && model.MaxHorsePower != 0)
             {
-                cars = cars.Where(c => c.HorsePower > model.MinHorsePower && c.HorsePower < model.MaxHorsePower).ToList();
+                carsQuery = carsQuery.Where(c => c.HorsePower > model.MinHorsePower && c.HorsePower < model.MaxHorsePower);
             }
             else if (model.MinHorsePower != 0)
             {
-                cars = cars.Where(c => c.HorsePower > model.MinHorsePower).ToList();
+                carsQuery = carsQuery.Where(c => c.HorsePower > model.MinHorsePower);
             }
             else if (model.MaxHorsePower != 0)
             {
-                cars = cars.Where(c => c.HorsePower < model.MaxHorsePower).ToList();
+                carsQuery = carsQuery.Where(c => c.HorsePower < model.MaxHorsePower);
             }
 
             if (model.FuelType != null)
             {
                 var fuelType = (FuelType)Enum.Parse(typeof(FuelType), model.FuelType);
 
-                cars = cars.Where(c => c.FuelType == fuelType).ToList();
+                carsQuery = carsQuery.Where(c => c.FuelType == fuelType);
             }
 
             if (model.Transmission != null)
             {
                 var transmissionType = (TransmissionType)Enum.Parse(typeof(TransmissionType), model.Transmission);
 
-                cars = cars.Where(c => c.Transmission == transmissionType).ToList();
+                carsQuery = carsQuery.Where(c => c.Transmission == transmissionType);
             }
 
             if (model.Color != null)
             {
                 var color = (Color)Enum.Parse(typeof(Color), model.Color);
 
-                cars = cars.Where(c => c.Color == color).ToList();
+                carsQuery = carsQuery.Where(c => c.Color == color);
             }
 
             if (model.Condition != null)
             {
                 var condition = (ConditionType)Enum.Parse(typeof(ConditionType), model.Condition);
 
-                cars = cars.Where(c => c.Condition == condition).ToList();
+                carsQuery = carsQuery.Where(c => c.Condition == condition);
             }
 
             if (model.EuroStandard != null)
             {
                 var euroStandard = (EuroStandard)Enum.Parse(typeof(EuroStandard), model.EuroStandard);
 
-                cars = cars.Where(c => c.EuroStandard == euroStandard).ToList();
+                carsQuery = carsQuery.Where(c => c.EuroStandard == euroStandard);
             }
 
             if (model.DoorsCount != null)
             {
                 var doorsCount = (DoorsCount)Enum.Parse(typeof(DoorsCount), model.DoorsCount);
 
-                cars = cars.Where(c => c.DoorsCount == doorsCount).ToList();
+                carsQuery = carsQuery.Where(c => c.DoorsCount == doorsCount);
             }
 
             if (model.BodyType != null)
             {
                 var bodyType = (BodyType)Enum.Parse(typeof(BodyType), model.BodyType);
 
-                cars = cars.Where(c => c.BodyType == bodyType).ToList();
+                carsQuery = carsQuery.Where(c => c.BodyType == bodyType);
             }
 
             if (model.BrandName != null)
             {
-                cars = cars.Where(c => c.Brand.Name == model.BrandName).ToList();
+                carsQuery = carsQuery.Where(c => c.Brand.Name == model.BrandName);
             }
 
             if (model.ModelName != null)
             {
-                cars = cars.Where(c => c.Model.Name == model.ModelName).ToList();
+                carsQuery = carsQuery.Where(c => c.Model.Name == model.ModelName);
             }
 
-            var result = cars
+            var result = await carsQuery
                 .Select(c => new AdvertisementListingServiceModel
                 {
                     Id = c.Advertisement.Id,
@@ -351,7 +345,7 @@
                     }
                 })
                 .OrderByDescending(c => c.CreatedOn)
-                .ToList();
+                .ToListAsync();
 
             return result;
         }
