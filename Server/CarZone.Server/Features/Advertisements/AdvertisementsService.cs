@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
 
     using CarZone.Server.Data;
+    using CarZone.Server.Data.Enumerations;
     using CarZone.Server.Data.Models;
     using CarZone.Server.Features.Advertisements.Models;
     using CarZone.Server.Features.BrandModels.Models;
@@ -211,6 +212,148 @@
                 Success = true,
                 Result = advertisement,
             };
+        }
+
+        public async Task<ICollection<AdvertisementListingServiceModel>> GetBySearchAsync(CarSearchRequestModel model)
+        {
+            var cars = await this.dbContext.Cars
+                .Include(c => c.Advertisement)
+                .Include(c => c.Owner)
+                .Include(c => c.Advertisement.Images)
+                .Include(c => c.Brand)
+                .Include(c => c.Model)
+                .ToListAsync();
+
+            if (model.MinPrice != 0 && model.MaxPrice != 0)
+            {
+                cars = cars.Where(c => c.Price > model.MinPrice && c.Price < model.MaxPrice).ToList();
+            }
+            else if (model.MinPrice != 0)
+            {
+                cars = cars.Where(c => c.Price > model.MinPrice).ToList();
+            }
+            else if (model.MaxPrice != 0)
+            {
+                cars = cars.Where(c => c.Price < model.MaxPrice).ToList();
+            }
+
+            if (model.MinYear != 0 && model.MaxYear != 0)
+            {
+                cars = cars.Where(c => c.Year > model.MinYear && c.Year < model.MaxYear).ToList();
+            }
+            else if (model.MinYear != 0)
+            {
+                cars = cars.Where(c => c.Year > model.MinYear).ToList();
+            }
+            else if (model.MaxYear != 0)
+            {
+                cars = cars.Where(c => c.Year < model.MaxYear).ToList();
+            }
+
+            // cars = model.MinYear != 0 && model.MaxYear != 0 ? cars = cars.Where(a => a.Year > model.MinYear && a.Year < model.MaxYear).ToList()
+            //    : model.MinYear != 0 ? cars.Where(a => a.Year > model.MinYear).ToList()
+            //    : model.MaxYear != 0 ? cars.Where(a => a.Year < model.MaxYear).ToList();
+
+            if (model.MinHorsePower != 0 && model.MaxHorsePower != 0)
+            {
+                cars = cars.Where(c => c.HorsePower > model.MinHorsePower && c.HorsePower < model.MaxHorsePower).ToList();
+            }
+            else if (model.MinHorsePower != 0)
+            {
+                cars = cars.Where(c => c.HorsePower > model.MinHorsePower).ToList();
+            }
+            else if (model.MaxHorsePower != 0)
+            {
+                cars = cars.Where(c => c.HorsePower < model.MaxHorsePower).ToList();
+            }
+
+            if (model.FuelType != null)
+            {
+                var fuelType = (FuelType)Enum.Parse(typeof(FuelType), model.FuelType);
+
+                cars = cars.Where(c => c.FuelType == fuelType).ToList();
+            }
+
+            if (model.Transmission != null)
+            {
+                var transmissionType = (TransmissionType)Enum.Parse(typeof(TransmissionType), model.Transmission);
+
+                cars = cars.Where(c => c.Transmission == transmissionType).ToList();
+            }
+
+            if (model.Color != null)
+            {
+                var color = (Color)Enum.Parse(typeof(Color), model.Color);
+
+                cars = cars.Where(c => c.Color == color).ToList();
+            }
+
+            if (model.Condition != null)
+            {
+                var condition = (ConditionType)Enum.Parse(typeof(ConditionType), model.Condition);
+
+                cars = cars.Where(c => c.Condition == condition).ToList();
+            }
+
+            if (model.EuroStandard != null)
+            {
+                var euroStandard = (EuroStandard)Enum.Parse(typeof(EuroStandard), model.EuroStandard);
+
+                cars = cars.Where(c => c.EuroStandard == euroStandard).ToList();
+            }
+
+            if (model.DoorsCount != null)
+            {
+                var doorsCount = (DoorsCount)Enum.Parse(typeof(DoorsCount), model.DoorsCount);
+
+                cars = cars.Where(c => c.DoorsCount == doorsCount).ToList();
+            }
+
+            if (model.BodyType != null)
+            {
+                var bodyType = (BodyType)Enum.Parse(typeof(BodyType), model.BodyType);
+
+                cars = cars.Where(c => c.BodyType == bodyType).ToList();
+            }
+
+            if (model.BrandName != null)
+            {
+                cars = cars.Where(c => c.Brand.Name == model.BrandName).ToList();
+            }
+
+            if (model.ModelName != null)
+            {
+                cars = cars.Where(c => c.Model.Name == model.ModelName).ToList();
+            }
+
+            var result = cars
+                .Select(c => new AdvertisementListingServiceModel
+                {
+                    Id = c.Advertisement.Id,
+                    Title = c.Advertisement.Title,
+                    Views = c.Advertisement.Views,
+                    CreatedOn = c.Advertisement.CreatedOn.ToString(),
+                    Location = c.Owner.Location != null ? c.Owner.Location.ToString() : null,
+                    ImageUrl = c.Advertisement.Images.Select(x => x.Url).FirstOrDefault(),
+                    Author = new UserInfoServiceModel
+                    {
+                        Id = c.Owner.Id,
+                        Username = c.Owner.UserName,
+                        ProfilePictureUrl = c.Owner.ProfilePictureUrl
+                    },
+                    Car = new CarInfoServiceModel
+                    {
+                        Price = c.Price,
+                        Year = c.Year,
+                        HorsePower = c.HorsePower,
+                        BodyType = c.BodyType.ToString(),
+                        FuelType = c.FuelType.ToString(),
+                    }
+                })
+                .OrderByDescending(c => c.CreatedOn)
+                .ToList();
+
+            return result;
         }
 
         private async Task<Advertisement> GetByIdAsync(string id)

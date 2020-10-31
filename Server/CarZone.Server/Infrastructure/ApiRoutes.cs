@@ -60,6 +60,7 @@
             public const string Delete = Root + "/{advertisementId}";
             public const string GetLatest = Root + "/latest";
             public const string GetDetails = Root + "/{advertisementId}";
+            public const string BySearch = Root + "/bySearch";
         }
 
         public static class Comment

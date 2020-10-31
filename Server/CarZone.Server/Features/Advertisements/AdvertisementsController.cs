@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
 
     using CarZone.Server.Features.Advertisements.Models;
+    using CarZone.Server.Features.Cars.Models;
     using CarZone.Server.Features.Common;
     using CarZone.Server.Features.Common.Models;
     using CarZone.Server.Infrastructure.Extensions;
@@ -76,6 +77,16 @@
             }
 
             return this.Ok(detailsRequest.Result);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route(Advertisement.BySearch)]
+        public async Task<ActionResult> BySearch([FromBody] CarSearchRequestModel model)
+        {
+            var advertisements = await this.advertisementsService.GetBySearchAsync(model);
+
+            return this.Ok(advertisements);
         }
     }
 }

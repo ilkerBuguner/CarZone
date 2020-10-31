@@ -9,8 +9,6 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using static CarZone.Server.Infrastructure.ApiRoutes;
-
     public class UsersController : ApiController
     {
         private readonly IUsersService usersService;
