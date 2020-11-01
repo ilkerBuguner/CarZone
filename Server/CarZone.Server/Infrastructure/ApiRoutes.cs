@@ -78,5 +78,10 @@
             public const string Delete = Root + "/{replyId}";
             public const string GetAllForComment = Root + "/{commentId}";
         }
+
+        public static class Image
+        {
+            public const string Delete = Root + "/{imageId}";
+        }
     }
 }
