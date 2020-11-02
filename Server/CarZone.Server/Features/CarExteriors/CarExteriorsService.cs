@@ -7,6 +7,7 @@
 
     using CarZone.Server.Data;
     using CarZone.Server.Data.Models.Exterior;
+    using CarZone.Server.Features.CarExteriors.Models;
     using CarZone.Server.Features.Common.Models;
     using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +34,44 @@
             await this.dbContext.SaveChangesAsync();
 
             return carExterior.Id;
+        }
+
+        public async Task UpdateAsync(UpdateCarExteriorRequestModel model)
+        {
+            var carExterior = await this.GetByIdsAsync(model.CarId, model.ExteriorId);
+
+            if (model.IsChecked == true)
+            {
+                if (carExterior == null)
+                {
+                    var deepSearchedCarExterior = await this.dbContext.CarExteriors
+                        .IgnoreQueryFilters()
+                        .Where(ce => ce.CarId == model.CarId
+                            && ce.ExteriorId == model.ExteriorId
+                            && ce.IsDeleted == true)
+                        .FirstOrDefaultAsync();
+
+                    if (deepSearchedCarExterior == null)
+                    {
+                        await this.CreateAsync(model.CarId, model.ExteriorId);
+                    }
+                    else
+                    {
+                        deepSearchedCarExterior.IsDeleted = false;
+                        deepSearchedCarExterior.DeletedOn = null;
+
+                        this.dbContext.CarExteriors.Update(deepSearchedCarExterior);
+                        await this.dbContext.SaveChangesAsync();
+                    }
+                }
+            }
+            else if (model.IsChecked == false)
+            {
+                if (carExterior != null)
+                {
+                    await this.DeleteAsync(model.CarId, model.ExteriorId);
+                }
+            }
         }
 
         public async Task<ResultModel<bool>> DeleteAsync(string carId, string exteriorId)

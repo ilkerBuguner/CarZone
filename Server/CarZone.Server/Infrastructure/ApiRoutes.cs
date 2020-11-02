@@ -81,6 +81,7 @@
 
         public static class Image
         {
+            public const string Create = Root;
             public const string Delete = Root + "/{imageId}";
         }
     }

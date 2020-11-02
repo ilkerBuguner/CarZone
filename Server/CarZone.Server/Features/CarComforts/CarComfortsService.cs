@@ -7,6 +7,7 @@
 
     using CarZone.Server.Data;
     using CarZone.Server.Data.Models.Comfort;
+    using CarZone.Server.Features.CarComforts.Models;
     using CarZone.Server.Features.Common.Models;
     using Microsoft.EntityFrameworkCore;
 
@@ -34,6 +35,44 @@
             await this.dbContext.SaveChangesAsync();
 
             return carComfort.Id;
+        }
+
+        public async Task UpdateAsync(UpdateCarComfortRequestModel model)
+        {
+            var carComfort = await this.GetByIdsAsync(model.CarId, model.ComfortId);
+
+            if (model.IsChecked == true)
+            {
+                if (carComfort == null)
+                {
+                    var deepSearchedCarComfort = await this.dbContext.CarComforts
+                        .IgnoreQueryFilters()
+                        .Where(cc => cc.CarId == model.CarId
+                            && cc.ComfortId == model.ComfortId
+                            && cc.IsDeleted == true)
+                        .FirstOrDefaultAsync();
+
+                    if (deepSearchedCarComfort == null)
+                    {
+                        await this.CreateAsync(model.CarId, model.ComfortId);
+                    }
+                    else
+                    {
+                        deepSearchedCarComfort.IsDeleted = false;
+                        deepSearchedCarComfort.DeletedOn = null;
+
+                        this.dbContext.CarComforts.Update(deepSearchedCarComfort);
+                        await this.dbContext.SaveChangesAsync();
+                    }
+                }
+            }
+            else if (model.IsChecked == false)
+            {
+                if (carComfort != null)
+                {
+                    await this.DeleteAsync(model.CarId, model.ComfortId);
+                }
+            }
         }
 
         public async Task<ResultModel<bool>> DeleteAsync(string carId, string comfortId)

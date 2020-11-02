@@ -7,6 +7,7 @@
 
     using CarZone.Server.Data;
     using CarZone.Server.Data.Models.Safety;
+    using CarZone.Server.Features.CarSafeties.Models;
     using CarZone.Server.Features.Common.Models;
     using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +34,44 @@
             await this.dbContext.SaveChangesAsync();
 
             return carSafety.Id;
+        }
+
+        public async Task UpdateAsync(UpdateCarSafetyRequestModel model)
+        {
+            var carSafety = await this.GetByIdsAsync(model.CarId, model.SafetyId);
+
+            if (model.IsChecked == true)
+            {
+                if (carSafety == null)
+                {
+                    var deepSearchedCarSafety = await this.dbContext.CarSafeties
+                        .IgnoreQueryFilters()
+                        .Where(cs => cs.CarId == model.CarId
+                            && cs.SafetyId == model.SafetyId
+                            && cs.IsDeleted == true)
+                        .FirstOrDefaultAsync();
+
+                    if (deepSearchedCarSafety == null)
+                    {
+                        await this.CreateAsync(model.CarId, model.SafetyId);
+                    }
+                    else
+                    {
+                        deepSearchedCarSafety.IsDeleted = false;
+                        deepSearchedCarSafety.DeletedOn = null;
+
+                        this.dbContext.CarSafeties.Update(deepSearchedCarSafety);
+                        await this.dbContext.SaveChangesAsync();
+                    }
+                }
+            }
+            else if (model.IsChecked == false)
+            {
+                if (carSafety != null)
+                {
+                    await this.DeleteAsync(model.CarId, model.SafetyId);
+                }
+            }
         }
 
         public async Task<ResultModel<bool>> DeleteAsync(string carId, string safetyId)

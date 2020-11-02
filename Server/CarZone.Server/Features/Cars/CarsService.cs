@@ -118,6 +118,30 @@
                 car.BodyType = (BodyType)Enum.Parse(typeof(BodyType), model.BodyType);
                 car.ModifiedOn = DateTime.UtcNow;
 
+                foreach (var carComfort in model.CarComforts)
+                {
+                    carComfort.CarId = car.Id;
+                    await this.carComfortsService.UpdateAsync(carComfort);
+                }
+
+                foreach (var carExterior in model.CarExteriors)
+                {
+                    carExterior.CarId = car.Id;
+                    await this.carExteriorsService.UpdateAsync(carExterior);
+                }
+
+                foreach (var carProtection in model.CarProtections)
+                {
+                    carProtection.CarId = car.Id;
+                    await this.carProtectionsService.UpdateAsync(carProtection);
+                }
+
+                foreach (var carSafety in model.CarSafeties)
+                {
+                    carSafety.CarId = car.Id;
+                    await this.carSafetiesService.UpdateAsync(carSafety);
+                }
+
                 this.dbContext.Cars.Update(car);
                 await this.dbContext.SaveChangesAsync();
 

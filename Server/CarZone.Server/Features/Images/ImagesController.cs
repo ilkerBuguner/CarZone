@@ -1,10 +1,11 @@
 ﻿namespace CarZone.Server.Features.Images
 {
+    using System.Threading.Tasks;
+
     using CarZone.Server.Features.Common;
     using CarZone.Server.Features.Common.Models;
-    using CarZone.Server.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
+
     using static CarZone.Server.Infrastructure.ApiRoutes;
 
     public class ImagesController : ApiController
@@ -14,6 +15,16 @@
         public ImagesController(IImagesService imagesService)
         {
             this.imagesService = imagesService;
+        }
+
+        [HttpPost]
+        [Route(Image.Create)]
+        public async Task<ActionResult> Create(string url, string advertisementId)
+        {
+            var imageId = await this.imagesService
+                .CreateAsync(url, advertisementId);
+
+            return Created(nameof(this.Create), imageId);
         }
 
         [HttpDelete]

@@ -7,6 +7,7 @@
 
     using CarZone.Server.Data;
     using CarZone.Server.Data.Models.Protection;
+    using CarZone.Server.Features.CarProtections.Models;
     using CarZone.Server.Features.Common.Models;
     using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +34,44 @@
             await this.dbContext.SaveChangesAsync();
 
             return carProtection.Id;
+        }
+
+        public async Task UpdateAsync(UpdateCarProtectionRequestModel model)
+        {
+            var carProtection = await this.GetByIdsAsync(model.CarId, model.ProtectionId);
+
+            if (model.IsChecked == true)
+            {
+                if (carProtection == null)
+                {
+                    var deepSearchedCarProtection = await this.dbContext.CarProtections
+                        .IgnoreQueryFilters()
+                        .Where(cp => cp.CarId == model.CarId
+                            && cp.ProtectionId == model.ProtectionId
+                            && cp.IsDeleted == true)
+                        .FirstOrDefaultAsync();
+
+                    if (deepSearchedCarProtection == null)
+                    {
+                        await this.CreateAsync(model.CarId, model.ProtectionId);
+                    }
+                    else
+                    {
+                        deepSearchedCarProtection.IsDeleted = false;
+                        deepSearchedCarProtection.DeletedOn = null;
+
+                        this.dbContext.CarProtections.Update(deepSearchedCarProtection);
+                        await this.dbContext.SaveChangesAsync();
+                    }
+                }
+            }
+            else if (model.IsChecked == false)
+            {
+                if (carProtection != null)
+                {
+                    await this.DeleteAsync(model.CarId, model.ProtectionId);
+                }
+            }
         }
 
         public async Task<ResultModel<bool>> DeleteAsync(string carId, string protectionId)

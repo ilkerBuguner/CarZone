@@ -3,9 +3,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using CarZone.Server.Data.Enumerations;
-    using CarZone.Server.Data.Models;
-
     public class CreateCarRequestModel
     {
         [Required]

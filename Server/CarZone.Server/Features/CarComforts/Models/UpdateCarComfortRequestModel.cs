@@ -2,7 +2,9 @@
 {
     public class UpdateCarComfortRequestModel
     {
-        public string Id { get; set; }
+        public string CarId { get; set; }
+
+        public string ComfortId { get; set; }
 
         public bool IsChecked { get; set; }
     }
