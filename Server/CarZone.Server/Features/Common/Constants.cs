@@ -30,7 +30,9 @@
             public const string NoPermissionToEditReply = "You must be an Admin or the creator of the reply to edit it!";
             public const string NoPermissionToDeleteReply = "You must be an Admin or the creator of the reply to delete it!";
             public const string NoPermissionToEditUser = "You must be an Admin or the actual user to edit user information!";
-
+            public const string NoPermissionToEditCar = "You must be an Admin or the owner of the car to edit it!";
+            public const string NoPermissionToEditAdvertisement = "You must be an Admin or the creator of the advertisement to edit it!";
+            
             public const string NoComfortsFound = "No comforts found!";
             public const string NoExteriorsFound = "No exteriors found!";
             public const string NoSafetiesFound = "No safeties found!";

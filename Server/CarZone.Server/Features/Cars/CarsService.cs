@@ -13,6 +13,7 @@
     using CarZone.Server.Features.Cars.Models;
     using CarZone.Server.Features.CarSafeties;
     using CarZone.Server.Features.Common.Models;
+    using CarZone.Server.Features.Users;
     using Microsoft.EntityFrameworkCore;
 
     using static CarZone.Server.Features.Common.Constants;
@@ -20,6 +21,7 @@
     public class CarsService : ICarsService
     {
         private readonly CarZoneDbContext dbContext;
+        private readonly IUsersService usersService;
         private readonly ICarComfortsService carComfortsService;
         private readonly ICarExteriorsService carExteriorsService;
         private readonly ICarProtectionsService carProtectionsService;
@@ -27,12 +29,14 @@
 
         public CarsService(
             CarZoneDbContext dbContext,
+            IUsersService usersService,
             ICarComfortsService carComfortsService,
             ICarExteriorsService carExteriorsService,
             ICarProtectionsService carProtectionsService,
             ICarSafetiesService carSafetiesService)
         {
             this.dbContext = dbContext;
+            this.usersService = usersService;
             this.carComfortsService = carComfortsService;
             this.carExteriorsService = carExteriorsService;
             this.carProtectionsService = carProtectionsService;
@@ -83,6 +87,50 @@
             }
 
             return car.Id;
+        }
+
+        public async Task<ResultModel<bool>> UpdateAsync(string userId, string carId, UpdateCarRequestModel model)
+        {
+            var car = await this.GetByIdAsync(carId);
+
+            if (car == null)
+            {
+                return new ResultModel<bool>
+                {
+                    Errors = new string[] { Errors.InvalidCarId },
+                };
+            }
+
+            if (car.OwnerId == userId || await this.usersService.IsAdminAsync(userId))
+            {
+                car.Price = model.Price;
+                car.HorsePower = model.HorsePower;
+                car.Year = model.Year;
+                car.Mileage = model.Mileage;
+                car.BrandId = model.BrandId;
+                car.ModelId = model.ModelId;
+                car.FuelType = (FuelType)Enum.Parse(typeof(FuelType), model.FuelType);
+                car.Transmission = (TransmissionType)Enum.Parse(typeof(TransmissionType), model.Transmission);
+                car.Color = (Color)Enum.Parse(typeof(Color), model.Color);
+                car.Condition = (ConditionType)Enum.Parse(typeof(ConditionType), model.Condition);
+                car.EuroStandard = (EuroStandard)Enum.Parse(typeof(EuroStandard), model.EuroStandard);
+                car.DoorsCount = (DoorsCount)Enum.Parse(typeof(DoorsCount), model.DoorsCount);
+                car.BodyType = (BodyType)Enum.Parse(typeof(BodyType), model.BodyType);
+                car.ModifiedOn = DateTime.UtcNow;
+
+                this.dbContext.Cars.Update(car);
+                await this.dbContext.SaveChangesAsync();
+
+                return new ResultModel<bool>
+                {
+                    Success = true,
+                };
+            }
+
+            return new ResultModel<bool>
+            {
+                Errors = new string[] { Errors.NoPermissionToEditCar },
+            };
         }
 
         public async Task<ResultModel<bool>> DeleteAsync(string id)

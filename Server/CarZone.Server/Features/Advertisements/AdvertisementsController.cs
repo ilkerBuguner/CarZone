@@ -32,6 +32,26 @@
             return Created(nameof(this.Create), advertisementId);
         }
 
+        [HttpPut]
+        [Route(Advertisement.Update)]
+        public async Task<ActionResult> Update(string advertisementId, [FromBody] UpdateAdvertisementRequestModel model)
+        {
+            var userId = this.User.GetId();
+
+            var updateRequest = await this.advertisementsService
+                .UpdateAsync(userId, advertisementId, model);
+
+            if (!updateRequest.Success)
+            {
+                return this.BadRequest(new ErrorsResponseModel
+                {
+                    Errors = updateRequest.Errors,
+                });
+            }
+
+            return this.Ok();
+        }
+
         [HttpDelete]
         [Route(Advertisement.Delete)]
         public async Task<ActionResult> Delete(string advertisementId)

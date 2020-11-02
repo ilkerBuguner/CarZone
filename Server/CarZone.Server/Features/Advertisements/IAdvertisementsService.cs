@@ -11,6 +11,8 @@
     {
         Task<string> CreateAsync(string userId, CreateAdvertisementRequestModel input);
 
+        Task<ResultModel<bool>> UpdateAsync(string userId, string advertisementId, UpdateAdvertisementRequestModel model);
+
         Task<ResultModel<bool>> DeleteAsync(string userId, string advertisementId);
 
         Task<ICollection<AdvertisementListingServiceModel>> GetLatestAsync();

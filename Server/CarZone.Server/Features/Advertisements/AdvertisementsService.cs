@@ -69,6 +69,49 @@
             return newAdvertisement.Id;
         }
 
+        public async Task<ResultModel<bool>> UpdateAsync(string userId, string advertisementId, UpdateAdvertisementRequestModel model)
+        {
+            var advertisement = await this.GetByIdAsync(advertisementId);
+
+            if (advertisement == null)
+            {
+                return new ResultModel<bool>
+                {
+                    Errors = new string[] { Errors.InvalidAdvertisementId },
+                };
+            }
+
+            if (advertisement.AuthorId == userId || await this.usersService.IsAdminAsync(userId))
+            {
+                advertisement.Title = model.Title;
+                advertisement.Description = model.Description;
+                advertisement.ModifiedOn = DateTime.UtcNow;
+
+                var editCarRequest = await this.carsService.UpdateAsync(userId, advertisement.CarId, model.Car);
+
+                if (!editCarRequest.Success)
+                {
+                    return new ResultModel<bool>
+                    {
+                        Errors = editCarRequest.Errors,
+                    };
+                }
+
+                this.dbContext.Advertisements.Update(advertisement);
+                await this.dbContext.SaveChangesAsync();
+
+                return new ResultModel<bool>
+                {
+                    Success = true,
+                };
+            }
+
+            return new ResultModel<bool>
+            {
+                Errors = new string[] { Errors.NoPermissionToEditAdvertisement },
+            };
+        }
+
         public async Task<ResultModel<bool>> DeleteAsync(string userId, string advertisementId)
         {
             var advertisement = await this.GetByIdAsync(advertisementId);
