@@ -1,8 +1,5 @@
 ﻿namespace CarZone.Server.Infrastructure.Filters
 {
-    using System;
-    using System.Linq;
-    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using CarZone.Server.Data.Models;

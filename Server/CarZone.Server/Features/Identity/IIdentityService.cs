@@ -11,6 +11,6 @@
 
         Task<ResultModel<AuthResponseModel>> RegisterAsync(string fullName, string userName, string email, string password, string secret);
 
-        Task<ResultModel<AuthResponseModel>> LoginAsync(string email, string password, string secret);
+        Task<ResultModel<AuthResponseModel>> LoginAsync(string username, string password, string secret);
     }
 }
