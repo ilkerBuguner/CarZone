@@ -54,3 +54,45 @@
     margin-bottom: 10%;
 }
   /* Register */
+
+  /* Footer */
+.carzone-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #42A5F5;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+}
+
+.footer-content h1,
+.footer-content i {
+    color: white;
+}
+
+.footer-content i {
+    margin: 0 10px;
+    font-size: 23px;
+}
+
+.rights p {
+    color: white;
+}
+
+.icons {
+    margin-left: 15px;
+}
+
+.icons i {
+    color: white;
+    font-size: 25px;
+    letter-spacing: 20px;
+}
+/* Footer */
