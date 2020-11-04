@@ -1,0 +1,67 @@
+<div class="wrap">
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="index.html">
+                        <div class="logo">
+                            <h1 class="header-logo">CarZone</h1>
+                        </div>
+                    </a>
+                    <nav>
+                        <ul class="nav-ul">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="cars.html">Cars</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+<!-- Register -->
+<div class="wrap">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form [formGroup]="registerForm" class="register-form" (ngSubmit)="register()">
+                <h1 class="register-heading">Register</h1>
+                <div class="form-group">
+                    <label for="exampleInputUsername">Username</label>
+                    <input type="text" class="form-control" formControlName="username">
+                </div>
+                <div *ngIf="username.touched && username.errors?.required" class="alert alert-danger">
+                    Username field is required!
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFullName">Full Name</label>
+                    <input type="text" class="form-control" formControlName="fullName">
+                </div>
+                <div *ngIf="fullName.touched && fullName.errors?.required" class="alert alert-danger">
+                    FullName field is required!
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail">Email</label>
+                    <input type="email" class="form-control" formControlName="email">
+                </div>
+                <div *ngIf="email.touched && email.errors?.required" class="alert alert-danger">
+                    Email field is required!
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword">Password</label>
+                    <input type="password" class="form-control" formControlName="password">
+                </div>
+                <div *ngIf="password.touched && password.errors?.required" class="alert alert-danger">
+                    Password field is required!
+                </div>
+                <button type="submit" class="btn btn-outline-primary">Register</button>
+                <h5 class="link">Already have an account?</h5> <a href="/login">Login</a>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+<!--Register -->
