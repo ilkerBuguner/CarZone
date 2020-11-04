@@ -20,6 +20,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    if (this.loginForm.invalid) {
+      return;
+    }
+
     this.authService.login(this.loginForm.value).subscribe(data => {
       this.authService.saveToken(data['token']);
     })

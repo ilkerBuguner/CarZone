@@ -11,10 +11,10 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
-      'username': ['', [Validators.required]],
-      'fullName': ['', [Validators.required]],
+      'username': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      'fullName': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       'email': ['', [Validators.required]],
-      'password': ['', [Validators.required]]
+      'password': ['', [Validators.required, Validators.minLength(6)]]
     })
    }
 
@@ -22,6 +22,10 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    if(this.registerForm.invalid) {
+      return;
+    }
+
     this.authService.register(this.registerForm.value).subscribe(data => {
       this.authService.saveToken(data['token']);
     })
