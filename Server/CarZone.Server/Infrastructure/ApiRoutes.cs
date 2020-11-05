@@ -84,5 +84,10 @@
             public const string Create = Root;
             public const string Delete = Root + "/{imageId}";
         }
+
+        public static class Enum
+        {
+            public const string GetAll = Root;
+        }
     }
 }
