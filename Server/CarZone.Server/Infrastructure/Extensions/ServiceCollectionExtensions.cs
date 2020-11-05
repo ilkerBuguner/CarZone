@@ -15,6 +15,7 @@
     using CarZone.Server.Features.CarSafeties;
     using CarZone.Server.Features.Comforts;
     using CarZone.Server.Features.Comments;
+    using CarZone.Server.Features.Enums;
     using CarZone.Server.Features.Exteriors;
     using CarZone.Server.Features.Identity;
     using CarZone.Server.Features.Images;
@@ -116,6 +117,7 @@
                 .AddTransient<IUsersService, UsersService>()
                 .AddTransient<ICommentsService, CommentsService>()
                 .AddTransient<IRepliesService, RepliesService>()
+                .AddTransient<IEnumsService, EnumsService>()
                 .AddScoped<IsAdminAuthorizationAttribute>();
         }
 
