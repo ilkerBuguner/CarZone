@@ -1,3 +1,4 @@
+<app-header></app-header>
 <!-- Register -->
 <div class="wrap">
     <div class="row">
@@ -49,10 +50,12 @@
                     Password field must contain at least 6 characters!
                 </div>
                 <button type="submit" class="btn btn-outline-primary">Register</button>
-                <h5 class="link">Already have an account?</h5> <a href="/login">Login</a>
+                <h5>Already have an account?</h5> 
+                <a (click)="navigateTo('login')" class="link">Login</a>
             </form>
         </div>
         <div class="col-md-4"></div>
     </div>
 </div>
+<app-footer></app-footer>
 <!--Register -->

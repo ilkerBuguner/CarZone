@@ -20,8 +20,11 @@ export class HeaderComponent implements OnInit {
   }
   
   logout() {
-    this.authService.deleteToken();
-    this.router.navigate(["advertisements"]);
+    this.authService.logout();
+  }
+
+  navigateTo(route : string) {
+    this.router.navigate([route]);
   }
 
 }

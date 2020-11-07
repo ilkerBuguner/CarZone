@@ -30,9 +30,12 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.loginForm.value).subscribe(data => {
       this.authService.saveToken(data['token']);
+      this.router.navigate(["advertisements"]);
     })
+  }
 
-    this.router.navigate(["advertisements"]);
+  navigateTo(route : string) {
+    this.router.navigate([route]);
   }
 
   get username() {

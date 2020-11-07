@@ -3,38 +3,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="index.html">
-                        <div class="logo">
-                            <a href="/advertisements">
-                                <h1 class="header-logo">CarZone</h1>
-                            </a>
+                    <a (click)="navigateTo('advertisements')">
+                        <div href="/advertisements">
+                            <h1 class="header-logo">CarZone</h1>
                         </div>
                     </a>
                     <nav>
                         <ul class="nav-ul">
                             <li>
-                                <a href="/advertisements">Home</a>
+                                <a (click)="navigateTo('advertisements')" class="nav-button">Home</a>
                             </li>
                             <li>
-                                <a href="/advertisements">Cars</a>
+                                <a (click)="navigateTo('advertisements')" class="nav-button">Cars</a>
                             </li>
                             <li *ngIf="isLoggedIn">
-                                <a href="#">Create Ad</a>
+                                <a class="nav-button">Create Ad</a>
                             </li>
                             <li *ngIf="!isLoggedIn">
-                                <a href="/login">Login</a>
+                                <a (click)="navigateTo('login')" class="nav-button">Login</a>
                             </li>
                             <li *ngIf="!isLoggedIn">
-                                <a href="/register">Register</a>
+                                <a (click)="navigateTo('register')" class="nav-button">Register</a>
                             </li>
                             <li *ngIf="isLoggedIn" class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Profile
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Profile
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <a (click)="logout()" class="dropdown-item">Logout</a>
-                                  <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="#">Something else here</a>
+                                    <a (click)="logout()" class="dropdown-item">Logout</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item">Something else here</a>
                                 </div>
                             </li>
                         </ul>
