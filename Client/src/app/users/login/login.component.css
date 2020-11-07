@@ -1,41 +1,4 @@
-/* Header */
-.col-md-12 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.col-md-12 a {
-    text-decoration: none;
-}
-
-#header {
-    box-shadow: 0px 0px 14px -1px #000000;
-}
-
-.header-logo {
-    font-size: 50px;
-    font-weight: bold;
-}
-
-.nav-ul {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding-top: 15px;
-}
-
-.nav-ul li {
-    list-style: none;
-    margin: 7px;
-}
-
-.nav-ul li a {
-    text-decoration: none;
-    font-size: 20px;
-}
-/* Header */
 
 /* Login */
 
@@ -56,45 +19,3 @@
     margin-bottom: 10%;
 }
   /* Login */
-
-    /* Footer */
-.carzone-footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 70px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: #42A5F5;
-}
-
-.footer-content {
-    display: flex;
-    align-items: center;
-}
-
-.footer-content h1,
-.footer-content i {
-    color: white;
-}
-
-.footer-content i {
-    margin: 0 10px;
-    font-size: 23px;
-}
-
-.rights p {
-    color: white;
-}
-
-.icons {
-    margin-left: 15px;
-}
-
-.icons i {
-    color: white;
-    font-size: 25px;
-    letter-spacing: 20px;
-}
-/* Footer */
