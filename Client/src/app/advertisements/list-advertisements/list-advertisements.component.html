@@ -1,16 +1,37 @@
 <app-header></app-header>
 <section class="featured-places">
     <div class="container">
-        <form action="#">
+        <form [formGroup]="searchForm" (ngSubmit)="search()">
             <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Make:</label>
+             
+                         <select (change)="onChangeBrand($event.target.value)" formControlName="brandId" class="form-control">
+                              <option value="">All</option>
+                              <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
+                         </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Model:</label>
+                        
+                         <select class="form-control" formControlName="modelId">
+                              <option *ngIf="!brandModels" value="">No selected make</option>
+                              <option *ngIf="brandModels" value="">All</option>
+                              <option *ngFor="let model of brandModels" [value]="model.id">{{model.name}}</option>
+                         </select>
+                    </div>
+                </div>
+
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label>Used/New:</label>
-             
-                         <select class="form-control">
+                        <label>Condition:</label>
+                         <select class="form-control" formControlName="condition">
                               <option value="">All</option>
-                              <option value="new">New vehicle</option>
-                              <option value="used">Used vehicle</option>
+                              <option *ngFor="let condition of conditionTypes" [value]="condition">{{condition}}</option>
                          </select>
                     </div>
                 </div>
@@ -18,107 +39,19 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Vehicle Type:</label>
-             
-                         <select class="form-control">
-                              <option value="">--All --</option>
-                              <option value="">--All --</option>
-                              <option value="">--All --</option>
-                              <option value="">--All --</option>
-                              <option value="">--All --</option>
+                         <select class="form-control" formControlName="bodyType">
+                              <option value="">All</option>
+                              <option *ngFor="let bodyType of bodyTypes" [value]="bodyType">{{bodyType}}</option>
                          </select>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label>Make:</label>
-             
-                         <select class="form-control">
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                         </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Model:</label>
-             
-                         <select class="form-control">
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                         </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Price:</label>
-             
-                         <select class="form-control">
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                         </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Mileage:</label>
-             
-                         <select class="form-control">
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                         </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Engine size:</label>
-             
-                         <select class="form-control">
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                         </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Power:</label>
-             
-                         <select class="form-control">
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                         </select>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <label>Fuel:</label>
-             
-                         <select class="form-control">
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
+                        <label>Fuel Type</label>
+                         <select class="form-control" formControlName="fuelType">
+                              <option value="">All</option>
+                              <option *ngFor="let fuelType of fuelTypes" [value]="fuelType">{{fuelType}}</option>
                          </select>
                     </div>
                 </div>
@@ -127,44 +60,69 @@
                     <div class="form-group">
                         <label>Gearbox:</label>
              
-                         <select class="form-control">
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
+                         <select class="form-control" formControlName="transmissionType">
+                              <option value="">All</option>
+                              <option 
+                              *ngFor="let transmissionType of transmissionTypes" 
+                              [value]="transmissionType">{{transmissionType}}</option>
                          </select>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label>Doors:</label>
-             
-                         <select class="form-control">
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
+                        <label>Color:</label>
+                         <select class="form-control" formControlName="color">
+                              <option value="">All</option>
+                              <option *ngFor="let color of colors" [value]="color">{{color}}</option>
                          </select>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <label>Number of seats:</label>
-             
-                         <select class="form-control">
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
-                              <option value="">-- All --</option>
+                        <label>Location:</label>
+                         <select class="form-control" formControlName="location">
+                              <option value="">All</option>
+                              <option *ngFor="let location of locations" [value]="location">{{location}}</option>
                          </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>EuroStandard:</label>
+                         <select class="form-control" formControlName="euroStandard">
+                              <option value="">All</option>
+                              <option *ngFor="let euroStandard of euroStandards" [value]="euroStandard">{{euroStandard}}</option>
+                         </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label>Doors Count:</label>
+                         <select class="form-control" formControlName="doorsCount">
+                              <option value="">All</option>
+                              <option *ngFor="let doorsCount of doorsCounts" [value]="doorsCount">{{doorsCount}}</option>
+                         </select>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="col-6">
+                            <label>Max Price</label>
+                            <input class="col-6" type="number">
+                        </div>
+                        <div class="col-6">
+                            <label>Max Price</label>
+                            <input class="col-6" type="number">
+                        </div>
                     </div>
                 </div>
             </div>
-
             <div class="text-center blue-button">
-                <a href="#">Search</a>
+                <button type="submit">Search</button>
             </div>
         </form>
     </div>
@@ -173,26 +131,29 @@
 <section class="featured-places">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12">
+            <div *ngFor="let advertisement of advertisements" class="col-md-4 col-sm-6 col-xs-12">
                 <div class="featured-item">
                     <div class="thumb">
                         <div class="thumb-img">
-                            <img src="img/product-1-720x480.jpg" alt="">
+                            <img [src]="imageUrl" alt="">
                         </div>
                         <div class="overlay-content">
-                          <strong><i class="fa fa-dashboard"></i> 130 000km</strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                          <strong><i class="fa fa-cube"></i> 1800 cc</strong>&nbsp;&nbsp;&nbsp;&nbsp;
-                          <strong><i class="fa fa-cog"></i> Manual</strong>
+                          <strong><i class="fa fa-dashboard"></i>{{advertisement.car.mileage}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                          <strong><i class="fa fa-cube"></i>{{advertisement.car.views}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+                          <strong><i class="fa fa-cog"></i> {{advertisement.car.transmission}}</strong>
                         </div>
                     </div>
                     <div class="down-content">
-                        <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                        <h4>{{advertisement.title}}</h4>
 
                         <br>
 
-                        <p>190 hp  /  Petrol  /  2008  /  Used vehicle</p>
+                        <p>{{advertisement.car.horsePower}} hp  
+                            /  {{advertisement.car.fuelType}} 
+                            /  {{advertisement.car.year}}  
+                            /  {{advertisement.car.condition}}</p>
 
-                        <p><span><strong><sup>$</sup>11779.00</strong></span></p>
+                        <p><span><strong><sup>$</sup>{{advertisement.car.price}}</strong></span></p>
 
                         <div class="text-button">
                             <a href="car-details.html">View More</a>

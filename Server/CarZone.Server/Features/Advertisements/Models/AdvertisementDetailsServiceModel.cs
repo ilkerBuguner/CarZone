@@ -18,6 +18,8 @@
 
         public string Location { get; set; }
 
+        public string CreatedOn { get; set; }
+
         public CarDetailsServiceModel Car { get; set; }
 
         public UserInfoServiceModel Author { get; set; }

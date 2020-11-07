@@ -197,6 +197,7 @@
                     Title = a.Title,
                     Description = a.Description,
                     Views = a.Views,
+                    CreatedOn = a.CreatedOn.ToString(),
                     Location = a.Author.Location != null ? a.Author.Location.ToString() : null,
                     Images = a.Images.Select(i => new ImageInfoServiceModel
                     {
@@ -303,63 +304,70 @@
                 carsQuery = carsQuery.Where(c => c.HorsePower < model.MaxHorsePower);
             }
 
-            if (model.FuelType != null)
+            if (!string.IsNullOrEmpty(model.FuelType))
             {
                 var fuelType = (FuelType)Enum.Parse(typeof(FuelType), model.FuelType);
 
                 carsQuery = carsQuery.Where(c => c.FuelType == fuelType);
             }
 
-            if (model.Transmission != null)
+            if (!string.IsNullOrEmpty(model.Transmission))
             {
                 var transmissionType = (TransmissionType)Enum.Parse(typeof(TransmissionType), model.Transmission);
 
                 carsQuery = carsQuery.Where(c => c.Transmission == transmissionType);
             }
 
-            if (model.Color != null)
+            if (!string.IsNullOrEmpty(model.Color))
             {
                 var color = (Color)Enum.Parse(typeof(Color), model.Color);
 
                 carsQuery = carsQuery.Where(c => c.Color == color);
             }
 
-            if (model.Condition != null)
+            if (!string.IsNullOrEmpty(model.Location))
+            {
+                var location = (Location)Enum.Parse(typeof(Location), model.Location);
+
+                carsQuery = carsQuery.Where(c => c.Owner.Location == location);
+            }
+
+            if (!string.IsNullOrEmpty(model.Condition))
             {
                 var condition = (ConditionType)Enum.Parse(typeof(ConditionType), model.Condition);
 
                 carsQuery = carsQuery.Where(c => c.Condition == condition);
             }
 
-            if (model.EuroStandard != null)
+            if (!string.IsNullOrEmpty(model.EuroStandard))
             {
                 var euroStandard = (EuroStandard)Enum.Parse(typeof(EuroStandard), model.EuroStandard);
 
                 carsQuery = carsQuery.Where(c => c.EuroStandard == euroStandard);
             }
 
-            if (model.DoorsCount != null)
+            if (!string.IsNullOrEmpty(model.DoorsCount))
             {
                 var doorsCount = (DoorsCount)Enum.Parse(typeof(DoorsCount), model.DoorsCount);
 
                 carsQuery = carsQuery.Where(c => c.DoorsCount == doorsCount);
             }
 
-            if (model.BodyType != null)
+            if (!string.IsNullOrEmpty(model.BodyType))
             {
                 var bodyType = (BodyType)Enum.Parse(typeof(BodyType), model.BodyType);
 
                 carsQuery = carsQuery.Where(c => c.BodyType == bodyType);
             }
 
-            if (model.BrandName != null)
+            if (!string.IsNullOrEmpty(model.BrandId))
             {
-                carsQuery = carsQuery.Where(c => c.Brand.Name == model.BrandName);
+                carsQuery = carsQuery.Where(c => c.BrandId == model.BrandId);
             }
 
-            if (model.ModelName != null)
+            if (!string.IsNullOrEmpty(model.ModelId))
             {
-                carsQuery = carsQuery.Where(c => c.Model.Name == model.ModelName);
+                carsQuery = carsQuery.Where(c => c.ModelId == model.ModelId);
             }
 
             var result = await carsQuery
@@ -382,6 +390,9 @@
                         Price = c.Price,
                         Year = c.Year,
                         HorsePower = c.HorsePower,
+                        Mileage = c.Mileage,
+                        Condition = c.Condition.ToString(),
+                        Transmission = c.Transmission.ToString(),
                         BodyType = c.BodyType.ToString(),
                         FuelType = c.FuelType.ToString(),
                     }

@@ -28,8 +28,10 @@
 
         public string BodyType { get; set; }
 
-        public string BrandName { get; set; }
+        public string Location { get; set; }
 
-        public string ModelName { get; set; }
+        public string BrandId { get; set; }
+
+        public string ModelId { get; set; }
     }
 }

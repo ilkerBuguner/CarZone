@@ -11,5 +11,11 @@
         public int Year { get; set; }
 
         public string BodyType { get; set; }
+
+        public int Mileage { get; set; }
+
+        public string Condition { get; set; }
+
+        public string Transmission { get; set; }
     }
 }

@@ -25,7 +25,7 @@
             public const string Update = Root + "/{modelId}";
             public const string Delete = Root + "/{modelId}";
             public const string GetDetails = Root + "/{modelId}";
-            public const string GetAllByBrandId = Root;
+            public const string GetAllByBrandId = Root + "/getByBrandId/{brandId}";
         }
 
         public static class Comfort

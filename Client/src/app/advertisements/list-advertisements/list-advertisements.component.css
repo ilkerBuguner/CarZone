@@ -202,7 +202,7 @@ section.banner {
   border-bottom-right-radius: 0; 
 }
 
-.blue-button a {
+.blue-button button {
   display: inline-block;
   background-color: #4883ff;
   color: #fff;
@@ -215,7 +215,7 @@ section.banner {
   transition: all 0.5s;
 }
 
-.blue-button a:hover {
+.blue-button button:hover {
   background-color: transparent;
   color: #4883ff;
 }

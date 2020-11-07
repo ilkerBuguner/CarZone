@@ -99,7 +99,7 @@
             return this.Ok(detailsRequest.Result);
         }
 
-        [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
         [Route(Advertisement.BySearch)]
         public async Task<ActionResult> BySearch([FromBody] CarSearchRequestModel model)

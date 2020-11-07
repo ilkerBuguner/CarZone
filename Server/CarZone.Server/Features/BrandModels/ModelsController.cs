@@ -91,9 +91,9 @@
         [HttpGet]
         [AllowAnonymous]
         [Route(Model.GetAllByBrandId)]
-        public async Task<ActionResult<IEnumerable<BrandModelListingServiceModel>>> GetAllByBrandId([FromBody]GetAllByBrandIdRequestModel model)
+        public async Task<ActionResult<IEnumerable<BrandModelListingServiceModel>>> GetAllByBrandId(string brandId)
         {
-            var allModelsByBrandIdRequest = await this.modelsService.GetAllByBrandIdAsync(model.BrandId);
+            var allModelsByBrandIdRequest = await this.modelsService.GetAllByBrandIdAsync(brandId);
 
             if (!allModelsByBrandIdRequest.Success)
             {
