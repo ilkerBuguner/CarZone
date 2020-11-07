@@ -180,6 +180,9 @@
                         HorsePower = a.Car.HorsePower,
                         BodyType = a.Car.BodyType.ToString(),
                         FuelType = a.Car.FuelType.ToString(),
+                        Condition = a.Car.Condition.ToString(),
+                        Transmission = a.Car.Transmission.ToString(),
+                        Mileage = a.Car.Mileage
                     }
                 })
                 .OrderByDescending(a => a.CreatedOn)

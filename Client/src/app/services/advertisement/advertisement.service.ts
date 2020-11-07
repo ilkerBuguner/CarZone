@@ -10,7 +10,8 @@ export class AdvertisementService {
   private enumsPath = environment.apiUrl + 'enums';
   private brandsPath = environment.apiUrl + 'brands';
   private brandModelsPath = environment.apiUrl + 'models';
-  private advertisementsSearchPath = environment.apiUrl + 'advertisements/bySearch'
+  private advertisementsSearchPath = environment.apiUrl + 'advertisements/bySearch';
+  private latestAdvertisementsPath = environment.apiUrl + 'Advertisements/latest';
 
   constructor(private http: HttpClient) { }
 
@@ -28,5 +29,9 @@ export class AdvertisementService {
 
   getAdvertisementsBySearch(data) : Observable<any> {
     return this.http.post(this.advertisementsSearchPath, data);
+  }
+
+  getLatestAdvertisements() : Observable<any> {
+    return this.http.get(this.latestAdvertisementsPath);
   }
 }

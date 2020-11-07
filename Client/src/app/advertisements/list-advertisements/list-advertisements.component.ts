@@ -65,6 +65,11 @@ export class ListAdvertisementsComponent implements OnInit {
         return 0;
       });
     });
+
+    this.advertisementService.getLatestAdvertisements().subscribe(ads => {
+      this.advertisements = ads;
+      console.log(this.advertisements);
+    });
   }
 
   onChangeBrand(brandId) {
@@ -76,8 +81,6 @@ export class ListAdvertisementsComponent implements OnInit {
   search() {
     this.advertisementService.getAdvertisementsBySearch(this.searchForm.value).subscribe(ads => {
       this.advertisements = ads;
-      console.log(ads);
-      console.log(this.advertisements);
     });
   }
 
