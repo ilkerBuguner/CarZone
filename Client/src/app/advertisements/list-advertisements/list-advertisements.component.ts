@@ -33,7 +33,7 @@ export class ListAdvertisementsComponent implements OnInit {
         'condition': ['', ''],
         'bodyType': ['', ''],
         'fuelType': ['', ''],
-        'transmissionType': ['', ''],
+        'transmission': ['', ''],
         'color': ['', ''],
         'location': ['', ''],
         'euroStandard': ['', ''],
@@ -48,7 +48,6 @@ export class ListAdvertisementsComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    
     this.advertisementService.getEnums().subscribe(enums => {
       this.conditionTypes = enums['conditionTypes'];
       this.bodyTypes = enums['bodyTypes'];
@@ -61,16 +60,7 @@ export class ListAdvertisementsComponent implements OnInit {
     });
 
     this.advertisementService.getBrands().subscribe(brands => {
-      this.brands = brands.sort((n1,n2) => {
-        if (n1.name > n2.name) {
-          return 1;
-        }
-        if (n1.name < n2.name) {
-          return -1
-        }
-
-        return 0;
-      });
+      this.brands = this.sortBrandsByName(brands);
     });
 
     this.advertisementService.getLatestAdvertisements().subscribe(ads => {
@@ -90,7 +80,7 @@ export class ListAdvertisementsComponent implements OnInit {
   }
 
   search() {
-    this.setDefaultValuesOfEmpyInputs(this.searchForm)
+    this.setDefaultValuesOfEmptyInputs(this.searchForm)
     this.advertisementService.getAdvertisementsBySearch(this.searchForm.value).subscribe(ads => {
       this.advertisements = ads;
       if(this.advertisements.length == 0) {
@@ -101,8 +91,20 @@ export class ListAdvertisementsComponent implements OnInit {
     });
   }
 
-  setDefaultValuesOfEmpyInputs(form: FormGroup) {
-    debugger;
+  sortBrandsByName(brands: Brand[]) : Brand[] {
+    return brands.sort((n1,n2) => {
+      if (n1.name > n2.name) {
+        return 1;
+      }
+      if (n1.name < n2.name) {
+        return -1
+      }
+
+      return 0;
+    });
+  }
+
+  setDefaultValuesOfEmptyInputs(form: FormGroup) {
     if(form.value['minPrice'] == '' || form.value['minPrice'] == null) {
       form.patchValue({minPrice: 0});
     }

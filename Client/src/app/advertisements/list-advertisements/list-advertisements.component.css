@@ -231,18 +231,9 @@ section.banner {
   border-radius: 12px;
 }
 
-.form-group label {
-  font-weight: bold;
-}
-
-.form-control option {
-  font-weight: bold;
-}
-
-.form-control {
-  font-weight: bold;
-}
-
+.form-group label,
+.form-control option,
+.form-control,
 .number-input div {
   font-weight: bold;
 }
