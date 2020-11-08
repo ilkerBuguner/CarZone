@@ -23,6 +23,7 @@ export class ListAdvertisementsComponent implements OnInit {
   locations: string[];
   euroStandards: string[];
   doorsCounts: string[];
+  noResults: boolean;
 
   constructor(private advertisementService: AdvertisementService,
     private fb: FormBuilder) {
@@ -36,7 +37,7 @@ export class ListAdvertisementsComponent implements OnInit {
         'color': ['', ''],
         'location': ['', ''],
         'euroStandard': ['', ''],
-        'doorsCount': ['', '']
+        'doorsCount': ['', ''],
       })
      }
 
@@ -68,7 +69,11 @@ export class ListAdvertisementsComponent implements OnInit {
 
     this.advertisementService.getLatestAdvertisements().subscribe(ads => {
       this.advertisements = ads;
-      console.log(this.advertisements);
+      if(this.advertisements.length == 0) {
+        this.noResults = true;
+      } else {
+        this.noResults = false;
+      }
     });
   }
 
@@ -81,6 +86,11 @@ export class ListAdvertisementsComponent implements OnInit {
   search() {
     this.advertisementService.getAdvertisementsBySearch(this.searchForm.value).subscribe(ads => {
       this.advertisements = ads;
+      if(this.advertisements.length == 0) {
+        this.noResults = true;
+      } else {
+        this.noResults = false;
+      }
     });
   }
 
