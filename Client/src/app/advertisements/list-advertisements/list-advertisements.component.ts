@@ -38,6 +38,12 @@ export class ListAdvertisementsComponent implements OnInit {
         'location': ['', ''],
         'euroStandard': ['', ''],
         'doorsCount': ['', ''],
+        'minPrice': ['', ''],
+        'maxPrice': ['', ''],
+        'minYear': ['', ''],
+        'maxYear': ['', ''],
+        'minHorsePower': ['', ''],
+        'maxHorsePower': ['', ''],
       })
      }
 
@@ -84,6 +90,7 @@ export class ListAdvertisementsComponent implements OnInit {
   }
 
   search() {
+    this.setDefaultValuesOfEmpyInputs(this.searchForm)
     this.advertisementService.getAdvertisementsBySearch(this.searchForm.value).subscribe(ads => {
       this.advertisements = ads;
       if(this.advertisements.length == 0) {
@@ -94,4 +101,25 @@ export class ListAdvertisementsComponent implements OnInit {
     });
   }
 
+  setDefaultValuesOfEmpyInputs(form: FormGroup) {
+    debugger;
+    if(form.value['minPrice'] == '' || form.value['minPrice'] == null) {
+      form.patchValue({minPrice: 0});
+    }
+    if(form.value['maxPrice'] == '' || form.value['maxPrice'] == null) {
+      form.patchValue({maxPrice: 0});
+    }
+    if(form.value['minYear'] == '' || form.value['minYear'] == null) {
+      form.patchValue({minYear: 0});
+    }
+    if(form.value['maxYear'] == '' || form.value['maxYear'] == null) {
+      form.patchValue({maxYear: 0});
+    }
+    if(form.value['minHorsePower'] == '' || form.value['minHorsePower'] == null) {
+      form.patchValue({minHorsePower: 0});
+    }
+    if(form.value['maxHorsePower'] == '' || form.value['maxHorsePower'] == null) {
+      form.patchValue({maxHorsePower: 0});
+    }
+  }
 }
