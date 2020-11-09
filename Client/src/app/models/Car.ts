@@ -1,3 +1,6 @@
+import { Brand } from './Brand';
+import { BrandModel } from './BrandModel';
+
 export interface Car {
     id?: string;
     price: number;
@@ -5,6 +8,8 @@ export interface Car {
     horsePower: number;
     year: number;
     bodyType: string;
+    brand: Brand
+    model: BrandModel;
     transmission?: string;
     mileage?: string;
     color?: string;
