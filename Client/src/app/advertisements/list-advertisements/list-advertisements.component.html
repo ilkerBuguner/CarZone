@@ -156,9 +156,9 @@
     </div>
 </section>
 
-<section class="featured-places">
+<section class="featured-places car-results">
     <div class="container">
-        <h1 *ngIf="noResults" class="text-center">No results found!</h1>
+        <h2 *ngIf="foundCarsCount != undefined || foundCarsCount == 0" class="text-center results">{{foundCarsCount}} Cars Found</h2>
         <div class="row">
             <div *ngFor="let advertisement of advertisements" class="col-md-4 col-sm-6 col-xs-12 article">
                 <div class="featured-item">
@@ -187,7 +187,7 @@
                         <p><span><strong><sup>$</sup>{{advertisement.car.price.toFixed(2)}}</strong></span></p>
 
                         <div class="text-button">
-                            <a href="car-details.html">View More</a>
+                            <a (click)="navigateToAdvertisement(advertisement.id)">View More</a>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,151 @@
+<app-header></app-header>
+<div id="wrapper">
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+            <div class="ad-title">
+                <h1 class="title">{{advertisement.title}}</h1>
+                <h1 class="price">${{advertisement.car.price}}</h1>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row main-info">
+                    <div class="col-lg-7">
+                        <!--Slider-->
+                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                              <div *ngFor="let image of advertisement.images" class="carousel-item active">
+                                <img class="d-block w-100" [src]="image.url" alt="First slide">
+                              </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </div>
+                    </div>
+
+                    <div class="col-lg-5 car-info">
+                        <h3>Vehicle Description</h3>
+
+                        <p>{{advertisement.description}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+
+            <div class="fields">
+                <div class="field quarter">
+                    <label class="m-n">Make</label>
+
+                    <input type="text" readonly="" [value]="advertisement.car.brand.name">
+                </div>
+
+                <div class="field quarter">
+                    <label class="m-n">Model</label>
+
+                    <input type="text" readonly="" [value]="advertisement.car.model.name">
+                </div>
+                <div class="field quarter">
+                    <label class="m-n">Year</label>
+
+                    <input type="text" readonly="" [value]="advertisement.car.year">
+                </div>
+                <div class="field quarter">
+                    <label class="m-n">Body Type</label>
+
+                    <input type="text" readonly="" [value]="advertisement.car.bodyType">
+                </div>
+                <div class="field quarter">
+                    <label class="m-n">Gearbox</label>
+
+                    <input type="text" readonly="" [value]="advertisement.car.transmission">
+                </div>
+
+                <div class="field quarter">
+                    <label class="m-n">Doors Count</label>
+
+                    <input type="text" readonly="" [value]="advertisement.car.doorsCount">
+                </div>
+
+                <div class="field quarter">
+                    <label class="m-n">Color</label>
+
+                    <input type="text" readonly="" [value]="advertisement.car.color">
+                </div>
+                <div class="field quarter">
+                    <label class="m-n">Condition</label>
+
+                    <input type="text" readonly="" [value]="advertisement.car.condition">
+                </div>
+                <div class="field quarter">
+                    <label class="m-n">Euro Standard</label>
+
+                    <input type="text" readonly="" [value]="advertisement.car.euroStandard">
+                </div>
+
+                <div class="field quarter">
+                    <label class="m-n">Mileage</label>
+
+                    <input type="text" readonly="" [value]="advertisement.car.mileage">
+                </div>
+
+                <div class="field quarter">
+                    <label class="m-n">Fuel</label>
+
+                    <input type="text" readonly="" [value]="advertisement.car.fuelType">
+                </div>
+                <div class="field quarter">
+                    <label class="m-n">Horse Power</label>
+
+                    <input type="text" readonly="" [value]="advertisement.car.horsePower">
+                </div>
+            </div>
+
+            <div class="container-fluid extras">
+                <div class="row">
+                    <div class="col-md-12 extras">
+                        <h3 class="align-center">Extras</h3>
+                        <div class="car-extras">
+                            <ul>
+                                <h4>Comfort</h4>
+                                <li *ngFor="let comfort of advertisement.car.comforts">{{comfort}}</li>
+                            </ul>
+                            <ul>
+                                <h4>Safety</h4>
+                                <li *ngFor="let safety of advertisement.car.safeties">{{safety}}</li>
+                            </ul>
+                            <ul>
+                                <h4>Exterior</h4>
+                                <li *ngFor="let exterior of advertisement.car.exteriors">{{exterior}}</li>
+                            </ul>
+                            <ul>
+                                <h4>Protection</h4>
+                                <li *ngFor="let protection of advertisement.car.protections">{{protection}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12 contact">
+                        <h3>Contact Details</h3>
+
+                        <ul class="alt">
+                            <li><span class="fa fa-user"></span> John Smith</li>
+                            <li><span class="fa fa-phone"></span> +1 333 4040 5566 </li>
+                            <li><span class="fas fa-envelope"></span> john@carsales.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

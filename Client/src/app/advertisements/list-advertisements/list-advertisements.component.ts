@@ -4,6 +4,7 @@ import { BrandModel } from '../../models/BrandModel';
 import { AdvertisementService } from '../../services/advertisement/advertisement.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Advertisement } from '../../models/Advertisement';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-advertisements',
@@ -23,10 +24,11 @@ export class ListAdvertisementsComponent implements OnInit {
   locations: string[];
   euroStandards: string[];
   doorsCounts: string[];
-  noResults: boolean;
+  foundCarsCount: number;
 
   constructor(private advertisementService: AdvertisementService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private router: Router) {
       this.searchForm = this.fb.group( {
         'brandId': ['', ''],
         'modelId': ['', ''],
@@ -65,11 +67,6 @@ export class ListAdvertisementsComponent implements OnInit {
 
     this.advertisementService.getLatestAdvertisements().subscribe(ads => {
       this.advertisements = ads;
-      if(this.advertisements.length == 0) {
-        this.noResults = true;
-      } else {
-        this.noResults = false;
-      }
     });
   }
 
@@ -83,11 +80,7 @@ export class ListAdvertisementsComponent implements OnInit {
     this.setDefaultValuesOfEmptyInputs(this.searchForm)
     this.advertisementService.getAdvertisementsBySearch(this.searchForm.value).subscribe(ads => {
       this.advertisements = ads;
-      if(this.advertisements.length == 0) {
-        this.noResults = true;
-      } else {
-        this.noResults = false;
-      }
+      this.foundCarsCount = this.advertisements.length;
     });
   }
 
@@ -99,7 +92,6 @@ export class ListAdvertisementsComponent implements OnInit {
       if (n1.name < n2.name) {
         return -1
       }
-
       return 0;
     });
   }
@@ -123,5 +115,9 @@ export class ListAdvertisementsComponent implements OnInit {
     if(form.value['maxHorsePower'] == '' || form.value['maxHorsePower'] == null) {
       form.patchValue({maxHorsePower: 0});
     }
+  }
+
+  navigateToAdvertisement(id) {
+    this.router.navigate(["advertisements", id])
   }
 }

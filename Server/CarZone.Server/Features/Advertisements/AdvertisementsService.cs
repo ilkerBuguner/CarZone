@@ -211,6 +211,8 @@
                     {
                         Id = a.Author.Id,
                         Username = a.Author.UserName,
+                        Email = a.Author.Email,
+                        PhoneNumber = a.Author.PhoneNumber,
                         ProfilePictureUrl = a.Author.ProfilePictureUrl
                     },
                     Car = new CarDetailsServiceModel

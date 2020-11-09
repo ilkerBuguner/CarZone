@@ -97,6 +97,7 @@ section {
   line-height: 50px;
   border-top: 1px solid #ddd;
   margin: 0px -20px;
+  cursor: pointer;
 }
 
 .featured-places .featured-item .down-content .first-button {
@@ -236,4 +237,12 @@ section.banner {
 .form-control,
 .number-input div {
   font-weight: bold;
+}
+
+.results {
+  margin-bottom: 30px;
+}
+
+.car-results {
+  padding-top: 40px;
 }
