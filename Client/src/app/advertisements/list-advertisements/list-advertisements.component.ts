@@ -77,6 +77,10 @@ export class ListAdvertisementsComponent implements OnInit {
   }
 
   search() {
+    window.scrollTo({
+      top: 580,
+      behavior: "smooth"
+    });
     this.setDefaultValuesOfEmptyInputs(this.searchForm)
     this.advertisementService.getAdvertisementsBySearch(this.searchForm.value).subscribe(ads => {
       this.advertisements = ads;

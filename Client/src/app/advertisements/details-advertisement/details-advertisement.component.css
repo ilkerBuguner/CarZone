@@ -22,6 +22,7 @@
 
 	.ad-title .price{
 		color: #42A5F5;
+		-webkit-text-stroke: 0.5px black;
 	}
 
 		h1 a {
@@ -52,10 +53,9 @@
 
 	h2, h3, h4, h5, h6 {
 		font-weight: 900;
-		line-height: 1.5;
 		margin: 0 0 2em 0;
 		text-transform: uppercase;
-		letter-spacing: 0.15em;
+		letter-spacing: 0.08em;
 	}
 
 
@@ -142,9 +142,8 @@
 
 	label {
 		display: block;
-		font-size: 0.9em;
+		font-size: 1.2em;
 		font-weight: 900;
-		margin: 0 0 1em 0;
 	}
 
 	input[type="text"] {
@@ -154,6 +153,7 @@
 		border-bottom: solid 1px #c9c9c9;
 		color: inherit;
 		display: block;
+		cursor: pointer;
 		outline: 0;
 		padding: 0;
 		text-decoration: none;
@@ -242,6 +242,11 @@ ul li {
 	justify-content: space-around;
 }
 
+.contact {
+	max-width: 540px;
+}
+
+
 .contact h3,
 .contact ul li {
 	text-align: center;
@@ -261,11 +266,39 @@ ul li {
 	border-radius: 10px;
 }
 
+.media img {
+	min-width: 85px;
+	max-width: 85px;
+}
+
+.contact-info {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	padding-bottom: 30px;
+}
+
+.media-body h5,
+.media-body h5 span {
+	margin: 0;
+	margin-top: 10px;
+	padding: 0;
+	font-size: 20px;
+	letter-spacing: 0.5px;
+}
+
+
+
 @media all and (max-width: 600px) {
 	.car-extras {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		font-size: 12px;
+	}
+
+	.contact-info {
+		flex-direction: column;
 	}
 }
