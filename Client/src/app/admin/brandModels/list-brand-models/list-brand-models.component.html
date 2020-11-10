@@ -1,3 +1,47 @@
 <app-header></app-header>
-<p>list-brand-models works!</p>
+<div class="wrap">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 brands-select">
+            <h1>Please select a Brand</h1>
+            <select (change)="onChangeBrand($event.target.value)" class="form-control form-control-lg">
+                <option>No selected brand</option>
+                <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
+            </select>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="row justify-content-center data">
+        <div class="col-md-10">
+            <h3 *ngIf="noModelsFound" class="center no-found-models">No models found!</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">
+                            <button type="button" class="btn btn-success">
+                                <i class="fas fa-plus"></i> &nbsp;Add new
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let model of brandModels;let i=index">
+                        <th scope="row">{{i}}</th>
+                        <td>{{model.name}}</td>
+                        <td>{{model.brandName}}</td>
+                        <td>
+                            <button type="button" class="btn btn-info"><i class="fas fa-edit"></i>Edit</button>
+                            &nbsp;&nbsp;
+                            <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 <app-footer></app-footer>

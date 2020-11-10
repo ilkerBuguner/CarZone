@@ -9,8 +9,6 @@ import { Advertisement } from '../../models/Advertisement';
 })
 export class AdvertisementService {
   private enumsPath = environment.apiUrl + 'enums';
-  private brandsPath = environment.apiUrl + 'brands';
-  private brandModelsPath = environment.apiUrl + 'models';
   private advertisementsSearchPath = environment.apiUrl + 'advertisements/bySearch';
   private latestAdvertisementsPath = environment.apiUrl + 'advertisements/latest';
   private advertisementDetailsPath = environment.apiUrl + 'advertisements';
@@ -19,14 +17,6 @@ export class AdvertisementService {
 
   getEnums(): Observable<any> {
     return this.http.get(this.enumsPath);
-  }
-
-  getBrands(): Observable<any> {
-    return this.http.get(this.brandsPath);
-  }
-
-  getModelsByBrandId(brandId): Observable<any> {
-    return this.http.get(this.brandModelsPath + `/getByBrandId/${brandId}`)
   }
 
   getAdvertisementsBySearch(data) : Observable<any> {

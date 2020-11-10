@@ -124,7 +124,8 @@
                 .Select(m => new BrandModelListingServiceModel()
                 {
                     Id = m.Id,
-                    Name = m.Name
+                    Name = m.Name,
+                    BrandName = m.Brand.Name,
                 })
                 .ToListAsync();
 

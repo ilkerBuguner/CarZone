@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { SharedModule } from './shared/shared.module';
 import { AdvertisementsModule } from './advertisements/advertisements.module';
 import { AdvertisementService } from './services/advertisement/advertisement.service';
+import { BrandModelService } from './services/brandModel/brand-model.service';
 import { TokenInterceptorService } from './services/token/token-interceptor.service';
 import { AdminModule } from './admin/admin.module';
 import { AuthGuardService } from './services/auth/auth-guard.service';
@@ -30,6 +31,7 @@ import { AdminAuthGuardService } from './services/auth/admin-auth-guard.service'
   providers: [
     AuthService,
     AdvertisementService,
+    BrandModelService,
     AuthGuardService,
     AdminAuthGuardService,
 

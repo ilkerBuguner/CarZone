@@ -5,6 +5,7 @@ import { AdvertisementService } from '../../services/advertisement/advertisement
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Advertisement } from '../../models/Advertisement';
 import { Router } from '@angular/router';
+import { BrandModelService } from '../../services/brandModel/brand-model.service';
 
 @Component({
   selector: 'app-list-advertisements',
@@ -27,6 +28,7 @@ export class ListAdvertisementsComponent implements OnInit {
   foundCarsCount: number;
 
   constructor(private advertisementService: AdvertisementService,
+    private brandModelService : BrandModelService,
     private fb: FormBuilder,
     private router: Router) {
       this.searchForm = this.fb.group( {
@@ -61,7 +63,7 @@ export class ListAdvertisementsComponent implements OnInit {
       this.doorsCounts = enums['doorsCounts'];
     });
 
-    this.advertisementService.getBrands().subscribe(brands => {
+    this.brandModelService.getBrands().subscribe(brands => {
       this.brands = this.sortBrandsByName(brands);
     });
 
@@ -71,7 +73,7 @@ export class ListAdvertisementsComponent implements OnInit {
   }
 
   onChangeBrand(brandId) {
-    this.advertisementService.getModelsByBrandId(brandId).subscribe(models => {
+    this.brandModelService.getModelsByBrandId(brandId).subscribe(models => {
       this.brandModels = models;
     });
   }
