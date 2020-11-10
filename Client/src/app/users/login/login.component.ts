@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.loginForm.value).subscribe(data => {
       this.authService.saveToken(data['token']);
+      this.authService.saveIsAdmin(data['isAdmin']);
       this.router.navigate(["advertisements"]);
     })
   }

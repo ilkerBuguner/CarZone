@@ -11,6 +11,7 @@
     using CarZone.Server.Data.Models;
     using CarZone.Server.Features.Common.Models;
     using CarZone.Server.Features.Identity.Models;
+    using CarZone.Server.Features.Users;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.IdentityModel.Tokens;
 
@@ -20,13 +21,16 @@
     {
         private readonly UserManager<User> userManager;
         private readonly CarZoneDbContext data;
+        private readonly IUsersService usersService;
 
         public IdentityService(
             UserManager<User> userManager,
-            CarZoneDbContext data)
+            CarZoneDbContext data,
+            IUsersService usersService)
         {
             this.userManager = userManager;
             this.data = data;
+            this.usersService = usersService;
         }
 
         public string GenerateJwtToken(string userId, string username, string secret)
@@ -124,12 +128,13 @@
             }
 
             var token = this.GenerateJwtToken(user.Id, user.UserName, secret);
-
+            var isAdmin = await this.usersService.IsAdminAsync(user.Id);
             return new ResultModel<AuthResponseModel>
             {
                 Result = new AuthResponseModel
                 {
                     Token = token,
+                    IsAdmin = isAdmin,
                     User = new UserDetailsServiceModel
                     {
                         Id = user.Id,

@@ -34,6 +34,10 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
+  saveIsAdmin(isAdmin) {
+    localStorage.setItem('isAdmin', isAdmin);
+  }
+
   getToken() {
     return localStorage.getItem('token');
   }

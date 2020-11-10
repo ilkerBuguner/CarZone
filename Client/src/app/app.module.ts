@@ -4,11 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './services/auth/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UsersModule } from './users/users.module';
 import { SharedModule } from './shared/shared.module';
 import { AdvertisementsModule } from './advertisements/advertisements.module';
 import { AdvertisementService } from './services/advertisement/advertisement.service';
+import { TokenInterceptorService } from './services/token/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,12 @@ import { AdvertisementService } from './services/advertisement/advertisement.ser
   ],
   providers: [
     AuthService,
-    AdvertisementService
+    AdvertisementService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })
