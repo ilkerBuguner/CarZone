@@ -10,6 +10,9 @@ import { SharedModule } from './shared/shared.module';
 import { AdvertisementsModule } from './advertisements/advertisements.module';
 import { AdvertisementService } from './services/advertisement/advertisement.service';
 import { TokenInterceptorService } from './services/token/token-interceptor.service';
+import { AdminModule } from './admin/admin.module';
+import { AuthGuardService } from './services/auth/auth-guard.service';
+import { AdminAuthGuardService } from './services/auth/admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -19,13 +22,17 @@ import { TokenInterceptorService } from './services/token/token-interceptor.serv
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    UsersModule,
     SharedModule,
-    AdvertisementsModule
+    AdminModule,
+    UsersModule,
+    AdvertisementsModule,
   ],
   providers: [
     AuthService,
     AdvertisementService,
+    AuthGuardService,
+    AdminAuthGuardService,
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

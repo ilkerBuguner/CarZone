@@ -9,11 +9,17 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn : boolean;
+  isAdmin : boolean;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.authService.getToken()) {
       this.isLoggedIn = true
+      if (this.authService.isAdmin()) {
+        this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
+      }
     } else {
       this.isLoggedIn = false;
     }

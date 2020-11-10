@@ -23,6 +23,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('isAdmin');
     this.router.navigate(["login"]);
   }
 
@@ -34,11 +35,30 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
+  getToken() {
+    return localStorage.getItem('token');
+  }
+  
   saveIsAdmin(isAdmin) {
     localStorage.setItem('isAdmin', isAdmin);
   }
 
-  getToken() {
-    return localStorage.getItem('token');
+  getIsAdmin(){
+    return localStorage.getItem('isAdmin');
+  }
+
+  isAuthenticated(): boolean {
+    if (this.getToken()) {
+      return true;
+    }
+    return false;
+  }
+
+  isAdmin(): boolean {
+    var isAdmin = this.getIsAdmin();
+    if (isAdmin == 'true') {
+      return true;
+    }
+    return false;
   }
 }

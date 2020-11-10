@@ -33,7 +33,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a (click)="logout()" class="dropdown-item">Logout</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item">Something else here</a>
+                                    <a *ngIf="isAdmin" (click)="navigateTo('admin/brandModels')" class="dropdown-item">Admin</a>
                                 </div>
                             </li>
                         </ul>
