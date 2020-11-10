@@ -19,7 +19,6 @@ export class DetailsAdvertisementComponent implements OnInit {
       this.id = res['id'];
       this.advertsementService.getAdvertisement(this.id).subscribe(data => {
         this.advertisement = data;
-        console.log(data);
       })
     })
   }
