@@ -14,6 +14,7 @@ import { TokenInterceptorService } from './services/token/token-interceptor.serv
 import { AdminModule } from './admin/admin.module';
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { AdminAuthGuardService } from './services/auth/admin-auth-guard.service';
+import { ErrorInterceptorService } from './services/error/error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,11 @@ import { AdminAuthGuardService } from './services/auth/admin-auth-guard.service'
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
       multi: true,
     }
   ],
