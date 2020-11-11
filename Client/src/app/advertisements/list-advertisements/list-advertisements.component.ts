@@ -64,7 +64,7 @@ export class ListAdvertisementsComponent implements OnInit {
     });
 
     this.brandModelService.getBrands().subscribe(brands => {
-      this.brands = this.sortBrandsByName(brands);
+      this.brands = this.brandModelService.sortBrandsByName(brands);
     });
 
     this.advertisementService.getLatestAdvertisements().subscribe(ads => {
@@ -79,48 +79,17 @@ export class ListAdvertisementsComponent implements OnInit {
   }
 
   search() {
+    
     window.scrollTo({
       top: 580,
       behavior: "smooth"
     });
-    this.setDefaultValuesOfEmptyInputs(this.searchForm)
+
+    this.advertisementService.setDefaultValuesOfEmptyInputs(this.searchForm)
     this.advertisementService.getAdvertisementsBySearch(this.searchForm.value).subscribe(ads => {
       this.advertisements = ads;
       this.foundCarsCount = this.advertisements.length;
     });
-  }
-
-  sortBrandsByName(brands: Brand[]) : Brand[] {
-    return brands.sort((n1,n2) => {
-      if (n1.name > n2.name) {
-        return 1;
-      }
-      if (n1.name < n2.name) {
-        return -1
-      }
-      return 0;
-    });
-  }
-
-  setDefaultValuesOfEmptyInputs(form: FormGroup) {
-    if(form.value['minPrice'] == '' || form.value['minPrice'] == null) {
-      form.patchValue({minPrice: 0});
-    }
-    if(form.value['maxPrice'] == '' || form.value['maxPrice'] == null) {
-      form.patchValue({maxPrice: 0});
-    }
-    if(form.value['minYear'] == '' || form.value['minYear'] == null) {
-      form.patchValue({minYear: 0});
-    }
-    if(form.value['maxYear'] == '' || form.value['maxYear'] == null) {
-      form.patchValue({maxYear: 0});
-    }
-    if(form.value['minHorsePower'] == '' || form.value['minHorsePower'] == null) {
-      form.patchValue({minHorsePower: 0});
-    }
-    if(form.value['maxHorsePower'] == '' || form.value['maxHorsePower'] == null) {
-      form.patchValue({maxHorsePower: 0});
-    }
   }
 
   navigateToAdvertisement(id) {

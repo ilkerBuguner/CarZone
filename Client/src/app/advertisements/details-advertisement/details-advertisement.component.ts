@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Advertisement } from '../../models/Advertisement';
 import { AdvertisementService } from '../../services/advertisement/advertisement.service';
+import { map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-details-advertisement',
@@ -15,11 +16,15 @@ export class DetailsAdvertisementComponent implements OnInit {
   constructor(private advertsementService: AdvertisementService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(res => {
-      this.id = res['id'];
-      this.advertsementService.getAdvertisement(this.id).subscribe(data => {
-        this.advertisement = data;
-      })
+    this.fetchData();
+  }
+
+  fetchData() {
+    this.route.params.pipe(map(params => {
+      const id = params['id'];
+      return id;
+    }), mergeMap(id => this.advertsementService.getAdvertisement(id))).subscribe(res => {
+      this.advertisement = res;
     })
   }
 

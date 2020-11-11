@@ -17,7 +17,7 @@ export class ListBrandModelsComponent implements OnInit {
 
   ngOnInit(): void {
     this.brandModelService.getBrands().subscribe(brands => {
-      this.brands = this.sortBrandsByName(brands);
+      this.brands = this.brandModelService.sortBrandsByName(brands);
     });
   }
 
@@ -28,18 +28,6 @@ export class ListBrandModelsComponent implements OnInit {
       if (this.brandModels.length == 0) {
         this.noModelsFound = true;
       }
-    });
-  }
-
-  sortBrandsByName(brands: Brand[]) : Brand[] {
-    return brands.sort((n1,n2) => {
-      if (n1.name > n2.name) {
-        return 1;
-      }
-      if (n1.name < n2.name) {
-        return -1
-      }
-      return 0;
     });
   }
 
