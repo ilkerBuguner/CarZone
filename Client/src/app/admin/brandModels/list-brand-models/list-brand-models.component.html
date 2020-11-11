@@ -22,21 +22,19 @@
                         <th scope="col">Model</th>
                         <th scope="col">Brand</th>
                         <th scope="col">
-                            <button type="button" class="btn btn-success">
-                                <i class="fas fa-plus"></i> &nbsp;Add new
-                            </button>
+                            <app-create-brand-model (onChangeBrandChild)="onChangeBrand($event)"></app-create-brand-model>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let model of brandModels;let i=index">
-                        <th scope="row">{{i}}</th>
+                        <th scope="row">{{i+1}}</th>
                         <td>{{model.name}}</td>
                         <td>{{model.brandName}}</td>
                         <td>
                             <button type="button" class="btn btn-info"><i class="fas fa-edit"></i>Edit</button>
                             &nbsp;&nbsp;
-                            <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            <button (click)="delete(model.id)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 </tbody>

@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup
+  registerForm: FormGroup;
   constructor(private fb: FormBuilder,
      private authService: AuthService,
       private router: Router,
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(this.registerForm.value).subscribe(data => {
       this.authService.saveToken(data['token']);
-      this.toastrService.success("Registered in successfully...");
+      this.toastrService.success("Registered successfully!");
       this.router.navigate(["advertisements"]);
     })
   }

@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(data => {
       this.authService.saveToken(data['token']);
       this.authService.saveIsAdmin(data['isAdmin']);
-      this.toastrService.success("Logged in successfully...");
+      this.toastrService.success("Logged in successfully!");
       this.router.navigate(["advertisements"]);
     })
   }
