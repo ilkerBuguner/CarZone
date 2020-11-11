@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router) { 
+    private router: Router,
+    private toastrService: ToastrService) { 
     this.loginForm = this.fb.group( {
       'username': ['', [Validators.required]],
       'password': ['', [Validators.required]]
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(data => {
       this.authService.saveToken(data['token']);
       this.authService.saveIsAdmin(data['isAdmin']);
+      this.toastrService.success("Logged in successfully...");
       this.router.navigate(["advertisements"]);
     })
   }

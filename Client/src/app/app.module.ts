@@ -15,6 +15,8 @@ import { AdminModule } from './admin/admin.module';
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { AdminAuthGuardService } from './services/auth/admin-auth-guard.service';
 import { ErrorInterceptorService } from './services/error/error-interceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ErrorInterceptorService } from './services/error/error-interceptor.serv
     AdminModule,
     UsersModule,
     AdvertisementsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     AuthService,

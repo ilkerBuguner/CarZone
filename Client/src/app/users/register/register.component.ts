@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup
   constructor(private fb: FormBuilder,
      private authService: AuthService,
-      private router: Router) {
+      private router: Router,
+      private toastrService: ToastrService) {
     this.registerForm = this.fb.group({
       'username': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       'fullName': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
@@ -31,6 +33,8 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(this.registerForm.value).subscribe(data => {
       this.authService.saveToken(data['token']);
+      this.toastrService.success("Registered in successfully...");
+      this.router.navigate(["advertisements"]);
     })
   }
 
