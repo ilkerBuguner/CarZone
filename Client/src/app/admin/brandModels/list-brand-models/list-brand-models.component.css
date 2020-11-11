@@ -28,3 +28,7 @@ table th,
 table td {
     text-align: center;
 }
+
+table {
+    margin-bottom: 60px;
+}

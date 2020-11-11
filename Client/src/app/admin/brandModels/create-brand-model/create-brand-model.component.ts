@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CreateBrandModelComponent implements OnInit {
   brands: Brand[];
   createBrandModelForm: FormGroup;
-  @Output() onChangeBrandChild = new EventEmitter<string>();
+  @Output() onChangeBrandFunction = new EventEmitter<string>();
 
   constructor(
     private brandModelService: BrandModelService,
@@ -38,8 +38,10 @@ export class CreateBrandModelComponent implements OnInit {
 
     this.brandModelService.create(this.createBrandModelForm.value).subscribe(data => {
       const brandId = this.createBrandModelForm.value['brandId'];
-      this.onChangeBrandChild.next(brandId);
-      this.toastrService.success('Model created successfully!');
+      const modelName = this.createBrandModelForm.value['name'];
+      this.onChangeBrandFunction.next(brandId);
+      this.toastrService.success(`Model '${modelName}' created successfully!`);
+      this.createBrandModelForm.reset();
     })
   }
 
