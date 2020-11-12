@@ -14,7 +14,6 @@ export class ListBrandModelsComponent implements OnInit {
   brands: Brand[];
   brandModels: BrandModel[];
   currentBrandId: string;
-  currentModelId: string;
   currentModel: BrandModel;
   editBrandModelForm: FormGroup;
   noModelsFound: boolean = false;
@@ -58,15 +57,14 @@ export class ListBrandModelsComponent implements OnInit {
       this.toastrService.error('Please populate all fields correctly!')
       return;
     }
-    this.brandModelService.edit(this.currentModelId, this.editBrandModelForm.value).subscribe(res => {
+    this.brandModelService.edit(this.currentModel.id, this.editBrandModelForm.value).subscribe(res => {
       this.onChangeBrand(this.currentBrandId);
       this.toastrService.success(`Model edited successfully!`);
     })
   }
 
   fillFormWithData(modelId: string) {
-    this.currentModelId = modelId;
-    this.brandModelService.details(this.currentModelId).subscribe(res => {
+    this.brandModelService.details(modelId).subscribe(res => {
       this.currentModel = res;
       this.editBrandModelForm = this.fb.group({
         'name': [this.currentModel.name],

@@ -33,12 +33,12 @@
                         <td>{{model.brandName}}</td>
                         <td>{{model.name}}</td>
                         <td>
-                            <button (click)="fillFormWithData(model.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleEditModal">
+                            <button (click)="fillFormWithData(model.id)" type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleEditModal">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
                             &nbsp;&nbsp;
-                            <button (click)="delete(model.id)" type="button" class="btn btn-danger"><i
-                                    class="fas fa-trash-alt"></i></button>
+                            <button (click)="delete(model.id)" type="button" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 </tbody>
