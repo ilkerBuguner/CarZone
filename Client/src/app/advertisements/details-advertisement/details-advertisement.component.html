@@ -3,16 +3,35 @@
     <!-- Main -->
     <div id="main">
         <div class="inner">
-            <div class="row">
-                <div class="col-md-6 col-xs-12">
-                    <div class="first-pic">
-                        <img src="https://images.ams.bg/images/galleries/108709/mazda-premacy-1460788478_big.jpg" alt=""
-                            class="img-responsive wc-image">
+            <div class="row ad-info">
+                <div class="col-md-6 col-xs-12 images">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li *ngFor="let image of advertisement?.images; let i = index"
+                                [ngClass]="{'active': i === 0}" 
+                                data-target="#carouselExampleIndicators" [data-slide-to]="i"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div *ngFor="let image of advertisement?.images; let i = index"
+                                [ngClass]="{'active': i === 0}" class="carousel-item">
+                                <img class="d-block w-100" [src]="image.url" alt="First slide">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
 
                     <br>
 
-                    <div class="row normal-pics">
+                    <!-- <div class="row normal-pics">
                         <div class="col-sm-4 col-xs-6">
                             <div>
                                 <img src="https://images.ams.bg/images/galleries/108709/mazda-premacy-1460788478_big.jpg"
@@ -39,7 +58,7 @@
 
                             <br>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="col-md-6 col-xs-12">
@@ -47,7 +66,8 @@
 
                     <p class="lead description">{{advertisement?.description}}</p>
 
-                    <p class="lead price"><strong class="text-primary">${{advertisement?.car.price.toFixed(2)}}</strong></p>
+                    <p class="lead price"><strong class="text-primary">${{advertisement?.car.price.toFixed(2)}}</strong>
+                    </p>
 
                     <div class="row car-info">
                         <div class="col-md-4 col-sm-6">
@@ -151,13 +171,13 @@
 
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4 first-contact-info">
+                    <div class="col-md-3 first-contact-info">
                         <div class="col-lg-12 col-xs-12 contact-info">
                             <div class="card">
                                 <div class="card-header align-center contact-header">
                                     <h3>Contact Details:</h3>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body owner-info">
                                     <p>
                                         <span>Name</span>
                                         <br>
@@ -182,7 +202,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-8 extras card">
+                    <div class="col-md-9 extras card">
                         <h3 class="align-center card-header">Extras:</h3>
                         <div class="car-extras card-body">
                             <ul>

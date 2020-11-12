@@ -49,8 +49,20 @@ ul li {
 	font-weight: 600;
 }
 
+.images {
+	padding-top: 15px;
+}
+
 .car-info {
 	margin-top: 30px;
+}
+
+.ad-info {
+	margin-bottom: 20px;
+}
+
+.owner-info {
+	padding-left: 43px;
 }
 
 .description {
@@ -80,14 +92,14 @@ ul li {
 	padding-left: 0;
 }
 
-.first-pic img {
-	min-height: 390px;
-	max-height: 390px;
-}
-
 .normal-pics img {
 	min-height: 120px;
 	max-height: 120px;
+}
+
+.carousel-inner img {
+	min-height: 450px;
+	max-height: 450px;
 }
 
 

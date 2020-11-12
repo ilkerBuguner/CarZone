@@ -25,6 +25,7 @@ export class DetailsAdvertisementComponent implements OnInit {
       return id;
     }), mergeMap(id => this.advertsementService.getAdvertisement(id))).subscribe(res => {
       this.advertisement = res;
+      console.log(res);
     })
   }
 

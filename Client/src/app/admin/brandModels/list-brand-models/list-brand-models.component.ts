@@ -80,5 +80,4 @@ export class ListBrandModelsComponent implements OnInit {
   get brandId() {
     return this.editBrandModelForm.get('brandId');
   }
-
 }
