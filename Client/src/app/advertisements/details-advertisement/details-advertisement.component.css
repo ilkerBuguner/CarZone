@@ -1,154 +1,16 @@
-
-p {
-	margin: 0 0 2em 0;
-}
-h1 {
-	font-size: 2.75em;
-	font-weight: 700;
-	line-height: 1.3;
-	margin: 0 0 1em 0;
-}
-.ad-title .price{
-	color: #42A5F5;
-	-webkit-text-stroke: 0.5px black;
-}
-
-.ad-title {
-	padding: 20px 0px;
-}
-
-.title {
-	margin: 0;
-	padding: 0 ;
-}
-
-h3 {
-	margin-bottom: 30px;
-}
-
 div {
-	margin: 0 0 2em 0;
 	overflow-x: hidden;
 }
 
-div > :last-child {
-		margin-bottom: 0;
-	}
-	div > .fields {
-		display: flex;
-		flex-wrap: wrap;
-		width: calc(100% + 3em);
-		margin: -1.5em 0 2em -1.5em;
-	}
-
-	div > .fields > .field {
-			flex-grow: 0;
-			flex-shrink: 0;
-			padding: 1.5em 0 0 1.5em;
-			width: calc(100% - 1.5em);
-		}
-
-		div > .fields > .field.half {
-				width: calc(50% - 0.75em);
-			}
-			div > .fields > .field.third {
-				width: calc(100%/3 - 0.5em);
-			}
-			div > .fields > .field.quarter {
-				width: calc(25% - 0.375em);
-			}
-
-	@media screen and (max-width: 480px) {
-		div > .fields {
-			width: calc(100% + 3em);
-			margin: -1.5em 0 2em -1.5em;
-		}
-		div > .fields > .field {
-			padding: 1.5em 0 0 1.5em;
-			width: calc(100% - 1.5em);
-		}
-		
-		div > .fields > .field.half {
-				width: calc(100% - 1.5em);
-			}
-			div > .fields > .field.third {
-				width: calc(100% - 1.5em);
-			}
-			div > .fields > .field.quarter {
-				width: calc(100% - 1.5em);
-			}
-	}
-
-label {
-	display: block;
-	font-size: 1.2em;
-	font-weight: 900;
-}
-
-input[type="text"] {
-	background-color: transparent;
-	border: none;
-	border-radius: 0;
-	border-bottom: solid 1px #c9c9c9;
-	color: inherit;
-	display: block;
-	cursor: pointer;
-	outline: 0;
-	padding: 0;
-	text-decoration: none;
-	width: 100%;
-}
-input[type="text"]:invalid,
-select:invalid {
-	box-shadow: none;
-}
-input[type="text"]:focus,
-select:focus {
-	border-bottom-color: #42A5F5;
-	box-shadow: inset 0 -1px 0 0 #42A5F5;
-}
-input[type="text"],
-select {
-	height: 3em;
-}
 #wrapper > * > .inner {
 	width: 100%;
 	max-width: 80em;
 	margin: 0 auto;
 	padding: 0 2.5em;
 }
-@media screen and (max-width: 736px) {
-	#wrapper > * > .inner {
-		padding: 0 1.25em;
-	}
- }
      
 #main {
     margin-top: 50px;
-}
-
-.car-info {
-    max-width: 400px;
-    margin-left: 50px;
-    font-size: 17px;
-}
-
-.ad-title {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.title {
-    margin-left: 30px;
-}
-
-.price {
-    margin-right: 150px;
-}
-
-.carousel-inner {
-    margin-bottom: 0;
 }
 
 ul {
@@ -174,28 +36,31 @@ ul li {
 	justify-content: space-around;
 }
 
-.contact {
-	max-width: 540px;
+.car-extras ul {
+	margin-top: 15px;
 }
 
-
-.contact h3,
-.contact ul li {
-	text-align: center;
+.car-extras ul h3 {
+	margin-bottom: 25px;
 }
 
-.contact h3 {
-	margin-bottom: 10px;
-	margin-top: 20px;
+.car-extras ul li {
+	font-size: 15px;
+	font-weight: 600;
 }
 
-.alt {
-	font-size: 20px;
+.car-info {
+	margin-top: 30px;
+}
+
+.description {
+	margin-top: 30px;
+}
+
+.price {
+	margin-top: 30px;
 	font-weight: bold;
-}
-
-#carouselExampleControls {
-	border-radius: 10px;
+	font-size: 30px;
 }
 
 .media img {
@@ -204,23 +69,33 @@ ul li {
 }
 
 .contact-info {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: center;
-	padding-bottom: 30px;
-}
-
-.media-body h5,
-.media-body h5 span {
-	margin: 0;
-	margin-top: 10px;
 	padding: 0;
-	font-size: 20px;
-	letter-spacing: 0.5px;
+}
+
+.contact-header {
+	margin-bottom: 0;
+}
+
+.first-contact-info {
+	padding-left: 0;
+}
+
+.first-pic img {
+	min-height: 390px;
+	max-height: 390px;
+}
+
+.normal-pics img {
+	min-height: 120px;
+	max-height: 120px;
 }
 
 
+@media screen and (max-width: 736px) {
+	#wrapper > * > .inner {
+		padding: 0 1.25em;
+	}
+ }
 
 @media all and (max-width: 600px) {
 	.car-extras {
@@ -234,3 +109,4 @@ ul li {
 		flex-direction: column;
 	}
 }
+

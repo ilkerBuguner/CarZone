@@ -3,118 +3,189 @@
     <!-- Main -->
     <div id="main">
         <div class="inner">
-            <div class="ad-title">
-                <h1 class="title">{{advertisement.title}}</h1>
-                <h1>Price: <span class="price">${{advertisement.car.price}}</span></h1>
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <div class="first-pic">
+                        <img src="https://images.ams.bg/images/galleries/108709/mazda-premacy-1460788478_big.jpg" alt=""
+                            class="img-responsive wc-image">
+                    </div>
+
+                    <br>
+
+                    <div class="row normal-pics">
+                        <div class="col-sm-4 col-xs-6">
+                            <div>
+                                <img src="https://images.ams.bg/images/galleries/108709/mazda-premacy-1460788478_big.jpg"
+                                    alt="" class="img-responsive">
+                            </div>
+
+                            <br>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-6">
+                            <div>
+                                <img src="https://images.ams.bg/images/galleries/108709/mazda-premacy-1460788478_big.jpg"
+                                    alt="" class="img-responsive">
+                            </div>
+
+                            <br>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-6">
+                            <div>
+                                <img src="https://images.ams.bg/images/galleries/108709/mazda-premacy-1460788478_big.jpg"
+                                    alt="" class="img-responsive">
+                            </div>
+
+                            <br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+                    <h2>Lorem ipsum dolor sit amet</h2>
+
+                    <p class="lead description">ABS, Leather seats, Power Assisted Steering, Electric heated seats, New
+                        HU and AU, Xenon headlights</p>
+
+                    <p class="lead price"><strong class="text-primary">$11779.00</strong></p>
+
+                    <div class="row car-info">
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Type</span>
+                                <br>
+                                <strong>Used vehicle</strong>
+                            </p>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Make</span>
+                                <br>
+                                <strong>Lorem ipsum dolor sit</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span> Model</span>
+                                <br>
+                                <strong>Lorem ipsum dolor sit</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>First registration</span>
+                                <br>
+                                <strong>05/2010</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Mileage</span>
+                                <br>
+                                <strong>5000 km</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Fuel</span>
+                                <br>
+                                <strong>Diesel</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Engine size</span>
+                                <br>
+                                <strong>1800 cc</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Power</span>
+                                <br>
+                                <strong>85 hp</strong>
+                            </p>
+                        </div>
+
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Gearbox</span>
+                                <br>
+                                <strong>Manual</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Number of seats</span>
+                                <br>
+                                <strong>4</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Doors</span>
+                                <br>
+                                <strong>2/3</strong>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <p>
+                                <span>Color</span>
+                                <br>
+                                <strong>Black</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="container-fluid">
-                <div class="row main-info">
-                    <div class="col-lg-7">
-                        <!--Slider-->
-                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div *ngFor="let image of advertisement.images" class="carousel-item active">
-                                    <img class="d-block w-100" [src]="image.url" alt="First slide">
+                <div class="row">
+                    <div class="col-md-4 first-contact-info">
+                        <div class="col-lg-12 col-xs-12 contact-info">
+                            <div class="card">
+                                <div class="card-header align-center contact-header">
+                                    <h3>Contact Details:</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>
+                                        <span>Name</span>
+                                        <br>
+                                        <strong>John Smith</strong>
+                                    </p>
+                                    <p>
+                                        <span>Phone</span>
+                                        <br>
+                                        <strong><a href="tel:123-456-789">123-456-789</a></strong>
+                                    </p>
+                                    <p>
+                                        <span>Mobile phone</span>
+                                        <br>
+                                        <strong><a href="tel:456789123">456789123</a></strong>
+                                    </p>
+                                    <p>
+                                        <span>Email</span>
+                                        <br>
+                                        <strong><a href="mailto:john@carsales.com">john@carsales.com</a></strong>
+                                    </p>
                                 </div>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
-                                data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleControls" role="button"
-                                data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
                         </div>
                     </div>
-
-                    <div class="col-lg-5 car-info">
-                        <h3>Vehicle Description:</h3>
-
-                        <p>{{advertisement.description}}</p>
-                    </div>
-                </div>
-            </div>
-
-            <br>
-
-
-            <div class="fields">
-                <div class="field quarter">
-                    <label class="m-n">Make</label>
-
-                    <input type="text" readonly="" [value]="advertisement.car.brand.name">
-                </div>
-
-                <div class="field quarter">
-                    <label class="m-n">Model</label>
-
-                    <input type="text" readonly="" [value]="advertisement.car.model.name">
-                </div>
-                <div class="field quarter">
-                    <label class="m-n">Year</label>
-
-                    <input type="text" readonly="" [value]="advertisement.car.year">
-                </div>
-                <div class="field quarter">
-                    <label class="m-n">Body Type</label>
-
-                    <input type="text" readonly="" [value]="advertisement.car.bodyType">
-                </div>
-                <div class="field quarter">
-                    <label class="m-n">Gearbox</label>
-
-                    <input type="text" readonly="" [value]="advertisement.car.transmission">
-                </div>
-
-                <div class="field quarter">
-                    <label class="m-n">Doors Count</label>
-
-                    <input type="text" readonly="" [value]="advertisement.car.doorsCount">
-                </div>
-
-                <div class="field quarter">
-                    <label class="m-n">Color</label>
-
-                    <input type="text" readonly="" [value]="advertisement.car.color">
-                </div>
-                <div class="field quarter">
-                    <label class="m-n">Condition</label>
-
-                    <input type="text" readonly="" [value]="advertisement.car.condition">
-                </div>
-                <div class="field quarter">
-                    <label class="m-n">Euro Standard</label>
-
-                    <input type="text" readonly="" [value]="advertisement.car.euroStandard">
-                </div>
-
-                <div class="field quarter">
-                    <label class="m-n">Mileage</label>
-
-                    <input type="text" readonly="" [value]="advertisement.car.mileage">
-                </div>
-
-                <div class="field quarter">
-                    <label class="m-n">Fuel</label>
-
-                    <input type="text" readonly="" [value]="advertisement.car.fuelType">
-                </div>
-                <div class="field quarter">
-                    <label class="m-n">Horse Power</label>
-
-                    <input type="text" readonly="" [value]="advertisement.car.horsePower">
-                </div>
-            </div>
-
-            <div class="container-fluid extras">
-                <div class="row">
-                    <div class="col-md-12 extras">
-                        <h1 class="align-center">Extras:</h1>
-                        <div class="car-extras">
+                    <div class="col-md-8 extras card">
+                        <h3 class="align-center card-header">Extras:</h3>
+                        <div class="car-extras card-body">
                             <ul>
                                 <h3>Comfort</h3>
                                 <li *ngFor="let comfort of advertisement.car.comforts">{{comfort}}</li>
@@ -131,20 +202,6 @@
                                 <h3>Protection</h3>
                                 <li *ngFor="let protection of advertisement.car.protections">{{protection}}</li>
                             </ul>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="align-center">Contact Information:</h1>
-                        <div class="media owner-info">
-                            <div class="media-body contact-info">
-                                <h5 class="username"><span class="fa fa-user"></span> {{advertisement.author.username}}</h5>
-                                <h5><i class="fas fa-map-marker-alt"></i> {{advertisement.location ? advertisement.location : 'No location'}}</h5>
-                                <h5><span class="fa fa-phone"></span> +{{advertisement.author.phoneNumber}} </h5>
-                                <h5><span class="fas fa-envelope"></span> {{advertisement.author.email}}</h5>
-                            </div>
                         </div>
                     </div>
                 </div>
