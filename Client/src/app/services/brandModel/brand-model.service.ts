@@ -22,10 +22,17 @@ export class BrandModelService {
     return this.http.post(this.brandModelsPath, data, { responseType: 'text' });
   }
 
+  edit(modelId: string, data: BrandModel) {
+    return this.http.put(this.brandModelsPath + '/' + modelId, data)
+  }
+  
   delete(modelId) {
     return this.http.delete(this.brandModelsPath + '/' + modelId);
   }
-
+  
+  details(modelId: string): Observable<BrandModel> {
+    return this.http.get<BrandModel>(this.brandModelsPath + '/' + modelId);
+  }
   getModelsByBrandId(brandId): Observable<any> {
     return this.http.get(this.brandModelsPath + `/getByBrandId/${brandId}`)
   }

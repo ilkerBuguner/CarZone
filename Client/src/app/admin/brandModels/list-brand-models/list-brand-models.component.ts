@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from '../../../models/Brand';
 import { BrandModel } from '../../../models/BrandModel';
@@ -13,11 +14,20 @@ export class ListBrandModelsComponent implements OnInit {
   brands: Brand[];
   brandModels: BrandModel[];
   currentBrandId: string;
+  currentModelId: string;
+  currentModel: BrandModel;
+  editBrandModelForm: FormGroup;
   noModelsFound: boolean = false;
   
   constructor(
     private brandModelService: BrandModelService,
-    private toastrService: ToastrService) { }
+    private fb: FormBuilder,
+    private toastrService: ToastrService) { 
+      this.editBrandModelForm = this.fb.group({
+        'name': ['', [Validators.required, Validators.maxLength(30)]],
+        'brandId': ['', Validators.required],
+      })
+    }
 
   ngOnInit(): void {
     this.brandModelService.getBrands().subscribe(brands => {
@@ -41,6 +51,36 @@ export class ListBrandModelsComponent implements OnInit {
       this.toastrService.success('Successfully deleted model!');
       this.onChangeBrand(this.currentBrandId);
     })
+  }
+
+  edit() {
+    if(this.editBrandModelForm.invalid) {
+      this.toastrService.error('Please populate all fields correctly!')
+      return;
+    }
+    this.brandModelService.edit(this.currentModelId, this.editBrandModelForm.value).subscribe(res => {
+      this.onChangeBrand(this.currentBrandId);
+      this.toastrService.success(`Model edited successfully!`);
+    })
+  }
+
+  fillFormWithData(modelId: string) {
+    this.currentModelId = modelId;
+    this.brandModelService.details(this.currentModelId).subscribe(res => {
+      this.currentModel = res;
+      this.editBrandModelForm = this.fb.group({
+        'name': [this.currentModel.name],
+        'brandId': [this.currentModel.brandId],
+      })
+    })
+  }
+
+  get name() {
+    return this.editBrandModelForm.get('name');
+  }
+
+  get brandId() {
+    return this.editBrandModelForm.get('brandId');
   }
 
 }

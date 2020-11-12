@@ -43,42 +43,41 @@
                 </div>
 
                 <div class="col-md-6 col-xs-12">
-                    <h2>Lorem ipsum dolor sit amet</h2>
+                    <h2>{{advertisement?.title}}</h2>
 
-                    <p class="lead description">ABS, Leather seats, Power Assisted Steering, Electric heated seats, New
-                        HU and AU, Xenon headlights</p>
+                    <p class="lead description">{{advertisement?.description}}</p>
 
-                    <p class="lead price"><strong class="text-primary">$11779.00</strong></p>
+                    <p class="lead price"><strong class="text-primary">${{advertisement?.car.price.toFixed(2)}}</strong></p>
 
                     <div class="row car-info">
                         <div class="col-md-4 col-sm-6">
                             <p>
                                 <span>Type</span>
                                 <br>
-                                <strong>Used vehicle</strong>
+                                <strong>{{advertisement?.car.bodyType}}</strong>
                             </p>
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <p>
                                 <span>Make</span>
                                 <br>
-                                <strong>Lorem ipsum dolor sit</strong>
+                                <strong>{{advertisement?.car.brand.name}}</strong>
                             </p>
                         </div>
 
                         <div class="col-md-4 col-sm-6">
                             <p>
-                                <span> Model</span>
+                                <span>Model</span>
                                 <br>
-                                <strong>Lorem ipsum dolor sit</strong>
+                                <strong>{{advertisement?.car.model.name}}</strong>
                             </p>
                         </div>
 
                         <div class="col-md-4 col-sm-6">
                             <p>
-                                <span>First registration</span>
+                                <span>Year</span>
                                 <br>
-                                <strong>05/2010</strong>
+                                <strong>{{advertisement?.car.year}}</strong>
                             </p>
                         </div>
 
@@ -86,7 +85,7 @@
                             <p>
                                 <span>Mileage</span>
                                 <br>
-                                <strong>5000 km</strong>
+                                <strong>{{advertisement?.car.mileage}}km</strong>
                             </p>
                         </div>
 
@@ -94,15 +93,15 @@
                             <p>
                                 <span>Fuel</span>
                                 <br>
-                                <strong>Diesel</strong>
+                                <strong>{{advertisement?.car.fuelType}}</strong>
                             </p>
                         </div>
 
                         <div class="col-md-4 col-sm-6">
                             <p>
-                                <span>Engine size</span>
+                                <span>Condition</span>
                                 <br>
-                                <strong>1800 cc</strong>
+                                <strong>{{advertisement?.car.condition}}</strong>
                             </p>
                         </div>
 
@@ -110,7 +109,7 @@
                             <p>
                                 <span>Power</span>
                                 <br>
-                                <strong>85 hp</strong>
+                                <strong>{{advertisement?.car.horsePower}} hp</strong>
                             </p>
                         </div>
 
@@ -119,23 +118,23 @@
                             <p>
                                 <span>Gearbox</span>
                                 <br>
-                                <strong>Manual</strong>
+                                <strong>{{advertisement?.car.transmission}}</strong>
                             </p>
                         </div>
 
                         <div class="col-md-4 col-sm-6">
                             <p>
-                                <span>Number of seats</span>
+                                <span>Doors Count</span>
                                 <br>
-                                <strong>4</strong>
+                                <strong>{{advertisement?.car.doorsCount}}</strong>
                             </p>
                         </div>
 
                         <div class="col-md-4 col-sm-6">
                             <p>
-                                <span>Doors</span>
+                                <span>Euro Standard</span>
                                 <br>
-                                <strong>2/3</strong>
+                                <strong>{{advertisement?.car.euroStandard}}</strong>
                             </p>
                         </div>
 
@@ -143,7 +142,7 @@
                             <p>
                                 <span>Color</span>
                                 <br>
-                                <strong>Black</strong>
+                                <strong>{{advertisement?.car.color}}</strong>
                             </p>
                         </div>
                     </div>
@@ -162,22 +161,22 @@
                                     <p>
                                         <span>Name</span>
                                         <br>
-                                        <strong>John Smith</strong>
-                                    </p>
-                                    <p>
-                                        <span>Phone</span>
-                                        <br>
-                                        <strong><a href="tel:123-456-789">123-456-789</a></strong>
+                                        <strong>{{advertisement?.author.username}}</strong>
                                     </p>
                                     <p>
                                         <span>Mobile phone</span>
                                         <br>
-                                        <strong><a href="tel:456789123">456789123</a></strong>
+                                        <strong><a>+{{advertisement?.author.phoneNumber}}</a></strong>
+                                    </p>
+                                    <p>
+                                        <span>Location</span>
+                                        <br>
+                                        <strong><a>{{advertisement?.location}}</a></strong>
                                     </p>
                                     <p>
                                         <span>Email</span>
                                         <br>
-                                        <strong><a href="mailto:john@carsales.com">john@carsales.com</a></strong>
+                                        <strong><a>{{advertisement?.author.email}}</a></strong>
                                     </p>
                                 </div>
                             </div>
@@ -188,19 +187,19 @@
                         <div class="car-extras card-body">
                             <ul>
                                 <h3>Comfort</h3>
-                                <li *ngFor="let comfort of advertisement.car.comforts">{{comfort}}</li>
+                                <li *ngFor="let comfort of advertisement?.car.comforts">{{comfort}}</li>
                             </ul>
                             <ul>
                                 <h3>Safety</h3>
-                                <li *ngFor="let safety of advertisement.car.safeties">{{safety}}</li>
+                                <li *ngFor="let safety of advertisement?.car.safeties">{{safety}}</li>
                             </ul>
                             <ul>
                                 <h3>Exterior</h3>
-                                <li *ngFor="let exterior of advertisement.car.exteriors">{{exterior}}</li>
+                                <li *ngFor="let exterior of advertisement?.car.exteriors">{{exterior}}</li>
                             </ul>
                             <ul>
                                 <h3>Protection</h3>
-                                <li *ngFor="let protection of advertisement.car.protections">{{protection}}</li>
+                                <li *ngFor="let protection of advertisement?.car.protections">{{protection}}</li>
                             </ul>
                         </div>
                     </div>

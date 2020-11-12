@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     ListBrandModelsComponent,
-    CreateBrandModelComponent
+    CreateBrandModelComponent,
   ],
   imports: [
     CommonModule,

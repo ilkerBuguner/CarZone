@@ -22,7 +22,8 @@
                         <th scope="col">Brand</th>
                         <th scope="col">Model</th>
                         <th scope="col">
-                            <app-create-brand-model (onChangeBrandFunction)="onChangeBrand($event)"></app-create-brand-model>
+                            <app-create-brand-model (onChangeBrandFunction)="onChangeBrand($event)">
+                            </app-create-brand-model>
                         </th>
                     </tr>
                 </thead>
@@ -32,13 +33,57 @@
                         <td>{{model.brandName}}</td>
                         <td>{{model.name}}</td>
                         <td>
-                            <button type="button" class="btn btn-info"><i class="fas fa-edit"></i> Edit</button>
+                            <button (click)="fillFormWithData(model.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleEditModal">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
                             &nbsp;&nbsp;
-                            <button (click)="delete(model.id)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            <button (click)="delete(model.id)" type="button" class="btn btn-danger"><i
+                                    class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleEditModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleEditModalLabel">Edit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="editBrandModelForm" (ngSubmit)="edit()">
+                        <div class="form-group">
+                            <label for="edit-recipient-name" class="col-form-label">Model name:</label>
+                            <input type="text" class="form-control" id="edit-recipient-name" formControlName="name">
+                        </div>
+                        <div *ngIf="name.touched && name.errors?.required" class="alert alert-danger">
+                            Model name field is required!
+                        </div>
+                        <div *ngIf="name.touched && name.errors?.maxlength" class="alert alert-danger">
+                            Model name can't be longer than 30 characters!
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Brand:</label>
+                            <select class="form-control form-control-md" formControlName="brandId">
+                                <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="brandId.touched && brandId.errors?.required" class="alert alert-danger">
+                            Brand is required!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

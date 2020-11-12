@@ -18,7 +18,7 @@ export class CreateBrandModelComponent implements OnInit {
     private brandModelService: BrandModelService,
     private fb: FormBuilder,
     private toastrService: ToastrService) { 
-      this.createBrandModelForm = this.fb.group( {
+      this.createBrandModelForm = this.fb.group({
         'name': ['', [Validators.required, Validators.maxLength(30)]],
         'brandId': ['', Validators.required]
       })
