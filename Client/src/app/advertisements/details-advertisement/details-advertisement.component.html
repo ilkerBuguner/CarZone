@@ -5,11 +5,13 @@
         <div class="inner">
             <div class="row ad-info">
                 <div class="col-md-6 col-xs-12 images">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <article id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li *ngFor="let image of advertisement?.images; let i = index"
                                 [ngClass]="{'active': i === 0}" 
-                                data-target="#carouselExampleIndicators" [data-slide-to]="i"></li>
+                                data-target="#carouselExampleIndicators" [data-slide-to]="i">
+                                <img class="d-block w-100" [src]="image.url" alt="First slide">
+                            </li>
                         </ol>
                         <div class="carousel-inner">
                             <div *ngFor="let image of advertisement?.images; let i = index"
@@ -27,41 +29,10 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
-                    </div>
-
-                    <br>
-
-                    <!-- <div class="row normal-pics">
-                        <div class="col-sm-4 col-xs-6">
-                            <div>
-                                <img src="https://images.ams.bg/images/galleries/108709/mazda-premacy-1460788478_big.jpg"
-                                    alt="" class="img-responsive">
-                            </div>
-
-                            <br>
-                        </div>
-
-                        <div class="col-sm-4 col-xs-6">
-                            <div>
-                                <img src="https://images.ams.bg/images/galleries/108709/mazda-premacy-1460788478_big.jpg"
-                                    alt="" class="img-responsive">
-                            </div>
-
-                            <br>
-                        </div>
-
-                        <div class="col-sm-4 col-xs-6">
-                            <div>
-                                <img src="https://images.ams.bg/images/galleries/108709/mazda-premacy-1460788478_big.jpg"
-                                    alt="" class="img-responsive">
-                            </div>
-
-                            <br>
-                        </div>
-                    </div> -->
+                    </article>
                 </div>
 
-                <div class="col-md-6 col-xs-12">
+                <div class="col-md-6 col-xs-12 car-description">
                     <h2>{{advertisement?.title}}</h2>
 
                     <p class="lead description">{{advertisement?.description}}</p>

@@ -49,8 +49,11 @@ ul li {
 	font-weight: 600;
 }
 
+
 .images {
-	padding-top: 15px;
+	padding-right: 0;
+	min-height: 500px;
+	max-height: 500px;
 }
 
 .car-info {
@@ -59,6 +62,10 @@ ul li {
 
 .ad-info {
 	margin-bottom: 20px;
+}
+
+.car-description {
+	padding-left: 20px;
 }
 
 .owner-info {
@@ -98,8 +105,25 @@ ul li {
 }
 
 .carousel-inner img {
-	min-height: 450px;
-	max-height: 450px;
+	min-height: 400px;
+	max-height: 400px;
+}
+
+
+.carousel-indicators li {
+	min-width: 100px;
+	border: none;
+	background-color: transparent;
+}
+
+.carousel-indicators img {
+	position: relative;
+	min-width: 90px;
+	max-width: 160px;
+	min-height: 70px;
+	max-height: 70px;
+	left: 17px;
+    top: 40px;
 }
 
 
