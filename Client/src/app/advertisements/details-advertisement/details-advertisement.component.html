@@ -5,14 +5,7 @@
         <div class="inner">
             <div class="row ad-info">
                 <div class="col-md-6 col-xs-12 images">
-                    <article id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li *ngFor="let image of advertisement?.images; let i = index"
-                                [ngClass]="{'active': i === 0}" 
-                                data-target="#carouselExampleIndicators" [data-slide-to]="i">
-                                <img class="d-block w-100" [src]="image.url" alt="First slide">
-                            </li>
-                        </ol>
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div *ngFor="let image of advertisement?.images; let i = index"
                                 [ngClass]="{'active': i === 0}" class="carousel-item">
@@ -29,7 +22,14 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
-                    </article>
+                        <ol class="carousel-indicators car-image-indicators">
+                            <li *ngFor="let image of advertisement?.images; let i = index"
+                                [ngClass]="{'active': i === 0}" 
+                                data-target="#carouselExampleIndicators" [attr.data-slide-to]="i">
+                                <img class="d-block w-100" [src]="image.url" alt="First slide">
+                            </li>
+                        </ol>
+                    </div>
                 </div>
 
                 <div class="col-md-6 col-xs-12 car-description">
