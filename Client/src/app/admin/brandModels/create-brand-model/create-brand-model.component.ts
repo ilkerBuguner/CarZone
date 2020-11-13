@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Brand } from 'src/app/models/Brand';
+import { IBrand } from 'src/app/models/IBrand';
 import { BrandModelService } from 'src/app/services/brandModel/brand-model.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./create-brand-model.component.css']
 })
 export class CreateBrandModelComponent implements OnInit {
-  brands: Brand[];
+  brands: IBrand[];
   createBrandModelForm: FormGroup;
   @Output() onChangeBrandFunction = new EventEmitter<string>();
 

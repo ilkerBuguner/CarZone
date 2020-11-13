@@ -1,6 +1,4 @@
-import { Brand } from './Brand';
-
-export interface BrandModel {
+export interface IBrandModel {
     id: string;
     name: string;
     brandName: string;

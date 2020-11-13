@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
     id: string;
     username: string;
     profilePictureUrl: string;

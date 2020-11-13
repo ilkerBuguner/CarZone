@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Advertisement } from '../../models/Advertisement';
+import { IAdvertisement } from '../../models/IAdvertisement';
 import { AdvertisementService } from '../../services/advertisement/advertisement.service';
 import { map, mergeMap } from 'rxjs/operators';
 
@@ -10,7 +10,7 @@ import { map, mergeMap } from 'rxjs/operators';
   styleUrls: ['./details-advertisement.component.css']
 })
 export class DetailsAdvertisementComponent implements OnInit {
-  advertisement: Advertisement;
+  advertisement: IAdvertisement;
   id: string;
 
   constructor(private advertsementService: AdvertisementService, private route: ActivatedRoute) { }
@@ -25,7 +25,6 @@ export class DetailsAdvertisementComponent implements OnInit {
       return id;
     }), mergeMap(id => this.advertsementService.getAdvertisement(id))).subscribe(res => {
       this.advertisement = res;
-      console.log(res);
     })
   }
 

@@ -1,4 +1,4 @@
-export interface Image {
+export interface IImage {
     id: string;
     url: string;
 }

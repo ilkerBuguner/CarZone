@@ -31,9 +31,9 @@
                                     Profile
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a (click)="logout()" class="dropdown-item">Logout</a>
-                                    <div class="dropdown-divider"></div>
                                     <a *ngIf="isAdmin" (click)="navigateTo('admin/brandModels')" class="dropdown-item">Admin</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a (click)="logout()" class="dropdown-item">Logout</a>
                                 </div>
                             </li>
                         </ul>

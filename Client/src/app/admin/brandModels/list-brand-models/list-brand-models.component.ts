@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Brand } from '../../../models/Brand';
-import { BrandModel } from '../../../models/BrandModel';
+import { IBrand } from '../../../models/IBrand';
+import { IBrandModel } from '../../../models/IBrandModel';
 import { BrandModelService } from '../../../services/brandModel/brand-model.service';
 
 @Component({
@@ -11,10 +11,10 @@ import { BrandModelService } from '../../../services/brandModel/brand-model.serv
   styleUrls: ['./list-brand-models.component.css']
 })
 export class ListBrandModelsComponent implements OnInit {
-  brands: Brand[];
-  brandModels: BrandModel[];
+  brands: IBrand[];
+  brandModels: IBrandModel[];
   currentBrandId: string;
-  currentModel: BrandModel;
+  currentModel: IBrandModel;
   editBrandModelForm: FormGroup;
   noModelsFound: boolean = false;
   

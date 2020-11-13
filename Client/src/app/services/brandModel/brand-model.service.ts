@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Brand } from '../../models/Brand';
-import { BrandModel } from '../../models/BrandModel';
+import { IBrand } from '../../models/IBrand';
+import { IBrandModel } from '../../models/IBrandModel';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class BrandModelService {
     return this.http.post(this.brandModelsPath, data, { responseType: 'text' });
   }
 
-  edit(modelId: string, data: BrandModel) {
+  edit(modelId: string, data: IBrandModel) {
     return this.http.put(this.brandModelsPath + '/' + modelId, data)
   }
   
@@ -30,14 +30,14 @@ export class BrandModelService {
     return this.http.delete(this.brandModelsPath + '/' + modelId);
   }
   
-  details(modelId: string): Observable<BrandModel> {
-    return this.http.get<BrandModel>(this.brandModelsPath + '/' + modelId);
+  details(modelId: string): Observable<IBrandModel> {
+    return this.http.get<IBrandModel>(this.brandModelsPath + '/' + modelId);
   }
   getModelsByBrandId(brandId): Observable<any> {
     return this.http.get(this.brandModelsPath + `/getByBrandId/${brandId}`)
   }
 
-  sortBrandsByName(brands: Brand[]) : Brand[] {
+  sortBrandsByName(brands: IBrand[]) : IBrand[] {
     return brands.sort((n1,n2) => {
       if (n1.name > n2.name) {
         return 1;
@@ -49,7 +49,7 @@ export class BrandModelService {
     });
   }
 
-  sortBrandModelsByName(models: BrandModel[]) : BrandModel[] {
+  sortBrandModelsByName(models: IBrandModel[]) : IBrandModel[] {
     return models.sort((n1,n2) => {
       if (n1.name > n2.name) {
         return 1;

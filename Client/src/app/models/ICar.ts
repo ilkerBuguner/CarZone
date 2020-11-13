@@ -1,15 +1,15 @@
-import { Brand } from './Brand';
-import { BrandModel } from './BrandModel';
+import { IBrand } from './IBrand';
+import { IBrandModel } from './IBrandModel';
 
-export interface Car {
+export interface ICar {
     id?: string;
     price: number;
     fuelType: string;
     horsePower: number;
     year: number;
     bodyType: string;
-    brand: Brand
-    model: BrandModel;
+    brand: IBrand
+    model: IBrandModel;
     transmission?: string;
     mileage?: string;
     color?: string;

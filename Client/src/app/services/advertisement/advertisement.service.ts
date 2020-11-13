@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Advertisement } from '../../models/Advertisement';
+import { IAdvertisement } from '../../models/IAdvertisement';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +28,8 @@ export class AdvertisementService {
     return this.http.get(this.latestAdvertisementsPath);
   }
 
-  getAdvertisement(advertisementId : string) : Observable<Advertisement> {
-    return this.http.get<Advertisement>(this.advertisementDetailsPath + '/' + advertisementId);
+  getAdvertisement(advertisementId : string) : Observable<IAdvertisement> {
+    return this.http.get<IAdvertisement>(this.advertisementDetailsPath + '/' + advertisementId);
   }
 
   setDefaultValuesOfEmptyInputs(form: FormGroup) {

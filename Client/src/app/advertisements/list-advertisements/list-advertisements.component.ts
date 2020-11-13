@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Brand } from '../../models/Brand';
-import { BrandModel } from '../../models/BrandModel';
+import { IBrand } from '../../models/IBrand';
+import { IBrandModel } from '../../models/IBrandModel';
 import { AdvertisementService } from '../../services/advertisement/advertisement.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Advertisement } from '../../models/Advertisement';
+import { IAdvertisement } from '../../models/IAdvertisement';
 import { Router } from '@angular/router';
 import { BrandModelService } from '../../services/brandModel/brand-model.service';
 
@@ -14,11 +14,11 @@ import { BrandModelService } from '../../services/brandModel/brand-model.service
 })
 export class ListAdvertisementsComponent implements OnInit {
   searchForm: FormGroup;
-  advertisements: Advertisement[];
+  advertisements: IAdvertisement[];
   conditionTypes: string[];
   bodyTypes: string[];
-  brands: Brand[];
-  brandModels: BrandModel[];
+  brands: IBrand[];
+  brandModels: IBrandModel[];
   fuelTypes: string[];
   transmissionTypes: string[];
   colors: string[];
