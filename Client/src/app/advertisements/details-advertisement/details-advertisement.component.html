@@ -178,18 +178,22 @@
                         <div class="car-extras card-body">
                             <ul>
                                 <h3>Comfort</h3>
+                                <h6 *ngIf="advertisement?.car.comforts.length == 0">No comfort extras.</h6>
                                 <li *ngFor="let comfort of advertisement?.car.comforts">{{comfort}}</li>
                             </ul>
                             <ul>
                                 <h3>Safety</h3>
+                                <h6 *ngIf="advertisement?.car.safeties.length == 0">No safety extras.</h6>
                                 <li *ngFor="let safety of advertisement?.car.safeties">{{safety}}</li>
                             </ul>
                             <ul>
                                 <h3>Exterior</h3>
+                                <h6 *ngIf="advertisement?.car.exteriors.length == 0">No exterior extras.</h6>
                                 <li *ngFor="let exterior of advertisement?.car.exteriors">{{exterior}}</li>
                             </ul>
                             <ul>
                                 <h3>Protection</h3>
+                                <h6 *ngIf="advertisement?.car.protections.length == 0">No protection extras.</h6>
                                 <li *ngFor="let protection of advertisement?.car.protections">{{protection}}</li>
                             </ul>
                         </div>

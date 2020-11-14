@@ -181,10 +181,6 @@ export class CreateAdvertisementComponent implements OnInit {
           condition: this.createForm.value.condition,
           euroStandard: this.createForm.value.euroStandard,
           doorsCount: this.createForm.value.doorsCount,
-          safeties: this.createForm.value,
-          exteriors: this.createForm.value,
-          protections: this.createForm.value,
-          comforts: this.createForm.value,
       }
     }
 
