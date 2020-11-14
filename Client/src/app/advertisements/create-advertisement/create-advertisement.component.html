@@ -6,7 +6,7 @@
         <div class="form-row">
             <div class="form-group col-md-4 col-centered">
                 <label for="inputEmail4">Advertisement Title</label>
-                <input type="text" class="form-control form-control-md" id="inputEmail4" placeholder="Title">
+                <input type="text" class="form-control form-control-md" formControlName="title" id="inputEmail4" placeholder="Title">
             </div>
         </div>
         <br>
@@ -22,6 +22,7 @@
                 <label for="inputMake">Model</label>
                 <select class="form-control" formControlName="modelId">
                     <option *ngIf="!brandModels" value="">Please select make first</option>
+                    <option *ngIf="brandModels" value="">No selected model</option>
                     <option *ngFor="let model of brandModels" [value]="model.id">{{model.name}}</option>
                 </select>
             </div>
@@ -45,19 +46,19 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="inputPrice">Price</label>
-                <input type="number" class="form-control form-control-md" id="inputPrice" placeholder="Price">
+                <input type="number" class="form-control form-control-md" formControlName="price" id="inputPrice" placeholder="Price">
             </div>
             <div class="form-group col-md-3">
                 <label for="inputPower">Power</label>
-                <input type="number" class="form-control form-control-md" id="inputPower" placeholder="Horse Power">
+                <input type="number" class="form-control form-control-md" formControlName="horsePower" id="inputPower" placeholder="Horse Power">
             </div>
             <div class="form-group col-md-3">
                 <label for="inputYear">Year</label>
-                <input type="number" class="form-control form-control-md" id="inputYear" placeholder="Year">
+                <input type="number" class="form-control form-control-md" formControlName="year" id="inputYear" placeholder="Year">
             </div>
             <div class="form-group col-md-3">
                 <label for="inpitMileage">Mileage</label>
-                <input type="number" class="form-control form-control-md" id="inpitMileage" placeholder="Year">
+                <input type="number" class="form-control form-control-md" formControlName="mileage" id="inpitMileage" placeholder="Year">
             </div>
         </div>
         <br>
@@ -108,110 +109,55 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="carDescription">Car Description</label>
-                <textarea class="form-control" id="carDescription" rows="4"></textarea>
+                <textarea class="form-control" id="carDescription" rows="4" formControlName="description"></textarea>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail">Email</label>
-                <input type="email" class="form-control form-control-md" id="inputEmail" placeholder="Email">
+                <input type="email" class="form-control form-control-md" formControlName="email" id="inputEmail" placeholder="Email">
                 <label for="inputPhoneNumber">Phone Number</label>
-                <input type="number" class="form-control form-control-md" id="inputPhoneNumber"
+                <input type="number" class="form-control form-control-md" formControlName="phoneNumber" id="inputPhoneNumber"
                     placeholder="Phone Number">
             </div>
         </div>
         <br>
         <div class="form-row">
-            <div class="col-md-3 car-extra">
+            <div class="col-md-5 car-extra">
                 <h5>Comfort</h5>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
+                <div *ngFor="let comfort of comforts" class="form-check">
+                    <input class="form-check-input" type="checkbox" [value]="comfort.id" [id]="comfort.id">
+                    <label class="form-check-label" [for]="comfort.id">
+                        {{comfort.name}} 
                     </label>
                 </div>
             </div>
-            <div class="col-md-3 car-extra">
+            <div class="col-md-5 car-extra">
                 <h5>Safety</h5>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
+                <div *ngFor="let safety of safeties" class="form-check">
+                    <input class="form-check-input" type="checkbox" [value]="safety.id" [id]="safety.id">
+                    <label class="form-check-label" [for]="safety.id">
+                        {{safety.name}}
                     </label>
                 </div>
             </div>
-            <div class="col-md-3 car-extra">
-                <h5>Protection</h5>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-3 car-extra">
+            <div class="col-md-2 car-extra">
                 <h5>Exterior</h5>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
+                <div *ngFor="let exterior of exteriors" class="form-check">
+                    <input class="form-check-input" type="checkbox" [value]="" [id]="exterior.id">
+                    <label class="form-check-label" [for]="exterior.id">
+                        {{exterior.name}}
                     </label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
+                <br>
+                <h5>Protection</h5>
+                <div *ngFor="let protection of protections" class="form-check">
+                    <input class="form-check-input" type="checkbox" [value]="protection.id" [id]="protection.id">
+                    <label class="form-check-label" [for]="protection.id">
+                        {{protection.name}}
                     </label>
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button type="submit" class="btn btn-outline-primary float-md-right">Create</button>
     </form>
 </div>
 <app-footer></app-footer>

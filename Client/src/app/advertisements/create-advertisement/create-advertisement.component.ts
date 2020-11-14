@@ -3,8 +3,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IBrand } from 'src/app/models/IBrand';
 import { IBrandModel } from 'src/app/models/IBrandModel';
+import { IComfort } from 'src/app/models/IComfort';
+import { IExterior } from 'src/app/models/IExterior';
+import { IProtection } from 'src/app/models/IProtection';
+import { ISafety } from 'src/app/models/ISafety';
 import { AdvertisementService } from 'src/app/services/advertisement/advertisement.service';
 import { BrandModelService } from 'src/app/services/brandModel/brand-model.service';
+import { CarService } from 'src/app/services/car/car.service';
 
 @Component({
   selector: 'app-create-advertisement',
@@ -23,16 +28,36 @@ export class CreateAdvertisementComponent implements OnInit {
   locations: string[];
   euroStandards: string[];
   doorsCounts: string[];
+  comforts: IComfort[];
+  exteriors: IExterior[];
+  safeties: ISafety[];
+  protections: IProtection[];
 
   constructor(
     private advertisementService: AdvertisementService,
     private brandModelService: BrandModelService,
+    private carService: CarService,
     private fb: FormBuilder,
     private router: Router) { 
       this.createForm = this.fb.group( {
-        'brandId': ['', ''], 'modelId': ['', ''], 'condition': ['', ''], 'bodyType': ['', ''],
-        'fuelType': ['', ''], 'transmission': ['', ''], 'color': ['', ''], 'location': ['', ''],
-        'euroStandard': ['', ''], 'doorsCount': ['', '']
+        'title': ['', ''],
+        'brandId': ['', ''],
+        'modelId': ['', ''],
+        'condition': ['', ''],
+        'bodyType': ['', ''],
+        'price': ['', ''],
+        'horsePower': ['', ''],
+        'year': ['', ''],
+        'mileage': ['', ''],
+        'fuelType': ['', ''],
+        'transmission': ['', ''],
+        'color': ['', ''],
+        'location': ['', ''],
+        'euroStandard': ['', ''],
+        'doorsCount': ['', ''],
+        'description': ['', ''],
+        'email': ['', ''],
+        'phoneNumber': ['', ''],
       })
     }
 
@@ -51,6 +76,19 @@ export class CreateAdvertisementComponent implements OnInit {
     this.brandModelService.getBrands().subscribe(brands => {
       this.brands = this.brandModelService.sortBrandsByName(brands);
     });
+
+    this.carService.getExteriors().subscribe(exteriors => {
+      this.exteriors = exteriors;
+    })
+    this.carService.getComforts().subscribe(comforts => {
+      this.comforts = comforts;
+    })
+    this.carService.getProtections().subscribe(protections => {
+      this.protections = protections;
+    })
+    this.carService.getSafeties().subscribe(safeties => {
+      this.safeties = safeties;
+    })
   }
 
   onChangeBrand(brandId) {
@@ -60,7 +98,7 @@ export class CreateAdvertisementComponent implements OnInit {
   }
 
   create() {
-    alert('You are in create function');
+    console.log(this.createForm.value);
   }
 
 }

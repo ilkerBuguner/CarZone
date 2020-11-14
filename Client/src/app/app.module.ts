@@ -17,6 +17,7 @@ import { AdminAuthGuardService } from './services/auth/admin-auth-guard.service'
 import { ErrorInterceptorService } from './services/error/error-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CarService } from './services/car/car.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ToastrModule } from 'ngx-toastr';
     AuthService,
     AdvertisementService,
     BrandModelService,
+    CarService,
     AuthGuardService,
     AdminAuthGuardService,
 

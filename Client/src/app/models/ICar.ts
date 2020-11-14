@@ -1,5 +1,9 @@
 import { IBrand } from './IBrand';
 import { IBrandModel } from './IBrandModel';
+import { IComfort } from './IComfort';
+import { IExterior } from './IExterior';
+import { IProtection } from './IProtection';
+import { ISafety } from './ISafety';
 
 export interface ICar {
     id?: string;
@@ -16,8 +20,8 @@ export interface ICar {
     condition?: string;
     euroStandard?: string;
     doorsCount?: string;
-    safeties?: string[];
-    exteriors?: string[];
-    protections?: string[];
-    comforts?: string[];
+    safeties?: ISafety[];
+    exteriors?: IExterior[];
+    protections?: IProtection[];
+    comforts?: IComfort[];
 }
