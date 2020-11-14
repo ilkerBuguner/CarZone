@@ -7,6 +7,7 @@ import { RegisterComponent } from './users/register/register.component';
 import { ListBrandModelsComponent } from './admin/brandModels/list-brand-models/list-brand-models.component';
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { AdminAuthGuardService } from './services/auth/admin-auth-guard.service';
+import { CreateAdvertisementComponent } from './advertisements/create-advertisement/create-advertisement.component';
 
 const routes: Routes = [
   { path: '', component: ListAdvertisementsComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'advertisements', component: ListAdvertisementsComponent},
   { path: 'advertisements/:id', component: DetailsAdvertisementComponent},
-  { path: 'admin/brandModels', component: ListBrandModelsComponent, canActivate: [AuthGuardService, AdminAuthGuardService]}
+  { path: 'advertisement/create', component: CreateAdvertisementComponent, canActivate: [AuthGuardService]},
+  { path: 'admin/brandModels', component: ListBrandModelsComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
 ];
 
 @NgModule({

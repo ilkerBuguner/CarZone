@@ -1,0 +1,217 @@
+<app-header></app-header>
+<div class="container">
+    <form [formGroup]="createForm" (ngSubmit)="create()" class="cr-ad form">
+        <h1>New Advertisement</h1>
+        <br>
+        <div class="form-row">
+            <div class="form-group col-md-4 col-centered">
+                <label for="inputEmail4">Advertisement Title</label>
+                <input type="text" class="form-control form-control-md" id="inputEmail4" placeholder="Title">
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="inputMake">Make</label>
+                <select (change)="onChangeBrand($event.target.value)" formControlName="brandId" class="form-control">
+                    <option value="">No selected make</option>
+                    <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputMake">Model</label>
+                <select class="form-control" formControlName="modelId">
+                    <option *ngIf="!brandModels" value="">Please select make first</option>
+                    <option *ngFor="let model of brandModels" [value]="model.id">{{model.name}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputMake">Vehicle Type</label>
+                <select class="form-control" formControlName="bodyType">
+                    <option value="">Not selected</option>
+                    <option *ngFor="let bodyType of bodyTypes" [value]="bodyType">{{bodyType}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputMake">Gearbox</label>
+                <select class="form-control" formControlName="transmission">
+                    <option value="">Not selected</option>
+                    <option *ngFor="let transmissionType of transmissionTypes" [value]="transmissionType">
+                        {{transmissionType}}</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="inputPrice">Price</label>
+                <input type="number" class="form-control form-control-md" id="inputPrice" placeholder="Price">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputPower">Power</label>
+                <input type="number" class="form-control form-control-md" id="inputPower" placeholder="Horse Power">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputYear">Year</label>
+                <input type="number" class="form-control form-control-md" id="inputYear" placeholder="Year">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inpitMileage">Mileage</label>
+                <input type="number" class="form-control form-control-md" id="inpitMileage" placeholder="Year">
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="inputMake">Fuel Type</label>
+                <select class="form-control" formControlName="fuelType">
+                    <option value="">Not selected</option>
+                    <option *ngFor="let fuelType of fuelTypes" [value]="fuelType">{{fuelType}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputMake">Location</label>
+                <select class="form-control" formControlName="location">
+                    <option value="">Not selected</option>
+                    <option *ngFor="let location of locations" [value]="location">{{location}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputMake">Color</label>
+                <select class="form-control" formControlName="color">
+                    <option value="">Not selected</option>
+                    <option *ngFor="let color of colors" [value]="color">{{color}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputMake">EuroStandard</label>
+                <select class="form-control" formControlName="euroStandard">
+                    <option value="">Not selected</option>
+                    <option *ngFor="let euroStandard of euroStandards" [value]="euroStandard">{{euroStandard}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputMake">Condition</label>
+                <select class="form-control" formControlName="condition">
+                    <option value="">Not selected</option>
+                    <option *ngFor="let condition of conditionTypes" [value]="condition">{{condition}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputMake">Doors Count</label>
+                <select class="form-control" formControlName="doorsCount">
+                    <option value="">Not selected</option>
+                    <option *ngFor="let doorsCount of doorsCounts" [value]="doorsCount">{{doorsCount}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="carDescription">Car Description</label>
+                <textarea class="form-control" id="carDescription" rows="4"></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEmail">Email</label>
+                <input type="email" class="form-control form-control-md" id="inputEmail" placeholder="Email">
+                <label for="inputPhoneNumber">Phone Number</label>
+                <input type="number" class="form-control form-control-md" id="inputPhoneNumber"
+                    placeholder="Phone Number">
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="col-md-3 car-extra">
+                <h5>Comfort</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-3 car-extra">
+                <h5>Safety</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-3 car-extra">
+                <h5>Protection</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-3 car-extra">
+                <h5>Exterior</h5>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Default checkbox
+                    </label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+</div>
+<app-footer></app-footer>

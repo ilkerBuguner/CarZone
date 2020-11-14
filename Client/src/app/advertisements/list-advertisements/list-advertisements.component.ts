@@ -32,22 +32,10 @@ export class ListAdvertisementsComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router) {
       this.searchForm = this.fb.group( {
-        'brandId': ['', ''],
-        'modelId': ['', ''],
-        'condition': ['', ''],
-        'bodyType': ['', ''],
-        'fuelType': ['', ''],
-        'transmission': ['', ''],
-        'color': ['', ''],
-        'location': ['', ''],
-        'euroStandard': ['', ''],
-        'doorsCount': ['', ''],
-        'minPrice': ['', ''],
-        'maxPrice': ['', ''],
-        'minYear': ['', ''],
-        'maxYear': ['', ''],
-        'minHorsePower': ['', ''],
-        'maxHorsePower': ['', ''],
+        'brandId': ['', ''], 'modelId': ['', ''], 'condition': ['', ''], 'bodyType': ['', ''],
+        'fuelType': ['', ''], 'transmission': ['', ''], 'color': ['', ''], 'location': ['', ''],
+        'euroStandard': ['', ''], 'doorsCount': ['', ''], 'minPrice': ['', ''], 'maxPrice': ['', ''],
+        'minYear': ['', ''], 'maxYear': ['', ''], 'minHorsePower': ['', ''], 'maxHorsePower': ['', ''],
       })
      }
 

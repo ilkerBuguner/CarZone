@@ -1,0 +1,20 @@
+.cr-ad {
+    margin-top: 40px;
+    border: 3px solid grey;
+    padding: 5% 5%;
+    padding-top: 2%;
+    border-radius: 13px;
+}
+
+.cr-ad h1 {
+    text-align: center;
+}
+
+.col-centered{
+    margin: 0 auto;
+    float: none;
+}
+
+.car-extra h5{
+    margin-bottom: 10px;
+}
