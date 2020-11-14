@@ -27,7 +27,8 @@
                 .Select(s => new SafetyListingServiceModel
                 {
                     Id = s.Id,
-                    Name = s.Name
+                    Name = s.Name,
+                    IsChecked = false,
                 })
                 .ToListAsync();
 

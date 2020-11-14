@@ -28,6 +28,7 @@
                 {
                     Id = e.Id,
                     Name = e.Name,
+                    IsChecked = false,
                 })
                 .ToListAsync();
 

@@ -27,7 +27,8 @@
                 .Select(c => new ComfortListingServiceModel
                 {
                     Id = c.Id,
-                    Name = c.Name
+                    Name = c.Name,
+                    IsChecked = false,
                 })
                 .ToListAsync();
 

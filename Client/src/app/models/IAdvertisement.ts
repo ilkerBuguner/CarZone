@@ -6,6 +6,7 @@ export interface IAdvertisement {
     id: string;
     title: string;
     description: string;
+    email: string;
     views?: number;
     location?: string;
     createdOn?: string;

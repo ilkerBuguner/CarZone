@@ -124,7 +124,13 @@
             <div class="col-md-5 car-extra">
                 <h5>Comfort</h5>
                 <div *ngFor="let comfort of comforts" class="form-check">
-                    <input class="form-check-input" type="checkbox" [value]="comfort.id" [id]="comfort.id">
+                    <input class="form-check-input" 
+                           type="checkbox" 
+                           [(ngModel)]="comfort.isChecked" 
+                           [ngModelOptions]="{standalone: true}"
+                           [value]="comfort.id" 
+                           (change)="changeCarComfortSelection()"
+                           [id]="comfort.id">
                     <label class="form-check-label" [for]="comfort.id">
                         {{comfort.name}} 
                     </label>
@@ -133,7 +139,13 @@
             <div class="col-md-5 car-extra">
                 <h5>Safety</h5>
                 <div *ngFor="let safety of safeties" class="form-check">
-                    <input class="form-check-input" type="checkbox" [value]="safety.id" [id]="safety.id">
+                    <input class="form-check-input" 
+                           type="checkbox"
+                           [(ngModel)]="safety.isChecked" 
+                           [ngModelOptions]="{standalone: true}"
+                           (change)="changeCarSafetySelection()"
+                           [value]="safety.id"
+                           [id]="safety.id">
                     <label class="form-check-label" [for]="safety.id">
                         {{safety.name}}
                     </label>
@@ -142,7 +154,13 @@
             <div class="col-md-2 car-extra">
                 <h5>Exterior</h5>
                 <div *ngFor="let exterior of exteriors" class="form-check">
-                    <input class="form-check-input" type="checkbox" [value]="" [id]="exterior.id">
+                    <input class="form-check-input"
+                           type="checkbox" 
+                           [(ngModel)]="exterior.isChecked" 
+                           [ngModelOptions]="{standalone: true}"
+                           (change)="changeCarExteriorSelection()"
+                           [value]="exterior.id" 
+                           [id]="exterior.id">
                     <label class="form-check-label" [for]="exterior.id">
                         {{exterior.name}}
                     </label>
@@ -150,7 +168,13 @@
                 <br>
                 <h5>Protection</h5>
                 <div *ngFor="let protection of protections" class="form-check">
-                    <input class="form-check-input" type="checkbox" [value]="protection.id" [id]="protection.id">
+                    <input class="form-check-input" 
+                           type="checkbox" 
+                           [(ngModel)]="protection.isChecked" 
+                           [ngModelOptions]="{standalone: true}"
+                           (change)="changeCarProtectionSelection()"
+                           [value]="protection.id" 
+                           [id]="protection.id">
                     <label class="form-check-label" [for]="protection.id">
                         {{protection.name}}
                     </label>

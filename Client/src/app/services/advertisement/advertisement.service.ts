@@ -10,9 +10,9 @@ import { IAdvertisement } from '../../models/IAdvertisement';
 })
 export class AdvertisementService {
   private enumsPath = environment.apiUrl + 'enums';
+  private advertisementPath = environment.apiUrl + 'advertisements';
   private advertisementsSearchPath = environment.apiUrl + 'advertisements/bySearch';
   private latestAdvertisementsPath = environment.apiUrl + 'advertisements/latest';
-  private advertisementDetailsPath = environment.apiUrl + 'advertisements';
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +29,11 @@ export class AdvertisementService {
   }
 
   getAdvertisement(advertisementId : string) : Observable<IAdvertisement> {
-    return this.http.get<IAdvertisement>(this.advertisementDetailsPath + '/' + advertisementId);
+    return this.http.get<IAdvertisement>(this.advertisementPath + '/' + advertisementId);
+  }
+
+  create(data) {
+    return this.http.post(this.advertisementPath, data, { responseType: 'text' });
   }
 
   setDefaultValuesOfEmptyInputs(form: FormGroup) {
@@ -52,5 +56,4 @@ export class AdvertisementService {
       form.patchValue({maxHorsePower: 0});
     }
   }
-
 }
