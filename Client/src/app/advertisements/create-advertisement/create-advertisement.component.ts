@@ -69,7 +69,6 @@ export class CreateAdvertisementComponent implements OnInit {
         'euroStandard': ['', ''],
         'doorsCount': ['', ''],
         'description': ['', ''],
-        'email': ['', ''],
         'phoneNumber': ['', ''],
       })
     }
@@ -161,7 +160,6 @@ export class CreateAdvertisementComponent implements OnInit {
     var advertisementToSend = {
       title: this.createForm.value.title,
       description: this.createForm.value.description,
-      email: this.createForm.value.email,
       phoneNumber: this.createForm.value.phoneNumber.toString(),
       location: this.createForm.value.location,
       ImageURLs: [

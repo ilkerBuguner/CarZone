@@ -113,6 +113,30 @@
             };
         }
 
+        public async Task SetUserPhoneNumberIfNull(string userId, string phoneNumber)
+        {
+            var user = await this.GetByIdAsync(userId);
+
+            if (string.IsNullOrEmpty(user.PhoneNumber))
+            {
+                user.PhoneNumber = phoneNumber;
+                this.dbContext.Users.Update(user);
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
+
+        public async Task SetUserLocationIfNull(string userId, string location)
+        {
+            var user = await this.GetByIdAsync(userId);
+
+            if (user.Location == null)
+            {
+                user.Location = (Location)Enum.Parse(typeof(Location), location);
+                this.dbContext.Users.Update(user);
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
+
         private async Task<User> GetByIdAsync(string id)
         {
             return await this.dbContext

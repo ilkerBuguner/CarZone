@@ -47,14 +47,6 @@ ul li {
 }
 
 
-.car-info {
-	margin-top: 30px;
-}
-
-.ad-info {
-	margin-bottom: 20px;
-}
-
 .car-description {
 	padding-left: 20px;
 }
@@ -64,11 +56,17 @@ ul li {
 }
 
 .description {
-	margin-top: 30px;
+	margin-top: 10px;
+	font-size: 17px;
+	font-weight: 600;
+	line-height: 18px;
+}
+
+.car-info p {
+	margin-bottom: 10px;
 }
 
 .price {
-	margin-top: 30px;
 	font-weight: bold;
 	font-size: 30px;
 }
@@ -113,6 +111,7 @@ ul li {
 	padding-left: 0;
 	min-height: 500px;
 	max-height: 500px;
+	margin-bottom: 30px;
 }
 
 .carousel-indicators img {

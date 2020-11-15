@@ -12,5 +12,9 @@
         Task<ResultModel<bool>> UpdateAsync(string currentLoggedInUserId, string userId, UpdateUserRequestModel model);
 
         Task<ResultModel<UserProfileDetailsServiceModel>> DetailsAsync(string id);
+
+        Task SetUserPhoneNumberIfNull(string userId, string phoneNumber);
+
+        Task SetUserLocationIfNull(string userId, string location);
     }
 }
