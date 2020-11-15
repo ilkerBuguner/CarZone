@@ -26,6 +26,7 @@ export class ListAdvertisementsComponent implements OnInit {
   euroStandards: string[];
   doorsCounts: string[];
   foundCarsCount: number;
+  isSearching: boolean;
 
   constructor(private advertisementService: AdvertisementService,
     private brandModelService : BrandModelService,
@@ -67,7 +68,7 @@ export class ListAdvertisementsComponent implements OnInit {
   }
 
   search() {
-    
+    this.isSearching = true;
     window.scrollTo({
       top: 580,
       behavior: "smooth"
@@ -77,6 +78,7 @@ export class ListAdvertisementsComponent implements OnInit {
     this.advertisementService.getAdvertisementsBySearch(this.searchForm.value).subscribe(ads => {
       this.advertisements = ads;
       this.foundCarsCount = this.advertisements.length;
+      this.isSearching = false;
     });
   }
 
