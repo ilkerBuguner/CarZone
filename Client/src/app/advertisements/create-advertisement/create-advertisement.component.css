@@ -6,6 +6,10 @@
     border-radius: 13px;
 }
 
+.required {
+    color: red;
+}
+
 .cr-ad h1 {
     text-align: center;
 }
@@ -17,4 +21,54 @@
 
 .car-extra h5{
     margin-bottom: 10px;
+}
+
+.tooltip-toggle {
+  cursor: pointer;
+  position: relative;
+}
+
+.tooltip-toggle::before {
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  background-color: #0099FF;
+  border-radius: 5px;
+  color: #fff;
+  content: attr(data-tooltip);
+  padding: 1rem;
+  text-transform: none;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.tooltip-toggle::after {
+  position: absolute;
+  top: -12px;
+  left: 9px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid green;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+  margin-left: -5px;
+  width: 0;
+}
+
+.tooltip-toggle::before,
+.tooltip-toggle::after {
+  color: #efefef;
+  font-family: monospace;
+  font-size: 16px;
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+}
+
+.tooltip-toggle:hover::before,
+.tooltip-toggle:hover::after {
+  opacity: 1;
+  -webkit-transition: all 0.75s ease;
+  transition: all 0.75s ease;
 }

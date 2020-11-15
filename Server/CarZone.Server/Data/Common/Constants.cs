@@ -36,7 +36,7 @@
             public const int NameMaxLength = 30;
 
             public const int DescriptionMinLength = 5;
-            public const int DescriptionMaxLength = 500;
+            public const int DescriptionMaxLength = 300;
         }
 
         public static class Brand

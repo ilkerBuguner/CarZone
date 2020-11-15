@@ -64,8 +64,15 @@
             }
 
             await this.carsService.SetCarsAdvertisementAsync(newCarId, newAdvertisement.Id);
-            await this.usersService.SetUserPhoneNumberIfNull(userId, input.PhoneNumber);
-            await this.usersService.SetUserLocationIfNull(userId, input.Location);
+            if (!string.IsNullOrEmpty(input.PhoneNumber))
+            {
+                await this.usersService.SetUserPhoneNumberIfNull(userId, input.PhoneNumber);
+            }
+
+            if (!string.IsNullOrEmpty(input.Location))
+            {
+                await this.usersService.SetUserLocationIfNull(userId, input.Location);
+            }
 
             return newAdvertisement.Id;
         }

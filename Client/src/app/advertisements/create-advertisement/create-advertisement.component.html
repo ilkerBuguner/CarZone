@@ -5,116 +5,197 @@
         <br>
         <div class="form-row">
             <div class="form-group col-md-4 col-centered">
-                <label for="inputEmail4">Advertisement Title</label>
-                <input type="text" class="form-control form-control-md" formControlName="title" id="inputEmail4" placeholder="Title">
+                <label for="inputEmail4">Advertisement Title<span class="required">*</span></label>
+                <input type="text" class="form-control form-control-md" formControlName="title" id="inputEmail4"
+                    placeholder="Title">
+                <br *ngIf="title.touched && title.errors">
+                <div *ngIf="title.touched && title.errors?.required" class="alert alert-danger">
+                    Title field is required!
+                </div>
+                <div *ngIf="title.touched && title.errors?.minlength" class="alert alert-danger">
+                    Title must contain at least 3 characters!
+                </div>
+                <div *ngIf="title.touched && title.errors?.maxlength" class="alert alert-danger">
+                    Username can't be longer than 30 characters!
+                </div>
             </div>
         </div>
         <br>
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="inputMake">Make</label>
+                <label for="inputMake">Make<span class="required">*</span></label>
                 <select (change)="onChangeBrand($event.target.value)" formControlName="brandId" class="form-control">
                     <option value="">No selected make</option>
                     <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
                 </select>
+                <br *ngIf="brandId.touched && brandId.errors">
+                <div *ngIf="brandId.touched && brandId.errors?.required" class="alert alert-danger">
+                    Make is required!
+                </div>
             </div>
             <div class="form-group col-md-3">
-                <label for="inputMake">Model</label>
+                <label for="inputMake">Model<span class="required">*</span></label>
                 <select class="form-control" formControlName="modelId">
                     <option *ngIf="!brandModels" value="">Please select make first</option>
                     <option *ngIf="brandModels" value="">No selected model</option>
                     <option *ngFor="let model of brandModels" [value]="model.id">{{model.name}}</option>
                 </select>
+                <br *ngIf="modelId.touched && modelId.errors">
+                <div *ngIf="modelId.touched && modelId.errors?.required" class="alert alert-danger">
+                    Model is required!
+                </div>
             </div>
             <div class="form-group col-md-3">
-                <label for="inputMake">Vehicle Type</label>
+                <label for="inputMake">Vehicle Type<span class="required">*</span></label>
                 <select class="form-control" formControlName="bodyType">
                     <option value="">Not selected</option>
                     <option *ngFor="let bodyType of bodyTypes" [value]="bodyType">{{bodyType}}</option>
                 </select>
+                <br *ngIf="bodyType.touched && bodyType.errors">
+                <div *ngIf="bodyType.touched && bodyType.errors?.required" class="alert alert-danger">
+                    Vehicle type is required!
+                </div>
             </div>
             <div class="form-group col-md-3">
-                <label for="inputMake">Gearbox</label>
+                <label for="inputMake">Gearbox<span class="required">*</span></label>
                 <select class="form-control" formControlName="transmission">
                     <option value="">Not selected</option>
                     <option *ngFor="let transmissionType of transmissionTypes" [value]="transmissionType">
                         {{transmissionType}}</option>
                 </select>
+                <br *ngIf="transmission.touched && transmission.errors">
+                <div *ngIf="transmission.touched && transmission.errors?.required" class="alert alert-danger">
+                    Gearbox is required!
+                </div>
             </div>
         </div>
         <br>
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="inputPrice">Price</label>
-                <input type="number" class="form-control form-control-md" formControlName="price" id="inputPrice" placeholder="Price">
+                <label for="inputPrice">Price<span class="required">*</span></label>
+                <input type="number" class="form-control form-control-md" formControlName="price" id="inputPrice"
+                    placeholder="Price">
+                <br *ngIf="price.touched && price.errors">
+                <div *ngIf="price.touched && price.errors?.required" class="alert alert-danger">
+                    Price is required!
+                </div>
             </div>
             <div class="form-group col-md-3">
-                <label for="inputPower">Power</label>
-                <input type="number" class="form-control form-control-md" formControlName="horsePower" id="inputPower" placeholder="Horse Power">
+                <label for="inputPower">Power (HP)<span class="required">*</span></label>
+                <input type="number" class="form-control form-control-md" formControlName="horsePower" id="inputPower"
+                    placeholder="Horse Power">
+                <br *ngIf="horsePower.touched && horsePower.errors">
+                <div *ngIf="horsePower.touched && horsePower.errors?.required" class="alert alert-danger">
+                    Power is required!
+                </div>
             </div>
             <div class="form-group col-md-3">
-                <label for="inputYear">Year</label>
-                <input type="number" class="form-control form-control-md" formControlName="year" id="inputYear" placeholder="Year">
+                <label for="inputYear">Year<span class="required">*</span></label>
+                <input type="number" class="form-control form-control-md" formControlName="year" id="inputYear"
+                    placeholder="Year">
+                <br *ngIf="year.touched && year.errors">
+                <div *ngIf="year.touched && year.errors?.required" class="alert alert-danger">
+                    Year is required!
+                </div>
             </div>
             <div class="form-group col-md-3">
                 <label for="inpitMileage">Mileage</label>
-                <input type="number" class="form-control form-control-md" formControlName="mileage" id="inpitMileage" placeholder="Year">
+                <input type="number" class="form-control form-control-md" formControlName="mileage" id="inpitMileage"
+                    placeholder="Year">
             </div>
         </div>
         <br>
         <div class="form-row">
             <div class="form-group col-md-2">
-                <label for="inputMake">Fuel Type</label>
+                <label for="inputMake">Fuel Type<span class="required">*</span></label>
                 <select class="form-control" formControlName="fuelType">
                     <option value="">Not selected</option>
                     <option *ngFor="let fuelType of fuelTypes" [value]="fuelType">{{fuelType}}</option>
                 </select>
+                <br *ngIf="fuelType.touched && fuelType.errors">
+                <div *ngIf="fuelType.touched && fuelType.errors?.required" class="alert alert-danger">
+                    Fuel Type is required!
+                </div>
             </div>
-            <div class="form-group col-md-2">
-                <label for="inputMake">Location</label>
+            <div class="form-group col-md-2 tooltip-toggle" data-tooltip="If the location in your profile is not defined this location will be used. Please fill it!">
+                <label for="inputMake">Location<span class="required">*</span></label>
                 <select class="form-control" formControlName="location">
                     <option value="">Not selected</option>
                     <option *ngFor="let location of locations" [value]="location">{{location}}</option>
                 </select>
+                <br *ngIf="location.touched && location.errors">
+                <div *ngIf="location.touched && location.errors?.required" class="alert alert-danger">
+                    Location is required!
+                </div>
             </div>
             <div class="form-group col-md-2">
-                <label for="inputMake">Color</label>
+                <label for="inputMake">Color<span class="required">*</span></label>
                 <select class="form-control" formControlName="color">
                     <option value="">Not selected</option>
                     <option *ngFor="let color of colors" [value]="color">{{color}}</option>
                 </select>
+                <br *ngIf="color.touched && color.errors">
+                <div *ngIf="color.touched && color.errors?.required" class="alert alert-danger">
+                    Color is required!
+                </div>
             </div>
             <div class="form-group col-md-2">
-                <label for="inputMake">EuroStandard</label>
+                <label for="inputMake">EuroStandard<span class="required">*</span></label>
                 <select class="form-control" formControlName="euroStandard">
                     <option value="">Not selected</option>
                     <option *ngFor="let euroStandard of euroStandards" [value]="euroStandard">{{euroStandard}}</option>
                 </select>
+                <br *ngIf="euroStandard.touched && euroStandard.errors">
+                <div *ngIf="euroStandard.touched && euroStandard.errors?.required" class="alert alert-danger">
+                    EuroStandard is required!
+                </div>
             </div>
             <div class="form-group col-md-2">
-                <label for="inputMake">Condition</label>
+                <label for="inputMake">Condition<span class="required">*</span></label>
                 <select class="form-control" formControlName="condition">
                     <option value="">Not selected</option>
                     <option *ngFor="let condition of conditionTypes" [value]="condition">{{condition}}</option>
                 </select>
+                <br *ngIf="condition.touched && condition.errors">
+                <div *ngIf="condition.touched && condition.errors?.required" class="alert alert-danger">
+                    Car condition is required!
+                </div>
             </div>
             <div class="form-group col-md-2">
-                <label for="inputMake">Doors Count</label>
+                <label for="inputMake">Doors Count<span class="required">*</span></label>
                 <select class="form-control" formControlName="doorsCount">
                     <option value="">Not selected</option>
                     <option *ngFor="let doorsCount of doorsCounts" [value]="doorsCount">{{doorsCount}}</option>
                 </select>
+                <br *ngIf="doorsCount.touched && doorsCount.errors">
+                <div *ngIf="doorsCount.touched && doorsCount.errors?.required" class="alert alert-danger">
+                    Doors count of car is required!
+                </div>
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="inputPhoneNumber">Phone Number</label>
-                <input type="number" class="form-control form-control-md" formControlName="phoneNumber" id="inputPhoneNumber"
-                    placeholder="Phone Number">
+            <div class="form-group col-md-12 tooltip-toggle" data-tooltip="If the phone number in your profile page is not defined, this phone number will be used. Please fill it!">
+                    <label for="inputPhoneNumber">Phone Number<span class="required">*</span></label>
+                    <input type="number" class="form-control form-control-md" formControlName="phoneNumber"
+                        id="inputPhoneNumber" placeholder="Phone Number">
+                    <br *ngIf="phoneNumber.touched && phoneNumber.errors">
+                    <div *ngIf="phoneNumber.touched && phoneNumber.errors?.required" class="alert alert-danger">
+                        Contact phone number is required!
+                    </div>
             </div>
             <div class="form-group col-md-12">
-                <label for="carDescription">Car Description</label>
+                <label for="carDescription">Car Description<span class="required">*</span></label>
                 <textarea class="form-control" id="carDescription" rows="3" formControlName="description"></textarea>
+                <br *ngIf="description.touched && description.errors">
+                <div *ngIf="description.touched && description.errors?.required" class="alert alert-danger">
+                    Descprition field is required!
+                </div>
+                <div *ngIf="description.touched && description.errors?.minlength" class="alert alert-danger">
+                    Descprition must contain at least 5 characters!
+                </div>
+                <div *ngIf="description.touched && description.errors?.maxlength" class="alert alert-danger">
+                    Descprition can't be longer than 300 characters!
+                </div>
             </div>
         </div>
         <br>
@@ -122,28 +203,20 @@
             <div class="col-md-5 car-extra">
                 <h5>Comfort</h5>
                 <div *ngFor="let comfort of comforts" class="form-check">
-                    <input class="form-check-input" 
-                           type="checkbox" 
-                           [(ngModel)]="comfort.isChecked" 
-                           [ngModelOptions]="{standalone: true}"
-                           [value]="comfort.id" 
-                           (change)="changeCarComfortSelection()"
-                           [id]="comfort.id">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="comfort.isChecked"
+                        [ngModelOptions]="{standalone: true}" [value]="comfort.id"
+                        (change)="changeCarComfortSelection()" [id]="comfort.id">
                     <label class="form-check-label" [for]="comfort.id">
-                        {{comfort.name}} 
+                        {{comfort.name}}
                     </label>
                 </div>
             </div>
             <div class="col-md-5 car-extra">
                 <h5>Safety</h5>
                 <div *ngFor="let safety of safeties" class="form-check">
-                    <input class="form-check-input" 
-                           type="checkbox"
-                           [(ngModel)]="safety.isChecked" 
-                           [ngModelOptions]="{standalone: true}"
-                           (change)="changeCarSafetySelection()"
-                           [value]="safety.id"
-                           [id]="safety.id">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="safety.isChecked"
+                        [ngModelOptions]="{standalone: true}" (change)="changeCarSafetySelection()" [value]="safety.id"
+                        [id]="safety.id">
                     <label class="form-check-label" [for]="safety.id">
                         {{safety.name}}
                     </label>
@@ -152,13 +225,9 @@
             <div class="col-md-2 car-extra">
                 <h5>Exterior</h5>
                 <div *ngFor="let exterior of exteriors" class="form-check">
-                    <input class="form-check-input"
-                           type="checkbox" 
-                           [(ngModel)]="exterior.isChecked" 
-                           [ngModelOptions]="{standalone: true}"
-                           (change)="changeCarExteriorSelection()"
-                           [value]="exterior.id" 
-                           [id]="exterior.id">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="exterior.isChecked"
+                        [ngModelOptions]="{standalone: true}" (change)="changeCarExteriorSelection()"
+                        [value]="exterior.id" [id]="exterior.id">
                     <label class="form-check-label" [for]="exterior.id">
                         {{exterior.name}}
                     </label>
@@ -166,13 +235,9 @@
                 <br>
                 <h5>Protection</h5>
                 <div *ngFor="let protection of protections" class="form-check">
-                    <input class="form-check-input" 
-                           type="checkbox" 
-                           [(ngModel)]="protection.isChecked" 
-                           [ngModelOptions]="{standalone: true}"
-                           (change)="changeCarProtectionSelection()"
-                           [value]="protection.id" 
-                           [id]="protection.id">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="protection.isChecked"
+                        [ngModelOptions]="{standalone: true}" (change)="changeCarProtectionSelection()"
+                        [value]="protection.id" [id]="protection.id">
                     <label class="form-check-label" [for]="protection.id">
                         {{protection.name}}
                     </label>

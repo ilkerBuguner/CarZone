@@ -19,8 +19,10 @@
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
+        [Required]
         public string PhoneNumber { get; set; }
 
+        [Required]
         public string Location { get; set; }
 
         public string AuthorId { get; set; }

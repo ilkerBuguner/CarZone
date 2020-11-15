@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IBrand } from 'src/app/models/IBrand';
@@ -53,23 +53,23 @@ export class CreateAdvertisementComponent implements OnInit {
     private router: Router,
     private toastrService: ToastrService) { 
       this.createForm = this.fb.group( {
-        'title': ['', ''],
-        'brandId': ['', ''],
-        'modelId': ['', ''],
-        'condition': ['', ''],
-        'bodyType': ['', ''],
-        'price': ['', ''],
-        'horsePower': ['', ''],
-        'year': ['', ''],
+        'title': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+        'brandId': ['', [Validators.required]],
+        'modelId': ['', [Validators.required]],
+        'condition': ['', [Validators.required]],
+        'bodyType': ['', [Validators.required]],
+        'price': ['', [Validators.required]],
+        'horsePower': ['', [Validators.required]],
+        'year': ['', [Validators.required]],
         'mileage': ['', ''],
-        'fuelType': ['', ''],
-        'transmission': ['', ''],
-        'color': ['', ''],
-        'location': ['', ''],
-        'euroStandard': ['', ''],
-        'doorsCount': ['', ''],
-        'description': ['', ''],
-        'phoneNumber': ['', ''],
+        'fuelType': ['', [Validators.required]],
+        'transmission': ['', [Validators.required]],
+        'color': ['', [Validators.required]],
+        'location': ['', [Validators.required]],
+        'euroStandard': ['', [Validators.required]],
+        'doorsCount': ['', [Validators.required]],
+        'description': ['', [Validators.required, Validators.minLength(5), Validators.maxLength(300)]],
+        'phoneNumber': ['', [Validators.required]],
       })
     }
 
@@ -157,6 +157,9 @@ export class CreateAdvertisementComponent implements OnInit {
   }
 
   create() {
+    if (this.createForm.invalid) {
+      this.toastrService.error('Please populate all requried fields and selects!');
+    }
     var advertisementToSend = {
       title: this.createForm.value.title,
       description: this.createForm.value.description,
@@ -193,4 +196,52 @@ export class CreateAdvertisementComponent implements OnInit {
     })
   }
 
+  get title() {
+    return this.createForm.get('title');
+  }
+  get description() {
+    return this.createForm.get('description');
+  }
+  get brandId() {
+    return this.createForm.get('brandId');
+  }
+  get modelId() {
+    return this.createForm.get('modelId');
+  }
+  get bodyType() {
+    return this.createForm.get('bodyType');
+  }
+  get transmission() {
+    return this.createForm.get('transmission');
+  }
+  get price() {
+    return this.createForm.get('price');
+  }
+  get horsePower() {
+    return this.createForm.get('horsePower');
+  }
+  get year() {
+    return this.createForm.get('year');
+  }
+  get fuelType() {
+    return this.createForm.get('fuelType');
+  }
+  get location() {
+    return this.createForm.get('location');
+  }
+  get color() {
+    return this.createForm.get('color');
+  }
+  get euroStandard() {
+    return this.createForm.get('euroStandard');
+  }
+  get condition() {
+    return this.createForm.get('condition');
+  }
+  get doorsCount() {
+    return this.createForm.get('doorsCount');
+  }
+  get phoneNumber() {
+    return this.createForm.get('phoneNumber');
+  }
 }
