@@ -159,6 +159,7 @@ export class CreateAdvertisementComponent implements OnInit {
   create() {
     if (this.createForm.invalid) {
       this.toastrService.error('Please populate all requried fields and selects!');
+      return;
     }
     var advertisementToSend = {
       title: this.createForm.value.title,
