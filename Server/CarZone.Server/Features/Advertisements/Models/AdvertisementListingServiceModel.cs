@@ -12,7 +12,7 @@
 
         public string Title { get; set; }
 
-        public int Views { get; set; }
+        public int? Views { get; set; }
 
         public string CreatedOn { get; set; }
 

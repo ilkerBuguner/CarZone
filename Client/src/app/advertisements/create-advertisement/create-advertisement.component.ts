@@ -168,13 +168,14 @@ export class CreateAdvertisementComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  async create() {
+  create() {
     if (this.createForm.invalid) {
       this.toastrService.error('Please populate all requried fields and selects!');
       return;
     }
 
     this.toastrService.info('Creating...')
+    var promises = [];
     if (this.files.length > 0) {
       for (const file_data of this.files) {
         const data = new FormData();
@@ -182,44 +183,50 @@ export class CreateAdvertisementComponent implements OnInit {
         data.append('upload_preset', 'Carzone_cloudinary');
         data.append('cloud_name', 'doyjshrjs');
 
-        let httpData = await this.uploadService.uploadImageToCloudinary(data)
-        this.imageURLs.push(httpData['secure_url']);
+        let httpData = this.uploadService.uploadImageToCloudinary(data)
+        promises.push(httpData);
       }
     }
 
-    var advertisementToSend = {
-      title: this.createForm.value.title,
-      description: this.createForm.value.description,
-      phoneNumber: this.createForm.value.phoneNumber.toString(),
-      location: this.createForm.value.location,
-      imageURLs: this.imageURLs,
-      car: {
-        brandId: this.createForm.value.brandId,
-        modelId: this.createForm.value.modelId,
-        bodyType: this.createForm.value.bodyType,
-        price: this.createForm.value.price,
-        fuelType: this.createForm.value.fuelType,
-        horsePower: this.createForm.value.horsePower,
-        transmission: this.createForm.value.transmission,
-        year: this.createForm.value.year,
-        mileage: this.createForm.value.mileage,
-        color: this.createForm.value.color,
-        condition: this.createForm.value.condition,
-        euroStandard: this.createForm.value.euroStandard,
-        doorsCount: this.createForm.value.doorsCount,
+    Promise.all(promises).then((results) => {
+      
+      for (const result of results) {
+        this.imageURLs.push(result['secure_url']);
       }
-    }
-
-    advertisementToSend.car['safeties'] = this.selectedSafetiesIds ? this.selectedSafetiesIds : [];
-    advertisementToSend.car['exteriors'] = this.selectedExteriorsIds ? this.selectedExteriorsIds : [];
-    advertisementToSend.car['comforts'] = this.selectedComfortsIds ? this.selectedComfortsIds : [];
-    advertisementToSend.car['protections'] = this.selectedProtectionsIds ? this.selectedProtectionsIds : [];
-
-    this.advertisementService.create(advertisementToSend).subscribe(advertisementId => {
-      this.toastrService.success('Successfully created new advertisement!')
-      this.router.navigate(['advertisements']);
+      
+      var advertisementToSend = {
+        title: this.createForm.value.title,
+        description: this.createForm.value.description,
+        phoneNumber: this.createForm.value.phoneNumber.toString(),
+        location: this.createForm.value.location,
+        imageURLs: this.imageURLs,
+        car: {
+          brandId: this.createForm.value.brandId,
+          modelId: this.createForm.value.modelId,
+          bodyType: this.createForm.value.bodyType,
+          price: this.createForm.value.price,
+          fuelType: this.createForm.value.fuelType,
+          horsePower: this.createForm.value.horsePower,
+          transmission: this.createForm.value.transmission,
+          year: this.createForm.value.year,
+          mileage: this.createForm.value.mileage ? this.createForm.value.mileage : 0,
+          color: this.createForm.value.color,
+          condition: this.createForm.value.condition,
+          euroStandard: this.createForm.value.euroStandard,
+          doorsCount: this.createForm.value.doorsCount,
+        }
+      }
+  
+      advertisementToSend.car['safeties'] = this.selectedSafetiesIds ? this.selectedSafetiesIds : [];
+      advertisementToSend.car['exteriors'] = this.selectedExteriorsIds ? this.selectedExteriorsIds : [];
+      advertisementToSend.car['comforts'] = this.selectedComfortsIds ? this.selectedComfortsIds : [];
+      advertisementToSend.car['protections'] = this.selectedProtectionsIds ? this.selectedProtectionsIds : [];
+  
+      this.advertisementService.create(advertisementToSend).subscribe(advertisementId => {
+        this.toastrService.success('Successfully created new advertisement!')
+        this.router.navigate(['advertisements']);
+      })
     })
-
   }
 
   get title() {
