@@ -1,26 +1,30 @@
 .cr-ad {
-    margin-top: 40px;
-    border: 3px solid #0099FF;
-    padding: 5% 5%;
-    padding-top: 2%;
-    border-radius: 13px;
+  margin-top: 40px;
+  border: 3px solid #0099FF;
+  padding: 5% 5%;
+  padding-top: 2%;
+  border-radius: 13px;
 }
 
 .required {
-    color: red;
+  color: red;
 }
 
 .cr-ad h1 {
-    text-align: center;
+  text-align: center;
+}
+
+.section-header {
+  text-align: center;
 }
 
 .col-centered{
-    margin: 0 auto;
-    float: none;
+  margin: 0 auto;
+  float: none;
 }
 
 .car-extra h5{
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .tooltip-toggle {

@@ -169,6 +169,7 @@
                 <div class="featured-item">
                     <div class="thumb">
                         <div class="thumb-img">
+                            <img *ngIf="!advertisement.imageUrl" src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605531253/CarZone/13738943-24586l_xyzdih.png" alt="">
                             <img [src]="advertisement.imageUrl" alt="">
                         </div>
                         <div class="overlay-content">

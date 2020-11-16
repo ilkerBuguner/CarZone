@@ -62,6 +62,10 @@ ul li {
 	line-height: 18px;
 }
 
+.no-image {
+	margin-top: 90px;
+}
+
 .car-info p {
 	margin-bottom: 10px;
 }

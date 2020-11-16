@@ -18,6 +18,7 @@ import { ErrorInterceptorService } from './services/error/error-interceptor.serv
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CarService } from './services/car/car.service';
+import { UploadService } from './services/upload/upload.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CarService } from './services/car/car.service';
     AdvertisementService,
     BrandModelService,
     CarService,
+    UploadService,
     AuthGuardService,
     AdminAuthGuardService,
 

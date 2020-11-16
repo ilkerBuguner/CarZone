@@ -11,6 +11,7 @@ import { ISafety } from 'src/app/models/ISafety';
 import { AdvertisementService } from 'src/app/services/advertisement/advertisement.service';
 import { BrandModelService } from 'src/app/services/brandModel/brand-model.service';
 import { CarService } from 'src/app/services/car/car.service';
+import { UploadService } from 'src/app/services/upload/upload.service';
 
 @Component({
   selector: 'app-create-advertisement',
@@ -29,6 +30,8 @@ export class CreateAdvertisementComponent implements OnInit {
   locations: string[];
   euroStandards: string[];
   doorsCounts: string[];
+  files: File[] = [];
+  imageURLs: string[] = [];
 
   comforts: IComfort[];
   exteriors: IExterior[];
@@ -51,27 +54,28 @@ export class CreateAdvertisementComponent implements OnInit {
     private carService: CarService,
     private fb: FormBuilder,
     private router: Router,
-    private toastrService: ToastrService) { 
-      this.createForm = this.fb.group( {
-        'title': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-        'brandId': ['', [Validators.required]],
-        'modelId': ['', [Validators.required]],
-        'condition': ['', [Validators.required]],
-        'bodyType': ['', [Validators.required]],
-        'price': ['', [Validators.required]],
-        'horsePower': ['', [Validators.required]],
-        'year': ['', [Validators.required]],
-        'mileage': ['', ''],
-        'fuelType': ['', [Validators.required]],
-        'transmission': ['', [Validators.required]],
-        'color': ['', [Validators.required]],
-        'location': ['', [Validators.required]],
-        'euroStandard': ['', [Validators.required]],
-        'doorsCount': ['', [Validators.required]],
-        'description': ['', [Validators.required, Validators.minLength(5), Validators.maxLength(300)]],
-        'phoneNumber': ['', [Validators.required]],
-      })
-    }
+    private toastrService: ToastrService,
+    private uploadService: UploadService) {
+    this.createForm = this.fb.group({
+      'title': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      'brandId': ['', [Validators.required]],
+      'modelId': ['', [Validators.required]],
+      'condition': ['', [Validators.required]],
+      'bodyType': ['', [Validators.required]],
+      'price': ['', [Validators.required]],
+      'horsePower': ['', [Validators.required]],
+      'year': ['', [Validators.required]],
+      'mileage': ['', ''],
+      'fuelType': ['', [Validators.required]],
+      'transmission': ['', [Validators.required]],
+      'color': ['', [Validators.required]],
+      'location': ['', [Validators.required]],
+      'euroStandard': ['', [Validators.required]],
+      'doorsCount': ['', [Validators.required]],
+      'description': ['', [Validators.required, Validators.minLength(5), Validators.maxLength(300)]],
+      'phoneNumber': ['', [Validators.required]],
+    })
+  }
 
   ngOnInit(): void {
     this.advertisementService.getEnums().subscribe(enums => {
@@ -156,33 +160,53 @@ export class CreateAdvertisementComponent implements OnInit {
     });
   }
 
-  create() {
+  onSelect(event) {
+    this.files.push(...event.addedFiles);
+  }
+
+  onRemove(event) {
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  async create() {
     if (this.createForm.invalid) {
       this.toastrService.error('Please populate all requried fields and selects!');
       return;
     }
+
+    this.toastrService.info('Creating...')
+    if (this.files.length > 0) {
+      for (const file_data of this.files) {
+        const data = new FormData();
+        data.append('file', file_data);
+        data.append('upload_preset', 'Carzone_cloudinary');
+        data.append('cloud_name', 'doyjshrjs');
+
+        let httpData = await this.uploadService.uploadImageToCloudinary(data)
+        this.imageURLs.push(httpData['secure_url']);
+      }
+    }
+
     var advertisementToSend = {
       title: this.createForm.value.title,
       description: this.createForm.value.description,
       phoneNumber: this.createForm.value.phoneNumber.toString(),
       location: this.createForm.value.location,
-      ImageURLs: [
-        'https://cdn4.focus.bg/fakti/photos/medium/fdb/novata-toyota-yaris-shte-se-pravi-vav-francia-1.jpg'
-      ],
+      imageURLs: this.imageURLs,
       car: {
-          brandId: this.createForm.value.brandId,
-          modelId: this.createForm.value.modelId,
-          bodyType: this.createForm.value.bodyType,
-          price: this.createForm.value.price,
-          fuelType: this.createForm.value.fuelType,
-          horsePower: this.createForm.value.horsePower,
-          transmission: this.createForm.value.transmission,
-          year: this.createForm.value.year,
-          mileage: this.createForm.value.mileage,
-          color: this.createForm.value.color,
-          condition: this.createForm.value.condition,
-          euroStandard: this.createForm.value.euroStandard,
-          doorsCount: this.createForm.value.doorsCount,
+        brandId: this.createForm.value.brandId,
+        modelId: this.createForm.value.modelId,
+        bodyType: this.createForm.value.bodyType,
+        price: this.createForm.value.price,
+        fuelType: this.createForm.value.fuelType,
+        horsePower: this.createForm.value.horsePower,
+        transmission: this.createForm.value.transmission,
+        year: this.createForm.value.year,
+        mileage: this.createForm.value.mileage,
+        color: this.createForm.value.color,
+        condition: this.createForm.value.condition,
+        euroStandard: this.createForm.value.euroStandard,
+        doorsCount: this.createForm.value.doorsCount,
       }
     }
 
@@ -195,6 +219,7 @@ export class CreateAdvertisementComponent implements OnInit {
       this.toastrService.success('Successfully created new advertisement!')
       this.router.navigate(['advertisements']);
     })
+
   }
 
   get title() {

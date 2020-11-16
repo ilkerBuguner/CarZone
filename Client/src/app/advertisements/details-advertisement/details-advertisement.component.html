@@ -10,6 +10,7 @@
         <div *ngIf="advertisement" class="inner">
             <div class="row ad-info">
                 <div class="col-md-6 col-xs-12 images">
+                    <img *ngIf="advertisement?.images.length === 0" class="no-image" src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605531253/CarZone/13738943-24586l_xyzdih.png" alt="">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div *ngFor="let image of advertisement?.images; let i = index"

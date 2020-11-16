@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListAdvertisementsComponent } from './list-advertisements/list-advertisements.component';
 import { DetailsAdvertisementComponent } from './details-advertisement/details-advertisement.component';
 import { CreateAdvertisementComponent } from './create-advertisement/create-advertisement.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 
@@ -18,7 +19,8 @@ import { CreateAdvertisementComponent } from './create-advertisement/create-adve
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxDropzoneModule
   ]
 })
 export class AdvertisementsModule { }
