@@ -11,6 +11,7 @@ import { IAdvertisement } from '../../models/IAdvertisement';
 export class AdvertisementService {
   private enumsPath = environment.apiUrl + 'enums';
   private advertisementPath = environment.apiUrl + 'advertisements';
+  private advertisementsOfUserPath = environment.apiUrl + 'advertisements/myAds';
   private advertisementsSearchPath = environment.apiUrl + 'advertisements/bySearch';
   private latestAdvertisementsPath = environment.apiUrl + 'advertisements/latest';
 
@@ -30,6 +31,10 @@ export class AdvertisementService {
 
   getAdvertisement(advertisementId : string) : Observable<IAdvertisement> {
     return this.http.get<IAdvertisement>(this.advertisementPath + '/' + advertisementId);
+  }
+
+  getAdvertisementsOfUser(): Observable<IAdvertisement[]>{
+    return this.http.get<IAdvertisement[]>(this.advertisementsOfUserPath);
   }
 
   create(data) {

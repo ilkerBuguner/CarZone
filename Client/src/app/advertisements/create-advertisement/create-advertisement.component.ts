@@ -224,7 +224,7 @@ export class CreateAdvertisementComponent implements OnInit {
   
       this.advertisementService.create(advertisementToSend).subscribe(advertisementId => {
         this.toastrService.success('Successfully created new advertisement!')
-        this.router.navigate(["advertisements", advertisementId])
+        this.router.navigate(["advertisement", advertisementId])
       })
     })
   }

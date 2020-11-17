@@ -8,14 +8,16 @@ import { ListBrandModelsComponent } from './admin/brandModels/list-brand-models/
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { AdminAuthGuardService } from './services/auth/admin-auth-guard.service';
 import { CreateAdvertisementComponent } from './advertisements/create-advertisement/create-advertisement.component';
+import { MyAdvertisementsComponent } from './advertisements/my-advertisements/my-advertisements.component';
 
 const routes: Routes = [
   { path: '', component: ListAdvertisementsComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'advertisements', component: ListAdvertisementsComponent},
-  { path: 'advertisements/:id', component: DetailsAdvertisementComponent},
-  { path: 'advertisement/create', component: CreateAdvertisementComponent, canActivate: [AuthGuardService]},
+  { path: 'advertisement/:id', component: DetailsAdvertisementComponent},
+  { path: 'myAds', component: MyAdvertisementsComponent, canActivate: [AuthGuardService]},
+  { path: 'advertisements/create', component: CreateAdvertisementComponent, canActivate: [AuthGuardService]},
   { path: 'admin/brandModels', component: ListBrandModelsComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
 ];
 

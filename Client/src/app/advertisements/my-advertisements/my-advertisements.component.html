@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 my-adds-header">
+            <h1>My Advertisements</h1>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="container col-md-6">
+            <div class="list-group">
+                <a *ngFor="let advertisement of advertisements" (click)='selectAd(advertisement.id)' class="list-group-item list-group-item-action">
+                    <div class="media ad-info">
+                        <img *ngIf="!advertisement.imageUrl" class="align-self-center"
+                            src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605531253/CarZone/13738943-24586l_xyzdih.png"
+                            alt="">
+                        <img *ngIf="advertisement.imageUrl" [src]="advertisement.imageUrl" class="align-self-center"
+                            alt="">
+                        <div class="media-body">
+                            <h5 class="mt-0">{{advertisement.title}}</h5>
+                            <p>{{advertisement.car.horsePower}} hp
+                                / {{advertisement.car.fuelType}}
+                                / {{advertisement.car.year}}
+                                / {{advertisement.car.transmission}}
+                                / {{advertisement.car.mileage}}km</p>
+                            <p>Created On: {{advertisement.createdOn}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="container col-md-6">
+            <app-my-advertisement-info [advertisement]="selectedAdvertisement"></app-my-advertisement-info>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

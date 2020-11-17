@@ -83,6 +83,6 @@ export class ListAdvertisementsComponent implements OnInit {
   }
 
   navigateToAdvertisement(id) {
-    this.router.navigate(["advertisements", id])
+    this.router.navigate(["advertisement", id])
   }
 }

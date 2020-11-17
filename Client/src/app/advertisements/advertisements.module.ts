@@ -6,6 +6,8 @@ import { ListAdvertisementsComponent } from './list-advertisements/list-advertis
 import { DetailsAdvertisementComponent } from './details-advertisement/details-advertisement.component';
 import { CreateAdvertisementComponent } from './create-advertisement/create-advertisement.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { MyAdvertisementsComponent } from './my-advertisements/my-advertisements.component';
+import { MyAdvertisementInfoComponent } from './my-advertisement-info/my-advertisement-info.component';
 
 
 
@@ -13,7 +15,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
   declarations: [
     ListAdvertisementsComponent,
     DetailsAdvertisementComponent,
-    CreateAdvertisementComponent
+    CreateAdvertisementComponent,
+    MyAdvertisementsComponent,
+    MyAdvertisementInfoComponent
   ],
   imports: [
     CommonModule,

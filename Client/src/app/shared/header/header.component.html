@@ -17,7 +17,7 @@
                                 <a (click)="navigateTo('advertisements')" class="nav-button">Cars</a>
                             </li>
                             <li *ngIf="isLoggedIn">
-                                <a (click)="navigateTo('advertisement/create')" class="nav-button">Create Ad</a>
+                                <a (click)="navigateTo('advertisements/create')" class="nav-button">Create Ad</a>
                             </li>
                             <li *ngIf="!isLoggedIn">
                                 <a (click)="navigateTo('login')" class="nav-button">Login</a>
@@ -32,6 +32,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a *ngIf="isAdmin" (click)="navigateTo('admin/brandModels')" class="dropdown-item">Admin</a>
+                                    <a *ngIf="isAdmin" (click)="navigateTo('myAds')" class="dropdown-item">My Ads</a>
                                     <div class="dropdown-divider"></div>
                                     <a (click)="logout()" class="dropdown-item">Logout</a>
                                 </div>
