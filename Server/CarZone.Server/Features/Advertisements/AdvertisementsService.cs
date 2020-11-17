@@ -417,6 +417,41 @@
             return result;
         }
 
+        public async Task<ICollection<AdvertisementListingServiceModel>> GetByUserIdAsync(string userId)
+        {
+            return await this.dbContext
+                .Advertisements
+                .Where(a => a.AuthorId == userId)
+                .Select(a => new AdvertisementListingServiceModel
+                {
+                    Id = a.Id,
+                    Title = a.Title,
+                    Views = a.Views,
+                    CreatedOn = a.CreatedOn.ToString(),
+                    Location = a.Author.Location != null ? a.Author.Location.ToString() : null,
+                    ImageUrl = a.Images.Select(x => x.Url).FirstOrDefault(),
+                    Author = new UserInfoServiceModel
+                    {
+                        Id = a.Author.Id,
+                        Username = a.Author.UserName,
+                        ProfilePictureUrl = a.Author.ProfilePictureUrl
+                    },
+                    Car = new CarInfoServiceModel
+                    {
+                        Price = a.Car.Price,
+                        Year = a.Car.Year,
+                        HorsePower = a.Car.HorsePower,
+                        BodyType = a.Car.BodyType.ToString(),
+                        FuelType = a.Car.FuelType.ToString(),
+                        Condition = a.Car.Condition.ToString(),
+                        Transmission = a.Car.Transmission.ToString(),
+                        Mileage = a.Car.Mileage
+                    }
+                })
+                .OrderByDescending(a => a.CreatedOn)
+                .ToListAsync();
+        }
+
         private async Task<Advertisement> GetByIdAsync(string id)
         {
             return await this.dbContext

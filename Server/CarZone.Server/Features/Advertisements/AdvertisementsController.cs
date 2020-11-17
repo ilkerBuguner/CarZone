@@ -82,6 +82,17 @@
         }
 
         [HttpGet]
+        [Route(Advertisement.MyAdvertisements)]
+        public async Task<ActionResult> MyAdvertisements()
+        {
+            var userId = this.User.GetId();
+
+            var advertisements = await this.advertisementsService.GetByUserIdAsync(userId);
+
+            return this.Ok(advertisements);
+        }
+
+        [HttpGet]
         [AllowAnonymous]
         [Route(Advertisement.GetDetails)]
         public async Task<ActionResult> Details(string advertisementId)

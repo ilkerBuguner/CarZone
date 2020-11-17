@@ -193,7 +193,7 @@ export class CreateAdvertisementComponent implements OnInit {
       for (const result of results) {
         this.imageURLs.push(result['secure_url']);
       }
-      
+
       var advertisementToSend = {
         title: this.createForm.value.title,
         description: this.createForm.value.description,
@@ -224,7 +224,7 @@ export class CreateAdvertisementComponent implements OnInit {
   
       this.advertisementService.create(advertisementToSend).subscribe(advertisementId => {
         this.toastrService.success('Successfully created new advertisement!')
-        this.router.navigate(['advertisements']);
+        this.router.navigate(["advertisements", advertisementId])
       })
     })
   }
