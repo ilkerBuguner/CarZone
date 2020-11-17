@@ -81,8 +81,4 @@ export class ListAdvertisementsComponent implements OnInit {
       this.isSearching = false;
     });
   }
-
-  navigateToAdvertisement(id) {
-    this.router.navigate(["advertisement", id])
-  }
 }

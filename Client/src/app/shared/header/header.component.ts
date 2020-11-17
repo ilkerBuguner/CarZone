@@ -28,9 +28,4 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
-
-  navigateTo(route : string) {
-    this.router.navigate([route]);
-  }
-
 }

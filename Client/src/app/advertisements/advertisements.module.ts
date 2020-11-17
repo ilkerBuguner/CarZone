@@ -8,6 +8,7 @@ import { CreateAdvertisementComponent } from './create-advertisement/create-adve
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MyAdvertisementsComponent } from './my-advertisements/my-advertisements.component';
 import { MyAdvertisementInfoComponent } from './my-advertisement-info/my-advertisement-info.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -21,6 +22,7 @@ import { MyAdvertisementInfoComponent } from './my-advertisement-info/my-adverti
   ],
   imports: [
     CommonModule,
+    RouterModule,
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
