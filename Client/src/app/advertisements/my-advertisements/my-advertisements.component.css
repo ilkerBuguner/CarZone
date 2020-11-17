@@ -16,3 +16,8 @@
 .ad {
     cursor: pointer;
 }
+
+.my-ads {
+    padding-right: 50px;
+    padding-left: 50px;
+}

@@ -1,8 +1,57 @@
 .ad-details {
     position: sticky;
-    top: 15px;
+    top: 20px;
 }
 
 .align-center {
     text-align: center;
+}
+
+.card-title {
+    margin-bottom: 20px;
+}
+
+.images,
+.images img {
+    border-radius: 15px;
+}
+
+.images img {
+    max-width: 250px;
+    min-height: 200px;
+    max-height: 250px;
+}
+
+.car-info {
+    padding-left: 140px;
+    padding-right: 80px;
+}
+
+.car-info ul {
+    text-align: left;
+}
+
+.car-info li{
+    list-style: none;
+    font-size: 18px;
+}
+
+.car-info-header {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.carousel-control-prev-icon {
+    position: relative;
+    right: -50px;
+}
+
+.car-part {
+    font-weight: bold;
+}
+
+@media all and (min-width: 1200px) {
+    .car-desc {
+        max-height: 200px;
+    }
 }

@@ -1,21 +1,72 @@
 <div *ngIf="selectedAdvertisement" class="card text-center ad-details">
-    <div class="card-header">
-        Featured
+  <div class="card-header">
+    Advertisement
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">{{selectedAdvertisement.title}}</h3>
+    <div class="row car-desc">
+      <div class="col-md-5 col-xs-12 images justify-content-center">
+        <img *ngIf="advertisement?.images.length === 0" class="no-image float-right"
+          src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605531253/CarZone/13738943-24586l_xyzdih.png" alt="">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div *ngFor="let image of advertisement?.images; let i = index" [ngClass]="{'active': i === 0}"
+              class="carousel-item">
+              <img class="d-block w-100 float-right" [src]="image.url" alt="First slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-7 text-left">
+        <h4>Price: <strong class="text-primary">${{advertisement?.car.price.toFixed(2)}}</strong></h4>
+        <p>{{selectedAdvertisement.description}}</p>
+      </div>
     </div>
-    <div class="card-body">
-        <h5 class="card-title">{{selectedAdvertisement.title}}</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+    <hr>
+    <h4 class="car-info-header">Car Information:</h4>
+    <div class="row car-info">
+      <div class="col-md-6">
+        <ul>
+          <li><span>Type: </span><span class="car-part">{{selectedAdvertisement.car.bodyType}}</span></li>
+          <li><span>Make: </span><span class="car-part">{{selectedAdvertisement.car.brand.name}}</span></li>
+          <li><span>Model: </span><span class="car-part">{{selectedAdvertisement.car.model.name}}</span></li>
+          <li><span>Year: </span><span class="car-part">{{selectedAdvertisement.car.year}}</span></li>
+          <li><span>Mileage: </span><span class="car-part">{{selectedAdvertisement.car.mileage}}km.</span></li>
+          <li><span>Fuel: </span><span class="car-part">{{selectedAdvertisement.car.fuelType}}</span></li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul>
+          <li><span>Condition: </span><span class="car-part">{{selectedAdvertisement.car.condition}}</span></li>
+          <li><span>Power: </span><span class="car-part">{{selectedAdvertisement.car.horsePower}}</span></li>
+          <li><span>Gearbox: </span><span class="car-part">{{selectedAdvertisement.car.transmission}}</span></li>
+          <li><span>Doors Count: </span><span class="car-part">{{selectedAdvertisement.car.doorsCount}}</span></li>
+          <li><span>Euro Standard: </span><span class="car-part">{{selectedAdvertisement.car.euroStandart}}</span></li>
+          <li><span>Color: </span><span class="car-part">{{selectedAdvertisement.car.color}}</span></li>
+        </ul>
+      </div>
     </div>
-    <div class="card-footer text-muted">
-        2 days ago
-    </div>
+    <a [routerLink]="['/advertisement', selectedAdvertisement.id]" class="btn btn-outline-primary">Go to advertisement</a>&nbsp;
+    <a href="#" class="btn btn-outline-info">Edit</a>&nbsp;
+    <a href="#" class="btn btn-outline-danger">Delete</a>
+  </div>
+  <div class="card-footer text-muted">
+    Added on {{selectedAdvertisement.createdOn}}
+  </div>
 </div>
 <div *ngIf="!selectedAdvertisement" class="card ad-details">
-    <div class="card-header align-center">
-      No selected advertisement
-    </div>
-    <div class="card-body">
-      <h5 class="card-title align-center">Please select an advertisement</h5>
-    </div>
+  <div class="card-header align-center">
+    No selected advertisement
   </div>
+  <div class="card-body">
+    <h5 class="card-title align-center">Please select an advertisement</h5>
+  </div>
+</div>
