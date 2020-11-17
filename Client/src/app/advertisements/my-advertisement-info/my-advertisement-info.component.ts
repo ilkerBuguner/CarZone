@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { IAdvertisement } from 'src/app/models/IAdvertisement';
 
 @Component({
@@ -6,11 +6,13 @@ import { IAdvertisement } from 'src/app/models/IAdvertisement';
   templateUrl: './my-advertisement-info.component.html',
   styleUrls: ['./my-advertisement-info.component.css']
 })
-export class MyAdvertisementInfoComponent implements OnInit {
+export class MyAdvertisementInfoComponent implements OnChanges {
   @Input() advertisement: IAdvertisement;
+  selectedAdvertisement: IAdvertisement;
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.selectedAdvertisement = changes.advertisement.currentValue;
   }
 
 }

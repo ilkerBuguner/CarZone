@@ -1,9 +1,9 @@
-<div class="card text-center ad-details">
+<div *ngIf="selectedAdvertisement" class="card text-center ad-details">
     <div class="card-header">
         Featured
     </div>
     <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
+        <h5 class="card-title">{{selectedAdvertisement.title}}</h5>
         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
@@ -11,3 +11,11 @@
         2 days ago
     </div>
 </div>
+<div *ngIf="!selectedAdvertisement" class="card ad-details">
+    <div class="card-header align-center">
+      No selected advertisement
+    </div>
+    <div class="card-body">
+      <h5 class="card-title align-center">Please select an advertisement</h5>
+    </div>
+  </div>
