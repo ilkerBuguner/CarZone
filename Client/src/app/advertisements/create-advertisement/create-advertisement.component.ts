@@ -223,6 +223,7 @@ export class CreateAdvertisementComponent implements OnInit {
       advertisementToSend.car['protections'] = this.selectedProtectionsIds ? this.selectedProtectionsIds : [];
   
       this.advertisementService.create(advertisementToSend).subscribe(advertisementId => {
+        this.toastrService.clear()
         this.toastrService.success('Successfully created new advertisement!')
         this.router.navigate(["advertisement", advertisementId])
       })
