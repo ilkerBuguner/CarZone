@@ -41,6 +41,10 @@ export class AdvertisementService {
     return this.http.post(this.advertisementPath, data, { responseType: 'text' });
   }
 
+  delete(advertisementId) {
+    return this.http.delete(this.advertisementPath + '/' + advertisementId);
+  }
+
   setDefaultValuesOfEmptyInputs(form: FormGroup) {
     if(form.value['minPrice'] == '' || form.value['minPrice'] == null) {
       form.patchValue({minPrice: 0});

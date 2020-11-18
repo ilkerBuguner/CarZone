@@ -54,9 +54,12 @@
         </ul>
       </div>
     </div>
-    <a [routerLink]="['/advertisement', selectedAdvertisement.id]" class="btn btn-outline-primary">Go to advertisement</a>&nbsp;
+    <a [routerLink]="['/advertisement', selectedAdvertisement.id]" class="btn btn-outline-primary">Go to
+      advertisement</a>&nbsp;
     <a href="#" class="btn btn-outline-info">Edit</a>&nbsp;
-    <a href="#" class="btn btn-outline-danger">Delete</a>
+    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
+      Delete
+    </button>
   </div>
   <div class="card-footer text-muted">
     Added on {{selectedAdvertisement.createdOn}}
@@ -68,5 +71,26 @@
   </div>
   <div class="card-body">
     <h5 class="card-title align-center">Please select an advertisement</h5>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Deletion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to permanently remove this advertisement?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">Close</button>
+        <button (click)="deleteAdvertisement()" type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
   </div>
 </div>
