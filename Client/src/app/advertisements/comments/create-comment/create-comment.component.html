@@ -1,14 +1,20 @@
 <div class="card my-4 comment-form">
     <h5 class="card-header">Leave a Comment:</h5>
     <div class="card-body comment-form-body">
-        <div>
+        <form [formGroup]="createCommentForm" (ngSubmit)="create()">
             <div class="text-danger"></div>
             <div class="form-group form-input">
-                <textarea id="Content" class="form-control" rows="3"></textarea>
+                <textarea id="Content" class="form-control" rows="3" formControlName="content"></textarea>
+            </div>
+            <div *ngIf="content.touched && content.errors?.minlength" class="alert alert-danger">
+                Comment must contain at least 2 characters!
+            </div>
+            <div *ngIf="content.touched && content.errors?.maxlength" class="alert alert-danger">
+                Comment can't be longer than 300 characters!
             </div>
             <div class="form-group form-input">
                 <input type="submit" value="Comment" class="btn btn-primary" />
             </div>
-        </div>
+        </form>
     </div>
 </div>

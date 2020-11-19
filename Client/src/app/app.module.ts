@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CarService } from './services/car/car.service';
 import { UploadService } from './services/upload/upload.service';
+import { CommentService } from './services/comment/comment.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { UploadService } from './services/upload/upload.service';
     AdvertisementService,
     BrandModelService,
     CarService,
+    CommentService,
     UploadService,
     AuthGuardService,
     AdminAuthGuardService,
