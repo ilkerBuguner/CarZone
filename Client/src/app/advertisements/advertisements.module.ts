@@ -9,6 +9,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MyAdvertisementsComponent } from './my-advertisements/my-advertisements.component';
 import { MyAdvertisementInfoComponent } from './my-advertisement-info/my-advertisement-info.component';
 import { RouterModule } from '@angular/router';
+import { CreateCommentComponent } from './comments/create-comment/create-comment.component';
 
 
 
@@ -18,7 +19,8 @@ import { RouterModule } from '@angular/router';
     DetailsAdvertisementComponent,
     CreateAdvertisementComponent,
     MyAdvertisementsComponent,
-    MyAdvertisementInfoComponent
+    MyAdvertisementInfoComponent,
+    CreateCommentComponent
   ],
   imports: [
     CommonModule,

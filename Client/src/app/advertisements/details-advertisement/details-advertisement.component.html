@@ -10,7 +10,9 @@
         <div *ngIf="advertisement" class="inner">
             <div class="row ad-info">
                 <div class="col-md-6 col-xs-12 images">
-                    <img *ngIf="advertisement?.images.length === 0" class="no-image" src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605531253/CarZone/13738943-24586l_xyzdih.png" alt="">
+                    <img *ngIf="advertisement?.images.length === 0" class="no-image"
+                        src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605531253/CarZone/13738943-24586l_xyzdih.png"
+                        alt="">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div *ngFor="let image of advertisement?.images; let i = index"
@@ -30,8 +32,8 @@
                         </a>
                         <ol class="carousel-indicators car-image-indicators">
                             <li *ngFor="let image of advertisement?.images; let i = index"
-                                [ngClass]="{'active': i === 0}" 
-                                data-target="#carouselExampleIndicators" [attr.data-slide-to]="i">
+                                [ngClass]="{'active': i === 0}" data-target="#carouselExampleIndicators"
+                                [attr.data-slide-to]="i">
                                 <img class="d-block w-100" [src]="image.url" alt="First slide">
                             </li>
                         </ol>
@@ -207,30 +209,39 @@
                     </div>
                 </div>
                 <hr>
-                <div class="row">
-                    <div>
-                        <h1 class="align-center">Comments:</h1>
-                        <div class="media">
-                            <img class="mr-3"
-                                src="https://image.shutterstock.com/image-vector/male-silhouette-avatar-profile-picture-260nw-199246382.jpg"
-                                alt="Generic placeholder image">
-                            <div class="media-body">
-                                <h5 class="mt-0">Media heading</h5>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                <div class="container-sm comments-section">
 
-                                <div class="media mt-3">
-                                    <a class="pr-3" href="#">
-                                        <img src="https://image.shutterstock.com/image-vector/male-silhouette-avatar-profile-picture-260nw-199246382.jpg"
-                                            alt="Generic placeholder image">
-                                    </a>
-                                    <div class="media-body">
-                                        <h5 class="mt-0">Media heading</h5>
-                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                        sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra
-                                        turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue
-                                        felis in faucibus.
+
+                    <h1 class="align-center">Comments:</h1>
+                    <app-create-comment></app-create-comment>
+                    <div class="row">
+                        <div>
+                            <div class="media">
+                                <img class="mr-3"
+                                    src="https://image.shutterstock.com/image-vector/male-silhouette-avatar-profile-picture-260nw-199246382.jpg"
+                                    alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <h5 class="mt-0">Media heading</h5>
+                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+                                    sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+                                    Fusce
+                                    condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in
+                                    faucibus.
+
+                                    <div class="media mt-3">
+                                        <a class="pr-3" href="#">
+                                            <img src="https://image.shutterstock.com/image-vector/male-silhouette-avatar-profile-picture-260nw-199246382.jpg"
+                                                alt="Generic placeholder image">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="mt-0">Media heading</h5>
+                                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+                                            ante
+                                            sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra
+                                            turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+                                            congue
+                                            felis in faucibus.
+                                        </div>
                                     </div>
                                 </div>
                             </div>

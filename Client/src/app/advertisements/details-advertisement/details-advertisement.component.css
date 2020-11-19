@@ -5,6 +5,11 @@
 	margin: 0 auto;
 	padding: 0 2.5em;
 }
+
+.comments-section {
+    padding: 0px 40px;
+}
+
      
 #main {
     margin-top: 50px;
