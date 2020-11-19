@@ -5,3 +5,12 @@
 .comment-form-body {
     padding-bottom: 10px;
 }
+
+.not-loggedIn-alert {
+    margin-top: 15px;
+}
+
+.not-loggedIn-alert h5 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

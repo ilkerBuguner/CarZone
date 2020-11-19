@@ -10,6 +10,7 @@ import { MyAdvertisementsComponent } from './my-advertisements/my-advertisements
 import { MyAdvertisementInfoComponent } from './my-advertisement-info/my-advertisement-info.component';
 import { RouterModule } from '@angular/router';
 import { CreateCommentComponent } from './comments/create-comment/create-comment.component';
+import { ListCommentsComponent } from './comments/list-comments/list-comments.component';
 
 
 
@@ -20,7 +21,8 @@ import { CreateCommentComponent } from './comments/create-comment/create-comment
     CreateAdvertisementComponent,
     MyAdvertisementsComponent,
     MyAdvertisementInfoComponent,
-    CreateCommentComponent
+    CreateCommentComponent,
+    ListCommentsComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,25 @@
+<h3 *ngIf="comments" class="comments-count">{{comments.length}} Comments</h3>
+<div *ngFor="let comment of comments" class="media">
+    <img *ngIf="!comment.author.profilePictureUrl" 
+        class="align-self-center mr-3" 
+        src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605824294/CarZone/profile-3-512_oxlumq.png" 
+        alt="Generic placeholder image">
+        <img *ngIf="comment.author.profilePictureUrl" 
+        class="align-self-center mr-3" 
+        [src]="comment.author.profilePictureUrl" 
+        alt="Generic placeholder image">
+    <div class="media-body comment-body">
+      <h5 class="mt-0">{{comment.author.username}}</h5>
+      <p>{{comment.content}}</p>
+  
+      <!-- <div class="media mt-3">
+        <a class="pr-3" href="#">
+          <img src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605824294/CarZone/profile-3-512_oxlumq.png" alt="Generic placeholder image">
+        </a>
+        <div class="media-body">
+          <h5 class="mt-0">Media heading</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div> -->
+    </div>
+  </div>

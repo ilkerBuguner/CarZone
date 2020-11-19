@@ -1,0 +1,21 @@
+.media img {
+	min-width: 85px;
+	max-width: 85px;
+}
+
+.comments-count {
+	margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.comment-body {
+	max-width: 850px;
+}
+
+.single-comment {
+	margin: 15px 0px;
+}
+
+.comment-content {
+	margin-bottom: 20px;
+}

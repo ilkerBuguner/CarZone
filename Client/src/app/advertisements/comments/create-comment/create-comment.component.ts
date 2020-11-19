@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { CommentService } from 'src/app/services/comment/comment.service';
 
 @Component({
@@ -10,18 +11,25 @@ import { CommentService } from 'src/app/services/comment/comment.service';
 })
 export class CreateCommentComponent implements OnInit {
   createCommentForm: FormGroup;
+  isLoggedIn: boolean;
   @Input() advertisementId: string;
 
   constructor(
     private fb: FormBuilder,
     private commentService: CommentService,
-    private toastrService: ToastrService) {
+    private toastrService: ToastrService,
+    private authService: AuthService) {
       this.createCommentForm = this.fb.group({
         'content': ['', [Validators.required, Validators.minLength(2), Validators.maxLength(300)]]
     });
   }
 
   ngOnInit(): void {
+    if (this.authService.isAuthenticated()) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
   }
 
   create() {
