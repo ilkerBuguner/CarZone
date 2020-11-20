@@ -47,6 +47,16 @@ export class AuthService {
     return localStorage.getItem('isAdmin');
   }
 
+  getUserId(): string {
+    return localStorage.getItem('userId');
+  }
+
+  setUserInfo(userId: string, username: string) {
+    localStorage.setItem('userId', userId);
+    localStorage.setItem('username', username);
+    return;
+  }
+
   isAuthenticated(): boolean {
     if (this.getToken()) {
       return true;

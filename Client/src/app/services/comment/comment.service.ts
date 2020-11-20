@@ -16,6 +16,10 @@ export class CommentService {
     return this.http.post(this.commentsPath, data, { responseType: 'text' });
   }
 
+  delete(commentId) {
+    return this.http.delete(this.commentsPath + '/' + commentId);
+  }
+
   getAllByAdvertisementId(advertisementId): Observable<IComment[]> {
     return this.http.get<IComment[]>(this.commentsPath + '/' + advertisementId);
   }

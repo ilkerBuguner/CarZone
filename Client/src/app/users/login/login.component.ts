@@ -31,8 +31,12 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(this.loginForm.value).subscribe(data => {
+      console.log(data);
+      var userId = data.user.id;
+      var username = data.user.userName;
       this.authService.saveToken(data['token']);
       this.authService.saveIsAdmin(data['isAdmin']);
+      this.authService.setUserInfo(userId, username);
       this.toastrService.success("Logged in successfully!");
       this.router.navigate(["advertisements"]);
     })

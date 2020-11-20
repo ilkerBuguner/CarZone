@@ -1,18 +1,30 @@
-<h3 *ngIf="comments" class="comments-count">{{comments.length}} Comments</h3>
-<div *ngFor="let comment of comments" class="media">
-    <img *ngIf="!comment.author.profilePictureUrl" 
-        class="align-self-center mr-3" 
-        src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605824294/CarZone/profile-3-512_oxlumq.png" 
-        alt="Generic placeholder image">
-        <img *ngIf="comment.author.profilePictureUrl" 
-        class="align-self-center mr-3" 
-        [src]="comment.author.profilePictureUrl" 
-        alt="Generic placeholder image">
-    <div class="media-body comment-body">
-      <h5 class="mt-0">{{comment.author.username}}</h5>
-      <p>{{comment.content}}</p>
-  
-      <!-- <div class="media mt-3">
+<div class="d-flex w-100 justify-content-between">
+  <h3 *ngIf="comments" class="count">{{comments.length}} Comments</h3>
+  <h3 *ngIf="comments" class="count">Replies: 23</h3>
+</div>
+<div *ngFor="let comment of comments" class="media single-comment">
+  <img *ngIf="!comment.author.profilePictureUrl" class="align-self-center mr-3"
+    src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605824294/CarZone/profile-3-512_oxlumq.png"
+    alt="Generic placeholder image">
+  <img *ngIf="comment.author.profilePictureUrl" class="align-self-center mr-3" [src]="comment.author.profilePictureUrl"
+    alt="Generic placeholder image">
+  <div class="media-body comment-body">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mt-0"><a href="#">{{comment.author.username}}</a></h5>
+      <small>13.01.2020</small>
+    </div>
+    <h6>{{comment.content}}</h6>
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <button *ngIf="isLoggedIn" class="btn btn-primary btn-sm">Reply</button>
+        <button *ngIf="isAdmin || currentUserId == comment.author.id" (click)="selectComment(comment.id)" class="btn btn-primary btn-sm">Edit</button>
+        <a *ngIf="isAdmin || currentUserId == comment.author.id" class="btn btn-danger btn-sm"
+         (click)="selectComment(comment.id)" type="button" data-toggle="modal" data-target="#exampleModal">Delete</a>
+      </div>
+      <a class="btn bg-info text-white btn-sm">13 Replies</a>
+    </div>
+
+    <!-- <div class="media mt-3">
         <a class="pr-3" href="#">
           <img src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605824294/CarZone/profile-3-512_oxlumq.png" alt="Generic placeholder image">
         </a>
@@ -21,5 +33,26 @@
           Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
         </div>
       </div> -->
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Deletion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to permanently remove this comment?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="delete(selectedCommentId)">Delete</button>
+      </div>
     </div>
   </div>
+</div>

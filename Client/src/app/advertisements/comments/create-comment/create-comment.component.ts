@@ -46,6 +46,7 @@ export class CreateCommentComponent implements OnInit {
 
     this.commentService.create(commentToCreate).subscribe(res => {
       this.toastrService.success('Successfully posted comment!');
+      this.createCommentForm.reset();
     })
   }
 

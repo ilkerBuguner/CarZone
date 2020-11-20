@@ -3,7 +3,7 @@
 	max-width: 85px;
 }
 
-.comments-count {
+.count {
 	margin-top: 15px;
     margin-bottom: 30px;
 }
@@ -14,6 +14,12 @@
 
 .single-comment {
 	margin: 15px 0px;
+}
+
+.btn {
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: 5px;
 }
 
 .comment-content {
