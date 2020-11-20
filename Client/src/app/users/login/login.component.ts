@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(this.loginForm.value).subscribe(data => {
-      console.log(data);
       var userId = data.user.id;
       var username = data.user.userName;
       this.authService.saveToken(data['token']);
