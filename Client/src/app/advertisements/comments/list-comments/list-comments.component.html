@@ -1,6 +1,5 @@
 <div class="d-flex w-100 justify-content-between">
   <h3 *ngIf="comments" class="count">{{comments.length}} Comments</h3>
-  <h3 *ngIf="comments" class="count">Replies: 23</h3>
 </div>
 <div *ngFor="let comment of comments" class="media single-comment">
   <img *ngIf="!comment.author.profilePictureUrl" class="align-self-top mr-3"
@@ -9,7 +8,7 @@
   <img *ngIf="comment.author.profilePictureUrl" class="align-self-top mr-3" [src]="comment.author.profilePictureUrl"
     alt="Generic placeholder image">
   <div class="media-body comment-body">
-    <div *ngIf="!isEditFormEnabled">
+    <div *ngIf="selectedCommentId != comment.id">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mt-0"><a href="#">{{comment.author.username}}</a></h5>
         <small>13.01.2020</small>
@@ -18,17 +17,17 @@
       <div class="d-flex w-100 justify-content-between">
         <div>
           <button *ngIf="isLoggedIn" class="btn btn-primary btn-sm">Reply</button>
-          <button *ngIf="isAdmin || currentUserId == comment.author.id" (click)="selectComment(comment.id)" (click)="toggleIsEditFormEnabled()"
+          <button *ngIf="isAdmin || currentUserId == comment.author.id" (click)="selectComment(comment.id)"
             class="btn btn-primary btn-sm">Edit</button>
           <a *ngIf="isAdmin || currentUserId == comment.author.id" class="btn btn-danger btn-sm"
             (click)="selectComment(comment.id)" type="button" data-toggle="modal" data-target="#exampleModal">Delete</a>
         </div>
-        <a class="btn bg-info text-white btn-sm">13 Replies</a>
+        <a class="btn bg-info text-white btn-sm">Show Replies</a>
       </div>
     </div>
 
-    <app-edit-comment *ngIf="isEditFormEnabled" [commentId]="selectedCommentId"></app-edit-comment>
-    <a *ngIf="isEditFormEnabled" (click)="toggleIsEditFormEnabled()" class="btn btn-light btn-sm hide-edit-form-button">Hide</a>
+    <app-edit-comment *ngIf="selectedCommentId == comment.id" (cancelEditForm)="cancelEditForm($event)"  [commentId]="selectedCommentId" [advertisementId]="advertisementId"></app-edit-comment>
+    <a *ngIf="selectedCommentId == comment.id" (click)="cancelEditForm()" class="btn btn-light btn-sm hide-edit-form-button">Hide</a>
 
 
     <!-- <div class="media mt-3">

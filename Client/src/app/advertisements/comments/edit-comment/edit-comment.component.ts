@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IComment } from 'src/app/models/IComment';
@@ -11,6 +11,9 @@ import { CommentService } from 'src/app/services/comment/comment.service';
 })
 export class EditCommentComponent implements OnInit {
   @Input() commentId: string;
+  @Input() advertisementId: string;
+  @Output() cancelEditForm = new EventEmitter<boolean>();
+  
   comment: IComment;
   editCommentForm: FormGroup;
 
@@ -35,7 +38,7 @@ export class EditCommentComponent implements OnInit {
   edit() {
     this.toastrService.clear();
     if (this.editCommentForm.invalid) {
-      this.toastrService.error('Please populate the comment content field!')
+      this.toastrService.error('Please populate correctly the comment content field!')
       return;
     }
     
@@ -45,13 +48,13 @@ export class EditCommentComponent implements OnInit {
 
     this.commentService.edit(this.commentId, commentToEdit).subscribe(res => {
       this.toastrService.success('Successfully edited comment!');
-      // this.commentService.getAllByAdvertisementId(this.advertisementId).subscribe(data => {
-      //   this.commentService.loadComments(data);
-      // })
+      this.commentService.getAllByAdvertisementId(this.advertisementId).subscribe(data => {
+        this.cancelEditForm.emit(true);
+        this.commentService.loadComments(data);
+      })
     })
   }
   
-
   get content() {
     return this.editCommentForm.get('content');
   }

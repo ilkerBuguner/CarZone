@@ -67,8 +67,8 @@ export class ListBrandModelsComponent implements OnInit {
     this.brandModelService.details(modelId).subscribe(res => {
       this.currentModel = res;
       this.editBrandModelForm = this.fb.group({
-        'name': [this.currentModel.name],
-        'brandId': [this.currentModel.brandId],
+        'name': [this.currentModel.name, [Validators.required, Validators.maxLength(30)]],
+        'brandId': [this.currentModel.brandId, [Validators.required]],
       })
     })
   }

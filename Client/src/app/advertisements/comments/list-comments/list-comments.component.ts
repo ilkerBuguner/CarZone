@@ -13,7 +13,6 @@ export class ListCommentsComponent implements OnInit {
   @Input() advertisementId: string;
   currentUserId: string;
   selectedCommentId: string;
-  isEditFormEnabled: boolean;
 
   get isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
@@ -41,10 +40,6 @@ export class ListCommentsComponent implements OnInit {
     })
   }
 
-  selectComment(commentId) {
-    this.selectedCommentId = commentId;
-  }
-
   delete(commentId) {
     this.commentService.delete(commentId).subscribe(res => {
       this.toastrService.success('Successfully deleted comment!');
@@ -54,12 +49,12 @@ export class ListCommentsComponent implements OnInit {
     })
   }
 
-  toggleIsEditFormEnabled() {
-    if (this.isEditFormEnabled) {
-      this.isEditFormEnabled = false
-    } else {
-      this.isEditFormEnabled = true;
-    }
+  selectComment(commentId) {
+    this.selectedCommentId = commentId;
+  }
+
+  cancelEditForm() {
+    this.selectedCommentId = undefined;
   }
 
 }

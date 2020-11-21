@@ -27,15 +27,18 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginForm.invalid) {
+      this.toastrService.error('Please populate username and password field!')
       return;
     }
-
+    this.toastrService.info('Loading...')
+    
     this.authService.login(this.loginForm.value).subscribe(data => {
       var userId = data.user.id;
       var username = data.user.userName;
       this.authService.saveToken(data['token']);
       this.authService.saveIsAdmin(data['isAdmin']);
       this.authService.setUserInfo(userId, username);
+      this.toastrService.clear();
       this.toastrService.success("Logged in successfully!");
       this.router.navigate(["advertisements"]);
     })
