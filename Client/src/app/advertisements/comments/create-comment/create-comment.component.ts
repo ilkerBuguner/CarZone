@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CommentService } from 'src/app/services/comment/comment.service';
+import { mergeMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-comment',
@@ -38,15 +39,34 @@ export class CreateCommentComponent implements OnInit {
       this.toastrService.error('Please populate the comment content field!')
       return;
     }
-
     const commentToCreate = {
       content: this.createCommentForm.value['content'],
       advertisementId: this.advertisementId
     };
 
+    // this.commentService.create(commentToCreate).subscribe(res => {
+    //   this.toastrService.success('Successfully posted comment!');
+    //   this.createCommentForm.reset();
+    // })
+
+    // this.commentService.create(commentToCreate).pipe(
+    //   map((res) => {
+    //   this.toastrService.success('Successfully posted comment!');
+    //   this.createCommentForm.reset();
+    //   return res;
+    // }), mergeMap((data) => {
+    //     this.commentService.getAllByAdvertisementId(this.advertisementId).subscribe(data => {
+    //     this.commentService.loadComments(data);
+    //   })
+    //   return data;
+    // }))
+
     this.commentService.create(commentToCreate).subscribe(res => {
       this.toastrService.success('Successfully posted comment!');
       this.createCommentForm.reset();
+      this.commentService.getAllByAdvertisementId(this.advertisementId).subscribe(data => {
+        this.commentService.loadComments(data);
+      })
     })
   }
 

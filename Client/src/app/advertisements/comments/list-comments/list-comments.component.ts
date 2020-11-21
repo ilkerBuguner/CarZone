@@ -11,11 +11,19 @@ import { CommentService } from 'src/app/services/comment/comment.service';
 })
 export class ListCommentsComponent implements OnInit {
   @Input() advertisementId: string;
-  comments: IComment[];
-  isAdmin: boolean;
-  isLoggedIn: boolean;
   currentUserId: string;
   selectedCommentId: string;
+  isEditFormEnabled: boolean;
+
+  get isLoggedIn(): boolean {
+    return this.authService.isAuthenticated();
+  }
+  get isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+  get comments(): IComment[] {
+    return this.commentService.avaibleComments;
+  }
 
   constructor(
     private commentService: CommentService,
@@ -23,24 +31,13 @@ export class ListCommentsComponent implements OnInit {
     private toastrService: ToastrService) { }
 
   ngOnInit(): void {
-    if (this.authService.isAdmin()) {
-      this.isAdmin = true;
-    } else {
-      this.isAdmin = false;
-    }
-    if (this.authService.isAuthenticated()) {
-      this.isLoggedIn = true;
-    } else {
-      this.isLoggedIn = false;
-    }
     this.currentUserId = this.authService.getUserId();
     this.getAllComments();
   }
 
   getAllComments() {
     this.commentService.getAllByAdvertisementId(this.advertisementId).subscribe(data => {
-      this.comments = data;
-      console.log(this.comments);
+      this.commentService.loadComments(data);
     })
   }
 
@@ -55,6 +52,14 @@ export class ListCommentsComponent implements OnInit {
       closeButton.click();
       this.getAllComments();
     })
+  }
+
+  toggleIsEditFormEnabled() {
+    if (this.isEditFormEnabled) {
+      this.isEditFormEnabled = false
+    } else {
+      this.isEditFormEnabled = true;
+    }
   }
 
 }

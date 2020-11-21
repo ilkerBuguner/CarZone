@@ -16,5 +16,6 @@
 
         Task<ICollection<CommentDetailsServiceModel>> GetAllByAdvertisementIdAsync(string advertisementId);
 
+        Task<ResultModel<CommentDetailsServiceModel>> GetDetailsAsync(string commentId);
     }
 }

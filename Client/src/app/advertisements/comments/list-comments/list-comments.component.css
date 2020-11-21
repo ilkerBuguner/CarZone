@@ -25,3 +25,7 @@
 .comment-content {
 	margin-bottom: 20px;
 }
+
+.hide-edit-form-button {
+	margin-left: 0;
+}

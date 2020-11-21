@@ -70,6 +70,7 @@
             public const string Update = Root + "/{commentId}";
             public const string Delete = Root + "/{commentId}";
             public const string GetAllForAdvertisement = Root + "/{advertisementId}";
+            public const string GetDetails = Root + "/byId/{commentId}";
         }
 
         public static class Reply
