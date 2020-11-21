@@ -39,35 +39,27 @@ export class CreateCommentComponent implements OnInit {
       this.toastrService.error('Please populate the comment content field!')
       return;
     }
+    
     const commentToCreate = {
       content: this.createCommentForm.value['content'],
       advertisementId: this.advertisementId
     };
 
+    this.commentService.create(commentToCreate).pipe(
+      map(res => {
+        this.toastrService.success('Successfully posted comment!');
+        this.createCommentForm.reset();
+      }), mergeMap(data => this.commentService.getAllByAdvertisementId(this.advertisementId))).subscribe(comments => {
+        this.commentService.loadComments(comments);
+      })
+
     // this.commentService.create(commentToCreate).subscribe(res => {
     //   this.toastrService.success('Successfully posted comment!');
     //   this.createCommentForm.reset();
-    // })
-
-    // this.commentService.create(commentToCreate).pipe(
-    //   map((res) => {
-    //   this.toastrService.success('Successfully posted comment!');
-    //   this.createCommentForm.reset();
-    //   return res;
-    // }), mergeMap((data) => {
-    //     this.commentService.getAllByAdvertisementId(this.advertisementId).subscribe(data => {
+    //   this.commentService.getAllByAdvertisementId(this.advertisementId).subscribe(data => {
     //     this.commentService.loadComments(data);
     //   })
-    //   return data;
-    // }))
-
-    this.commentService.create(commentToCreate).subscribe(res => {
-      this.toastrService.success('Successfully posted comment!');
-      this.createCommentForm.reset();
-      this.commentService.getAllByAdvertisementId(this.advertisementId).subscribe(data => {
-        this.commentService.loadComments(data);
-      })
-    })
+    // })
   }
 
   get content() {

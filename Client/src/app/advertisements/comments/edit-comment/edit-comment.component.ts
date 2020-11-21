@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IComment } from 'src/app/models/IComment';
 import { CommentService } from 'src/app/services/comment/comment.service';
+import { mergeMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-comment',
@@ -46,13 +47,21 @@ export class EditCommentComponent implements OnInit {
       content: this.editCommentForm.value['content']
     };
 
-    this.commentService.edit(this.commentId, commentToEdit).subscribe(res => {
-      this.toastrService.success('Successfully edited comment!');
-      this.commentService.getAllByAdvertisementId(this.advertisementId).subscribe(data => {
+    this.commentService.edit(this.commentId, commentToEdit).pipe(
+      map(res => {
+        this.toastrService.success('Successfully edited comment!');
+      }), mergeMap(data => this.commentService.getAllByAdvertisementId(this.advertisementId))).subscribe(comments => {
         this.cancelEditForm.emit(true);
-        this.commentService.loadComments(data);
+        this.commentService.loadComments(comments);
       })
-    })
+
+    // this.commentService.edit(this.commentId, commentToEdit).subscribe(res => {
+    //   this.toastrService.success('Successfully edited comment!');
+    //   this.commentService.getAllByAdvertisementId(this.advertisementId).subscribe(data => {
+    //     this.cancelEditForm.emit(true);
+    //     this.commentService.loadComments(data);
+    //   })
+    // })
   }
   
   get content() {
