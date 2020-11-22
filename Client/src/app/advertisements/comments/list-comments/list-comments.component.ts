@@ -88,6 +88,10 @@ export class ListCommentsComponent implements OnInit {
     this.isReplying = false;
   }
 
+  showReplies() {
+    this.isRepliesShown = true;
+  }
+
   selectCommentAndToggleRepliesShowing(commentId) {
     if (this.isRepliesShown) {
       this.isRepliesShown = false

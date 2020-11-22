@@ -15,6 +15,7 @@ export class CreateReplyComponent implements OnInit {
   @Input() advertisementId: string;
   @Input() rootCommentId: string;
   @Output() stopReplying = new EventEmitter<boolean>();
+  @Output() showReplies = new EventEmitter<boolean>();
 
   constructor(
     private fb: FormBuilder,
@@ -47,6 +48,7 @@ export class CreateReplyComponent implements OnInit {
         this.createReplyForm.reset();
       }), mergeMap(data => this.replyService.getAllByCommentId(this.rootCommentId))).subscribe(replies => {
         this.stopReplying.emit(true);
+        this.showReplies.emit(true);
         this.replyService.loadReplies(replies);
       })
   }

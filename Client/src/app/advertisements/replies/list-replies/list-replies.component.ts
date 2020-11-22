@@ -12,6 +12,7 @@ import { ReplyService } from 'src/app/services/reply/reply.service';
 export class ListRepliesComponent implements OnInit {
   @Input() rootCommentId: string;
   currentUserId: string;
+  selectedReplyId: string;
 
   get isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
@@ -40,4 +41,20 @@ export class ListRepliesComponent implements OnInit {
     })
   }
 
+  selectReply(replyId: string) {
+    this.selectedReplyId = replyId;
+  }
+
+  unselectReply() {
+    this.selectedReplyId = undefined;
+  }
+
+  delete(selectedReplyId) {
+    this.replyService.delete(selectedReplyId).subscribe(res => {
+      this.toastrService.success('Successfully deleted reply!');
+      const closeButton = document.querySelector(".close-button") as HTMLElement;
+      closeButton.click();
+      this.getAllReplies();
+    })
+  }
 }
