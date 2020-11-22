@@ -9,6 +9,7 @@ import { AuthGuardService } from './services/auth/auth-guard.service';
 import { AdminAuthGuardService } from './services/auth/admin-auth-guard.service';
 import { CreateAdvertisementComponent } from './advertisements/create-advertisement/create-advertisement.component';
 import { MyAdvertisementsComponent } from './advertisements/my-advertisements/my-advertisements.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: ListAdvertisementsComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'myAds', component: MyAdvertisementsComponent, canActivate: [AuthGuardService]},
   { path: 'advertisements/create', component: CreateAdvertisementComponent, canActivate: [AuthGuardService]},
   { path: 'admin/brandModels', component: ListBrandModelsComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},
+  { path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

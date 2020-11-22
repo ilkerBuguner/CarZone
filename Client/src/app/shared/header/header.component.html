@@ -10,9 +10,9 @@
                     </a>
                     <nav>
                         <ul class="nav-ul">
-                            <li>
+                            <!-- <li>
                                 <a routerLink='/advertisements' class="nav-button">Home</a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a routerLink='/advertisements' class="nav-button">Cars</a>
                             </li>
@@ -28,7 +28,7 @@
                             <li *ngIf="isLoggedIn" class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Profile
+                                    Hello, {{username}}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a routerLink='/myAds' class="dropdown-item">My Ads</a>

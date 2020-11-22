@@ -14,7 +14,13 @@ export class HeaderComponent implements OnInit {
   get isAdmin(): boolean {
     return this.authService.isAdmin();
   }
-  constructor(private authService: AuthService, private router: Router) { }
+  get username(): string {
+    return this.authService.getUsername();
+  }
+
+  constructor(
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
