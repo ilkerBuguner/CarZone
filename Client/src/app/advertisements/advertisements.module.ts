@@ -14,6 +14,7 @@ import { ListCommentsComponent } from './comments/list-comments/list-comments.co
 import { EditCommentComponent } from './comments/edit-comment/edit-comment.component';
 import { CreateReplyComponent } from './replies/create-reply/create-reply.component';
 import { ListRepliesComponent } from './replies/list-replies/list-replies.component';
+import { EditReplyComponent } from './replies/edit-reply/edit-reply.component';
 
 
 
@@ -28,7 +29,8 @@ import { ListRepliesComponent } from './replies/list-replies/list-replies.compon
     ListCommentsComponent,
     EditCommentComponent,
     CreateReplyComponent,
-    ListRepliesComponent
+    ListRepliesComponent,
+    EditReplyComponent
   ],
   imports: [
     CommonModule,

@@ -13,6 +13,7 @@ export class ListRepliesComponent implements OnInit {
   @Input() rootCommentId: string;
   currentUserId: string;
   selectedReplyId: string;
+  isEditing: boolean;
 
   get isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
@@ -56,5 +57,15 @@ export class ListRepliesComponent implements OnInit {
       closeButton.click();
       this.getAllReplies();
     })
+  }
+
+  activateEditingAndSelectReply(replyId) {
+    this.selectedReplyId = replyId;
+    this.isEditing = true;
+  }
+
+  deactivateEditingAndUnselectReply() {
+    this.selectedReplyId = undefined;
+    this.isEditing = false;
   }
 }

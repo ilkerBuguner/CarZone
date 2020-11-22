@@ -54,14 +54,10 @@ export class EditCommentComponent implements OnInit {
         this.cancelEditForm.emit(true);
         this.commentService.loadComments(comments);
       })
+  }
 
-    // this.commentService.edit(this.commentId, commentToEdit).subscribe(res => {
-    //   this.toastrService.success('Successfully edited comment!');
-    //   this.commentService.getAllByAdvertisementId(this.advertisementId).subscribe(data => {
-    //     this.cancelEditForm.emit(true);
-    //     this.commentService.loadComments(data);
-    //   })
-    // })
+  closeEditForm() {
+    this.cancelEditForm.emit(true);
   }
   
   get content() {

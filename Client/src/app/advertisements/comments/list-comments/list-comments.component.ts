@@ -70,12 +70,12 @@ export class ListCommentsComponent implements OnInit {
     this.isEditing = false;
   }
 
-  deactivateIsReplying() {
-    this.isReplying = false;
-  }
-
   activateIsReplying() {
     this.isReplying = true;
+  }
+
+  deactivateIsReplying() {
+    this.isReplying = false;
   }
 
   activateReplyingAndSelectComment(commentId) {
