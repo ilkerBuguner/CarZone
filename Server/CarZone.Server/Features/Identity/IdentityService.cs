@@ -88,12 +88,13 @@
             }
 
             var token = this.GenerateJwtToken(user.Id, userName, secret);
-
+            var isAdmin = await this.usersService.IsAdminAsync(user.Id);
             return new ResultModel<AuthResponseModel>
             {
                 Result = new AuthResponseModel
                 {
                     Token = token,
+                    IsAdmin = isAdmin,
                     User = new UserDetailsServiceModel
                     {
                         Id = user.Id,

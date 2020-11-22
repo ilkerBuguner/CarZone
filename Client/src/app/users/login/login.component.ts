@@ -33,11 +33,11 @@ export class LoginComponent implements OnInit {
     this.toastrService.info('Loading...')
     
     this.authService.login(this.loginForm.value).subscribe(data => {
-      var userId = data.user.id;
-      var username = data.user.userName;
-      this.authService.saveToken(data['token']);
-      this.authService.saveIsAdmin(data['isAdmin']);
-      this.authService.setUserInfo(userId, username);
+      const userId = data.user.id;
+      const username = data.user.userName;
+      const token = data.token;
+      const isAdmin = data.isAdmin;
+      this.authService.setUserInfo(userId, username, token, isAdmin);
       this.toastrService.clear();
       this.toastrService.success("Logged in successfully!");
       this.router.navigate(["advertisements"]);

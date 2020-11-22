@@ -24,23 +24,17 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('isAdmin');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userId');
     this.router.navigate(["login"]);
   }
 
-  deleteToken() {
-    localStorage.removeItem('token');
-  }
-
-  saveToken(token) {
-    localStorage.setItem('token', token);
+  getUsername() {
+    return localStorage.getItem('username');
   }
 
   getToken() {
     return localStorage.getItem('token');
-  }
-  
-  saveIsAdmin(isAdmin) {
-    localStorage.setItem('isAdmin', isAdmin);
   }
 
   getIsAdmin(){
@@ -51,9 +45,11 @@ export class AuthService {
     return localStorage.getItem('userId');
   }
 
-  setUserInfo(userId: string, username: string) {
+  setUserInfo(userId: string, username: string, token, isAdmin) {
     localStorage.setItem('userId', userId);
     localStorage.setItem('username', username);
+    localStorage.setItem('isAdmin', isAdmin);
+    localStorage.setItem('token', token);
     return;
   }
 

@@ -30,9 +30,15 @@ export class RegisterComponent implements OnInit {
     if(this.registerForm.invalid) {
       return;
     }
+    this.toastrService.info('Loading...')
 
     this.authService.register(this.registerForm.value).subscribe(data => {
-      this.authService.saveToken(data['token']);
+      const userId = data.user.id;
+      const username = data.user.userName;
+      const token = data.token;
+      const isAdmin = data.isAdmin;
+      this.authService.setUserInfo(userId, username, token, isAdmin);
+      this.toastrService.clear();
       this.toastrService.success("Registered successfully!");
       this.router.navigate(["advertisements"]);
     })
