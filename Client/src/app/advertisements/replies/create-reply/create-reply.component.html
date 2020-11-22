@@ -1,0 +1,17 @@
+<form [formGroup]="createReplyForm" (ngSubmit)="create()">
+    <br />
+    <div class="form-group">
+        <h6>Reply:</h6>
+        <textarea class="form-control" rows="2"  formControlName="content"></textarea>
+    </div>
+    <div *ngIf="content.touched && content.errors?.minlength" class="alert alert-danger">
+        Comment must contain at least 2 characters!
+    </div>
+    <div *ngIf="content.touched && content.errors?.maxlength" class="alert alert-danger">
+        Comment can't be longer than 300 characters!
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Send Reply" class="btn btn-success btn-sm" />&nbsp;
+        <a (click)="hideReplyForm()" class="btn btn-light btn-sm">Hide</a>
+    </div>
+</form>

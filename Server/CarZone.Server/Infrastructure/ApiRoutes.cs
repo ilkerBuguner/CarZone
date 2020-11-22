@@ -79,6 +79,7 @@
             public const string Update = Root + "/{replyId}";
             public const string Delete = Root + "/{replyId}";
             public const string GetAllForComment = Root + "/{commentId}";
+            public const string GetDetails = Root + "/byId/{replyId}";
         }
 
         public static class Image

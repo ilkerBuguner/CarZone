@@ -1,0 +1,17 @@
+.media img {
+	min-width: 70px;
+    max-width: 70px;
+    margin-right: 10px !important;
+}
+
+.media h6 {
+    font-size: 15px;
+}
+
+.media h5 {
+    font-size: 18px;
+}
+
+.btn {
+    margin-left: 3px;
+}

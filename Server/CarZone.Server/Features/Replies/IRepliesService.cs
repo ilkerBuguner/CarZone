@@ -15,5 +15,7 @@
         Task<ResultModel<bool>> DeleteAsync(string userId, string replyId);
 
         Task<ICollection<ReplyDetailsServiceModel>> GetAllByCommentIdAsync(string commentId);
+
+        Task<ResultModel<ReplyDetailsServiceModel>> GetDetailsAsync(string replyId);
     }
 }

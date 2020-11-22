@@ -20,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CarService } from './services/car/car.service';
 import { UploadService } from './services/upload/upload.service';
 import { CommentService } from './services/comment/comment.service';
+import { ReplyService } from './services/reply/reply.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CommentService } from './services/comment/comment.service';
     BrandModelService,
     CarService,
     CommentService,
+    ReplyService,
     UploadService,
     AuthGuardService,
     AdminAuthGuardService,

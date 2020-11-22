@@ -132,6 +132,36 @@
                 .ToListAsync();
         }
 
+        public async Task<ResultModel<ReplyDetailsServiceModel>> GetDetailsAsync(string replyId)
+        {
+            var reply = await this.dbContext
+                .Replies
+                .Where(c => c.Id == replyId)
+                .Select(a => new ReplyDetailsServiceModel
+                {
+                    Id = a.Id,
+                    Content = a.Content,
+                    Likes = a.Likes,
+                    Dislikes = a.Dislikes,
+                    CreatedOn = a.CreatedOn,
+                })
+                .FirstOrDefaultAsync();
+
+            if (reply == null)
+            {
+                return new ResultModel<ReplyDetailsServiceModel>
+                {
+                    Errors = new string[] { Errors.InvalidCommentId },
+                };
+            }
+
+            return new ResultModel<ReplyDetailsServiceModel>
+            {
+                Success = true,
+                Result = reply,
+            };
+        }
+
         private async Task<Reply> GetByIdAsync(string id)
         {
             return await this.dbContext

@@ -12,8 +12,11 @@ import { mergeMap, map } from 'rxjs/operators';
 })
 export class CreateCommentComponent implements OnInit {
   createCommentForm: FormGroup;
-  isLoggedIn: boolean;
   @Input() advertisementId: string;
+
+  get isLoggedIn(): boolean {
+    return this.authService.isAuthenticated();
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -26,11 +29,6 @@ export class CreateCommentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.authService.isAuthenticated()) {
-      this.isLoggedIn = true;
-    } else {
-      this.isLoggedIn = false;
-    }
   }
 
   create() {
@@ -52,14 +50,6 @@ export class CreateCommentComponent implements OnInit {
       }), mergeMap(data => this.commentService.getAllByAdvertisementId(this.advertisementId))).subscribe(comments => {
         this.commentService.loadComments(comments);
       })
-
-    // this.commentService.create(commentToCreate).subscribe(res => {
-    //   this.toastrService.success('Successfully posted comment!');
-    //   this.createCommentForm.reset();
-    //   this.commentService.getAllByAdvertisementId(this.advertisementId).subscribe(data => {
-    //     this.commentService.loadComments(data);
-    //   })
-    // })
   }
 
   get content() {

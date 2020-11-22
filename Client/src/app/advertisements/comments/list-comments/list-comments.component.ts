@@ -13,6 +13,9 @@ export class ListCommentsComponent implements OnInit {
   @Input() advertisementId: string;
   currentUserId: string;
   selectedCommentId: string;
+  isEditing: boolean;
+  isReplying: boolean;
+  isRepliesShown: boolean;
 
   get isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
@@ -53,8 +56,46 @@ export class ListCommentsComponent implements OnInit {
     this.selectedCommentId = commentId;
   }
 
-  cancelEditForm() {
+  unselectComment() {
     this.selectedCommentId = undefined;
+  }
+
+  activateEditingAndSelectComment(commentId) {
+    this.selectedCommentId = commentId;
+    this.isEditing = true;
+  }
+
+  deactivateEditingAndUnselectedComment() {
+    this.selectedCommentId = undefined;
+    this.isEditing = false;
+  }
+
+  deactivateIsReplying() {
+    this.isReplying = false;
+  }
+
+  activateIsReplying() {
+    this.isReplying = true;
+  }
+
+  activateReplyingAndSelectComment(commentId) {
+    this.selectedCommentId = commentId;
+    this.isReplying = true;
+  }
+
+  deactivateReplyingAndUnselectedComment() {
+    this.selectedCommentId = undefined;
+    this.isReplying = false;
+  }
+
+  selectCommentAndToggleRepliesShowing(commentId) {
+    if (this.isRepliesShown) {
+      this.isRepliesShown = false
+      this.selectedCommentId = undefined;
+    } else {
+      this.selectedCommentId = commentId;
+      this.isRepliesShown = true;
+    }
   }
 
 }

@@ -81,5 +81,22 @@
 
             return this.Ok(commentReplies);
         }
+
+        [HttpGet]
+        [Route(Reply.GetDetails)]
+        public async Task<ActionResult<IEnumerable<ReplyDetailsServiceModel>>> GetDetails(string replyId)
+        {
+            var detailsRequest = await this.repliesService.GetDetailsAsync(replyId);
+
+            if (!detailsRequest.Success)
+            {
+                return this.BadRequest(new ErrorsResponseModel
+                {
+                    Errors = detailsRequest.Errors,
+                });
+            }
+
+            return this.Ok(detailsRequest.Result);
+        }
     }
 }

@@ -12,6 +12,8 @@ import { RouterModule } from '@angular/router';
 import { CreateCommentComponent } from './comments/create-comment/create-comment.component';
 import { ListCommentsComponent } from './comments/list-comments/list-comments.component';
 import { EditCommentComponent } from './comments/edit-comment/edit-comment.component';
+import { CreateReplyComponent } from './replies/create-reply/create-reply.component';
+import { ListRepliesComponent } from './replies/list-replies/list-replies.component';
 
 
 
@@ -24,7 +26,9 @@ import { EditCommentComponent } from './comments/edit-comment/edit-comment.compo
     MyAdvertisementInfoComponent,
     CreateCommentComponent,
     ListCommentsComponent,
-    EditCommentComponent
+    EditCommentComponent,
+    CreateReplyComponent,
+    ListRepliesComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,19 @@
+<div *ngFor="let reply of replies" class="media mt-3">
+    <a href="#">
+        <img *ngIf="!reply.author.profilePictureUrl" class="align-self-top mr-3"
+            src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605824294/CarZone/profile-3-512_oxlumq.png"
+            alt="Generic placeholder image">
+        <img *ngIf="reply.author.profilePictureUrl" class="align-self-top mr-3" [src]="reply.author.profilePictureUrl"
+            alt="Generic placeholder image">
+    </a>
+    <div class="media-body">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mt-0"><a href="#">{{reply.author.username}}</a></h5>
+            <small>13.01.2020</small>
+        </div>
+        <h6>{{reply.content}}</h6>
+        <button *ngIf="isAdmin || currentUserId == reply.author.id" class="btn btn-primary btn-sm">Edit</button>
+        <a *ngIf="isAdmin || currentUserId == reply.author.id" class="btn btn-danger btn-sm">Delete</a>
+
+    </div>
+</div>
