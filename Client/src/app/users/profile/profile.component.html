@@ -1,3 +1,6 @@
+<div *ngIf="!user" class="d-flex justify-content-center loader">
+    <app-loader></app-loader>
+</div>
 <div *ngIf="user" class="body">
     <div class="container emp-profile">
         <div method="post">

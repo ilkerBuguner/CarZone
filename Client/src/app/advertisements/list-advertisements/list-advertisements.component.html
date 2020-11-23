@@ -158,10 +158,8 @@
 <section class="featured-places car-results">
     <div class="container">
         <h2 *ngIf="foundCarsCount != undefined" class="text-center results">{{foundCarsCount}} Cars Found</h2>
-        <div class="d-flex justify-content-center">
-            <div *ngIf="isSearching" class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
+        <div *ngIf="isSearching" class="d-flex justify-content-center loader">
+            <app-loader></app-loader>
         </div>
         <div class="row">
             <div *ngFor="let advertisement of advertisements" class="col-md-4 col-sm-6 col-xs-12 article">

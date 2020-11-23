@@ -1,7 +1,5 @@
-<div class="d-flex justify-content-center">
-    <div *ngIf="!advertisements" class="spinner-border text-primary loader" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
+<div *ngIf="!advertisements" class="d-flex justify-content-center loader">
+    <app-loader></app-loader>
 </div>
 <div *ngIf="advertisements" class="container-fluid my-ads">
     <div class="row">

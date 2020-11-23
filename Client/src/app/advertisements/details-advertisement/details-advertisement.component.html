@@ -1,10 +1,8 @@
 <div id="wrapper">
     <!-- Main -->
     <div id="main">
-        <div class="d-flex justify-content-center">
-            <div *ngIf="!advertisement" class="spinner-border text-primary loader" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
+        <div *ngIf="!advertisement" class="d-flex justify-content-center loader">
+            <app-loader></app-loader>
         </div>
         <div *ngIf="advertisement" class="inner">
             <div class="row ad-info">

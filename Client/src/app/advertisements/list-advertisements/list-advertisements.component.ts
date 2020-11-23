@@ -70,7 +70,7 @@ export class ListAdvertisementsComponent implements OnInit {
   search() {
     this.isSearching = true;
     window.scrollTo({
-      top: 580,
+      top: 700,
       behavior: "smooth"
     });
 

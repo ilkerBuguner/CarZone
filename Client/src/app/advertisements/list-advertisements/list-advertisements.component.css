@@ -21,7 +21,9 @@ section {
   padding-bottom: 80px;
 }
 
-
+.loader {
+  margin-top: 5%;
+}
 
 .featured-places .featured-item .thumb {
   position: relative;
@@ -246,5 +248,5 @@ section.banner {
 }
 
 .car-results {
-  padding-top: 40px;
+  padding-top: 10px;
 }

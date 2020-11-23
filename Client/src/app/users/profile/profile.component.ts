@@ -33,7 +33,6 @@ export class ProfileComponent implements OnInit {
       return id;
     }), mergeMap(id => this.userService.details(id))).subscribe(data => {
       this.user = data;
-      console.log(data);
     })
   }
 
