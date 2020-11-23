@@ -4,6 +4,12 @@
 	max-width: 80em;
 	margin: 0 auto;
 	padding: 0 2.5em;
+	margin-bottom: 3%;
+}
+
+.loader {
+	margin-top: 5%;
+	margin-bottom: 21%;
 }
 
 .comments-section {

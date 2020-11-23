@@ -1,3 +1,7 @@
+.loader {
+    margin-bottom: 20%;
+}
+
 .my-adds-header h1 {
     text-align: center;
     margin-top: 30px;
@@ -20,6 +24,7 @@
 .my-ads {
     padding-right: 50px;
     padding-left: 50px;
+    margin-bottom: 4%;
 }
 
 .spinner-border {

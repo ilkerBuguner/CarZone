@@ -10,11 +10,13 @@ import { AdminAuthGuardService } from './services/auth/admin-auth-guard.service'
 import { CreateAdvertisementComponent } from './advertisements/create-advertisement/create-advertisement.component';
 import { MyAdvertisementsComponent } from './advertisements/my-advertisements/my-advertisements.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { ProfileComponent } from './users/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: ListAdvertisementsComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
+  { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuardService]},
   { path: 'advertisements', component: ListAdvertisementsComponent},
   { path: 'advertisement/:id', component: DetailsAdvertisementComponent},
   { path: 'myAds', component: MyAdvertisementsComponent, canActivate: [AuthGuardService]},

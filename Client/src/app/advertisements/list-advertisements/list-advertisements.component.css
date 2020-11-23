@@ -117,6 +117,10 @@ section {
   color: #4883ff;
 }
 
+.featured-places {
+  margin-bottom: 3%;
+}
+
 section.banner {
   padding: 0px;
 }
