@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: '', component: ListAdvertisementsComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuardService]},
+  { path: 'user/:id', component: ProfileComponent},
   { path: 'advertisements', component: ListAdvertisementsComponent},
   { path: 'advertisement/:id', component: DetailsAdvertisementComponent},
   { path: 'myAds', component: MyAdvertisementsComponent, canActivate: [AuthGuardService]},

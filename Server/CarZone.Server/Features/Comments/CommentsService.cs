@@ -119,6 +119,7 @@
                      Likes = c.Likes,
                      Dislikes = c.Dislikes,
                      CreatedOn = c.CreatedOn,
+                     RepliesCount = c.Replies.Count,
                      Author = new UserInfoServiceModel
                      {
                          Id = c.Author.Id,

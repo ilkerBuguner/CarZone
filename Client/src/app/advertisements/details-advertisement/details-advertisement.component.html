@@ -160,22 +160,22 @@
                                     <p>
                                         <span>Name</span>
                                         <br>
-                                        <strong>{{advertisement?.author.username}}</strong>
+                                        <strong><a class="user-contact" [routerLink]="['/user', advertisement.author.id]">{{advertisement?.author.username}}</a></strong>
                                     </p>
                                     <p>
                                         <span>Mobile phone</span>
                                         <br>
-                                        <strong><a>+{{advertisement?.author.phoneNumber}}</a></strong>
+                                        <strong class="user-contact">+{{advertisement?.author.phoneNumber}}</strong>
                                     </p>
                                     <p>
                                         <span>Location</span>
                                         <br>
-                                        <strong><a>{{advertisement?.location}}</a></strong>
+                                        <strong class="user-contact">{{advertisement?.location}}</strong>
                                     </p>
                                     <p>
                                         <span>Email</span>
                                         <br>
-                                        <strong><a>{{advertisement?.author.email}}</a></strong>
+                                        <strong class="user-contact">{{advertisement?.author.email}}</strong>
                                     </p>
                                 </div>
                             </div>

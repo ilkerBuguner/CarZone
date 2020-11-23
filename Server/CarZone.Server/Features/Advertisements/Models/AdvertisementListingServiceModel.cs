@@ -18,6 +18,10 @@
 
         public string Location { get; set; }
 
+        public string ShortDescription { get; set; }
+
+        public int CommentsCount { get; set; }
+
         public CarInfoServiceModel Car { get; set; }
 
         public UserInfoServiceModel Author { get; set; }

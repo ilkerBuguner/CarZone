@@ -21,6 +21,7 @@ import { CarService } from './services/car/car.service';
 import { UploadService } from './services/upload/upload.service';
 import { CommentService } from './services/comment/comment.service';
 import { ReplyService } from './services/reply/reply.service';
+import { UserService } from './services/user/user.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ReplyService } from './services/reply/reply.service';
   ],
   providers: [
     AuthService,
+    UserService,
     AdvertisementService,
     BrandModelService,
     CarService,

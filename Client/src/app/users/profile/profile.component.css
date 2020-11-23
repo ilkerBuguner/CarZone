@@ -4,6 +4,14 @@
     padding-top: 3%;
     padding-bottom: 3%;
 }
+
+.no-ads {
+    margin-top: 50px;
+}
+
+.no-ads h1 {
+    padding: 0px 100px;
+}
 .emp-profile{
     padding: 3%;
     /* margin-top: 3%;
@@ -45,8 +53,10 @@
     border: none;
     border-radius: 1.5rem;
     width: 70%;
-    padding: 2%;
+    padding: 4% 10%;
     font-weight: 600;
+    background-color: #EFEFEF;
+    text-decoration: none;
     color: #6c757d;
     cursor: pointer;
 }

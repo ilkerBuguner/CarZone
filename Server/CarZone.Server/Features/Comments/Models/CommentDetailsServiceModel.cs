@@ -14,6 +14,8 @@
 
         public int Dislikes { get; set; }
 
+        public int RepliesCount { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public UserInfoServiceModel Author { get; set; }

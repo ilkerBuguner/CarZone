@@ -10,7 +10,7 @@
   <div class="media-body comment-body">
     <div *ngIf="(selectedCommentId != comment.id) || !isEditing">
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mt-0"><a href="#">{{comment.author.username}}</a></h5>
+        <h5 class="mt-0"><a [routerLink]="['/user', comment.author.id]">{{comment.author.username}}</a></h5>
         <small>13.01.2020</small>
       </div>
       <h6>{{comment.content}}</h6>
@@ -22,7 +22,9 @@
           <a *ngIf="isAdmin || currentUserId == comment.author.id" class="btn btn-danger btn-sm"
             (click)="selectComment(comment.id)" type="button" data-toggle="modal" data-target="#exampleModal">Delete</a>
         </div>
-        <a (click)="selectCommentAndToggleRepliesShowing(comment.id)" class="btn bg-info text-white btn-sm">Show Replies</a>
+        <h6 *ngIf="comment.repliesCount == 0">0 Replies</h6>
+        <a *ngIf="comment.repliesCount == 1" (click)="selectCommentAndToggleRepliesShowing(comment.id)" class="btn bg-info text-white btn-sm">1 Reply</a>
+        <a *ngIf="comment.repliesCount > 1" (click)="selectCommentAndToggleRepliesShowing(comment.id)" class="btn bg-info text-white btn-sm">{{comment.repliesCount}} Replies</a>
       </div>
     </div>
 

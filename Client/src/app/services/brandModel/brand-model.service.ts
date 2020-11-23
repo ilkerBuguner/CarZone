@@ -33,6 +33,7 @@ export class BrandModelService {
   details(modelId: string): Observable<IBrandModel> {
     return this.http.get<IBrandModel>(this.brandModelsPath + '/' + modelId);
   }
+  
   getModelsByBrandId(brandId): Observable<any> {
     return this.http.get(this.brandModelsPath + `/getByBrandId/${brandId}`)
   }

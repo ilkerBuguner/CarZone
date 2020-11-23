@@ -92,6 +92,8 @@
                         Id = a.Id,
                         Title = a.Title,
                         Views = a.Views,
+                        ShortDescription = a.Description.Substring(0, 70) + "...",
+                        CommentsCount = a.Comments.Count,
                         ImageUrl = a.Images.Select(x => x.Url).FirstOrDefault(),
                         CreatedOn = a.CreatedOn.ToString(),
                     }).ToList()

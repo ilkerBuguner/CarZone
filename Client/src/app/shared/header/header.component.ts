@@ -14,6 +14,9 @@ export class HeaderComponent implements OnInit {
   get isAdmin(): boolean {
     return this.authService.isAdmin();
   }
+  get userId(): string {
+    return this.authService.getUserId();
+  }
   get username(): string {
     return this.authService.getUsername();
   }
