@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form [formGroup]="editForm" (ngSubmit)="edit()" class="edit-form">
+                <h1 class="edit-heading">Edit Profile</h1>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="exampleInputUsername">Username</label>
+                        <input type="text" class="form-control" formControlName="username">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="exampleInputUsername">Email</label>
+                        <input type="text" class="form-control" formControlName="email">
+                        <br>
+                        <div *ngIf="email.touched && email.errors?.required" class="alert alert-danger">
+                            Email field is required!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="exampleInputUsername">Full Name</label>
+                        <input type="text" class="form-control" formControlName="fullName">
+                        <br>
+                        <div *ngIf="fullName.touched && fullName.errors?.required" class="alert alert-danger">
+                            Fullname field is required!
+                        </div>
+                        <div *ngIf="fullName.touched && fullName.errors?.minlength" class="alert alert-danger">
+                            Fullname must contain at least 3 characters!
+                        </div>
+                        <div *ngIf="fullName.touched && fullName.errors?.maxlength" class="alert alert-danger">
+                            Fullname can't be longer than 30 characters!
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label for="exampleInputUsername">PhoneNumber</label>
+                        <input type="number" class="form-control" formControlName="phoneNumber">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="inputMake">Location</label>
+                        <select class="form-control" formControlName="location">
+                            <option *ngFor="let location of locations" [value]="location">{{location}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="inputMake">Gender</label>
+                        <select class="form-control" formControlName="gender">
+                            <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-outline-primary">Edit</button>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

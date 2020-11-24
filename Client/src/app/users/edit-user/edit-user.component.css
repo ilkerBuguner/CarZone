@@ -1,0 +1,14 @@
+.edit-form {
+    margin-top: 10vh;
+    border: 3px solid grey;
+    padding: 15% 15%;
+    padding-top: 7%;
+    border-radius: 13px;
+    margin-bottom: 15%;
+    padding-bottom: 8%;
+}
+
+.edit-heading {
+    text-align: center;
+    margin-bottom: 10%;
+}

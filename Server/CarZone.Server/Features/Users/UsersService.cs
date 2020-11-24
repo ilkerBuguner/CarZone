@@ -36,9 +36,9 @@
             return await this.userManager.IsInRoleAsync(user, AdministratorRoleName);
         }
 
-        public async Task<ResultModel<bool>> UpdateAsync(string currentLoggedInUserId, string targetUserId, UpdateUserRequestModel model)
+        public async Task<ResultModel<bool>> UpdateAsync(string userId, UpdateUserRequestModel model)
         {
-            var user = await this.GetByIdAsync(targetUserId);
+            var user = await this.GetByIdAsync(userId);
 
             if (user == null)
             {
@@ -48,26 +48,31 @@
                 };
             }
 
-            if (user.Id == currentLoggedInUserId || await this.IsAdminAsync(currentLoggedInUserId))
+            user.Email = model.Email;
+            user.FullName = model.FullName;
+            user.PhoneNumber = model.PhoneNumber;
+
+            if (!string.IsNullOrWhiteSpace(model.Location))
             {
-                user.UserName = model.Username;
-                user.FullName = model.FullName;
-                user.PhoneNumber = model.PhoneNumber;
                 user.Location = (Location)Enum.Parse(typeof(Location), model.Location);
-                user.Gender = (Gender)Enum.Parse(typeof(Gender), model.Gender);
-
-                this.dbContext.Users.Update(user);
-                await this.dbContext.SaveChangesAsync();
-
-                return new ResultModel<bool>
-                {
-                    Success = true,
-                };
             }
+
+            if (!string.IsNullOrWhiteSpace(model.Gender))
+            {
+                user.Gender = (Gender)Enum.Parse(typeof(Gender), model.Gender);
+            }
+
+            if (!string.IsNullOrWhiteSpace(model.ProfilePictureUrl))
+            {
+                user.ProfilePictureUrl = model.ProfilePictureUrl;
+            }
+
+            this.dbContext.Users.Update(user);
+            await this.dbContext.SaveChangesAsync();
 
             return new ResultModel<bool>
             {
-                Errors = new string[] { Errors.NoPermissionToEditUser },
+                Success = true,
             };
         }
 

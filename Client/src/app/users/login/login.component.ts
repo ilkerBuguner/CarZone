@@ -44,10 +44,6 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  navigateTo(route: string) {
-    this.router.navigate([route]);
-  }
-
   get username() {
     return this.loginForm.get('username');
   }

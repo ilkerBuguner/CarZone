@@ -15,4 +15,8 @@ export class UserService {
   details(userId: string): Observable<IUser> {
     return this.http.get<IUser>(this.usersPath + '/' + userId);
   }
+
+  edit(userId: string, data) {
+    return this.http.put(this.usersPath + '/' + userId, data);
+  }
 }

@@ -9,7 +9,7 @@
     {
         Task<bool> IsAdminAsync(string userId);
 
-        Task<ResultModel<bool>> UpdateAsync(string currentLoggedInUserId, string userId, UpdateUserRequestModel model);
+        Task<ResultModel<bool>> UpdateAsync(string userId, UpdateUserRequestModel model);
 
         Task<ResultModel<UserProfileDetailsServiceModel>> DetailsAsync(string id);
 

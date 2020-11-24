@@ -43,11 +43,7 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(["advertisements"]);
     })
   }
-
-  navigateTo(route : string) {
-    this.router.navigate([route]);
-  }
-
+  
   get username() {
     return this.registerForm.get('username');
   }

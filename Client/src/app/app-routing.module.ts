@@ -11,6 +11,7 @@ import { CreateAdvertisementComponent } from './advertisements/create-advertisem
 import { MyAdvertisementsComponent } from './advertisements/my-advertisements/my-advertisements.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { ProfileComponent } from './users/profile/profile.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: '', component: ListAdvertisementsComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'user/:id', component: ProfileComponent},
   { path: 'advertisements', component: ListAdvertisementsComponent},
   { path: 'advertisement/:id', component: DetailsAdvertisementComponent},
+  { path: 'profile/edit', component: EditUserComponent, canActivate: [AuthGuardService]},
   { path: 'myAds', component: MyAdvertisementsComponent, canActivate: [AuthGuardService]},
   { path: 'advertisements/create', component: CreateAdvertisementComponent, canActivate: [AuthGuardService]},
   { path: 'admin/brandModels', component: ListBrandModelsComponent, canActivate: [AuthGuardService, AdminAuthGuardService]},

@@ -22,9 +22,7 @@
         [Route(Infrastructure.ApiRoutes.User.Update)]
         public async Task<ActionResult> Update(string userId, [FromBody] UpdateUserRequestModel model)
         {
-            var currentLoggedInUserId = this.User.GetId();
-
-            var updateRequest = await this.usersService.UpdateAsync(currentLoggedInUserId, userId, model);
+            var updateRequest = await this.usersService.UpdateAsync(userId, model);
 
             if (!updateRequest.Success)
             {

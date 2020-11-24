@@ -174,7 +174,7 @@
                                 {{advertisement.location ? advertisement.location : 'No location'}}</strong>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <strong><i class="fas fa-eye"></i> {{advertisement.views}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <strong><a href="" class="user-info"><i class="fas fa-user"></i>
+                            <strong><a [routerLink]="['/user', advertisement.author.id]" class="user-info"><i class="fas fa-user"></i>
                                     {{advertisement.author.username}}</a></strong>
                         </div>
                     </div>
