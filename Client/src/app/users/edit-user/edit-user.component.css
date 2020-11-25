@@ -1,6 +1,6 @@
 .edit-form {
     margin-top: 10vh;
-    border: 3px solid grey;
+    border: 3.5px solid #0099FF;
     padding: 15% 15%;
     padding-top: 7%;
     border-radius: 13px;
@@ -21,9 +21,9 @@
 }
 
 .deletePicture {
-    position: relative;
-    top: 31px;
-    left: 160px;
+    position: absolute;
+    top: 37px;
+    left: 170px;
     cursor: pointer;
     font-size: 22px;
     border-radius: 12px;
