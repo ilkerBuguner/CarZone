@@ -12,3 +12,27 @@
     text-align: center;
     margin-bottom: 10%;
 }
+
+.profilePicture {
+    min-width: 150px;
+    max-width: 150px;
+    min-height: 150px;
+    max-height: 150px;
+}
+
+.deletePicture {
+    position: relative;
+    top: 30px;
+    left: 180px;
+    cursor: pointer;
+    font-size: 22px;
+    border-radius: 12px;
+    display: inline;
+    padding: 0px 9px;
+}
+
+.deletePicture:hover {
+    color: white;
+    background-color: black;
+    
+}

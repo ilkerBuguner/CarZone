@@ -32,6 +32,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a [routerLink]="['/user', userId]" class="dropdown-item">Profile</a>
+                                    <a [routerLink]="['/profile/edit']" class="dropdown-item">Edit Profile</a>
                                     <a routerLink='/myAds' class="dropdown-item">My Ads</a>
                                     <a *ngIf="isAdmin" routerLink='/admin/brandModels' class="dropdown-item">Admin</a>
                                     <div class="dropdown-divider"></div>

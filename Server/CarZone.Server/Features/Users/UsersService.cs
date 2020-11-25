@@ -144,6 +144,15 @@
             }
         }
 
+        public async Task ResetUsersProfilePictureUrl(string userId)
+        {
+            var user = await this.GetByIdAsync(userId);
+
+            user.ProfilePictureUrl = null;
+            this.dbContext.Users.Update(user);
+            await this.dbContext.SaveChangesAsync();
+        }
+
         private async Task<User> GetByIdAsync(string id)
         {
             return await this.dbContext

@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
 import { RouterModule } from '@angular/router';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 
@@ -21,7 +22,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgxDropzoneModule,
   ]
 })
 export class UsersModule { }

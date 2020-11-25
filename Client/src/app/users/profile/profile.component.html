@@ -7,10 +7,10 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                            alt="" />
-                        <!-- <img *ngIf="!user.profilePictureUrl" class="align-self-center mr-3 img-thumbnail"
-                            src="https://res.cloudinary.com/doyjshrjs/image/upload/v1583873417/no_image_uj863g.jpg" /> -->
+                        <img *ngIf="!user.profilePictureUrl" class="align-self-center mr-3 img-thumbnail"
+                            src="https://res.cloudinary.com/doyjshrjs/image/upload/v1583873417/no_image_uj863g.jpg" />
+                        <img *ngIf="user.profilePictureUrl" class="align-self-center mr-3 img-thumbnail"
+                            [src]="user.profilePictureUrl" />
                     </div>
                 </div>
                 <div class="col-md-6">

@@ -5,7 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { IUser } from 'src/app/models/IUser';
 import { AdvertisementService } from 'src/app/services/advertisement/advertisement.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { UploadService } from 'src/app/services/upload/upload.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-user',
@@ -18,6 +20,7 @@ export class EditUserComponent implements OnInit {
   genders: string[];
   user: IUser;
   userId: string;
+  files: File[] = [];
 
   constructor(
     private advertisementService: AdvertisementService,
@@ -25,6 +28,7 @@ export class EditUserComponent implements OnInit {
     private authService: AuthService,
     private fb: FormBuilder,
     private router: Router,
+    private uploadService: UploadService,
     private toastrService: ToastrService,
   ) {
     this.editForm = this.fb.group({
@@ -60,6 +64,21 @@ export class EditUserComponent implements OnInit {
     })
   }
 
+  onSelect(event) {
+    this.files = [];
+    this.files.push(...event.addedFiles);
+  }
+   
+  onRemove(event) {
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  resetUserProfilePicture() {
+    this.userService.resetProfilePicture().pipe(
+      mergeMap(res => this.userService.details(this.userId))).subscribe(data => {
+        this.user = data;
+      })
+  }
   edit() {
     if(this.editForm.invalid) {
       this.toastrService.error('Please populate all fields correctly!')
@@ -75,10 +94,26 @@ export class EditUserComponent implements OnInit {
       gender: this.editForm.value['gender'],
     }
 
-    this.userService.edit(this.userId, editedUserToSend).subscribe(data => {
-      this.toastrService.success('Successfully edited user information!')
-      this.router.navigate(["user", this.userId])
-    });
+    if (this.files.length > 0) {
+      const file_data = this.files[0];
+      const data = new FormData();
+      data.append('file', file_data);
+      data.append('upload_preset', 'Carzone_cloudinary');
+      data.append('cloud_name', 'doyjshrjs');
+
+      this.uploadService.uploadImageToClodinaryAsObservable(data).pipe(
+        map(data => {
+          editedUserToSend["profilePictureUrl"] = data['secure_url'];
+        }), mergeMap(res => this.userService.edit(this.userId, editedUserToSend))).subscribe(data => {
+          this.toastrService.success('Successfully edited user information!');
+          this.router.navigate(["user", this.userId]);
+        })
+    } else {
+      this.userService.edit(this.userId, editedUserToSend).subscribe(data => {
+        this.toastrService.success('Successfully edited user information!')
+        this.router.navigate(["user", this.userId])
+      });
+    }
   }
 
   get username() {

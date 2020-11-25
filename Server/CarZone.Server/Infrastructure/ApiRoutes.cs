@@ -17,6 +17,7 @@
         {
             public const string Details = Root + "/{userId}";
             public const string Update = Root + "/{userId}";
+            public const string ResetProfilePicture = Root + "/ProfilePicture/Reset";
         }
 
         public static class Model

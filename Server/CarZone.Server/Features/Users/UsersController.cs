@@ -52,5 +52,16 @@
 
             return this.Ok(detailsRequest.Result);
         }
+
+        [HttpGet]
+        [Route(Infrastructure.ApiRoutes.User.ResetProfilePicture)]
+        public async Task<ActionResult> ResetProfilePicture()
+        {
+            var userId = this.User.GetId();
+
+            await this.usersService.ResetUsersProfilePictureUrl(userId);
+
+            return this.Ok();
+        }
     }
 }

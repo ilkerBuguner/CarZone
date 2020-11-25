@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
   private usersPath = environment.apiUrl + 'users';
+  private resetProfilePicturePath = environment.apiUrl + 'Users/ProfilePicture/Reset';
 
   constructor(private http: HttpClient) { }
 
@@ -18,5 +19,9 @@ export class UserService {
 
   edit(userId: string, data) {
     return this.http.put(this.usersPath + '/' + userId, data);
+  }
+
+  resetProfilePicture() {
+    return this.http.get(this.resetProfilePicturePath);
   }
 }

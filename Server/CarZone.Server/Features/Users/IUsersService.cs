@@ -16,5 +16,7 @@
         Task SetUserPhoneNumberIfNull(string userId, string phoneNumber);
 
         Task SetUserLocationIfNull(string userId, string location);
+
+        Task ResetUsersProfilePictureUrl(string userId);
     }
 }
