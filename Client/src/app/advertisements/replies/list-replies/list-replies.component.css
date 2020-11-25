@@ -1,7 +1,13 @@
 .media img {
 	min-width: 70px;
     max-width: 70px;
+    min-height: 70px;
+	max-height: 70px;
     margin-right: 10px !important;
+}
+
+.circle {
+	border-radius: 100%;
 }
 
 .media h6 {

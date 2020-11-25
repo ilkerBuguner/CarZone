@@ -1,6 +1,12 @@
 .media img {
 	min-width: 85px;
 	max-width: 85px;
+	min-height: 85px;
+	max-height: 85px;
+}
+
+.circle {
+	border-radius: 100%;
 }
 
 .count {

@@ -5,7 +5,7 @@
   <img *ngIf="!comment.author.profilePictureUrl" class="align-self-top mr-3"
     src="https://res.cloudinary.com/doyjshrjs/image/upload/v1605824294/CarZone/profile-3-512_oxlumq.png"
     alt="Generic placeholder image">
-  <img *ngIf="comment.author.profilePictureUrl" class="align-self-top mr-3" [src]="comment.author.profilePictureUrl"
+  <img *ngIf="comment.author.profilePictureUrl" class="align-self-top mr-3 circle" [src]="comment.author.profilePictureUrl"
     alt="Generic placeholder image">
   <div class="media-body comment-body">
     <div *ngIf="(selectedCommentId != comment.id) || !isEditing">

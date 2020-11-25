@@ -79,11 +79,13 @@ export class EditUserComponent implements OnInit {
         this.user = data;
       })
   }
+  
   edit() {
     if(this.editForm.invalid) {
       this.toastrService.error('Please populate all fields correctly!')
       return;
     }
+    this.toastrService.info('Loading...')
 
     const editedUserToSend = {
       username: this.editForm.value['username'],
@@ -105,11 +107,13 @@ export class EditUserComponent implements OnInit {
         map(data => {
           editedUserToSend["profilePictureUrl"] = data['secure_url'];
         }), mergeMap(res => this.userService.edit(this.userId, editedUserToSend))).subscribe(data => {
+          this.toastrService.clear();
           this.toastrService.success('Successfully edited user information!');
           this.router.navigate(["user", this.userId]);
         })
     } else {
       this.userService.edit(this.userId, editedUserToSend).subscribe(data => {
+        this.toastrService.clear();
         this.toastrService.success('Successfully edited user information!')
         this.router.navigate(["user", this.userId])
       });
