@@ -101,7 +101,9 @@
                         CommentsCount = a.Comments.Count,
                         ImageUrl = a.Images.Select(x => x.Url).FirstOrDefault(),
                         CreatedOn = a.CreatedOn.ToString(),
-                    }).ToList()
+                    })
+                    .OrderByDescending(a => a.CreatedOn)
+                    .ToList()
                 })
                 .FirstOrDefaultAsync();
 

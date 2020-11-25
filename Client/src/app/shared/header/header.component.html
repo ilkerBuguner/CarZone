@@ -31,12 +31,12 @@
                                     Hello, {{username}}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a [routerLink]="['/user', userId]" class="dropdown-item">Profile</a>
-                                    <a [routerLink]="['/profile/edit']" class="dropdown-item">Edit Profile</a>
-                                    <a routerLink='/myAds' class="dropdown-item">My Ads</a>
-                                    <a *ngIf="isAdmin" routerLink='/admin/brandModels' class="dropdown-item">Admin</a>
+                                    <a [routerLink]="['/user', userId]" class="dropdown-item"><i class="far fa-address-card"></i> Profile</a>
+                                    <a [routerLink]="['/profile/edit']" class="dropdown-item"><i class="fas fa-user-cog"></i> Edit Profile</a>
+                                    <a routerLink='/myAds' class="dropdown-item"><i class="fas fa-edit"></i> My Ads</a>
+                                    <a *ngIf="isAdmin" routerLink='/admin/brandModels' class="dropdown-item"><i class="fas fa-user-shield"></i> Admin</a>
                                     <div class="dropdown-divider"></div>
-                                    <a (click)="logout()" class="dropdown-item">Logout</a>
+                                    <a (click)="logout()" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
                                 </div>
                             </li>
                         </ul>
