@@ -8,7 +8,7 @@
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <h4 class="text-center">Profile Picture</h4>
-                        <div *ngIf="user.profilePictureUrl" (click)="resetUserProfilePicture()" class="deletePicture"><i class="fas fa-times"></i></div>
+                        <div *ngIf="user.profilePictureUrl" (click)="resetUserProfilePicture()" class="deletePicture"><i class="far fa-times-circle"></i></div>
                         <img *ngIf="user.profilePictureUrl" [src]="user.profilePictureUrl" class="profilePicture rounded mx-auto d-block" alt="">
                         <ngx-dropzone *ngIf="!user.profilePictureUrl" (change)="onSelect($event)">
                             <ngx-dropzone-label>Drag and drop your profile image!</ngx-dropzone-label>

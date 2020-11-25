@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ReplyService } from 'src/app/services/reply/reply.service';
 import { mergeMap, map } from 'rxjs/operators';
+import { CommentService } from 'src/app/services/comment/comment.service';
 
 @Component({
   selector: 'app-create-reply',
@@ -20,6 +21,7 @@ export class CreateReplyComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private replyService: ReplyService,
+    private commentService: CommentService,
     private toastrService: ToastrService) {
       this.createReplyForm = this.fb.group({
         'content': ['', [Validators.required, Validators.minLength(2), Validators.maxLength(300)]]
@@ -46,11 +48,26 @@ export class CreateReplyComponent implements OnInit {
       map(res => {
         this.toastrService.success('Successfully posted reply!');
         this.createReplyForm.reset();
-      }), mergeMap(data => this.replyService.getAllByCommentId(this.rootCommentId))).subscribe(replies => {
-        this.stopReplying.emit(true);
-        this.showReplies.emit(true);
-        this.replyService.loadReplies(replies);
-      })
+      }), 
+      mergeMap(data => this.replyService.getAllByCommentId(this.rootCommentId))).pipe(
+        map(replies => {
+          this.stopReplying.emit(true);
+          this.showReplies.emit(true);
+          this.replyService.loadReplies(replies);
+        }), 
+        mergeMap(data => this.commentService.getAllByAdvertisementId(this.advertisementId))).subscribe(comments => {
+          this.commentService.loadComments(comments);
+        })
+
+    // this.replyService.create(commentToCreate).pipe(
+    //   map(res => {
+    //     this.toastrService.success('Successfully posted reply!');
+    //     this.createReplyForm.reset();
+    //   }), mergeMap(data => this.replyService.getAllByCommentId(this.rootCommentId))).subscribe(replies => {
+    //     this.stopReplying.emit(true);
+    //     this.showReplies.emit(true);
+    //     this.replyService.loadReplies(replies);
+    //   })
   }
 
   hideReplyForm() {

@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { mergeMap, map } from 'rxjs/operators';
 import { IReply } from 'src/app/models/IReply';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { CommentService } from 'src/app/services/comment/comment.service';
 import { ReplyService } from 'src/app/services/reply/reply.service';
 
 @Component({
@@ -11,6 +13,7 @@ import { ReplyService } from 'src/app/services/reply/reply.service';
 })
 export class ListRepliesComponent implements OnInit {
   @Input() rootCommentId: string;
+  @Input() advertisementId: string;
   currentUserId: string;
   selectedReplyId: string;
   isEditing: boolean;
@@ -28,6 +31,7 @@ export class ListRepliesComponent implements OnInit {
   constructor(
     private replyService: ReplyService,
     private authService: AuthService,
+    private commentService: CommentService,
     private toastrService: ToastrService
   ) { }
 
@@ -51,12 +55,26 @@ export class ListRepliesComponent implements OnInit {
   }
 
   delete(selectedReplyId) {
-    this.replyService.delete(selectedReplyId).subscribe(res => {
-      this.toastrService.success('Successfully deleted reply!');
-      const closeButton = document.querySelector(".close-button") as HTMLElement;
-      closeButton.click();
-      this.getAllReplies();
-    })
+    this.replyService.delete(selectedReplyId).pipe(
+      map(data => {
+        this.toastrService.success('Successfully deleted reply!');
+        const closeButton = document.querySelector(".close-button") as HTMLElement;
+        closeButton.click();
+      }), 
+      mergeMap(res => this.replyService.getAllByCommentId(this.rootCommentId))).pipe(
+        map(replies => {
+          this.replyService.loadReplies(replies);
+        }),
+        mergeMap(data => this.commentService.getAllByAdvertisementId(this.advertisementId))).subscribe(comments => {
+          this.commentService.loadComments(comments);
+        })
+
+    // this.replyService.delete(selectedReplyId).subscribe(res => {
+    //   this.toastrService.success('Successfully deleted reply!');
+    //   const closeButton = document.querySelector(".close-button") as HTMLElement;
+    //   closeButton.click();
+    //   this.getAllReplies();
+    // })
   }
 
   activateEditingAndSelectReply(replyId) {

@@ -20,7 +20,7 @@
           <button *ngIf="isAdmin || currentUserId == comment.author.id" (click)="activateEditingAndSelectComment(comment.id)"
             class="btn btn-primary btn-sm">Edit</button>
           <a *ngIf="isAdmin || currentUserId == comment.author.id" class="btn btn-danger btn-sm"
-            (click)="selectComment(comment.id)" type="button" data-toggle="modal" data-target="#exampleModal">Delete</a>
+            (click)="selectComment(comment.id)" type="button" data-toggle="modal" data-target="#deleteCommentModal">Delete</a>
         </div>
         <h6 *ngIf="comment.repliesCount == 0">0 Replies</h6>
         <a *ngIf="comment.repliesCount == 1" (click)="selectCommentAndToggleRepliesShowing(comment.id)" class="btn bg-info text-white btn-sm">1 Reply</a>
@@ -31,13 +31,13 @@
     <app-edit-comment *ngIf="(selectedCommentId == comment.id) && isEditing" (cancelEditForm)="deactivateEditingAndUnselectedComment($event)"  [commentId]="selectedCommentId" [advertisementId]="advertisementId"></app-edit-comment>
 
     <app-create-reply *ngIf="(selectedCommentId == comment.id) && isReplying" (stopReplying)="deactivateIsReplying($event)" (showReplies)="showReplies($event)" [advertisementId]="advertisementId" [rootCommentId]="comment.id"></app-create-reply>
-    <app-list-replies *ngIf="(selectedCommentId == comment.id) && isRepliesShown" [rootCommentId]="comment.id"></app-list-replies>
+    <app-list-replies *ngIf="(selectedCommentId == comment.id) && isRepliesShown" [advertisementId]="advertisementId" [rootCommentId]="comment.id"></app-list-replies>
     
   </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="deleteCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -51,8 +51,8 @@
         Are you sure you want to permanently remove this comment?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" (click)="delete(selectedCommentId)">Delete</button>
+        <button type="button" class="btn btn-secondary comment-close-button" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="deleteComment(selectedCommentId)">Delete</button>
       </div>
     </div>
   </div>

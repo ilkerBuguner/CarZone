@@ -1,6 +1,6 @@
 .media img {
-	min-width: 85px;
-	max-width: 85px;
+	min-width: 100px;
+	max-width: 100px;
 	min-height: 85px;
 	max-height: 85px;
 }

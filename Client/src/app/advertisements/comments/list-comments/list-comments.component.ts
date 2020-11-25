@@ -43,10 +43,10 @@ export class ListCommentsComponent implements OnInit {
     })
   }
 
-  delete(commentId) {
+  deleteComment(commentId) {
     this.commentService.delete(commentId).subscribe(res => {
       this.toastrService.success('Successfully deleted comment!');
-      const closeButton = document.querySelector(".close-button") as HTMLElement;
+      const closeButton = document.querySelector(".comment-close-button") as HTMLElement;
       closeButton.click();
       this.getAllComments();
     })

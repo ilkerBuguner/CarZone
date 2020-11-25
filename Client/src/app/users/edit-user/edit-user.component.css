@@ -29,9 +29,9 @@
     border-radius: 12px;
     display: inline;
     padding: 0px 9px;
+    color: black;
 }
 
 .deletePicture:hover {
     color: white;
-    background-color: black;
 }
