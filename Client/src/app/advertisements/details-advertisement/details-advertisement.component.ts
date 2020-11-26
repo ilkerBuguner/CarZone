@@ -13,7 +13,7 @@ export class DetailsAdvertisementComponent implements OnInit {
   advertisement: IAdvertisement;
   id: string;
 
-  constructor(private advertsementService: AdvertisementService, private route: ActivatedRoute) { }
+  constructor(private advertisementService: AdvertisementService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.fetchData();
@@ -23,7 +23,7 @@ export class DetailsAdvertisementComponent implements OnInit {
     this.route.params.pipe(map(params => {
       const id = params['id'];
       return id;
-    }), mergeMap(id => this.advertsementService.getAdvertisement(id))).subscribe(res => {
+    }), mergeMap(id => this.advertisementService.getAdvertisement(id))).subscribe(res => {
       this.advertisement = res;
     })
   }

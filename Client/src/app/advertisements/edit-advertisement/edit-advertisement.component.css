@@ -1,0 +1,33 @@
+.container {
+    padding-bottom: 3%;
+  }
+  
+  .cr-ad {
+    margin-top: 40px;
+    border: 3.5px solid #0099FF;
+    padding: 5% 5%;
+    padding-top: 2%;
+    border-radius: 13px;
+  }
+  
+  .required {
+    color: red;
+  }
+  
+  .cr-ad h1 {
+    text-align: center;
+  }
+  
+  .section-header {
+    text-align: center;
+  }
+  
+  .col-centered{
+    margin: 0 auto;
+    float: none;
+  }
+  
+  .car-extra h5{
+    margin-bottom: 10px;
+  }
+  

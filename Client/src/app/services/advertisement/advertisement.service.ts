@@ -41,6 +41,10 @@ export class AdvertisementService {
     return this.http.post(this.advertisementPath, data, { responseType: 'text' });
   }
 
+  edit(advertisementId: string, data) {
+    return this.http.put(this.advertisementPath + '/' + advertisementId, data)
+  }
+
   delete(advertisementId) {
     return this.http.delete(this.advertisementPath + '/' + advertisementId);
   }

@@ -56,7 +56,7 @@
     </div>
     <a [routerLink]="['/advertisement', selectedAdvertisement.id]" class="btn btn-outline-primary">Go to
       advertisement</a>&nbsp;
-    <a href="#" class="btn btn-outline-info">Edit</a>&nbsp;
+    <a [routerLink]="['/advertisement/edit/', selectedAdvertisement.id]" class="btn btn-outline-info">Edit</a>&nbsp;
     <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
       Delete
     </button>

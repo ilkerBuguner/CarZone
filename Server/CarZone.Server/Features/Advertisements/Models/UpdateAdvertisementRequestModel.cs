@@ -1,5 +1,6 @@
 ﻿namespace CarZone.Server.Features.Advertisements.Models
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using CarZone.Server.Features.Cars.Models;
@@ -15,6 +16,8 @@
         [MinLength(DescriptionMinLength)]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
+
+        public ICollection<string> ImageURLs { get; set; }
 
         public UpdateCarRequestModel Car { get; set; }
     }

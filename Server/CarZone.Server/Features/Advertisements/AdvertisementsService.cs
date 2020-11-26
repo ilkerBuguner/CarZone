@@ -95,6 +95,11 @@
                 advertisement.Description = model.Description;
                 advertisement.ModifiedOn = DateTime.UtcNow;
 
+                foreach (var imageUrl in model.ImageURLs)
+                {
+                    await this.imagesService.CreateAsync(imageUrl, advertisementId);
+                }
+
                 var editCarRequest = await this.carsService.UpdateAsync(userId, advertisement.CarId, model.Car);
 
                 if (!editCarRequest.Success)

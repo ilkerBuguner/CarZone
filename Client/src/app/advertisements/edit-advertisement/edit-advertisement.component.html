@@ -1,6 +1,6 @@
 <div class="container">
-    <form [formGroup]="createForm" (ngSubmit)="create()" class="cr-ad form">
-        <h1>New Advertisement</h1>
+    <form [formGroup]="editForm" (ngSubmit)="edit()" class="cr-ad form">
+        <h1>Edit Advertisement</h1>
         <br>
         <div class="form-row">
             <div class="form-group col-md-4 col-centered">
@@ -105,7 +105,7 @@
         </div>
         <br>
         <div class="form-row">
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-3">
                 <label for="inputMake">Fuel Type<span class="required">*</span></label>
                 <select class="form-control" formControlName="fuelType">
                     <option value="">Not selected</option>
@@ -114,18 +114,6 @@
                 <br *ngIf="fuelType.touched && fuelType.errors">
                 <div *ngIf="fuelType.touched && fuelType.errors?.required" class="alert alert-danger">
                     Fuel Type is required!
-                </div>
-            </div>
-            <div class="form-group col-md-2 tooltip-toggle"
-                data-tooltip="If the location in your profile is not defined this location will be used. Please fill it!">
-                <label for="inputMake">Location<span class="required">*</span></label>
-                <select class="form-control" formControlName="location">
-                    <option value="">Not selected</option>
-                    <option *ngFor="let location of locations" [value]="location">{{location}}</option>
-                </select>
-                <br *ngIf="location.touched && location.errors">
-                <div *ngIf="location.touched && location.errors?.required" class="alert alert-danger">
-                    Location is required!
                 </div>
             </div>
             <div class="form-group col-md-2">
@@ -161,7 +149,7 @@
                     Car condition is required!
                 </div>
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-3">
                 <label for="inputMake">Doors Count<span class="required">*</span></label>
                 <select class="form-control" formControlName="doorsCount">
                     <option value="">Not selected</option>
@@ -174,16 +162,6 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-12 tooltip-toggle"
-                data-tooltip="If the phone number in your profile page is not defined, this phone number will be used. Please fill it!">
-                <label for="inputPhoneNumber">Phone Number<span class="required">*</span></label>
-                <input type="number" class="form-control form-control-md" formControlName="phoneNumber"
-                    id="inputPhoneNumber" placeholder="Phone Number">
-                <br *ngIf="phoneNumber.touched && phoneNumber.errors">
-                <div *ngIf="phoneNumber.touched && phoneNumber.errors?.required" class="alert alert-danger">
-                    Contact phone number is required!
-                </div>
-            </div>
             <div class="form-group col-md-12">
                 <label for="carDescription">Car Description<span class="required">*</span></label>
                 <textarea class="form-control" id="carDescription" rows="3" formControlName="description"></textarea>
@@ -199,7 +177,7 @@
                 </div>
             </div>
         </div>
-        <br>
+        <!-- <br>
         <h3 class="section-header">Images</h3>
         <br>
         <ngx-dropzone (change)="onSelect($event)">
@@ -260,9 +238,9 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row justify-content-center">
-            <button type="submit" class="btn btn-outline-primary float-md-right">Create</button>
+            <button type="submit" class="btn btn-outline-primary float-md-right">Edit</button>
         </div>
     </form>
 </div>
