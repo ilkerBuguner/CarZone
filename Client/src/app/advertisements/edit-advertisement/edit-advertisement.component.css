@@ -31,3 +31,44 @@
     margin-bottom: 10px;
   }
   
+  .images-wrapper{
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+  .images-wrapper img {
+    padding-right: 10px;
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 150px;
+    max-height: 150px;
+  }
+
+  .current-images-heading {
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+
+  .single-image-wrapper {
+    display: inline-block;
+  }
+
+  .delete-picture {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .delete-picture i {
+    position: relative;
+    cursor: pointer;
+    color: white;
+    font-size: 26px;
+    left: 157px;
+    top: 34px;
+    -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: gray;
+  }
+
+  .delete-picture i:hover {
+    color: #0099FF;
+  }

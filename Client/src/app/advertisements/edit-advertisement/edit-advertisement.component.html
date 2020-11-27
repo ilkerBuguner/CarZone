@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="advertisement" class="container">
     <form [formGroup]="editForm" (ngSubmit)="edit()" class="cr-ad form">
         <h1>Edit Advertisement</h1>
         <br>
@@ -161,7 +161,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-row">
+        <div *ngIf="advertisement.images.length > 0" class="form-row">
             <div class="form-group col-md-12">
                 <label for="carDescription">Car Description<span class="required">*</span></label>
                 <textarea class="form-control" id="carDescription" rows="3" formControlName="description"></textarea>
@@ -177,22 +177,32 @@
                 </div>
             </div>
         </div>
-        <!-- <br>
-        <h3 class="section-header">Images</h3>
+        <div>
+            <h3 class="text-center current-images-heading">Current Images</h3>
+            <div class="form-group cold-md-12 images-wrapper">
+                <div *ngFor="let image of advertisement.images" (click)="deleteImage(image.id)" class="single-image-wrapper">
+                    <div class="delete-picture"><i class="far fa-times-circle"></i></div>
+                    <img [src]="image.url" alt="">
+                </div>
+            </div>
+        </div>
         <br>
-        <ngx-dropzone (change)="onSelect($event)">
+        <br>
+        <h3 class="section-header">Upload New Images</h3>
+        <br>
+        <ngx-dropzone (change)="onSelectImage($event)">
             <ngx-dropzone-label>Drag and drop some images of your car</ngx-dropzone-label>
             <ngx-dropzone-image-preview 
                 ngProjectAs="ngx-dropzone-preview" 
                 [removable]="true" 
-                (removed)="onRemove(f)" 
+                (removed)="onRemoveImage(f)" 
                 *ngFor="let f of files" 
                 [file]="f">
                 <ngx-dropzone-label>({{ f.type }})</ngx-dropzone-label>
             </ngx-dropzone-image-preview>
         </ngx-dropzone>
         <br>
-        <h3 class="section-header">Car Extras</h3>
+        <!-- <h3 class="section-header">Car Extras</h3>
         <br>
         <div class="form-row">
             <div class="col-md-5 car-extra">

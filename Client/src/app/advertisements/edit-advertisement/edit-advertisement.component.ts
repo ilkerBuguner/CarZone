@@ -34,6 +34,8 @@ export class EditAdvertisementComponent implements OnInit {
   locations: string[];
   euroStandards: string[];
   doorsCounts: string[];
+  files: File[] = [];
+  imageURLs: string[] = [];
 
   comforts: IComfort[];
   exteriors: IExterior[];
@@ -137,37 +139,87 @@ export class EditAdvertisementComponent implements OnInit {
     });
   }
 
+  deleteImage(imageId: string) {
+    this.uploadService.deleteimage(imageId).pipe(
+      map(data => {
+        this.toastrService.success('Successfully deleted image!')
+      }),
+      mergeMap(data => this.advertisementService.getAdvertisement(this.advertisement.id))).subscribe(res => {
+        this.advertisement = res;
+      })
+  }
+
+  onSelectImage(event) {
+    this.files.push(...event.addedFiles);
+  }
+
+  onRemoveImage(event) {
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
   edit() {
-    var advertisementToSend = {
-      title: this.editForm.value.title,
-      description: this.editForm.value.description,
-      // phoneNumber: this.editForm.value.phoneNumber.toString(),
-      // location: this.editForm.value.location,
-      imageURLs: [],
-      car: {
-        brandId: this.editForm.value.brandId,
-        modelId: this.editForm.value.modelId,
-        bodyType: this.editForm.value.bodyType,
-        price: this.editForm.value.price,
-        fuelType: this.editForm.value.fuelType,
-        horsePower: this.editForm.value.horsePower,
-        transmission: this.editForm.value.transmission,
-        year: this.editForm.value.year,
-        mileage: this.editForm.value.mileage ? this.editForm.value.mileage : 0,
-        color: this.editForm.value.color,
-        condition: this.editForm.value.condition,
-        euroStandard: this.editForm.value.euroStandard,
-        doorsCount: this.editForm.value.doorsCount,
-        carComforts: [],
-        carExteriors: [],
-        carProtections: [],
-        carSafeties: [],
+    if (this.editForm.invalid) {
+      this.toastrService.error('Please populate all requried fields and selects!');
+      return;
+    }
+    
+    this.toastrService.info('Editing...')
+    var promises = [];
+    if (this.files.length > 0) {
+      for (const file_data of this.files) {
+        const data = new FormData();
+        data.append('file', file_data);
+        data.append('upload_preset', 'Carzone_cloudinary');
+        data.append('cloud_name', 'doyjshrjs');
+
+        let httpData = this.uploadService.uploadImageToCloudinary(data)
+        promises.push(httpData);
       }
     }
 
-    this.advertisementService.edit(this.advertisement.id, advertisementToSend).subscribe(res => {
-      this.toastrService.success('Successfully edited advertisement');
-      this.router.navigate(["advertisement", this.advertisement.id]);
+    Promise.all(promises).then((results) => {
+      
+      for (const result of results) {
+        this.imageURLs.push(result['secure_url']);
+      }
+
+      var advertisementToSend = {
+        title: this.editForm.value.title,
+        description: this.editForm.value.description,
+        // phoneNumber: this.editForm.value.phoneNumber.toString(),
+        // location: this.editForm.value.location,
+        imageURLs: this.imageURLs ? this.imageURLs : [],
+        car: {
+          brandId: this.editForm.value.brandId,
+          modelId: this.editForm.value.modelId,
+          bodyType: this.editForm.value.bodyType,
+          price: this.editForm.value.price,
+          fuelType: this.editForm.value.fuelType,
+          horsePower: this.editForm.value.horsePower,
+          transmission: this.editForm.value.transmission,
+          year: this.editForm.value.year,
+          mileage: this.editForm.value.mileage ? this.editForm.value.mileage : 0,
+          color: this.editForm.value.color,
+          condition: this.editForm.value.condition,
+          euroStandard: this.editForm.value.euroStandard,
+          doorsCount: this.editForm.value.doorsCount,
+          carComforts: [],
+          carExteriors: [],
+          carProtections: [],
+          carSafeties: [],
+        }
+      }
+  
+      // advertisementToSend.car['safeties'] = this.selectedSafetiesIds ? this.selectedSafetiesIds : [];
+      // advertisementToSend.car['exteriors'] = this.selectedExteriorsIds ? this.selectedExteriorsIds : [];
+      // advertisementToSend.car['comforts'] = this.selectedComfortsIds ? this.selectedComfortsIds : [];
+      // advertisementToSend.car['protections'] = this.selectedProtectionsIds ? this.selectedProtectionsIds : [];
+      
+      this.advertisementService.edit(this.advertisement.id, advertisementToSend).subscribe(res => {
+        this.toastrService.clear();
+        this.toastrService.success('Successfully edited advertisement');
+        this.router.navigate(["advertisement", this.advertisement.id]);
+      })
     })
   }
 

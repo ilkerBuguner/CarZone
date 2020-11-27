@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,11 @@ import { Injectable } from '@angular/core';
 export class UploadService {
 
   constructor(private http: HttpClient) { }
+  private imagePath = environment.apiUrl + 'images';
+
+  deleteimage(imageId) {
+    return this.http.delete(this.imagePath + '/' + imageId);
+  }
 
   uploadImageToCloudinary(vals) {
     let data = vals;
