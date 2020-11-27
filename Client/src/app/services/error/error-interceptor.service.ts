@@ -14,11 +14,17 @@ export class ErrorInterceptorService implements HttpInterceptor{
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((err) => {
+        console.log(err.error)
+        for (const key in err.error.errors) {
+          if (err.error.errors.hasOwnProperty(key)) {
+            const element = err.error.errors[key];
+            this.toastrService.error(element);
+          }
+        }
+        return throwError(err);
         // if (err) {
         //   this.toastrService.error(err.error['errors'][0])
         // }
-        console.log(err);
-        return throwError(err);
       })
     )
   }
