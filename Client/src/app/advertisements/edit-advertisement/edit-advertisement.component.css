@@ -58,6 +58,10 @@
     cursor: pointer;
   }
 
+  .no-images {
+    margin-top: 30px;
+  }
+
   .delete-picture i {
     position: relative;
     cursor: pointer;

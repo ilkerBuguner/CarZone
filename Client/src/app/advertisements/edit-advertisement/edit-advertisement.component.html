@@ -180,8 +180,9 @@
         <div>
             <h3 class="text-center current-images-heading">Current Images</h3>
             <div class="form-group cold-md-12 images-wrapper">
-                <div *ngFor="let image of advertisement.images" (click)="deleteImage(image.id)" class="single-image-wrapper">
-                    <div class="delete-picture"><i class="far fa-times-circle"></i></div>
+                <h5 *ngIf="advertisement.images.length == 0" class="text-center no-images">No Images Avaible</h5>
+                <div *ngFor="let image of advertisement.images" class="single-image-wrapper">
+                    <div class="delete-picture" (click)="deleteImage(image.id)"><i class="far fa-times-circle"></i></div>
                     <img [src]="image.url" alt="">
                 </div>
             </div>
