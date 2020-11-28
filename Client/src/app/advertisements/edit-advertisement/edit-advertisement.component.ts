@@ -14,6 +14,7 @@ import { CarService } from 'src/app/services/car/car.service';
 import { UploadService } from 'src/app/services/upload/upload.service';
 import { map, mergeMap } from 'rxjs/operators';
 import { IAdvertisement } from 'src/app/models/IAdvertisement';
+import { Observable, combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-edit-advertisement',
@@ -56,18 +57,51 @@ export class EditAdvertisementComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.carService.getExteriors().subscribe(exteriors => {
-      this.exteriors = exteriors;
-    })
-    this.carService.getComforts().subscribe(comforts => {
-      this.comforts = comforts;
-    })
-    this.carService.getProtections().subscribe(protections => {
-      this.protections = protections;
-    })
-    this.carService.getSafeties().subscribe(safeties => {
-      this.safeties = safeties;
-    })
+    combineLatest([
+      this.carService.getExteriors(),
+      this.carService.getComforts(),
+      this.carService.getProtections(),
+      this.carService.getSafeties()
+    ]).subscribe(([exteriors, comforts, protections, safeties]) => {
+        this.exteriors = exteriors;
+        this.comforts = comforts;
+        this.protections = protections;
+        this.safeties = safeties;
+
+        this.route.params.pipe(
+          map(params => {
+            const id = params['id'];
+            return id;
+          }), 
+          mergeMap(id => this.advertisementService.getAdvertisement(id))).pipe(
+            map(res => {
+              this.advertisement = res;
+              this.editForm = this.fb.group({
+                'title': [this.advertisement.title, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+                'brandId': [this.advertisement.car.brand.id, [Validators.required]],
+                'modelId': [this.advertisement.car.model.id, [Validators.required]],
+                'condition': [this.advertisement.car.condition, [Validators.required]],
+                'bodyType': [this.advertisement.car.bodyType, [Validators.required]],
+                'price': [this.advertisement.car.price, [Validators.required]],
+                'horsePower': [this.advertisement.car.horsePower, [Validators.required]],
+                'year': [this.advertisement.car.year, [Validators.required]],
+                'mileage': [this.advertisement.car.mileage, ''],
+                'fuelType': [this.advertisement.car.fuelType, [Validators.required]],
+                'transmission': [this.advertisement.car.transmission, [Validators.required]],
+                'color': [this.advertisement.car.color, [Validators.required]],
+                'location': [this.advertisement.location, [Validators.required]],
+                'euroStandard': [this.advertisement.car.euroStandard, [Validators.required]],
+                'doorsCount': [this.advertisement.car.doorsCount, [Validators.required]],
+                'description': [this.advertisement.description, [Validators.required, Validators.minLength(5), Validators.maxLength(300)]],
+              })
+      
+              this.fillCarExtras();
+              this.isLoading = false;
+            }),
+            mergeMap(data => this.brandModelService.getModelsByBrandId(this.advertisement.car.brand.id))).subscribe(models => {
+              this.brandModels = models;
+            })
+      })
 
     this.advertisementService.getEnums().subscribe(enums => {
       this.conditionTypes = enums['conditionTypes'];
@@ -83,40 +117,6 @@ export class EditAdvertisementComponent implements OnInit {
     this.brandModelService.getBrands().subscribe(brands => {
       this.brands = this.brandModelService.sortBrandsByName(brands);
     });
-
-    this.route.params.pipe(
-    map(params => {
-      const id = params['id'];
-      return id;
-    }), 
-    mergeMap(id => this.advertisementService.getAdvertisement(id))).pipe(
-      map(res => {
-        this.advertisement = res;
-        this.editForm = this.fb.group({
-          'title': [this.advertisement.title, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-          'brandId': [this.advertisement.car.brand.id, [Validators.required]],
-          'modelId': [this.advertisement.car.model.id, [Validators.required]],
-          'condition': [this.advertisement.car.condition, [Validators.required]],
-          'bodyType': [this.advertisement.car.bodyType, [Validators.required]],
-          'price': [this.advertisement.car.price, [Validators.required]],
-          'horsePower': [this.advertisement.car.horsePower, [Validators.required]],
-          'year': [this.advertisement.car.year, [Validators.required]],
-          'mileage': [this.advertisement.car.mileage, ''],
-          'fuelType': [this.advertisement.car.fuelType, [Validators.required]],
-          'transmission': [this.advertisement.car.transmission, [Validators.required]],
-          'color': [this.advertisement.car.color, [Validators.required]],
-          'location': [this.advertisement.location, [Validators.required]],
-          'euroStandard': [this.advertisement.car.euroStandard, [Validators.required]],
-          'doorsCount': [this.advertisement.car.doorsCount, [Validators.required]],
-          'description': [this.advertisement.description, [Validators.required, Validators.minLength(5), Validators.maxLength(300)]],
-        })
-
-        this.fillCarExtras();
-        this.isLoading = false;
-      }),
-      mergeMap(data => this.brandModelService.getModelsByBrandId(this.advertisement.car.brand.id))).subscribe(models => {
-        this.brandModels = models;
-      })
   }
 
   onChangeBrand(brandId) {
@@ -195,10 +195,10 @@ export class EditAdvertisementComponent implements OnInit {
     }
 
     Promise.all(promises).then((results) => {
-      
       for (const result of results) {
         this.imageURLs.push(result['secure_url']);
       }
+      
       var advertisementToSend = {
         title: this.editForm.value.title,
         description: this.editForm.value.description,
