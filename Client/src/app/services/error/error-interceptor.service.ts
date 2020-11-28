@@ -18,6 +18,7 @@ export class ErrorInterceptorService implements HttpInterceptor{
         for (const key in err.error.errors) {
           if (err.error.errors.hasOwnProperty(key)) {
             const element = err.error.errors[key];
+            this.toastrService.clear();
             this.toastrService.error(element);
           }
         }

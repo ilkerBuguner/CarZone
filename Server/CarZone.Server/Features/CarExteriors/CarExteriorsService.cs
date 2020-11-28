@@ -38,7 +38,7 @@
 
         public async Task UpdateAsync(UpdateCarExteriorRequestModel model)
         {
-            var carExterior = await this.GetByIdsAsync(model.CarId, model.ExteriorId);
+            var carExterior = await this.GetByIdsAsync(model.CarId, model.Id);
 
             if (model.IsChecked == true)
             {
@@ -47,13 +47,13 @@
                     var deepSearchedCarExterior = await this.dbContext.CarExteriors
                         .IgnoreQueryFilters()
                         .Where(ce => ce.CarId == model.CarId
-                            && ce.ExteriorId == model.ExteriorId
+                            && ce.ExteriorId == model.Id
                             && ce.IsDeleted == true)
                         .FirstOrDefaultAsync();
 
                     if (deepSearchedCarExterior == null)
                     {
-                        await this.CreateAsync(model.CarId, model.ExteriorId);
+                        await this.CreateAsync(model.CarId, model.Id);
                     }
                     else
                     {
@@ -69,7 +69,7 @@
             {
                 if (carExterior != null)
                 {
-                    await this.DeleteAsync(model.CarId, model.ExteriorId);
+                    await this.DeleteAsync(model.CarId, model.Id);
                 }
             }
         }

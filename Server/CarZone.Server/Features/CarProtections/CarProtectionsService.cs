@@ -38,7 +38,7 @@
 
         public async Task UpdateAsync(UpdateCarProtectionRequestModel model)
         {
-            var carProtection = await this.GetByIdsAsync(model.CarId, model.ProtectionId);
+            var carProtection = await this.GetByIdsAsync(model.CarId, model.Id);
 
             if (model.IsChecked == true)
             {
@@ -47,13 +47,13 @@
                     var deepSearchedCarProtection = await this.dbContext.CarProtections
                         .IgnoreQueryFilters()
                         .Where(cp => cp.CarId == model.CarId
-                            && cp.ProtectionId == model.ProtectionId
+                            && cp.ProtectionId == model.Id
                             && cp.IsDeleted == true)
                         .FirstOrDefaultAsync();
 
                     if (deepSearchedCarProtection == null)
                     {
-                        await this.CreateAsync(model.CarId, model.ProtectionId);
+                        await this.CreateAsync(model.CarId, model.Id);
                     }
                     else
                     {
@@ -69,7 +69,7 @@
             {
                 if (carProtection != null)
                 {
-                    await this.DeleteAsync(model.CarId, model.ProtectionId);
+                    await this.DeleteAsync(model.CarId, model.Id);
                 }
             }
         }

@@ -23,6 +23,7 @@ import { IAdvertisement } from 'src/app/models/IAdvertisement';
 export class EditAdvertisementComponent implements OnInit {
   editForm: FormGroup;
   advertisement: IAdvertisement;
+  isLoading: boolean;
 
   conditionTypes: string[];
   bodyTypes: string[];
@@ -51,28 +52,23 @@ export class EditAdvertisementComponent implements OnInit {
     private toastrService: ToastrService,
     private uploadService: UploadService,
     private route: ActivatedRoute
-  ) { 
-    this.editForm = this.fb.group({
-      'title': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      'brandId': ['', [Validators.required]],
-      'modelId': ['', [Validators.required]],
-      'condition': ['', [Validators.required]],
-      'bodyType': ['', [Validators.required]],
-      'price': ['', [Validators.required]],
-      'horsePower': ['', [Validators.required]],
-      'year': ['', [Validators.required]],
-      'mileage': ['', ''],
-      'fuelType': ['', [Validators.required]],
-      'transmission': ['', [Validators.required]],
-      'color': ['', [Validators.required]],
-      'location': ['', [Validators.required]],
-      'euroStandard': ['', [Validators.required]],
-      'doorsCount': ['', [Validators.required]],
-      'description': ['', [Validators.required, Validators.minLength(5), Validators.maxLength(300)]],
-    })
-  }
+  ) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
+    this.carService.getExteriors().subscribe(exteriors => {
+      this.exteriors = exteriors;
+    })
+    this.carService.getComforts().subscribe(comforts => {
+      this.comforts = comforts;
+    })
+    this.carService.getProtections().subscribe(protections => {
+      this.protections = protections;
+    })
+    this.carService.getSafeties().subscribe(safeties => {
+      this.safeties = safeties;
+    })
+
     this.advertisementService.getEnums().subscribe(enums => {
       this.conditionTypes = enums['conditionTypes'];
       this.bodyTypes = enums['bodyTypes'];
@@ -114,29 +110,50 @@ export class EditAdvertisementComponent implements OnInit {
           'doorsCount': [this.advertisement.car.doorsCount, [Validators.required]],
           'description': [this.advertisement.description, [Validators.required, Validators.minLength(5), Validators.maxLength(300)]],
         })
+
+        this.fillCarExtras();
+        this.isLoading = false;
       }),
       mergeMap(data => this.brandModelService.getModelsByBrandId(this.advertisement.car.brand.id))).subscribe(models => {
         this.brandModels = models;
       })
-
-    // this.carService.getExteriors().subscribe(exteriors => {
-    //   this.exteriors = exteriors;
-    // })
-    // this.carService.getComforts().subscribe(comforts => {
-    //   this.comforts = comforts;
-    // })
-    // this.carService.getProtections().subscribe(protections => {
-    //   this.protections = protections;
-    // })
-    // this.carService.getSafeties().subscribe(safeties => {
-    //   this.safeties = safeties;
-    // })
   }
 
   onChangeBrand(brandId) {
     this.brandModelService.getModelsByBrandId(brandId).subscribe(models => {
       this.brandModels = models;
     });
+  }
+
+  fillCarExtras() {
+    for (const comfort of this.comforts) {
+      for (const carComfort of this.advertisement.car.comforts) {
+        if(comfort.name == carComfort.toString()) {
+          comfort.isChecked = true;
+        }
+      }
+    }
+    for (const exterior of this.exteriors) {
+      for (const carExterior of this.advertisement.car.exteriors) {
+        if(exterior.name == carExterior.toString()) {
+          exterior.isChecked = true;
+        }
+      }
+    }
+    for (const safety of this.safeties) {
+      for (const carSafety of this.advertisement.car.safeties) {
+        if(safety.name == carSafety.toString()) {
+          safety.isChecked = true;
+        }
+      }
+    }
+    for (const protection of this.protections) {
+      for (const carProtection of this.advertisement.car.protections) {
+        if(protection.name == carProtection.toString()) {
+          protection.isChecked = true;
+        }
+      }
+    }
   }
 
   deleteImage(imageId: string) {
@@ -182,7 +199,6 @@ export class EditAdvertisementComponent implements OnInit {
       for (const result of results) {
         this.imageURLs.push(result['secure_url']);
       }
-
       var advertisementToSend = {
         title: this.editForm.value.title,
         description: this.editForm.value.description,
@@ -210,10 +226,10 @@ export class EditAdvertisementComponent implements OnInit {
         }
       }
   
-      // advertisementToSend.car['safeties'] = this.selectedSafetiesIds ? this.selectedSafetiesIds : [];
-      // advertisementToSend.car['exteriors'] = this.selectedExteriorsIds ? this.selectedExteriorsIds : [];
-      // advertisementToSend.car['comforts'] = this.selectedComfortsIds ? this.selectedComfortsIds : [];
-      // advertisementToSend.car['protections'] = this.selectedProtectionsIds ? this.selectedProtectionsIds : [];
+      advertisementToSend.car['carSafeties'] = this.safeties ? this.safeties : [];
+      advertisementToSend.car['carExteriors'] = this.exteriors ? this.exteriors : [];
+      advertisementToSend.car['carComforts'] = this.comforts ? this.comforts : [];
+      advertisementToSend.car['carProtections'] = this.protections ? this.protections : [];
       
       this.advertisementService.edit(this.advertisement.id, advertisementToSend).subscribe(res => {
         this.toastrService.clear();
@@ -268,5 +284,4 @@ export class EditAdvertisementComponent implements OnInit {
   get doorsCount() {
     return this.editForm.get('doorsCount');
   }
-
 }

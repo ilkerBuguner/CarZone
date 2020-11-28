@@ -39,7 +39,7 @@
 
         public async Task UpdateAsync(UpdateCarComfortRequestModel model)
         {
-            var carComfort = await this.GetByIdsAsync(model.CarId, model.ComfortId);
+            var carComfort = await this.GetByIdsAsync(model.CarId, model.Id);
 
             if (model.IsChecked == true)
             {
@@ -48,13 +48,13 @@
                     var deepSearchedCarComfort = await this.dbContext.CarComforts
                         .IgnoreQueryFilters()
                         .Where(cc => cc.CarId == model.CarId
-                            && cc.ComfortId == model.ComfortId
+                            && cc.ComfortId == model.Id
                             && cc.IsDeleted == true)
                         .FirstOrDefaultAsync();
 
                     if (deepSearchedCarComfort == null)
                     {
-                        await this.CreateAsync(model.CarId, model.ComfortId);
+                        await this.CreateAsync(model.CarId, model.Id);
                     }
                     else
                     {
@@ -70,7 +70,7 @@
             {
                 if (carComfort != null)
                 {
-                    await this.DeleteAsync(model.CarId, model.ComfortId);
+                    await this.DeleteAsync(model.CarId, model.Id);
                 }
             }
         }

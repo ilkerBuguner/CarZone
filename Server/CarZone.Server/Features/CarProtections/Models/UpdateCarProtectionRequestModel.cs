@@ -4,7 +4,7 @@
     {
         public string CarId { get; set; }
 
-        public string ProtectionId { get; set; }
+        public string Id { get; set; }
 
         public bool IsChecked { get; set; }
     }

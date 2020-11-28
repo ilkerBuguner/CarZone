@@ -38,7 +38,7 @@
 
         public async Task UpdateAsync(UpdateCarSafetyRequestModel model)
         {
-            var carSafety = await this.GetByIdsAsync(model.CarId, model.SafetyId);
+            var carSafety = await this.GetByIdsAsync(model.CarId, model.Id);
 
             if (model.IsChecked == true)
             {
@@ -47,13 +47,13 @@
                     var deepSearchedCarSafety = await this.dbContext.CarSafeties
                         .IgnoreQueryFilters()
                         .Where(cs => cs.CarId == model.CarId
-                            && cs.SafetyId == model.SafetyId
+                            && cs.SafetyId == model.Id
                             && cs.IsDeleted == true)
                         .FirstOrDefaultAsync();
 
                     if (deepSearchedCarSafety == null)
                     {
-                        await this.CreateAsync(model.CarId, model.SafetyId);
+                        await this.CreateAsync(model.CarId, model.Id);
                     }
                     else
                     {
@@ -69,7 +69,7 @@
             {
                 if (carSafety != null)
                 {
-                    await this.DeleteAsync(model.CarId, model.SafetyId);
+                    await this.DeleteAsync(model.CarId, model.Id);
                 }
             }
         }
