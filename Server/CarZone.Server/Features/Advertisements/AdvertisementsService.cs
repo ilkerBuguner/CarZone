@@ -457,6 +457,29 @@
                 .ToListAsync();
         }
 
+        public async Task<ResultModel<bool>> IncrementViewsAsync(string advertisementId)
+        {
+            var advertisement = await this.GetByIdAsync(advertisementId);
+
+            if (advertisement == null)
+            {
+                return new ResultModel<bool>
+                {
+                    Errors = new string[] { Errors.InvalidAdvertisementId },
+                };
+            }
+
+            advertisement.Views++;
+
+            this.dbContext.Advertisements.Update(advertisement);
+            await this.dbContext.SaveChangesAsync();
+
+            return new ResultModel<bool>
+            {
+                Success = true,
+            };
+        }
+
         private async Task<Advertisement> GetByIdAsync(string id)
         {
             return await this.dbContext

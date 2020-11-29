@@ -63,6 +63,7 @@
             public const string GetDetails = Root + "/{advertisementId}";
             public const string BySearch = Root + "/bySearch";
             public const string MyAdvertisements = Root + "/myAds";
+            public const string IncrementViews = Root + "/incrementViews/{advertisementId}";
         }
 
         public static class Comment

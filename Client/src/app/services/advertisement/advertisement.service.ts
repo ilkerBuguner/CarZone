@@ -14,6 +14,7 @@ export class AdvertisementService {
   private advertisementsOfUserPath = environment.apiUrl + 'advertisements/myAds';
   private advertisementsSearchPath = environment.apiUrl + 'advertisements/bySearch';
   private latestAdvertisementsPath = environment.apiUrl + 'advertisements/latest';
+  private incrementViewsPath = environment.apiUrl + 'advertisements/incrementViews';
 
   constructor(private http: HttpClient) { }
 
@@ -35,6 +36,10 @@ export class AdvertisementService {
 
   getAdvertisementsOfUser(): Observable<IAdvertisement[]>{
     return this.http.get<IAdvertisement[]>(this.advertisementsOfUserPath);
+  }
+
+  incrementViews(advertisementId: string) : Observable<any> {
+    return this.http.get(this.incrementViewsPath + '/' + advertisementId);
   }
 
   create(data) {

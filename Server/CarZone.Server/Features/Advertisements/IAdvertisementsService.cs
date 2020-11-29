@@ -22,5 +22,7 @@
         Task<ICollection<AdvertisementListingServiceModel>> GetBySearchAsync(CarSearchRequestModel model);
 
         Task<ICollection<AdvertisementListingServiceModel>> GetByUserIdAsync(string userId);
+
+        Task<ResultModel<bool>> IncrementViewsAsync(string advertisementId);
     }
 }

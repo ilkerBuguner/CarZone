@@ -17,6 +17,7 @@ export class DetailsAdvertisementComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
+    this.incrementViews();
   }
 
   fetchData() {
@@ -26,6 +27,13 @@ export class DetailsAdvertisementComponent implements OnInit {
     }), mergeMap(id => this.advertisementService.getAdvertisement(id))).subscribe(res => {
       this.advertisement = res;
     })
+  }
+
+  incrementViews() {
+    this.route.params.pipe(map(params => {
+      const id = params['id'];
+      return id;
+    }), mergeMap(id => this.advertisementService.incrementViews(id))).subscribe();
   }
 
 }

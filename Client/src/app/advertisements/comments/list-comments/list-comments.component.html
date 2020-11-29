@@ -11,7 +11,7 @@
     <div *ngIf="(selectedCommentId != comment.id) || !isEditing">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mt-0"><a [routerLink]="['/user', comment.author.id]">{{comment.author.username}}</a></h5>
-        <small>13.01.2020</small>
+        <small>{{comment.createdOn | date:'dd/MM/yyyy h:mm a'}}</small>
       </div>
       <h6>{{comment.content}}</h6>
       <div class="d-flex w-100 justify-content-between">

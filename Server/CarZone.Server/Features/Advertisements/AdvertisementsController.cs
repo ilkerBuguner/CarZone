@@ -119,5 +119,23 @@
 
             return this.Ok(advertisements);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route(Advertisement.IncrementViews)]
+        public async Task<ActionResult> IncrementViews(string advertisementId)
+        {
+            var incrementViewsRequest = await this.advertisementsService.IncrementViewsAsync(advertisementId);
+
+            if (!incrementViewsRequest.Success)
+            {
+                return this.BadRequest(new ErrorsResponseModel
+                {
+                    Errors = incrementViewsRequest.Errors,
+                });
+            }
+
+            return this.Ok();
+        }
     }
 }
