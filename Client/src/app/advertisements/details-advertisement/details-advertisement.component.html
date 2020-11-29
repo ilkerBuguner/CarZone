@@ -42,9 +42,12 @@
 
                     <p class="lead description">{{advertisement?.description}}</p>
 
-                    <p class="lead price"><strong class="text-primary">${{advertisement?.car.price.toFixed(2)}}</strong>
-                    </p>
-
+                    <div class="d-flex w-100 justify-content-between">
+                        <p class="lead price">
+                            <strong class="text-primary">${{advertisement?.car.price.toFixed(2)}}</strong>
+                        </p>
+                        <h6 class="create-date"><i class="fas fa-calendar-alt"></i>&nbsp; {{advertisement.createdOn | date:'dd/MM/yyyy h:mm a':'UTC+4'}}</h6>
+                    </div>
                     <div class="row car-info">
                         <div class="col-md-4 col-sm-6">
                             <p>
@@ -158,7 +161,8 @@
                                     <p>
                                         <span>Name</span>
                                         <br>
-                                        <strong><a class="user-contact" [routerLink]="['/user', advertisement.author.id]">{{advertisement?.author.username}}</a></strong>
+                                        <strong><a class="user-contact"
+                                                [routerLink]="['/user', advertisement.author.id]">{{advertisement?.author.username}}</a></strong>
                                     </p>
                                     <p>
                                         <span>Mobile phone</span>

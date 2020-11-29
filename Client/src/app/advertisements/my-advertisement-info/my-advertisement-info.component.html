@@ -62,7 +62,7 @@
     </button>
   </div>
   <div class="card-footer text-muted">
-    Added on {{selectedAdvertisement.createdOn}}
+    Added on {{selectedAdvertisement.createdOn | date:'dd/MM/yyyy h:mm a':'UTC+4'}}
   </div>
 </div>
 <div *ngIf="!selectedAdvertisement" class="card ad-details">

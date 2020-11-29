@@ -10,7 +10,7 @@
         <div *ngIf="(selectedReplyId != reply.id) || !isEditing">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mt-0"><a [routerLink]="['/user', reply.author.id]">{{reply.author.username}}</a></h5>
-                <small>13.01.2020</small>
+                <small>{{reply.createdOn | date:'dd/MM/yyyy h:mm a':'UTC+4'}}</small>
             </div>
             <h6>{{reply.content}}</h6>
             <button *ngIf="isAdmin || currentUserId == reply.author.id" (click)="activateEditingAndSelectReply(reply.id)" class="btn btn-primary btn-sm">Edit</button>

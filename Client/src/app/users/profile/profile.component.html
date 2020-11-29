@@ -130,7 +130,7 @@
                                         <div class="media-body">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <h6 class="mb-1">{{advertisement.title}}</h6>
-                                                <small><i class="fas fa-calendar-alt"></i>&nbsp; {{advertisement.createdOn}}</small>
+                                                <small><i class="fas fa-calendar-alt"></i>&nbsp; {{advertisement.createdOn | date:'dd/MM/yyyy h:mm a':'UTC+4'}}</small>
                                             </div>
                                             <p class="mb-1">{{advertisement.shortDescription}}</p>
 

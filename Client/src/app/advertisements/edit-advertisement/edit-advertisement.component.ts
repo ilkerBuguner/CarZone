@@ -38,6 +38,7 @@ export class EditAdvertisementComponent implements OnInit {
   doorsCounts: string[];
   files: File[] = [];
   imageURLs: string[] = [];
+  isButtonDisabled: boolean;
 
   comforts: IComfort[];
   exteriors: IExterior[];
@@ -179,6 +180,7 @@ export class EditAdvertisementComponent implements OnInit {
       this.toastrService.error('Please populate all requried fields and selects!');
       return;
     }
+    this.isButtonDisabled = true;
     
     this.toastrService.info('Editing...')
     var promises = [];

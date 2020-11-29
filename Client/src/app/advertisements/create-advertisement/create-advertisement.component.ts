@@ -32,6 +32,7 @@ export class CreateAdvertisementComponent implements OnInit {
   doorsCounts: string[];
   files: File[] = [];
   imageURLs: string[] = [];
+  isButtonDisabled: boolean;
 
   comforts: IComfort[];
   exteriors: IExterior[];
@@ -174,6 +175,7 @@ export class CreateAdvertisementComponent implements OnInit {
       return;
     }
 
+    this.isButtonDisabled = true;
     this.toastrService.info('Creating...')
     var promises = [];
     if (this.files.length > 0) {
