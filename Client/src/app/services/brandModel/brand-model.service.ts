@@ -14,10 +14,6 @@ export class BrandModelService {
 
   constructor(private http: HttpClient) { }
 
-  getBrands(): Observable<any> {
-    return this.http.get(this.brandsPath);
-  }
-
   create(data) {
     return this.http.post(this.brandModelsPath, data, { responseType: 'text' });
   }
@@ -33,9 +29,13 @@ export class BrandModelService {
   details(modelId: string): Observable<IBrandModel> {
     return this.http.get<IBrandModel>(this.brandModelsPath + '/' + modelId);
   }
+
+  getBrands(): Observable<IBrand[]> {
+    return this.http.get<IBrand[]>(this.brandsPath);
+  }
   
-  getModelsByBrandId(brandId): Observable<any> {
-    return this.http.get(this.brandModelsPath + `/getByBrandId/${brandId}`)
+  getModelsByBrandId(brandId): Observable<IBrandModel[]> {
+    return this.http.get<IBrandModel[]>(this.brandModelsPath + `/getByBrandId/${brandId}`)
   }
 
   sortBrandsByName(brands: IBrand[]) : IBrand[] {

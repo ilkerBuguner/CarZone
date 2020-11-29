@@ -18,16 +18,16 @@ export class AdvertisementService {
 
   constructor(private http: HttpClient) { }
 
-  getEnums(): Observable<any> {
+  getEnums() {
     return this.http.get(this.enumsPath);
   }
 
-  getAdvertisementsBySearch(data) : Observable<any> {
-    return this.http.post(this.advertisementsSearchPath, data);
+  getAdvertisementsBySearch(data) : Observable<IAdvertisement[]> {
+    return this.http.post<IAdvertisement[]>(this.advertisementsSearchPath, data);
   }
 
-  getLatestAdvertisements() : Observable<any> {
-    return this.http.get(this.latestAdvertisementsPath);
+  getLatestAdvertisements() : Observable<IAdvertisement[]> {
+    return this.http.get<IAdvertisement[]>(this.latestAdvertisementsPath);
   }
 
   getAdvertisement(advertisementId : string) : Observable<IAdvertisement> {
@@ -38,7 +38,7 @@ export class AdvertisementService {
     return this.http.get<IAdvertisement[]>(this.advertisementsOfUserPath);
   }
 
-  incrementViews(advertisementId: string) : Observable<any> {
+  incrementViews(advertisementId: string) {
     return this.http.get(this.incrementViewsPath + '/' + advertisementId);
   }
 

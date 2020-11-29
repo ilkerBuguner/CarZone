@@ -62,6 +62,10 @@ export class ListAdvertisementsComponent implements OnInit {
   }
 
   onChangeBrand(brandId) {
+    if(brandId == "") {
+      return;
+    }
+    
     this.brandModelService.getModelsByBrandId(brandId).subscribe(models => {
       this.brandModels = models;
     });
