@@ -12,7 +12,7 @@ CarZone is a Single-Page Application for car dealing, very similar to [Mobile.bg
 
 - HTML5, CSS3
 
-- Bootstrap
+- Bootstrap 4
 
 - Ngx-Toastr
 

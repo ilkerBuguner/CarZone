@@ -31,16 +31,6 @@ export class EditUserComponent implements OnInit {
     private uploadService: UploadService,
     private toastrService: ToastrService,
   ) {
-    this.editForm = this.fb.group({
-      'username': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      'fullName': ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-      'email': ['', [Validators.required]],
-      'phoneNumber': ['', ''],
-      'location': ['', ''],
-      'gender': ['', ''],
-    })
-    this.editForm.controls['username'].disable();
-
     this.userId = this.authService.getUserId();
   }
 
@@ -55,7 +45,7 @@ export class EditUserComponent implements OnInit {
       this.editForm = this.fb.group({
         'username': [this.user.username, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
         'fullName': [this.user.fullName, [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-        'email': [this.user.email, [Validators.required]],
+        'email': [this.user.email, [Validators.required, Validators.email]],
         'phoneNumber': [this.user.phoneNumber, ''],
         'location': [this.user.location, ''],
         'gender': [this.user.gender, ''],
@@ -77,6 +67,7 @@ export class EditUserComponent implements OnInit {
     this.userService.resetProfilePicture().pipe(
       mergeMap(res => this.userService.details(this.userId))).subscribe(data => {
         this.user = data;
+        this.toastrService.success('Successfully removed profile picture!');
       })
   }
   

@@ -38,6 +38,9 @@
                         <div *ngIf="email.touched && email.errors?.required" class="alert alert-danger">
                             Email field is required!
                         </div>
+                        <div *ngIf="email.touched && email.errors?.email" class="alert alert-danger">
+                            Invalid Email!
+                        </div>
                     </div>
                 </div>
 
