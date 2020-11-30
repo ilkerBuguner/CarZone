@@ -85,7 +85,7 @@
                                 <span>Mileage</span>
                                 <br>
                                 <strong *ngIf="!advertisement?.car.mileage">No info</strong>
-                                <strong>{{advertisement?.car.mileage}}km</strong>
+                                <strong *ngIf="advertisement?.car.mileage">{{advertisement?.car.mileage}}km</strong>
                             </p>
                         </div>
 
