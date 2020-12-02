@@ -6,7 +6,7 @@
                     <div class="form-group">
                         <label>Make:</label>
 
-                        <select (change)="onChangeBrand($event.target.value)" formControlName="brandId"
+                        <select (change)="onChangeBrand($event)" formControlName="brandId"
                             class="form-control">
                             <option value="">All</option>
                             <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label>Model:</label>
 
-                        <select class="form-control" formControlName="modelId">
+                        <select class="form-control" formControlName="modelId" (change)="onChangeModel($event)">
                             <option *ngIf="!brandModels" value="">No selected make</option>
                             <option *ngIf="brandModels" value="">All</option>
                             <option *ngFor="let model of brandModels" [value]="model.id">{{model.name}}</option>
@@ -157,6 +157,56 @@
 
 <section class="featured-places car-results">
     <div class="container">
+        <div *ngIf="foundCarsCount != undefined" class="constraints">
+            <div *ngIf="selectedBrandName && selectedBrandName != 'All'" class="select-constraint">
+                Make: <strong>{{selectedBrandName}}</strong>
+            </div>
+            <div *ngIf="selectedModelName && selectedModelName != 'All' && searchForm.value.modelId != ''" class="select-constraint">
+                Model: <strong>{{selectedModelName}}</strong>
+            </div>
+            <div *ngIf="searchForm.value.condition && searchForm.value.condition != 'All'" class="select-constraint">
+                Condition: <strong>{{searchForm.value.condition}}</strong>
+            </div>
+            <div *ngIf="searchForm.value.bodyType && searchForm.value.bodyType != 'All'" class="select-constraint">
+                Vehicle Type: <strong>{{searchForm.value.bodyType}}</strong>
+            </div>
+            <div *ngIf="searchForm.value.fuelType && searchForm.value.fuelType != 'All'" class="select-constraint">
+                Fuel Type: <strong>{{searchForm.value.fuelType}}</strong>
+            </div>
+            <div *ngIf="searchForm.value.transmission && searchForm.value.transmission != 'All'" class="select-constraint">
+                Gearbox: <strong>{{searchForm.value.transmission}}</strong>
+            </div>
+            <div *ngIf="searchForm.value.color && searchForm.value.color != 'All'" class="select-constraint">
+                Color: <strong>{{searchForm.value.color}}</strong>
+            </div>
+            <div *ngIf="searchForm.value.location && searchForm.value.location != 'All'" class="select-constraint">
+                Location: <strong>{{searchForm.value.location}}</strong>
+            </div>
+            <div *ngIf="searchForm.value.euroStandard && searchForm.value.euroStandard != 'All'" class="select-constraint">
+                Euro Standard: <strong>{{searchForm.value.euroStandard}}</strong>
+            </div>
+            <div *ngIf="searchForm.value.doorsCount && searchForm.value.doorsCount != 'All'" class="select-constraint">
+                Doors Count: <strong>{{searchForm.value.doorsCount}}</strong>
+            </div>
+            <div *ngIf="searchForm.value.minPrice" class="select-constraint">
+                Min Price: <strong>{{searchForm.value.minPrice}}$</strong>
+            </div>
+            <div *ngIf="searchForm.value.maxPrice" class="select-constraint">
+                Max Price: <strong>{{searchForm.value.maxPrice}}$</strong>
+            </div>
+            <div *ngIf="searchForm.value.minYear" class="select-constraint">
+                Min Year: <strong>{{searchForm.value.minYear}}</strong>
+            </div>
+            <div *ngIf="searchForm.value.maxYear" class="select-constraint">
+                Max Year: <strong>{{searchForm.value.maxYear}}</strong>
+            </div>
+            <div *ngIf="searchForm.value.minHorsePower" class="select-constraint">
+                Min HorsePower: <strong>{{searchForm.value.minHorsePower}}</strong>
+            </div>
+            <div *ngIf="searchForm.value.maxHorsePower" class="select-constraint">
+                Max HorsePower: <strong>{{searchForm.value.maxHorsePower}}</strong>
+            </div>
+        </div>
         <h2 *ngIf="foundCarsCount != undefined" class="text-center results">{{foundCarsCount}} Cars Found</h2>
         <div *ngIf="isSearching" class="d-flex justify-content-center loader">
             <app-loader></app-loader>

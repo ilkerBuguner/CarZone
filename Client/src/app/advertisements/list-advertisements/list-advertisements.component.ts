@@ -28,6 +28,9 @@ export class ListAdvertisementsComponent implements OnInit {
   foundCarsCount: number;
   isSearching: boolean;
 
+  selectedBrandName: string;
+  selectedModelName: string;
+
   constructor(private advertisementService: AdvertisementService,
     private brandModelService : BrandModelService,
     private fb: FormBuilder,
@@ -61,14 +64,23 @@ export class ListAdvertisementsComponent implements OnInit {
     });
   }
 
-  onChangeBrand(brandId) {
+  onChangeBrand(event) {
+    const brandId = event.target.value;
+    const brandName = event.target.options[event.target.options.selectedIndex].text;
+    this.selectedBrandName = brandName
     if(brandId == "") {
       return;
     }
     
     this.brandModelService.getModelsByBrandId(brandId).subscribe(models => {
       this.brandModels = models;
+      this.searchForm.controls.modelId.setValue('');
     });
+  }
+
+  onChangeModel(event) {
+    const modelName = event.target.options[event.target.options.selectedIndex].text;
+    this.selectedModelName = modelName;
   }
 
   search() {
