@@ -263,3 +263,7 @@ section.banner {
   border-radius: 5px;
   border: 1px solid gray;
 }
+
+.select-constraint i {
+  cursor: pointer;
+}

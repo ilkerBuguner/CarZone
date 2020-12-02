@@ -159,52 +159,52 @@
     <div class="container">
         <div *ngIf="foundCarsCount != undefined" class="constraints">
             <div *ngIf="selectedBrandName && selectedBrandName != 'All'" class="select-constraint">
-                Make: <strong>{{selectedBrandName}}</strong>
+                Make: <strong>{{selectedBrandName}} <i (click)="removeSearchConstraint('brand')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="selectedModelName && selectedModelName != 'All' && searchForm.value.modelId != ''" class="select-constraint">
-                Model: <strong>{{selectedModelName}}</strong>
+                Model: <strong>{{selectedModelName}} <i (click)="removeSearchConstraint('model')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.condition && searchForm.value.condition != 'All'" class="select-constraint">
-                Condition: <strong>{{searchForm.value.condition}}</strong>
+                Condition: <strong>{{searchForm.value.condition}} <i (click)="removeSearchConstraint('condition')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.bodyType && searchForm.value.bodyType != 'All'" class="select-constraint">
-                Vehicle Type: <strong>{{searchForm.value.bodyType}}</strong>
+                Vehicle Type: <strong>{{searchForm.value.bodyType}} <i (click)="removeSearchConstraint('bodyType')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.fuelType && searchForm.value.fuelType != 'All'" class="select-constraint">
-                Fuel Type: <strong>{{searchForm.value.fuelType}}</strong>
+                Fuel Type: <strong>{{searchForm.value.fuelType}} <i (click)="removeSearchConstraint('fuelType')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.transmission && searchForm.value.transmission != 'All'" class="select-constraint">
-                Gearbox: <strong>{{searchForm.value.transmission}}</strong>
+                Gearbox: <strong>{{searchForm.value.transmission}} <i (click)="removeSearchConstraint('transmission')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.color && searchForm.value.color != 'All'" class="select-constraint">
-                Color: <strong>{{searchForm.value.color}}</strong>
+                Color: <strong>{{searchForm.value.color}} <i (click)="removeSearchConstraint('color')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.location && searchForm.value.location != 'All'" class="select-constraint">
-                Location: <strong>{{searchForm.value.location}}</strong>
+                Location: <strong>{{searchForm.value.location}} <i (click)="removeSearchConstraint('location')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.euroStandard && searchForm.value.euroStandard != 'All'" class="select-constraint">
-                Euro Standard: <strong>{{searchForm.value.euroStandard}}</strong>
+                Euro Standard: <strong>{{searchForm.value.euroStandard}} <i (click)="removeSearchConstraint('euroStandard')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.doorsCount && searchForm.value.doorsCount != 'All'" class="select-constraint">
-                Doors Count: <strong>{{searchForm.value.doorsCount}}</strong>
+                Doors Count: <strong>{{searchForm.value.doorsCount}} <i (click)="removeSearchConstraint('doorsCount')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.minPrice" class="select-constraint">
-                Min Price: <strong>{{searchForm.value.minPrice}}$</strong>
+                Min Price: <strong>{{searchForm.value.minPrice}}$ <i (click)="removeSearchConstraint('minPrice')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.maxPrice" class="select-constraint">
-                Max Price: <strong>{{searchForm.value.maxPrice}}$</strong>
+                Max Price: <strong>{{searchForm.value.maxPrice}}$ <i (click)="removeSearchConstraint('maxPrice')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.minYear" class="select-constraint">
-                Min Year: <strong>{{searchForm.value.minYear}}</strong>
+                Min Year: <strong>{{searchForm.value.minYear}} <i (click)="removeSearchConstraint('minYear')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.maxYear" class="select-constraint">
-                Max Year: <strong>{{searchForm.value.maxYear}}</strong>
+                Max Year: <strong>{{searchForm.value.maxYear}} <i (click)="removeSearchConstraint('maxYear')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.minHorsePower" class="select-constraint">
-                Min HorsePower: <strong>{{searchForm.value.minHorsePower}}</strong>
+                Min HorsePower: <strong>{{searchForm.value.minHorsePower}} <i (click)="removeSearchConstraint('minHorsePower')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.maxHorsePower" class="select-constraint">
-                Max HorsePower: <strong>{{searchForm.value.maxHorsePower}}</strong>
+                Max HorsePower: <strong>{{searchForm.value.maxHorsePower}} <i (click)="removeSearchConstraint('maxHorsePower')" class="fas fa-times-circle"></i></strong>
             </div>
         </div>
         <h2 *ngIf="foundCarsCount != undefined" class="text-center results">{{foundCarsCount}} Cars Found</h2>

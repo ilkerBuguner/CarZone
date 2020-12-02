@@ -97,4 +97,45 @@ export class ListAdvertisementsComponent implements OnInit {
       this.isSearching = false;
     });
   }
+
+  removeSearchConstraint(constraintType) {
+    if (constraintType == 'brand') {
+      this.searchForm.controls.brandId.setValue('');
+      this.searchForm.controls.modelId.setValue('');
+      this.selectedModelName = '';
+      this.selectedBrandName = '';
+    } else if (constraintType == 'model') {
+      this.searchForm.controls.modelId.setValue('');
+      this.selectedModelName = '';
+    } else if (constraintType == 'condition') {
+      this.searchForm.controls.condition.setValue('');
+    } else if (constraintType == 'bodyType') {
+      this.searchForm.controls.bodyType.setValue('');
+    } else if (constraintType == 'fuelType') {
+      this.searchForm.controls.fuelType.setValue('');
+    } else if (constraintType == 'transmission') {
+      this.searchForm.controls.transmission.setValue('');
+    } else if (constraintType == 'color') {
+      this.searchForm.controls.color.setValue('');
+    } else if (constraintType == 'location') {
+      this.searchForm.controls.location.setValue('');
+    } else if (constraintType == 'euroStandard') {
+      this.searchForm.controls.euroStandard.setValue('');
+    } else if (constraintType == 'doorsCount') {
+      this.searchForm.controls.doorsCount.setValue('');
+    } else if (constraintType == 'minPrice') {
+      this.searchForm.controls.minPrice.setValue('');
+    } else if (constraintType == 'maxPrice') {
+      this.searchForm.controls.maxPrice.setValue('');
+    } else if (constraintType == 'minYear') {
+      this.searchForm.controls.minYear.setValue('');
+    } else if (constraintType == 'maxYear') {
+      this.searchForm.controls.maxYear.setValue('');
+    } else if (constraintType == 'minHorsePower') {
+      this.searchForm.controls.minHorsePower.setValue('');
+    } else if (constraintType == 'maxHorsePower') {
+      this.searchForm.controls.maxHorsePower.setValue('');
+    }
+    this.search();
+  }
 }
