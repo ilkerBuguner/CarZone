@@ -58,7 +58,7 @@ export class ListRepliesComponent implements OnInit {
     this.replyService.delete(selectedReplyId).pipe(
       map(data => {
         this.toastrService.success('Successfully deleted reply!');
-        const closeButton = document.querySelector(".close-button") as HTMLElement;
+        const closeButton = document.querySelector(".close-reply-modal-button") as HTMLElement;
         closeButton.click();
       }), 
       mergeMap(res => this.replyService.getAllByCommentId(this.rootCommentId))).pipe(
@@ -68,13 +68,6 @@ export class ListRepliesComponent implements OnInit {
         mergeMap(data => this.commentService.getAllByAdvertisementId(this.advertisementId))).subscribe(comments => {
           this.commentService.loadComments(comments);
         })
-
-    // this.replyService.delete(selectedReplyId).subscribe(res => {
-    //   this.toastrService.success('Successfully deleted reply!');
-    //   const closeButton = document.querySelector(".close-button") as HTMLElement;
-    //   closeButton.click();
-    //   this.getAllReplies();
-    // })
   }
 
   activateEditingAndSelectReply(replyId) {

@@ -146,6 +146,18 @@ ul li {
     bottom: -93px;
 }
 
+.buttons-wrapper {
+	margin-top: 10px;
+}
+
+.buttons-wrapper button {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.buttons-wrapper .last-button {
+	margin-right: 110px;
+}
 
 @media screen and (max-width: 736px) {
 	#wrapper > * > .inner {
