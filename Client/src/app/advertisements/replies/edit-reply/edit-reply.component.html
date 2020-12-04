@@ -3,8 +3,17 @@
         <h6>Edit Reply:</h6>
         <textarea class="form-control" rows="2" formControlName="content"></textarea>
     </div>
+    <div *ngIf="content.touched && content.errors?.required" class="alert alert-danger">
+        Reply field is required!
+    </div>
+    <div *ngIf="content.touched && content.errors?.minlength" class="alert alert-danger">
+        Reply must contain at least 2 characters!
+    </div>
+    <div *ngIf="content.touched && content.errors?.maxlength" class="alert alert-danger">
+        Reply can't be longer than 300 characters!
+    </div>
     <div class="form-group">
-        <input type="submit" value="Save Edits" class="btn btn-primary btn-sm" />
+        <input type="submit" [disabled]="content.errors" value="Save Edits" class="btn btn-primary btn-sm" />
         <a class="btn btn-light btn-sm" (click)="closeEditForm()">Hide</a>
     </div>
 </form>
