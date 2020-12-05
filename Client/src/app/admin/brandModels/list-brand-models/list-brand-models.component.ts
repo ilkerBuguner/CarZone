@@ -15,6 +15,7 @@ export class ListBrandModelsComponent implements OnInit {
   brandModels: IBrandModel[];
   currentBrandId: string;
   currentModel: IBrandModel;
+  selectedModelId: string;
   editBrandModelForm: FormGroup;
   noModelsFound: boolean = false;
   
@@ -45,9 +46,11 @@ export class ListBrandModelsComponent implements OnInit {
     });
   }
 
-  delete(modelId) {
-    this.brandModelService.delete(modelId).subscribe(res => {
+  delete() {
+    this.brandModelService.delete(this.selectedModelId).subscribe(res => {
       this.toastrService.success('Successfully deleted model!');
+      const closeEditButton = document.querySelector(".delete-modal-close-button") as HTMLElement;
+      closeEditButton.click();
       this.onChangeBrand(this.currentBrandId);
     })
   }
@@ -58,8 +61,10 @@ export class ListBrandModelsComponent implements OnInit {
       return;
     }
     this.brandModelService.edit(this.currentModel.id, this.editBrandModelForm.value).subscribe(res => {
-      this.onChangeBrand(this.currentBrandId);
       this.toastrService.success(`Model edited successfully!`);
+      const closeEditButton = document.querySelector(".close-edit-button") as HTMLElement;
+      closeEditButton.click();
+      this.onChangeBrand(this.currentBrandId);
     })
   }
 
@@ -71,6 +76,10 @@ export class ListBrandModelsComponent implements OnInit {
         'brandId': [this.currentModel.brandId, [Validators.required]],
       })
     })
+  }
+
+  selectModelId(modelId: string) {
+    this.selectedModelId = modelId;
   }
 
   get name() {

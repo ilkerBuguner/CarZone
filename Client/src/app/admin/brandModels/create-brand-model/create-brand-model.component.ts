@@ -40,6 +40,8 @@ export class CreateBrandModelComponent implements OnInit {
       const brandId = this.createBrandModelForm.value['brandId'];
       const modelName = this.createBrandModelForm.value['name'];
       this.onChangeBrandFunction.next(brandId);
+      const closeEditButton = document.querySelector(".close-create-modal-button") as HTMLElement;
+      closeEditButton.click();
       this.toastrService.success(`Model '${modelName}' created successfully!`);
       this.createBrandModelForm.reset();
     })

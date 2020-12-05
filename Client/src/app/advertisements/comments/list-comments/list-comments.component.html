@@ -1,6 +1,6 @@
 <div class="d-flex w-100 justify-content-between">
-  <h3 *ngIf="comments.length == 1" class="count">{{comments.length}} Comment</h3>
-  <h3 *ngIf="comments.length != 1" class="count">{{comments.length}} Comments</h3>
+  <h3 *ngIf="comments?.length == 1" class="count">{{comments?.length}} Comment</h3>
+  <h3 *ngIf="comments?.length != 1" class="count">{{comments?.length}} Comments</h3>
 </div>
 <div *ngFor="let comment of comments" class="media single-comment">
   <img *ngIf="!comment.author.profilePictureUrl" class="align-self-top mr-3"
