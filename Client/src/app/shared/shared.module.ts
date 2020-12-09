@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoaderComponent } from './loader/loader.component';
+import { ShortenUsernamePipe } from './pipes/shorten-username.pipe';
 
 
 
@@ -13,7 +14,8 @@ import { LoaderComponent } from './loader/loader.component';
     HeaderComponent,
     FooterComponent,
     NotFoundComponent,
-    LoaderComponent
+    LoaderComponent,
+    ShortenUsernamePipe
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { LoaderComponent } from './loader/loader.component';
   exports: [
     HeaderComponent,
     FooterComponent,
-    LoaderComponent
+    LoaderComponent,
+    ShortenUsernamePipe
   ]
 })
 export class SharedModule { }
