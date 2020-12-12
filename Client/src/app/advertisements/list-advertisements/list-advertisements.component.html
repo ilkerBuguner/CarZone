@@ -189,10 +189,10 @@
                 Doors Count: <strong>{{searchForm.value.doorsCount}} <i (click)="removeSearchConstraint('doorsCount')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.minPrice" class="select-constraint">
-                Min Price: <strong>{{searchForm.value.minPrice}}$ <i (click)="removeSearchConstraint('minPrice')" class="fas fa-times-circle"></i></strong>
+                Min Price: <strong>${{searchForm.value.minPrice}} <i (click)="removeSearchConstraint('minPrice')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.maxPrice" class="select-constraint">
-                Max Price: <strong>{{searchForm.value.maxPrice}}$ <i (click)="removeSearchConstraint('maxPrice')" class="fas fa-times-circle"></i></strong>
+                Max Price: <strong>${{searchForm.value.maxPrice}} <i (click)="removeSearchConstraint('maxPrice')" class="fas fa-times-circle"></i></strong>
             </div>
             <div *ngIf="searchForm.value.minYear" class="select-constraint">
                 Min Year: <strong>{{searchForm.value.minYear}} <i (click)="removeSearchConstraint('minYear')" class="fas fa-times-circle"></i></strong>
@@ -230,17 +230,17 @@
                     </div>
                     <div class="down-content">
                         <h4>{{advertisement.title}}</h4>
-
                         <br>
-
                         <p>{{advertisement.car.horsePower}} hp
                             / {{advertisement.car.fuelType}}
                             / {{advertisement.car.year}}
                             / {{advertisement.car.transmission}}
                             / {{advertisement.car.mileage}}km</p>
-
-                        <p><span><strong><sup>$</sup>{{advertisement.car.price.toFixed(2)}}</strong></span></p>
-
+                        <p>
+                            <span>
+                                <strong><sup>$</sup>{{advertisement.car.price.toFixed(2)}}</strong>
+                            </span>
+                        </p>
                         <div class="text-button">
                             <a [routerLink]="['/advertisement', advertisement.id]">View More</a>
                         </div>

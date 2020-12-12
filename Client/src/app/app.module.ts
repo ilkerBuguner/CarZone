@@ -49,7 +49,6 @@ import { UserService } from './services/user/user.service';
     UploadService,
     AuthGuardService,
     AdminAuthGuardService,
-
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

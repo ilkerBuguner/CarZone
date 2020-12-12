@@ -58,16 +58,6 @@ export class CreateReplyComponent implements OnInit {
         mergeMap(data => this.commentService.getAllByAdvertisementId(this.advertisementId))).subscribe(comments => {
           this.commentService.loadComments(comments);
         })
-
-    // this.replyService.create(commentToCreate).pipe(
-    //   map(res => {
-    //     this.toastrService.success('Successfully posted reply!');
-    //     this.createReplyForm.reset();
-    //   }), mergeMap(data => this.replyService.getAllByCommentId(this.rootCommentId))).subscribe(replies => {
-    //     this.stopReplying.emit(true);
-    //     this.showReplies.emit(true);
-    //     this.replyService.loadReplies(replies);
-    //   })
   }
 
   hideReplyForm() {

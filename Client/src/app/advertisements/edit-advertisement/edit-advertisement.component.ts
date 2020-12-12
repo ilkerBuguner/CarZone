@@ -220,11 +220,7 @@ export class EditAdvertisementComponent implements OnInit {
           color: this.editForm.value.color,
           condition: this.editForm.value.condition,
           euroStandard: this.editForm.value.euroStandard,
-          doorsCount: this.editForm.value.doorsCount,
-          carComforts: [],
-          carExteriors: [],
-          carProtections: [],
-          carSafeties: [],
+          doorsCount: this.editForm.value.doorsCount
         }
       }
   

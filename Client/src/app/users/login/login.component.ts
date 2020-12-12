@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       this.toastrService.error('Please populate username and password field!')
       return;
     }
-    this.toastrService.info('Loading...')
+    this.toastrService.info('Logging in...')
     
     this.authService.login(this.loginForm.value).subscribe(data => {
       const userId = data.user.id;
