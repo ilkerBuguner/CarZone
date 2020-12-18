@@ -1,11 +1,9 @@
 
-    /* Footer */
     .carzone-footer {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        /* margin-top: 70px; */
         padding-top: 20px;
         padding-bottom: 20px;
         background-color: #42A5F5;
@@ -39,4 +37,3 @@
         font-size: 25px;
         letter-spacing: 20px;
     }
-    /* Footer */

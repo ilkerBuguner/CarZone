@@ -23,9 +23,6 @@ export class ErrorInterceptorService implements HttpInterceptor{
           }
         }
         return throwError(err);
-        // if (err) {
-        //   this.toastrService.error(err.error['errors'][0])
-        // }
       })
     )
   }
